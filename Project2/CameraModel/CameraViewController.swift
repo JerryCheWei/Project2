@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Sharaku
 
 class CameraViewController: UIViewController {
 
@@ -56,8 +57,7 @@ class CameraViewController: UIViewController {
         CameraSet.captureSession.commitConfiguration()
     }
 
-    @IBAction func shutterButtonDidTap()
-    {
+    @IBAction func shutterButtonDidTap() {
        CameraSet.stillImageOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
 
@@ -70,9 +70,20 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
             self.stillImage = UIImage(data: imageData)
 
             // open photo image filter VC
-//            let vc = SHViewController(image: stillImage!)
-//            vc.delegate = self
-//            present(vc, animated: true, completion: nil)
+            let imageFilterVC = SHViewController(image: stillImage!)
+            imageFilterVC.delegate = self
+            present(imageFilterVC, animated: true, completion: nil)
         }
+    }
+}
+
+extension CameraViewController: SHViewControllerDelegate {
+
+    func shViewControllerImageDidFilter(image: UIImage) {
+
+    }
+
+    func shViewControllerDidCancel() {
+
     }
 }
