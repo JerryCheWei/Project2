@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
+		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
-		BFB6E499211BF9B400404C2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E498211BF9B400404C2E /* ViewController.swift */; };
 		BFB6E49C211BF9B400404C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E49A211BF9B400404C2E /* Main.storyboard */; };
 		BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */; };
 		BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E4A0211BF9B900404C2E /* Assets.xcassets */; };
@@ -16,9 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB6E496211BF9B400404C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFB6E498211BF9B400404C2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFB6E49B211BF9B400404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFB6E49E211BF9B400404C2E /* Project2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Project2.xcdatamodel; sourceTree = "<group>"; };
 		BFB6E4A0211BF9B900404C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +39,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF81FA39211EC94D0030FABF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFB6E49A211BF9B400404C2E /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF81FA3A211EC95D0030FABF /* CameraModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF81FA3B211EE1350030FABF /* CameraModel.swift */,
+			);
+			path = CameraModel;
+			sourceTree = "<group>";
+		};
+		BF81FA3D211EE1420030FABF /* CameraController */ = {
+			isa = PBXGroup;
+			children = (
+				BF81FA3E211EE1670030FABF /* CameraViewController.swift */,
+			);
+			name = CameraController;
+			path = CameraModel;
+			sourceTree = "<group>";
+		};
 		BFB6E48A211BF9B300404C2E = {
 			isa = PBXGroup;
 			children = (
@@ -57,8 +84,9 @@
 			isa = PBXGroup;
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
-				BFB6E498211BF9B400404C2E /* ViewController.swift */,
-				BFB6E49A211BF9B400404C2E /* Main.storyboard */,
+				BF81FA3D211EE1420030FABF /* CameraController */,
+				BF81FA3A211EC95D0030FABF /* CameraModel */,
+				BF81FA39211EC94D0030FABF /* View */,
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
 				BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */,
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
@@ -155,9 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFB6E499211BF9B400404C2E /* ViewController.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
+				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
+				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

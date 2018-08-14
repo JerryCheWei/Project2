@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bPC-7p-CMd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera View Controller-->
+        <scene sceneID="eG0-RL-Zkf">
+            <objects>
+                <viewController id="eMM-hO-pJ5" customClass="CameraViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="owM-Cq-teb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rhh-QN-80J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uoT-uQ-zeB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTe-KQ-GBN">
+                                <rect key="frame" x="160" y="563" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="8KZ-Xy-BtX"/>
+                                    <constraint firstAttribute="height" constant="55" id="BAj-PR-Lj3"/>
+                                </constraints>
+                                <state key="normal" image="CameraButton"/>
+                                <connections>
+                                    <action selector="shutterButtonDidTap" destination="eMM-hO-pJ5" eventType="touchUpInside" id="PYb-w2-f8s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HTe-KQ-GBN" firstAttribute="centerX" secondItem="uoT-uQ-zeB" secondAttribute="centerX" id="69z-Bi-IRJ"/>
+                            <constraint firstItem="Rhh-QN-80J" firstAttribute="top" secondItem="HTe-KQ-GBN" secondAttribute="bottom" constant="49" id="wnQ-Ze-XUI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="38m-hp-Jso"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="J5v-nu-KbM"/>
+                    <connections>
+                        <outlet property="cameraButton" destination="HTe-KQ-GBN" id="6pt-eN-HrQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Jn-an-fVd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143.2" y="112.89355322338831"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mqd-DT-qaa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bPC-7p-CMd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" id="SzA-MF-EVZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eMM-hO-pJ5" kind="relationship" relationship="rootViewController" id="mgy-az-mbF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q1z-na-DvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="113"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CameraButton" width="122" height="122"/>
+    </resources>
+</document>

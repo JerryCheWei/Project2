@@ -1,0 +1,78 @@
+//
+//  CameraViewController.swift
+//  Project2
+//
+//  Created by chang-che-wei on 2018/8/11.
+//  Copyright © 2018年 chang-che-wei. All rights reserved.
+//
+
+import UIKit
+import AVFoundation
+
+class CameraViewController: UIViewController {
+
+    @IBOutlet weak var cameraButton: UIButton!
+    var stillImage: UIImage?
+    // double tap switch from back to front facing camera
+    var toggleCameraGestureRecognizer = UITapGestureRecognizer()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        CameraSet.setupCaptureSession()
+        CameraSet.checkCamera()
+        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+        // toggle the Camera
+        toggleCameraGestureRecognizer.numberOfTapsRequired = 2
+        toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
+        view.addGestureRecognizer(toggleCameraGestureRecognizer)
+
+    }
+
+    @objc private func toggleCamera() {
+        // start the configuration
+        print("tap 2 ")
+        CameraSet.captureSession.beginConfiguration()
+
+        let newDevice = (CameraSet.currentDevice?.position == .front) ? CameraSet.backFacingCamera : CameraSet.frontFacingCamera
+
+        for input in CameraSet.captureSession.inputs {
+            CameraSet.captureSession.removeInput(input)
+        }
+
+        let cameraInput: AVCaptureDeviceInput
+        do {
+            cameraInput = try AVCaptureDeviceInput(device: newDevice!)
+        }
+        catch let error {
+            print(error)
+            return
+        }
+
+        if CameraSet.captureSession.canAddInput(cameraInput) {
+            CameraSet.captureSession.addInput(cameraInput)
+        }
+        CameraSet.currentDevice = newDevice
+        CameraSet.captureSession.commitConfiguration()
+    }
+
+    @IBAction func shutterButtonDidTap()
+    {
+       CameraSet.stillImageOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+    }
+
+}
+
+extension CameraViewController: AVCapturePhotoCaptureDelegate {
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let imageData = photo.fileDataRepresentation() {
+            self.stillImage = UIImage(data: imageData)
+
+            // open photo image filter VC
+//            let vc = SHViewController(image: stillImage!)
+//            vc.delegate = self
+//            present(vc, animated: true, completion: nil)
+        }
+    }
+}
