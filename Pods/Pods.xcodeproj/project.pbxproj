@@ -1,0 +1,627 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EB7BB74B60CB6D684773FD9655E18E5 /* Pods-Project2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C107629E002823FECF426F0809B9D2 /* Pods-Project2-dummy.m */; };
+		1AD828A833834501A6C978C4F2F5187C /* SHCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B768693783F8A3F535EC5D20AE878 /* SHCollectionViewCell.xib */; };
+		2791BC5C37F3481A483A749DBF9E1182 /* Sharaku-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 442046DB2C2EA15F71CBB7B93ED17A17 /* Sharaku-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E7B55E10CE5D4471BDF3452331FD284 /* SHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2317B624BBD0AB0B4D7CFA5170F96B7 /* SHViewController.swift */; };
+		594874C0B3A8B837CA195632B3BB2ED6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		6F4DE99D98730AC144B3BD59FEB7185B /* SHCollectionViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B768693783F8A3F535EC5D20AE878 /* SHCollectionViewCell.xib */; };
+		849CDF0E6DE8AAE92C071FE229F3C170 /* SHViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = BC292E4591617C4DE8F945770BCFC2B7 /* SHViewController.xib */; };
+		854B8329816EBB21A08B959896037B1D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C49C1B2E88F28CC186F86CF8F1800A8 /* Media.xcassets */; };
+		986E14CB023E5BAC7C844B2942B65BB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		A17E90775953F57708668CE9313D293D /* SHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0DB63F9CE9FAFC5F984FBFEF9D425 /* SHCollectionViewCell.swift */; };
+		ACD2E36CDC8C310D063AE570FB1B2FD6 /* Sharaku-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D30EC09A0EE31DD76592B4732E705B41 /* Sharaku-dummy.m */; };
+		C64E37BBECA915AAEE95E04F0D82A6B6 /* Pods-Project2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A897C3BF9F3BFF3814C4076154999665 /* Pods-Project2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F102E3056F6765544E644A1A8824905A /* SHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC292E4591617C4DE8F945770BCFC2B7 /* SHViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D2DE4505205A0A9A6A0A9F36B46ABB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99F28E292C992A19F63E741A052576FF;
+			remoteInfo = Sharaku;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0E15B1259074C9E3EA0308D0F5390BCA /* Pods-Project2-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Project2-acknowledgements.plist"; sourceTree = "<group>"; };
+		0F9A076D9B93FB55C05AA3D94574C8E5 /* Pods-Project2-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Project2-resources.sh"; sourceTree = "<group>"; };
+		118FA2CC4D9B6D360DF3E86E3E0F6A8E /* Sharaku.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Sharaku.modulemap; sourceTree = "<group>"; };
+		1BA7616A00F5484C4A31C76E512C69CC /* Pods-Project2-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Project2-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3389157B5E0D0B5ADD2D69482D3A3A49 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
+		442046DB2C2EA15F71CBB7B93ED17A17 /* Sharaku-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sharaku-umbrella.h"; sourceTree = "<group>"; };
+		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		61AEEB59F3D03C7927AB919ECC6A822B /* Sharaku-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sharaku-prefix.pch"; sourceTree = "<group>"; };
+		6964D77DADC719E2BA67565B35AD0273 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C49C1B2E88F28CC186F86CF8F1800A8 /* Media.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Sharaku/Assets/Media.xcassets; sourceTree = "<group>"; };
+		854FC353595861A7DF337676D2C20EC1 /* Pods-Project2-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Project2-frameworks.sh"; sourceTree = "<group>"; };
+		8B5B768693783F8A3F535EC5D20AE878 /* SHCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SHCollectionViewCell.xib; path = Sharaku/Classes/SHCollectionViewCell.xib; sourceTree = "<group>"; };
+		933B722C227C9A7771FD1739F90D3A98 /* Sharaku.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Sharaku.xcconfig; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E9AA74ADB813B0B51F34451B60D5A53 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Project2.framework; path = "Pods-Project2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7C107629E002823FECF426F0809B9D2 /* Pods-Project2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Project2-dummy.m"; sourceTree = "<group>"; };
+		A897C3BF9F3BFF3814C4076154999665 /* Pods-Project2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Project2-umbrella.h"; sourceTree = "<group>"; };
+		A8B4D5A4C68B45D1372B46800C3BABE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4D0DB63F9CE9FAFC5F984FBFEF9D425 /* SHCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SHCollectionViewCell.swift; path = Sharaku/Classes/SHCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC292E4591617C4DE8F945770BCFC2B7 /* SHViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SHViewController.xib; path = Sharaku/Classes/SHViewController.xib; sourceTree = "<group>"; };
+		D30EC09A0EE31DD76592B4732E705B41 /* Sharaku-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Sharaku-dummy.m"; sourceTree = "<group>"; };
+		E9BD121247F223C78FE61384FC70850E /* Pods-Project2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Project2.modulemap"; sourceTree = "<group>"; };
+		EC0AC2C745033D178CAD85EAB2920F58 /* Sharaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Sharaku.framework; path = Sharaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BC643AC4E921D3BB972D5534625246 /* Pods-Project2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Project2.debug.xcconfig"; sourceTree = "<group>"; };
+		F2317B624BBD0AB0B4D7CFA5170F96B7 /* SHViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SHViewController.swift; path = Sharaku/Classes/SHViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76357B4FCEED12A94F98B4E711C2A055 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				594874C0B3A8B837CA195632B3BB2ED6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F7E91EA54FB7B6146270913918C1458 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				986E14CB023E5BAC7C844B2942B65BB8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27FD886F963DECC74C8EED7D3E6C99CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6C49C1B2E88F28CC186F86CF8F1800A8 /* Media.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		344AC5F2BE5A037D2959B977FBA2ADB5 /* Sharaku */ = {
+			isa = PBXGroup;
+			children = (
+				B4D0DB63F9CE9FAFC5F984FBFEF9D425 /* SHCollectionViewCell.swift */,
+				8B5B768693783F8A3F535EC5D20AE878 /* SHCollectionViewCell.xib */,
+				F2317B624BBD0AB0B4D7CFA5170F96B7 /* SHViewController.swift */,
+				BC292E4591617C4DE8F945770BCFC2B7 /* SHViewController.xib */,
+				27FD886F963DECC74C8EED7D3E6C99CC /* Resources */,
+				73025ADDC942F6671CD3666A187BBE51 /* Support Files */,
+			);
+			name = Sharaku;
+			path = Sharaku;
+			sourceTree = "<group>";
+		};
+		5DBEF5AEE6B94E6001259F91AAF724AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E9AA74ADB813B0B51F34451B60D5A53 /* Pods_Project2.framework */,
+				EC0AC2C745033D178CAD85EAB2920F58 /* Sharaku.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		73025ADDC942F6671CD3666A187BBE51 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8B4D5A4C68B45D1372B46800C3BABE1 /* Info.plist */,
+				118FA2CC4D9B6D360DF3E86E3E0F6A8E /* Sharaku.modulemap */,
+				933B722C227C9A7771FD1739F90D3A98 /* Sharaku.xcconfig */,
+				D30EC09A0EE31DD76592B4732E705B41 /* Sharaku-dummy.m */,
+				61AEEB59F3D03C7927AB919ECC6A822B /* Sharaku-prefix.pch */,
+				442046DB2C2EA15F71CBB7B93ED17A17 /* Sharaku-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Sharaku";
+			sourceTree = "<group>";
+		};
+		7D479E207ECEBB7C199E57C3C3E07F20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				344AC5F2BE5A037D2959B977FBA2ADB5 /* Sharaku */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				7D479E207ECEBB7C199E57C3C3E07F20 /* Pods */,
+				5DBEF5AEE6B94E6001259F91AAF724AF /* Products */,
+				9C0DA66C799E862417DDE771480201A2 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9C0DA66C799E862417DDE771480201A2 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ABCC127C1E0FCC90997625ED61E26343 /* Pods-Project2 */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		ABCC127C1E0FCC90997625ED61E26343 /* Pods-Project2 */ = {
+			isa = PBXGroup;
+			children = (
+				6964D77DADC719E2BA67565B35AD0273 /* Info.plist */,
+				E9BD121247F223C78FE61384FC70850E /* Pods-Project2.modulemap */,
+				1BA7616A00F5484C4A31C76E512C69CC /* Pods-Project2-acknowledgements.markdown */,
+				0E15B1259074C9E3EA0308D0F5390BCA /* Pods-Project2-acknowledgements.plist */,
+				A7C107629E002823FECF426F0809B9D2 /* Pods-Project2-dummy.m */,
+				854FC353595861A7DF337676D2C20EC1 /* Pods-Project2-frameworks.sh */,
+				0F9A076D9B93FB55C05AA3D94574C8E5 /* Pods-Project2-resources.sh */,
+				A897C3BF9F3BFF3814C4076154999665 /* Pods-Project2-umbrella.h */,
+				F0BC643AC4E921D3BB972D5534625246 /* Pods-Project2.debug.xcconfig */,
+				3389157B5E0D0B5ADD2D69482D3A3A49 /* Pods-Project2.release.xcconfig */,
+			);
+			name = "Pods-Project2";
+			path = "Target Support Files/Pods-Project2";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B3E3822DC04BB15DC40F1060DCE5D499 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2791BC5C37F3481A483A749DBF9E1182 /* Sharaku-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F434B4D7416BFBB39B654EC6E44100C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C64E37BBECA915AAEE95E04F0D82A6B6 /* Pods-Project2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		296BBDD694A0A5450BD1629522FCFED7 /* Pods-Project2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 124FFDF61792860D9AB346D46B52844D /* Build configuration list for PBXNativeTarget "Pods-Project2" */;
+			buildPhases = (
+				B5B55BECB6B3FEC655E7436518F366BB /* Sources */,
+				76357B4FCEED12A94F98B4E711C2A055 /* Frameworks */,
+				F434B4D7416BFBB39B654EC6E44100C1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05A36DC5C59A16D6BDD75A32A498A331 /* PBXTargetDependency */,
+			);
+			name = "Pods-Project2";
+			productName = "Pods-Project2";
+			productReference = 9E9AA74ADB813B0B51F34451B60D5A53 /* Pods_Project2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		99F28E292C992A19F63E741A052576FF /* Sharaku */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B76DEB2847C0398A5A7C37FF9249FBAB /* Build configuration list for PBXNativeTarget "Sharaku" */;
+			buildPhases = (
+				E1594BBBA53392DEF0DF27EC4D0EC8DB /* Sources */,
+				7F7E91EA54FB7B6146270913918C1458 /* Frameworks */,
+				BF47E6DB13927372860E6CB4E68F99EE /* Resources */,
+				B3E3822DC04BB15DC40F1060DCE5D499 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sharaku;
+			productName = Sharaku;
+			productReference = EC0AC2C745033D178CAD85EAB2920F58 /* Sharaku.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 5DBEF5AEE6B94E6001259F91AAF724AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				296BBDD694A0A5450BD1629522FCFED7 /* Pods-Project2 */,
+				99F28E292C992A19F63E741A052576FF /* Sharaku */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF47E6DB13927372860E6CB4E68F99EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				854B8329816EBB21A08B959896037B1D /* Media.xcassets in Resources */,
+				1AD828A833834501A6C978C4F2F5187C /* SHCollectionViewCell.xib in Resources */,
+				F102E3056F6765544E644A1A8824905A /* SHViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5B55BECB6B3FEC655E7436518F366BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EB7BB74B60CB6D684773FD9655E18E5 /* Pods-Project2-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1594BBBA53392DEF0DF27EC4D0EC8DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD2E36CDC8C310D063AE570FB1B2FD6 /* Sharaku-dummy.m in Sources */,
+				A17E90775953F57708668CE9313D293D /* SHCollectionViewCell.swift in Sources */,
+				6F4DE99D98730AC144B3BD59FEB7185B /* SHCollectionViewCell.xib in Sources */,
+				4E7B55E10CE5D4471BDF3452331FD284 /* SHViewController.swift in Sources */,
+				849CDF0E6DE8AAE92C071FE229F3C170 /* SHViewController.xib in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05A36DC5C59A16D6BDD75A32A498A331 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sharaku;
+			target = 99F28E292C992A19F63E741A052576FF /* Sharaku */;
+			targetProxy = 3D2DE4505205A0A9A6A0A9F36B46ABB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08638A96A528B1EC32DE62F8A728389D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		64A6CC4E364CFED839E560094D3ABBDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 933B722C227C9A7771FD1739F90D3A98 /* Sharaku.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Sharaku/Sharaku-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Sharaku/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Sharaku/Sharaku.modulemap";
+				PRODUCT_MODULE_NAME = Sharaku;
+				PRODUCT_NAME = Sharaku;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7F8FFF5BFECD13317AAFBBCE19163BD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 933B722C227C9A7771FD1739F90D3A98 /* Sharaku.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Sharaku/Sharaku-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Sharaku/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Sharaku/Sharaku.modulemap";
+				PRODUCT_MODULE_NAME = Sharaku;
+				PRODUCT_NAME = Sharaku;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		CA61267BD539C1A4402B296A51EC3076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3389157B5E0D0B5ADD2D69482D3A3A49 /* Pods-Project2.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Project2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Project2/Pods-Project2.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D2019D937400664B2027C4182ECA3236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0BC643AC4E921D3BB972D5534625246 /* Pods-Project2.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Project2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Project2/Pods-Project2.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		124FFDF61792860D9AB346D46B52844D /* Build configuration list for PBXNativeTarget "Pods-Project2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2019D937400664B2027C4182ECA3236 /* Debug */,
+				CA61267BD539C1A4402B296A51EC3076 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */,
+				08638A96A528B1EC32DE62F8A728389D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B76DEB2847C0398A5A7C37FF9249FBAB /* Build configuration list for PBXNativeTarget "Sharaku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F8FFF5BFECD13317AAFBBCE19163BD9 /* Debug */,
+				64A6CC4E364CFED839E560094D3ABBDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
