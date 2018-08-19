@@ -7,5 +7,6 @@ target 'Project2' do
 
   # Pods for Project2
   pod "Sharaku"
+  pod 'Firebase/Core'
 
 end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4413640072A8C2AD6D678C0B /* Pods_Project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */; };
+		BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		8C5BACB3296E1C76FAD21DEC /* Pods-Project2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.debug.xcconfig"; sourceTree = "<group>"; };
 		B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
 				BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */,
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
+				BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */,
 				BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */,
 			);
 			path = Project2;
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
+				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
 				BFB6E49C211BF9B400404C2E /* Main.storyboard in Resources */,
 			);
@@ -227,11 +231,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Project2/Pods-Project2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Sharaku/Sharaku.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sharaku.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
