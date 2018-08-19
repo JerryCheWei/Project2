@@ -60,6 +60,9 @@ class CameraViewController: UIViewController {
     @IBAction func shutterButtonDidTap() {
        CameraSet.stillImageOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
 
@@ -80,7 +83,17 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
 extension CameraViewController: SHViewControllerDelegate {
 
     func shViewControllerImageDidFilter(image: UIImage) {
+        // 取得套用濾鏡後的 image
+        let filteredImage: UIImage = image
+        if let filterImageData: NSData = UIImagePNGRepresentation(filteredImage) as NSData? {
+            UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 
+            print("O ~ Gat filter image in CameraVC")
+            let storyboard = UIStoryboard(name: "Camera", bundle: nil)
+            if let postImageVC  = storyboard.instantiateViewController(withIdentifier: "SendImageViewController") as? SendImageViewController {
+                self.navigationController?.pushViewController(postImageVC, animated: true)
+            }
+        }
     }
 
     func shViewControllerDidCancel() {

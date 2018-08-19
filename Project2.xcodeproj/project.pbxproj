@@ -10,6 +10,9 @@
 		4413640072A8C2AD6D678C0B /* Pods_Project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */; };
 		BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */; };
 		BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */; };
+		BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B82129B7A00022693C /* TabBarController.swift */; };
+		BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */; };
+		BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4C12129BD770022693C /* HomeViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
@@ -24,6 +27,9 @@
 		B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageViewController.swift; sourceTree = "<group>"; };
+		BF1FB4B82129B7A00022693C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF1FB4C12129BD770022693C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +104,31 @@
 			path = SendView;
 			sourceTree = "<group>";
 		};
+		BF1FB4BA2129BC630022693C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4BC2129BC800022693C /* HomeCollectionCell */,
+				BF1FB4BB2129BC6C0022693C /* HomeCollevtionView */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BF1FB4BB2129BC6C0022693C /* HomeCollevtionView */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4C12129BD770022693C /* HomeViewController.swift */,
+			);
+			path = HomeCollevtionView;
+			sourceTree = "<group>";
+		};
+		BF1FB4BC2129BC800022693C /* HomeCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */,
+			);
+			path = HomeCollectionCell;
+			sourceTree = "<group>";
+		};
 		BF81FA39211EC94D0030FABF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
+				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF1FB4BA2129BC630022693C /* Home */,
 				BF1FB4B12129AD6D0022693C /* Camera */,
 				BF1FB4B22129AE1A0022693C /* SendImage */,
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
@@ -274,14 +307,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Project2/Pods-Project2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Sharaku/Sharaku.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sharaku.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,9 +333,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
+				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
+				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
 			);
