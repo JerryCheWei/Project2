@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		4413640072A8C2AD6D678C0B /* Pods_Project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */; };
 		BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */; };
+		BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
-		BFB6E49C211BF9B400404C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E49A211BF9B400404C2E /* Main.storyboard */; };
+		BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E49A211BF9B400404C2E /* Camera.storyboard */; };
 		BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */; };
 		BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E4A0211BF9B900404C2E /* Assets.xcassets */; };
 		BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */; };
@@ -22,11 +23,12 @@
 		8C5BACB3296E1C76FAD21DEC /* Pods-Project2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.debug.xcconfig"; sourceTree = "<group>"; };
 		B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageViewController.swift; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB6E496211BF9B400404C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFB6E49B211BF9B400404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BFB6E49B211BF9B400404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
 		BFB6E49E211BF9B400404C2E /* Project2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Project2.xcdatamodel; sourceTree = "<group>"; };
 		BFB6E4A0211BF9B900404C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB6E4A3211BF9B900404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,10 +56,52 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF1FB4B12129AD6D0022693C /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				BF81FA3A211EC95D0030FABF /* CameraModel */,
+				BF81FA3D211EE1420030FABF /* CameraController */,
+				BF81FA39211EC94D0030FABF /* View */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		BF1FB4B22129AE1A0022693C /* SendImage */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4B52129AED30022693C /* SendView */,
+				BF1FB4B32129AEAD0022693C /* SendModel */,
+				BF1FB4B42129AEBF0022693C /* SendController */,
+			);
+			path = SendImage;
+			sourceTree = "<group>";
+		};
+		BF1FB4B32129AEAD0022693C /* SendModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SendModel;
+			sourceTree = "<group>";
+		};
+		BF1FB4B42129AEBF0022693C /* SendController */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */,
+			);
+			path = SendController;
+			sourceTree = "<group>";
+		};
+		BF1FB4B52129AED30022693C /* SendView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SendView;
+			sourceTree = "<group>";
+		};
 		BF81FA39211EC94D0030FABF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BFB6E49A211BF9B400404C2E /* Main.storyboard */,
+				BFB6E49A211BF9B400404C2E /* Camera.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -76,8 +120,8 @@
 				BF81FA3E211EE1670030FABF /* CameraViewController.swift */,
 			);
 			name = CameraController;
-			path = CameraModel;
-			sourceTree = "<group>";
+			path = Project2/Camera/CameraModel;
+			sourceTree = SOURCE_ROOT;
 		};
 		BFB6E48A211BF9B300404C2E = {
 			isa = PBXGroup;
@@ -101,9 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
-				BF81FA3D211EE1420030FABF /* CameraController */,
-				BF81FA3A211EC95D0030FABF /* CameraModel */,
-				BF81FA39211EC94D0030FABF /* View */,
+				BF1FB4B12129AD6D0022693C /* Camera */,
+				BF1FB4B22129AE1A0022693C /* SendImage */,
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
 				BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */,
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
@@ -186,7 +229,7 @@
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
 				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
-				BFB6E49C211BF9B400404C2E /* Main.storyboard in Resources */,
+				BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,18 +300,19 @@
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
+				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BFB6E49A211BF9B400404C2E /* Main.storyboard */ = {
+		BFB6E49A211BF9B400404C2E /* Camera.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BFB6E49B211BF9B400404C2E /* Base */,
 			);
-			name = Main.storyboard;
+			name = Camera.storyboard;
 			sourceTree = "<group>";
 		};
 		BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */ = {
