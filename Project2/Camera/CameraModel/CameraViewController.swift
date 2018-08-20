@@ -85,7 +85,7 @@ extension CameraViewController: SHViewControllerDelegate {
     func shViewControllerImageDidFilter(image: UIImage) {
         // 取得套用濾鏡後的 image
         let filteredImage: UIImage = image
-        if let filterImageData: NSData = UIImagePNGRepresentation(filteredImage) as NSData? {
+        if let filterImageData: NSData = UIImageJPEGRepresentation(filteredImage, 0.5) as NSData? {
             UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 
             print("O ~ Gat filter image in CameraVC")

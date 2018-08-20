@@ -75,18 +75,9 @@
 		BF1FB4B22129AE1A0022693C /* SendImage */ = {
 			isa = PBXGroup;
 			children = (
-				BF1FB4B52129AED30022693C /* SendView */,
-				BF1FB4B32129AEAD0022693C /* SendModel */,
 				BF1FB4B42129AEBF0022693C /* SendController */,
 			);
 			path = SendImage;
-			sourceTree = "<group>";
-		};
-		BF1FB4B32129AEAD0022693C /* SendModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SendModel;
 			sourceTree = "<group>";
 		};
 		BF1FB4B42129AEBF0022693C /* SendController */ = {
@@ -95,13 +86,6 @@
 				BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */,
 			);
 			path = SendController;
-			sourceTree = "<group>";
-		};
-		BF1FB4B52129AED30022693C /* SendView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SendView;
 			sourceTree = "<group>";
 		};
 		BF1FB4BA2129BC630022693C /* Home */ = {
