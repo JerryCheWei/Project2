@@ -18,12 +18,12 @@ class CameraSet {
     static var backFacingCamera: AVCaptureDevice?
     static var frontFacingCamera: AVCaptureDevice?
     // current 目前正在使用哪個 camera
-    static var currentDevice: AVCaptureDevice?
+    static var currentDevice: AVCaptureDevice!
     // output device
-    static var stillImageOutput: AVCapturePhotoOutput?
+    static var stillImageOutput: AVCapturePhotoOutput!
 
     // camera preview layer
-    static var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
+    static var cameraPreviewLayer: AVCaptureVideoPreviewLayer!
 
     static func checkCamera() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
@@ -45,30 +45,35 @@ class CameraSet {
     }
 
     static func setupInputOutput(view: UIView, cameraButton: UIButton) {
-        // configure the session with the output for capturing our still image
-        stillImageOutput = AVCapturePhotoOutput()
-        stillImageOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
 
-        do {
-            let captureDeviceInput = try AVCaptureDeviceInput(device: CameraSet.currentDevice!)
+            DispatchQueue.main.async {
+                do {
+                    let captureDeviceInput = try AVCaptureDeviceInput(device: CameraSet.currentDevice)
 
-            captureSession.addInput(captureDeviceInput)
-            captureSession.addOutput(stillImageOutput!)
+                    if captureSession.canAddInput(captureDeviceInput) {
+                        captureSession.addInput(captureDeviceInput)
+                    }
+                    // configure the session with the output for capturing our still image
+                    self.stillImageOutput = AVCapturePhotoOutput()
+                    self.stillImageOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+                    if captureSession.canAddOutput(stillImageOutput) {
+                        captureSession.addOutput(stillImageOutput)
+                    }
 
-            // set up the camera preview layer
-            cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            view.layer.addSublayer(cameraPreviewLayer!)
-            cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            cameraPreviewLayer?.frame = view.layer.frame
+                    // set up the camera preview layer
+                    cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                    view.layer.addSublayer(cameraPreviewLayer)
+                    cameraPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                    cameraPreviewLayer.frame = view.layer.frame
 
-            view.bringSubview(toFront: cameraButton)
+                    view.bringSubview(toFront: cameraButton)
+                    captureSession.startRunning()
+                }
+                catch let error {
+                    print(error)
+                }
+            }
 
-            captureSession.startRunning()
-
-        }
-        catch let error {
-            print(error)
-        }
     }
 
 }
