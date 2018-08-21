@@ -14,7 +14,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setXib()
+        // 抓貼文image
+        LoadingImage.fethImage(tableView: userTableView)
     }
 
     func setXib() {
@@ -23,7 +25,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return LoadingImage.imageUrl.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,6 +34,23 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             else {
                 fatalError()
         }
+
+        let loadImage = LoadingImage.imageUrl[indexPath.row]
+        let url = URL(string: loadImage)
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                cell.sendImageView.image = UIImage(data: data!)
+            }
+            
+            }.resume()
+
+        cell.userImageView.image = UIImage(named: "iconIdentity36pt" )
+       
 
         return cell
     }
