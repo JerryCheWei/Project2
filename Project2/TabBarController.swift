@@ -23,16 +23,18 @@ class TabBarController: UITabBarController {
         // 設定圖片
         let image = UIImage(named: "iconAddPhoto36pt")
         openCameraViewButton.setImage(image, for: .normal)
+        openCameraViewButton.tintColor = .white
 
         // 按鈕位置
         openCameraViewButton.frame.size = CGSize(width: 60, height: 60)
-        openCameraViewButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.height/2 - 15)
+        openCameraViewButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.height/2 - 10)
 
         // 樣式設定
-        let color = UIColor(red: 151/255, green: 216/255, blue: 246/255, alpha: 1)
+//        let color = UIColor(red: 151/255, green: 216/255, blue: 246/255, alpha: 1)
+        let color = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
         openCameraViewButton.backgroundColor = color
         openCameraViewButton.layer.masksToBounds = true
-        openCameraViewButton.layer.cornerRadius = 10
+        openCameraViewButton.layer.cornerRadius = 30
 
         // 添加按鈕
         tabBar.addSubview(openCameraViewButton)
