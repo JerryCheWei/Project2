@@ -23,10 +23,10 @@ class CameraViewController: UIViewController {
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
         CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
-//        // toggle the Camera
-//        toggleCameraGestureRecognizer.numberOfTapsRequired = 2
-//        toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
-//        view.addGestureRecognizer(toggleCameraGestureRecognizer)
+        // toggle the Camera
+        toggleCameraGestureRecognizer.numberOfTapsRequired = 2
+        toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
+        view.addGestureRecognizer(toggleCameraGestureRecognizer)
 
     }
 

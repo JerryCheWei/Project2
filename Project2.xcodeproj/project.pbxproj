@@ -13,6 +13,9 @@
 		BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B82129B7A00022693C /* TabBarController.swift */; };
 		BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */; };
 		BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4C12129BD770022693C /* HomeViewController.swift */; };
+		BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4FE212BDBA10022693C /* UserViewController.swift */; };
+		BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */; };
+		BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
@@ -30,6 +33,9 @@
 		BF1FB4B82129B7A00022693C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF1FB4C12129BD770022693C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BF1FB4FE212BDBA10022693C /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +119,32 @@
 			path = HomeCollectionCell;
 			sourceTree = "<group>";
 		};
+		BF1FB4C3212A9CF70022693C /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB500212BDBB80022693C /* UserTableViewCell */,
+				BF1FB4C4212A9D180022693C /* UserVC */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		BF1FB4C4212A9D180022693C /* UserVC */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB4FE212BDBA10022693C /* UserViewController.swift */,
+			);
+			path = UserVC;
+			sourceTree = "<group>";
+		};
+		BF1FB500212BDBB80022693C /* UserTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */,
+				BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */,
+			);
+			path = UserTableViewCell;
+			sourceTree = "<group>";
+		};
 		BF81FA39211EC94D0030FABF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +194,7 @@
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
 				BF1FB4BA2129BC630022693C /* Home */,
+				BF1FB4C3212A9CF70022693C /* User */,
 				BF1FB4B12129AD6D0022693C /* Camera */,
 				BF1FB4B22129AE1A0022693C /* SendImage */,
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
@@ -243,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
 				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
@@ -318,8 +352,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
+				BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
+				BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
