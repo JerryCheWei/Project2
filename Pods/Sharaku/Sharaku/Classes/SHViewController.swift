@@ -113,6 +113,7 @@ public class SHViewController: UIViewController {
         let filterName = filterNameList[filterIndex]
         if let image = self.image {
             let filteredImage = createFilteredImage(filterName: filterName, image: image)
+            
             imageView?.image = filteredImage
         }
     }

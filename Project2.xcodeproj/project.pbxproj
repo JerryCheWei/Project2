@@ -17,6 +17,7 @@
 		BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */; };
 		BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */; };
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
+		BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB507212C23920022693C /* HeaderViewSet.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
+		BF1FB507212C23920022693C /* HeaderViewSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewSet.swift; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				BF1FB505212BE5DA0022693C /* LoadImage.swift */,
+				BF1FB507212C23920022693C /* HeaderViewSet.swift */,
 				BF1FB500212BDBB80022693C /* UserTableViewCell */,
 				BF1FB4C4212A9D180022693C /* UserVC */,
 			);
@@ -364,6 +367,7 @@
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
+				BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */,
 				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
