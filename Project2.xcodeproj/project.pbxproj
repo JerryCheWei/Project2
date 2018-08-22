@@ -18,6 +18,8 @@
 		BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */; };
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
 		BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB507212C23920022693C /* HeaderViewSet.swift */; };
+		BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EB9212D0E7900E544A7 /* LoginViewController.swift */; };
+		BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
@@ -40,6 +42,8 @@
 		BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		BF1FB507212C23920022693C /* HeaderViewSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewSet.swift; sourceTree = "<group>"; };
+		BF492EB9212D0E7900E544A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +155,31 @@
 			path = UserTableViewCell;
 			sourceTree = "<group>";
 		};
+		BF492EB5212D0E1000E544A7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BF492EB8212D0E4E00E544A7 /* SignUpVC */,
+				BF492EB6212D0E2400E544A7 /* LoginVC */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BF492EB6212D0E2400E544A7 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				BF492EB9212D0E7900E544A7 /* LoginViewController.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		BF492EB8212D0E4E00E544A7 /* SignUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */,
+			);
+			path = SignUpVC;
+			sourceTree = "<group>";
+		};
 		BF81FA39211EC94D0030FABF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +228,7 @@
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF492EB5212D0E1000E544A7 /* Login */,
 				BF1FB4BA2129BC630022693C /* Home */,
 				BF1FB4C3212A9CF70022693C /* User */,
 				BF1FB4B12129AD6D0022693C /* Camera */,
@@ -365,9 +395,11 @@
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
+				BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */,
+				BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */,
 				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

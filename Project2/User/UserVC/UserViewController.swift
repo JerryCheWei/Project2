@@ -79,7 +79,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let loadImage = LoadingImage.imageUrl[indexPath.section]
         let url = URL(string: loadImage)
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        URLSession.shared.dataTask(with: url!) { (data, _, error) in
             if error != nil {
                 print(error!)
                 return
