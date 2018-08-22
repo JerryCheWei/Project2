@@ -34,10 +34,15 @@ class SignUpViewController: UIViewController {
             let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-
             self.present(alertController, animated: true, completion: nil)
         }
-        else if passwordTextField.text == confirmPasswordTextField.text {
+        else if passwordTextField.text != confirmPasswordTextField.text {
+            let alertController = UIAlertController(title: "Password Error", message: "Please confirm your password.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
             Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { (user, error) in
 
                 if error == nil, user == user {
@@ -56,14 +61,25 @@ class SignUpViewController: UIViewController {
                 }
             })
         }
-        else if passwordTextField.text != confirmPasswordTextField.text {
-            let alertController = UIAlertController(title: "Password Error", message: "Please confirm your password.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-
-            self.present(alertController, animated: true, completion: nil)
-        }
 
     }
 
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.userNameTextField {
+            self.emailTextField.becomeFirstResponder()
+        }
+        if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+        }
+        if textField == self.passwordTextField {
+            self.confirmPasswordTextField.becomeFirstResponder()
+        }
+        if textField == self.confirmPasswordTextField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
