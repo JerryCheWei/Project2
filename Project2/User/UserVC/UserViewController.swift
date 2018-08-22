@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -27,6 +28,24 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         // 抓貼文image
         LoadingImage.fethImage(tableView: userTableView)
         navigationController?.isNavigationBarHidden = true
+        loadUserData()
+    }
+
+    func loadUserData() {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let userRef = Database.database().reference(withPath: "users/\(user.uid)")
+        userRef.observe(.value) { (snapshot) in
+            guard
+            let value = snapshot.value as? [String: Any],
+            let userName = value["userName"] as? String
+                else {
+                    return
+            }
+            self.userNameLabel.text = userName
+        }
     }
 
     func setXib() {
@@ -97,6 +116,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.layer.shadowColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0).cgColor
 
         cell.userImageView.image = UIImage(named: "iconIdentity36pt" )
+        cell.userNameLabel.text = LoadingImage.userName
         return cell
     }
 

@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func signoutButton(_ sender: Any) {
         do {
             try Auth.auth().signOut()
+            LoadingImage.imageUrl.removeAll()
 
             self.dismiss(animated: true, completion: nil)
         }

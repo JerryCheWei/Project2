@@ -24,8 +24,8 @@ class HeaderViewSet {
         }
     }
    static func incrementColorAlpha(offset: CGFloat, view: UIView) {
-        if view.alpha >= 0.6 {
-            let alphaOffset = (offset/200)/85
+        if view.alpha >= 0.3 {
+            let alphaOffset = (offset/100)/85
             view.alpha -= alphaOffset
         }
     }

@@ -11,16 +11,31 @@ import Firebase
 
 class LoadingImage {
 
+    static var postImageId = [String]()
     static var imageUrl = [String]()
-
+    static var userName = String()
+    
     static func fethImage(tableView: UITableView) {
-        Database.database().reference().child("postImage").observe(DataEventType.childAdded) { (snapshot) in
-            let imageUrls = snapshot.value as? String
-            if let loadImage = imageUrls {
-                LoadingImage.imageUrl.append(loadImage)
-                tableView.reloadData()
+        guard let userRef = Auth.auth().currentUser
+            else { return }
+        let userid = userRef.uid
+        Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
+            guard let value = snapshot.value as? [String: AnyObject],
+                let postImages = value["postImages"] as? Array<String>,
+                let userName = value["userName"] as? String
+                else { return }
+            LoadingImage.userName = userName
+            for postImage in postImages {
+                Database.database().reference().child("postImage").observe(.value) { (snapshot) in
+                    guard let value = snapshot.value as? [String: AnyObject],
+                        let imageUrl = value[postImage] as? String
+                        else { return }
+
+                        LoadingImage.imageUrl.append(imageUrl)
+                        tableView.reloadData()
+
+                }
             }
         }
     }
-
 }

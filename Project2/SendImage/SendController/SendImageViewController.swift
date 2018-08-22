@@ -15,6 +15,7 @@ class SendImageViewController: UIViewController {
     @IBOutlet weak var sendImageView: UIImageView!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
+    var readImages: [String] = []
     // Database Ref
     let imageIdRef = Database.database().reference().child("postImage").childByAutoId()
     // 上傳進度條
@@ -50,6 +51,7 @@ class SendImageViewController: UIViewController {
                 print("I recevied an error \(String(describing: error.localizedDescription))")
             } else {
                 print("UPload complete! Here's some metadata: \(String(describing: metadata))")
+                self.updataUserImages()
             }
 
             // You can also access to download URL after upload.
@@ -77,7 +79,15 @@ class SendImageViewController: UIViewController {
     func uploadPostImage(imageURL: URL) {
 
         self.imageIdRef.setValue("\(imageURL)")
-
+    }
+    func updataUserImages() {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let userRef = Database.database().reference(withPath: "users/\(user.uid)")
+        readImages.append(imageIdRef.key)
+        userRef.updateChildValues(["postImages": self.readImages])
     }
 
     // 取消分享頁面
@@ -92,7 +102,23 @@ class SendImageViewController: UIViewController {
         if let imageData = UserDefaults.standard.object(forKey: "gatFilterImage") as? Data {
             self.filterImage = UIImage(data: imageData)
             sendImageView.image = filterImage
-
+        }
+        // read user/postImages
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let userRef = Database.database().reference(withPath: "users/\(user.uid)")
+        userRef.observe(.value) { (snapshot) in
+            guard
+            let value = snapshot.value as? [String: AnyObject],
+            let readPostImages = value["postImages"] as? Array<String>
+                else {
+                    return
+            }
+            for readPostImage in readPostImages {
+                self.readImages.append(readPostImage)
+            }
         }
     }
 
