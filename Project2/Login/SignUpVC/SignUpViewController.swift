@@ -21,7 +21,14 @@ class SignUpViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     func loggedin() {
+        self.clearAllTextField()
         self.performSegue(withIdentifier: self.successLogin, sender: nil)
+    }
+    func clearAllTextField() {
+        self.userNameTextField.text = ""
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
+        self.confirmPasswordTextField.text = ""
     }
 
     override func viewDidLoad() {
