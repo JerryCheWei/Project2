@@ -26,17 +26,23 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func sendButton(_ sender: UIButton) {
-        if userNameTextField.text == "" ||
-            emailTextField.text == "" ||
-            passwordTextField.text == "" ||
-            confirmPasswordTextField.text == "" {
-
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+        guard
+            let userName = self.userNameTextField.text,
+            let email = self.emailTextField.text,
+            let password = self.passwordTextField.text,
+            let confirmPassword = self.confirmPasswordTextField.text,
+            userName.count > 0,
+            email.count > 0,
+            password.count > 0,
+            confirmPassword.count > 0
+            else {
+                let alertController = UIAlertController(title: "Error", message: "Please enter your name, email and password.", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+                return
         }
-        else if passwordTextField.text != confirmPasswordTextField.text {
+         if passwordTextField.text != confirmPasswordTextField.text {
             let alertController = UIAlertController(title: "Password Error", message: "Please confirm your password.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)

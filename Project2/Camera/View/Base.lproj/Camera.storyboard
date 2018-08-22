@@ -321,6 +321,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="a21-WH-RSI" id="4IH-Ac-O8J"/>
                         <outlet property="passwordTextField" destination="58K-xt-8l0" id="bEH-PY-3VU"/>
+                        <segue destination="Syl-dp-XDj" kind="presentation" identifier="successLogin" id="5wi-AV-0l7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f36-5L-HQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

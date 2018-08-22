@@ -12,6 +12,7 @@ import Firebase
 class LoginViewController: UIViewController {
 
     let signUpVC = "signupVC"
+    let successLogin = "successLogin"
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -27,6 +28,9 @@ class LoginViewController: UIViewController {
         }
         present(singupVC, animated: true, completion: nil)
     }
+    func loggedin() {
+        self.performSegue(withIdentifier: self.successLogin, sender: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +39,23 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: UIButton) {
 
-        if self.emailTextField.text == "" || self.passwordTextField.text == "" {
+        guard
+            let email = self.emailTextField.text,
+            let password = self.passwordTextField.text,
+            email.count > 0,
+            password.count > 0
+        else {
             let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-
             self.present(alertController, animated: true, completion: nil)
+            return
         }
-        else {
             Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 if error == nil {
                     print("successfully logged in !")
                     // 跳到 HomeVC
+                    self.loggedin()
                 }
                 else if user == nil, let error = error {
                     let alertController = UIAlertController(title: "Error",
@@ -59,8 +68,6 @@ class LoginViewController: UIViewController {
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
-        }
-
     }
 }
 
