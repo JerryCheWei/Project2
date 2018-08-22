@@ -243,7 +243,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Spx-qt-yIk">
-                                        <rect key="frame" x="82" y="380" width="250" height="135"/>
+                                        <rect key="frame" x="82" y="380" width="250" height="201"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-TW-iVL">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="75"/>
@@ -267,8 +267,26 @@
                                                     <constraint firstAttribute="width" constant="250" id="kiV-DA-U1q"/>
                                                 </constraints>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7C-T2-brh">
+                                                <rect key="frame" x="75" y="105" width="100" height="36"/>
+                                                <color key="backgroundColor" red="0.36577690972222221" green="0.59279769194444443" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="w83-cw-0Ot"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <state key="normal" title="Login"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="loginButton:" destination="WZO-Qv-036" eventType="touchUpInside" id="9ya-cJ-DAo"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-AD-NLy">
-                                                <rect key="frame" x="97.666666666666657" y="105" width="55" height="30"/>
+                                                <rect key="frame" x="97.666666666666657" y="171" width="55" height="30"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
                                                     <action selector="signUpButton:" destination="WZO-Qv-036" eventType="touchUpInside" id="vdq-Fv-h2x"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUpButton(_ sender: UIButton) {
         sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
     }
+
     @objc func openSignUpVC() {
        guard let singupVC = storyboard?.instantiateViewController(withIdentifier: signUpVC)
         else {
@@ -29,6 +31,35 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+
+    @IBAction func loginButton(_ sender: UIButton) {
+
+        if self.emailTextField.text == "" || self.passwordTextField.text == "" {
+            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
+            Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
+                if error == nil {
+                    print("successfully logged in !")
+                    // 跳到 HomeVC
+                }
+                else if user == nil, let error = error {
+                    let alertController = UIAlertController(title: "Error",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK",
+                                                    style: .cancel,
+                                                    handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+
     }
 }

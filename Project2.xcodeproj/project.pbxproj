@@ -158,8 +158,8 @@
 		BF492EB5212D0E1000E544A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				BF492EB8212D0E4E00E544A7 /* SignUpVC */,
 				BF492EB6212D0E2400E544A7 /* LoginVC */,
+				BF492EB8212D0E4E00E544A7 /* SignUpVC */,
 			);
 			path = Login;
 			sourceTree = "<group>";
