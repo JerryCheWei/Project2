@@ -13,6 +13,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBAction func signoutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            LoadingImage.imageUrl.removeAll()
+
+            self.dismiss(animated: true, completion: nil)
+        }
+        catch let error {
+            print("Auth sign out failed: \(error)")
+        }
+    }
+
     var postImage = [String]()
 
     func fetchImage() {
@@ -37,7 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let postImage = self.postImage[indexPath.row]
 
         let url = URL(string: postImage)
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        URLSession.shared.dataTask(with: url!) { (data, _, error) in
             if error != nil {
                 print(error!)
                 return

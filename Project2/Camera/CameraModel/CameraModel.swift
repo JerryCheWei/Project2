@@ -41,7 +41,7 @@ class CameraSet {
     }
 
     static func setupCaptureSession() {
-        CameraSet.captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        CameraSet.captureSession.sessionPreset = AVCaptureSession.Preset.iFrame1280x720
     }
 
     static func setupInputOutput(view: UIView, cameraButton: UIButton) {
