@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print("Auth sign out failed: \(error)")
         }
     }
+
     var postImage = [String]()
 
     func fetchImage() {

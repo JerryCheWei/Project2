@@ -26,7 +26,18 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
+    func saveUserInformation() {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let usersRef = Database.database().reference().child("users").child(user.uid)
+        usersRef.setValue(
+            ["userName": self.userNameTextField.text,
+             "email": self.emailTextField.text
+            ])
     }
 
     @IBAction func sendButton(_ sender: UIButton) {
@@ -58,6 +69,7 @@ class SignUpViewController: UIViewController {
                     Auth.auth().signIn(withEmail: self.emailTextField.text!,
                                        password: self.passwordTextField.text!, completion: nil)
                     print("success sign up !!!")
+                    self.saveUserInformation()
                     self.loggedin()
                 }
                 if let error = error {

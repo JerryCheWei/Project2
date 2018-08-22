@@ -22,11 +22,7 @@ class LoginViewController: UIViewController {
     }
 
     @objc func openSignUpVC() {
-       guard let singupVC = storyboard?.instantiateViewController(withIdentifier: signUpVC)
-        else {
-            return
-        }
-        present(singupVC, animated: true, completion: nil)
+        self.performSegue(withIdentifier: self.signUpVC, sender: nil)
     }
     func loggedin() {
         self.performSegue(withIdentifier: self.successLogin, sender: nil)
@@ -34,7 +30,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("Hi ")
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
