@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 if error == nil {
                     print("successfully logged in !")
-                    // 跳到 HomeVC
+                    // 跳到 Home View
                     self.loggedin()
                 }
                 else if user == nil, let error = error {

@@ -15,9 +15,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    let successLogin = "successLogin"
 
     @IBAction func loginVC(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    func loggedin() {
+        self.performSegue(withIdentifier: self.successLogin, sender: nil)
     }
 
     override func viewDidLoad() {
@@ -47,14 +51,14 @@ class SignUpViewController: UIViewController {
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
-        }
-        else {
+        } else {
             Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { (user, error) in
 
                 if error == nil, user == user {
                     Auth.auth().signIn(withEmail: self.emailTextField.text!,
                                        password: self.passwordTextField.text!, completion: nil)
                     print("success sign up !!!")
+                    self.loggedin()
                 }
                 if let error = error {
                     // 註冊錯誤警告
@@ -67,9 +71,7 @@ class SignUpViewController: UIViewController {
                 }
             })
         }
-
     }
-
 }
 
 extension SignUpViewController: UITextFieldDelegate {

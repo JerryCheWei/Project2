@@ -204,7 +204,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4SD-uX-9F5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="rkN-b0-f69"/>
+                    <navigationItem key="navigationItem" title="Home" id="rkN-b0-f69">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZE6-4C-nKZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6xk-Ly-qNz">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signoutButton:" destination="3Da-BC-IGo" eventType="touchUpInside" id="iza-k1-XAN"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="TeL-QO-P6n" id="78T-OO-Dl1"/>
                     </connections>
@@ -517,6 +528,7 @@
                         <outlet property="emailTextField" destination="Vfn-VA-HLE" id="2a9-lG-Nps"/>
                         <outlet property="passwordTextField" destination="pMd-7r-jd4" id="TdK-0d-z8n"/>
                         <outlet property="userNameTextField" destination="ExY-Rl-i6p" id="NfN-kh-uY0"/>
+                        <segue destination="Syl-dp-XDj" kind="presentation" identifier="successLogin" id="bzL-m4-jpO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gt-eC-QVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -671,4 +683,7 @@
         <image name="iconIdentity36pt" width="36" height="36"/>
         <image name="testImage" width="1920" height="1080"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bzL-m4-jpO"/>
+    </inferredMetricsTieBreakers>
 </document>

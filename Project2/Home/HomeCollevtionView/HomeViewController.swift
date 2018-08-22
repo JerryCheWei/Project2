@@ -13,6 +13,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBAction func signoutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+
+            self.dismiss(animated: true, completion: nil)
+        }
+        catch let error {
+            print("Auth sign out failed: \(error)")
+        }
+    }
     var postImage = [String]()
 
     func fetchImage() {
