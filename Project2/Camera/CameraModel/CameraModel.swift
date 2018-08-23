@@ -23,7 +23,7 @@ class CameraSet {
     static var stillImageOutput = AVCapturePhotoOutput()
 
     // camera preview layer
-    static var cameraPreviewLayer: AVCaptureVideoPreviewLayer!
+    static var cameraPreviewLayer = AVCaptureVideoPreviewLayer()
 
     static func checkCamera() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
@@ -41,6 +41,8 @@ class CameraSet {
     }
 
     static func setupCaptureSession() {
+        captureSession.stopRunning()
+        cameraPreviewLayer.removeFromSuperlayer()
         CameraSet.captureSession.sessionPreset = AVCaptureSession.Preset.hd1920x1080
     }
 
