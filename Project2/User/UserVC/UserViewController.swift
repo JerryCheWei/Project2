@@ -118,7 +118,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension UserViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
+//        print(scrollView.contentOffset.y)
         if scrollView.contentOffset.y < -10 {
             self.headerHeightConstraint.constant += abs(scrollView.contentOffset.y)
 

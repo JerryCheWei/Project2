@@ -11,7 +11,6 @@ import Firebase
 
 class LoadingImage {
 
-    static var postImageId = [String]()
     static var imageUrl = [String]()
     static var userName = String()
 
@@ -24,8 +23,11 @@ class LoadingImage {
                 let postImages = value["postImages"] as? [String],
                 let userName = value["userName"] as? String
                 else { return }
+            print(postImages)
             LoadingImage.userName = userName
+            LoadingImage.imageUrl.removeAll()
             for postImage in postImages {
+                print(postImage)
                 Database.database().reference().child("postImage").observe(.value) { (snapshot) in
                     guard let value = snapshot.value as? [String: AnyObject],
                         let imageUrl = value[postImage] as? String
@@ -33,7 +35,7 @@ class LoadingImage {
 
                         LoadingImage.imageUrl.append(imageUrl)
                         tableView.reloadData()
-
+                    print(LoadingImage.imageUrl.count)
                 }
             }
         }
