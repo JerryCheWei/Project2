@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        //離線後也可監聽
+        Database.database().isPersistenceEnabled = true
         Auth.auth().addStateDidChangeListener { (auth, _) in
             //  判斷是否登錄中
             let successLogin = "successLogin"
