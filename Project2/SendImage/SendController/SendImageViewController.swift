@@ -93,6 +93,7 @@ class SendImageViewController: UIViewController {
     // 取消分享頁面
     func uploadDoneDismissView() {
         print("dismiss post View")
+        sendButton.isEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -112,7 +113,7 @@ class SendImageViewController: UIViewController {
         userRef.observe(.value) { (snapshot) in
             guard
             let value = snapshot.value as? [String: AnyObject],
-            let readPostImages = value["postImages"] as? Array<String>
+            let readPostImages = value["postImages"] as? [String]
                 else {
                     return
             }
@@ -127,6 +128,7 @@ class SendImageViewController: UIViewController {
         // 重設進度條
         progressView.progress = 0
         scrollView.addSubview(progressView)
+        sender.isEnabled = false
 
         if let imageData = UserDefaults.standard.object(forKey: "gatFilterImage") as? Data {
             uploadImageToFirebaseStorage(data: imageData)

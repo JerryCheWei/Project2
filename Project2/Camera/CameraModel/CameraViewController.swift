@@ -17,17 +17,19 @@ class CameraViewController: UIViewController {
     // double tap switch from back to front facing camera
     var toggleCameraGestureRecognizer = UITapGestureRecognizer()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
         CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         // toggle the Camera
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
-
     }
 
     @objc private func toggleCamera() {
@@ -58,7 +60,14 @@ class CameraViewController: UIViewController {
     }
 
     @IBAction func shutterButtonDidTap() {
-       CameraSet.stillImageOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        let settings = AVCapturePhotoSettings()
+        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+                             kCVPixelBufferWidthKey as String: 160 ,
+                             kCVPixelBufferHeightKey as String: 160
+                             ]
+        settings.previewPhotoFormat = previewFormat
+       CameraSet.stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -85,7 +94,7 @@ extension CameraViewController: SHViewControllerDelegate {
     func shViewControllerImageDidFilter(image: UIImage) {
         // 取得套用濾鏡後的 image
         let filteredImage: UIImage = image
-        if let filterImageData: NSData = UIImageJPEGRepresentation(filteredImage, 0.1) as NSData? {
+        if let filterImageData: NSData = UIImageJPEGRepresentation(filteredImage, 0.8) as NSData? {
             UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 
             print("O ~ Gat filter image in CameraVC")

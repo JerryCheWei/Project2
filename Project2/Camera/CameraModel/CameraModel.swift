@@ -20,10 +20,10 @@ class CameraSet {
     // current 目前正在使用哪個 camera
     static var currentDevice: AVCaptureDevice!
     // output device
-    static var stillImageOutput: AVCapturePhotoOutput!
+    static var stillImageOutput = AVCapturePhotoOutput()
 
     // camera preview layer
-    static var cameraPreviewLayer: AVCaptureVideoPreviewLayer!
+    static var cameraPreviewLayer = AVCaptureVideoPreviewLayer()
 
     static func checkCamera() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
@@ -41,7 +41,9 @@ class CameraSet {
     }
 
     static func setupCaptureSession() {
-        CameraSet.captureSession.sessionPreset = AVCaptureSession.Preset.iFrame1280x720
+        captureSession.stopRunning()
+        cameraPreviewLayer.removeFromSuperlayer()
+        CameraSet.captureSession.sessionPreset = AVCaptureSession.Preset.hd1920x1080
     }
 
     static func setupInputOutput(view: UIView, cameraButton: UIButton) {
@@ -54,7 +56,6 @@ class CameraSet {
                         captureSession.addInput(captureDeviceInput)
                     }
                     // configure the session with the output for capturing our still image
-                    self.stillImageOutput = AVCapturePhotoOutput()
                     self.stillImageOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
                     if captureSession.canAddOutput(stillImageOutput) {
                         captureSession.addOutput(stillImageOutput)
