@@ -48,18 +48,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             else { fatalError() }
         let postImage = self.postImage[indexPath.row]
 
-        let url = URL(string: postImage)
-        URLSession.shared.dataTask(with: url!) { (data, _, error) in
-            if error != nil {
-                print(error!)
-                return
+        if let url = URL(string: postImage) {
+            ImageService.getImage(withURL: url) { (image) in
+                cell.loadAllImageView.image = image
             }
+        }
 
-            DispatchQueue.main.async {
-                cell.loadAllImageView.image = UIImage(data: data!)
-            }
-
-            }.resume()
         return cell
     }
 

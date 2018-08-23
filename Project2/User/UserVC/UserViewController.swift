@@ -97,18 +97,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let loadImage = LoadingImage.imageUrl[indexPath.section]
-        let url = URL(string: loadImage)
-        URLSession.shared.dataTask(with: url!) { (data, _, error) in
-            if error != nil {
-                print(error!)
-                return
+        if let url = URL(string: loadImage) {
+            ImageService.getImage(withURL: url) { (image) in
+                cell.sendImageView.image = image
             }
-
-            DispatchQueue.main.async {
-                cell.sendImageView.image = UIImage(data: data!)
-            }
-
-            }.resume()
+        }
 
         cell.layer.shadowOffset = CGSize(width: 5, height: 5)
         cell.layer.shadowOpacity = 0.7
