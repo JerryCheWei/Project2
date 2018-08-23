@@ -112,7 +112,7 @@ class SendImageViewController: UIViewController {
         userRef.observe(.value) { (snapshot) in
             guard
             let value = snapshot.value as? [String: AnyObject],
-            let readPostImages = value["postImages"] as? Array<String>
+            let readPostImages = value["postImages"] as? [String]
                 else {
                     return
             }

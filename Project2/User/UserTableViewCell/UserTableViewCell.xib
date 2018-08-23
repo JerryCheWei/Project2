@@ -45,7 +45,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-IP-Qdt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-IP-Qdt">
                                 <rect key="frame" x="0.0" y="65.5" width="394" height="394"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="394" id="0JK-vt-ims"/>

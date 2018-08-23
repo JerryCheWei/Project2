@@ -69,7 +69,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8i-eH-dnm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="696"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-48-pIv">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-48-pIv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GWQ-48-pIv" secondAttribute="height" multiplier="1:1" id="AhD-iA-QCg"/>
@@ -246,7 +246,7 @@
         <scene sceneID="cew-kW-brC">
             <objects>
                 <viewController id="WZO-Qv-036" customClass="LoginViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Obq-TO-b9H">
+                    <view key="view" contentMode="scaleAspectFill" id="Obq-TO-b9H">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -684,6 +684,6 @@
         <image name="testImage" width="1920" height="1080"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bzL-m4-jpO"/>
+        <segue reference="5wi-AV-0l7"/>
     </inferredMetricsTieBreakers>
 </document>
