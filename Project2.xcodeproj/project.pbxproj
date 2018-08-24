@@ -19,6 +19,12 @@
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
 		BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB507212C23920022693C /* HeaderViewSet.swift */; };
 		BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2B212E7C34003E10FC /* ImageService.swift */; };
+		BF47FC30212FA5DA003E10FC /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */; };
+		BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */; };
+		BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF47FC34212FA80B003E10FC /* MessageTableViewCell.xib */; };
+		BF47FC38212FC59B003E10FC /* OtherUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC37212FC59B003E10FC /* OtherUserTableViewCell.swift */; };
+		BF47FC3A212FC5A7003E10FC /* OtherUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF47FC39212FC5A7003E10FC /* OtherUserTableViewCell.xib */; };
+		BF47FC3D212FE6C6003E10FC /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC3C212FE6C6003E10FC /* MessageModel.swift */; };
 		BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EB9212D0E7900E544A7 /* LoginViewController.swift */; };
 		BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
@@ -44,6 +50,12 @@
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		BF1FB507212C23920022693C /* HeaderViewSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewSet.swift; sourceTree = "<group>"; };
 		BF47FC2B212E7C34003E10FC /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		BF47FC34212FA80B003E10FC /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		BF47FC37212FC59B003E10FC /* OtherUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserTableViewCell.swift; sourceTree = "<group>"; };
+		BF47FC39212FC5A7003E10FC /* OtherUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherUserTableViewCell.xib; sourceTree = "<group>"; };
+		BF47FC3C212FE6C6003E10FC /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		BF492EB9212D0E7900E544A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
@@ -165,6 +177,51 @@
 			path = ImageService;
 			sourceTree = "<group>";
 		};
+		BF47FC2D212FA3C6003E10FC /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				BF47FC3B212FE6B1003E10FC /* MessageModel */,
+				BF47FC36212FC55A003E10FC /* OtherUserMessageCell */,
+				BF47FC31212FA79A003E10FC /* MessageCell */,
+				BF47FC2E212FA3F7003E10FC /* MessageTableView */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		BF47FC2E212FA3F7003E10FC /* MessageTableView */ = {
+			isa = PBXGroup;
+			children = (
+				BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */,
+			);
+			path = MessageTableView;
+			sourceTree = "<group>";
+		};
+		BF47FC31212FA79A003E10FC /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */,
+				BF47FC34212FA80B003E10FC /* MessageTableViewCell.xib */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		BF47FC36212FC55A003E10FC /* OtherUserMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF47FC37212FC59B003E10FC /* OtherUserTableViewCell.swift */,
+				BF47FC39212FC5A7003E10FC /* OtherUserTableViewCell.xib */,
+			);
+			path = OtherUserMessageCell;
+			sourceTree = "<group>";
+		};
+		BF47FC3B212FE6B1003E10FC /* MessageModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF47FC3C212FE6C6003E10FC /* MessageModel.swift */,
+			);
+			path = MessageModel;
+			sourceTree = "<group>";
+		};
 		BF492EB5212D0E1000E544A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +295,7 @@
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF47FC2D212FA3C6003E10FC /* Message */,
 				BF47FC2A212E7C10003E10FC /* ImageService */,
 				BF492EB5212D0E1000E544A7 /* Login */,
 				BF1FB4BA2129BC630022693C /* Home */,
@@ -324,8 +382,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */,
+				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
 				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
+				BF47FC3A212FC5A7003E10FC /* OtherUserTableViewCell.xib in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
 				BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */,
 			);
@@ -401,6 +461,7 @@
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
 				BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
+				BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
@@ -408,10 +469,13 @@
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
 				BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */,
 				BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */,
+				BF47FC38212FC59B003E10FC /* OtherUserTableViewCell.swift in Sources */,
+				BF47FC3D212FE6C6003E10FC /* MessageModel.swift in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */,
 				BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */,
+				BF47FC30212FA5DA003E10FC /* MessageViewController.swift in Sources */,
 				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

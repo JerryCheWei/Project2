@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="Nvl-mx-4vH" customClass="MessageTableViewCell" customModule="Project2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="163"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nvl-mx-4vH" id="eBF-hV-Nr4">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="162.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QyA-yt-a2h">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="154.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oqd-Ba-FHe">
+                                <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.90072595710000003" green="0.57820377209999996" blue="0.42183127009999999" alpha="0.2315657106" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1M7-E4-G7Y"/>
+                                    <constraint firstAttribute="width" constant="40" id="enD-6O-6b9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0E-vP-vHb">
+                                <rect key="frame" x="58" y="8" width="348" height="20.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="test test message">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="f0E-vP-vHb" firstAttribute="leading" secondItem="Oqd-Ba-FHe" secondAttribute="trailing" constant="10" id="KLu-gb-r9c"/>
+                            <constraint firstItem="Oqd-Ba-FHe" firstAttribute="top" secondItem="QyA-yt-a2h" secondAttribute="top" constant="8" id="LFh-5e-vpc"/>
+                            <constraint firstAttribute="trailing" secondItem="f0E-vP-vHb" secondAttribute="trailing" constant="8" id="Vcp-O5-TsB"/>
+                            <constraint firstItem="f0E-vP-vHb" firstAttribute="top" secondItem="QyA-yt-a2h" secondAttribute="top" constant="20" id="cxf-aV-FBX"/>
+                            <constraint firstItem="Oqd-Ba-FHe" firstAttribute="leading" secondItem="QyA-yt-a2h" secondAttribute="leading" constant="8" id="ePg-O3-Ahn"/>
+                            <constraint firstItem="f0E-vP-vHb" firstAttribute="leading" secondItem="Oqd-Ba-FHe" secondAttribute="trailing" constant="10" id="sGW-GI-kjS"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QyA-yt-a2h" firstAttribute="leading" secondItem="eBF-hV-Nr4" secondAttribute="leading" id="7N5-Sg-NYD"/>
+                    <constraint firstAttribute="trailing" secondItem="QyA-yt-a2h" secondAttribute="trailing" id="BYe-3U-Xt3"/>
+                    <constraint firstItem="QyA-yt-a2h" firstAttribute="top" secondItem="eBF-hV-Nr4" secondAttribute="top" id="MAD-dq-0Sv"/>
+                    <constraint firstAttribute="bottom" secondItem="QyA-yt-a2h" secondAttribute="bottom" constant="8" id="nno-Hb-dO5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="userImage" destination="Oqd-Ba-FHe" id="b4m-bX-Z64"/>
+                <outlet property="userMessage" destination="f0E-vP-vHb" id="fRL-Hc-AQb"/>
+            </connections>
+            <point key="canvasLocation" x="73" y="13.5"/>
+        </tableViewCell>
+    </objects>
+</document>
