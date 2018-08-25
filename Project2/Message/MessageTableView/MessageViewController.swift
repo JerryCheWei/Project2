@@ -8,12 +8,15 @@
 
 import UIKit
 
-class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var messageUIView: UIView!
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet var messageTableView: UITableView!
+    var textHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +25,54 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         let userNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
         messageTableView.register(userNib, forCellReuseIdentifier: "cell")
 
+        // messageTextField View set
+        self.messageUIView.layer.cornerRadius = 20
+        self.messageUIView.layer.borderColor = UIColor.gray.cgColor
+        self.messageUIView.layer.borderWidth = 1
+
+        // textView place holder set
+        self.messageTextView.text = "Enter your message ..."
+        self.messageTextView.textColor = UIColor.lightGray
+        self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
+        self.textHeightConstraint.isActive = true
+        self.adjustTextViewHeight()
+    }
+
+    func adjustTextViewHeight() {
+        let fixedWidth = self.messageTextView.frame.size.width
+        let newSize = self.messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        if newSize.height > 80 {
+            self.messageTextView.isScrollEnabled = true
+        }
+        else {
+            self.messageTextView.isScrollEnabled = false
+            textHeightConstraint.constant = newSize.height
+        }
+        self.view.layoutSubviews()
     }
 
     // TextField delegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 270), animated: true)
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textViewDidChange(_ textView: UITextView) {
+        self.adjustTextViewHeight()
+    }
+
+    @IBAction func sendButton(_ sender: Any) {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        self.messageTextView.resignFirstResponder()
+        self.messageTextView.text = nil
+        if self.messageTextView.text.isEmpty {
+            self.messageTextView.text = "Enter your message ..."
+            self.messageTextView.textColor = UIColor.lightGray
+            self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
+            self.textHeightConstraint.isActive = true
+        }
     }
 
     // MARK: - Table view data source

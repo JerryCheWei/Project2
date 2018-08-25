@@ -18,8 +18,8 @@ class MessageTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-       MessageSet.message(label: userMessage, userName: userName, messageText: messageText)
+        // Message Model
+        MessageSet.message(label: userMessage, userName: userName, messageText: messageText)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
