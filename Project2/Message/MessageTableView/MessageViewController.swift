@@ -41,28 +41,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.sendButton.isEnabled = false
     }
 
-//    var allMessage = [LoadMessage]()
-//
-//    func fetchImage() {
-//        guard let userID = Auth.auth().currentUser?.uid
-//            else {
-//                return
-//        }
-//
-//        Database.database().reference().child("messages").child(userID).observe(.value) { (snapshot) in
-//            var loadMessage = [LoadMessage]()
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
-//                    loadMessage.append(loadMessageItem)
-//                }
-//            }
-//            self.allMessage = loadMessage
-//            self.messageTableView.reloadData()
-//        }
-//
-//    }
-
     func adjustTextViewHeight() {
         let fixedWidth = self.messageTextView.frame.size.width
         let newSize = self.messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))

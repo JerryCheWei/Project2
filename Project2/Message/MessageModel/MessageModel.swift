@@ -35,7 +35,7 @@ class LoadMessage {
         self.userID = userID
         self.message = message
     }
-    
+
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
@@ -44,9 +44,34 @@ class LoadMessage {
             else {
                 return nil
         }
-        
+
         self.userID = userID
         self.message = message
     }
 
+}
+
+class MessageModel {
+    static var allMessage = [LoadMessage]()
+
+    static func fetchMessage(messageTableView: UITableView) {
+        guard
+            let postImageID = UserDefaults.standard.string(forKey: "postImageID")
+            else {
+                return
+        }
+
+        Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
+            var loadMessage = [LoadMessage]()
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
+                    loadMessage.append(loadMessageItem)
+                }
+            }
+            MessageModel.allMessage = loadMessage
+            messageTableView.reloadData()
+        }
+
+    }
 }
