@@ -41,6 +41,28 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.sendButton.isEnabled = false
     }
 
+//    var allMessage = [LoadMessage]()
+//
+//    func fetchImage() {
+//        guard let userID = Auth.auth().currentUser?.uid
+//            else {
+//                return
+//        }
+//
+//        Database.database().reference().child("messages").child(userID).observe(.value) { (snapshot) in
+//            var loadMessage = [LoadMessage]()
+//            for child in snapshot.children {
+//                if let snapshot = child as? DataSnapshot,
+//                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
+//                    loadMessage.append(loadMessageItem)
+//                }
+//            }
+//            self.allMessage = loadMessage
+//            self.messageTableView.reloadData()
+//        }
+//
+//    }
+
     func adjustTextViewHeight() {
         let fixedWidth = self.messageTextView.frame.size.width
         let newSize = self.messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -92,13 +114,16 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
-    //
+    // 送出留言至 Firebase
     func sendMessage(postImageID: String) {
-        if let userID = Auth.auth().currentUser?.uid {
-            let messageRef = Database.database().reference().child("messages")
-            let postImageRef = messageRef.child("\(postImageID)").childByAutoId()
-            postImageRef.setValue(["\(userID)": self.messageTextView.text])
+        guard let userID = Auth.auth().currentUser?.uid
+            else {
+            return
         }
+        let messageRef = Database.database().reference().child("messages")
+        let postMessageRef = messageRef.child("\(postImageID)").childByAutoId()
+        postMessageRef.setValue(["userID": "\(userID)",
+                                 "message": self.messageTextView.text] as [AnyHashable: Any])
     }
 
     // MARK: - Table view data source

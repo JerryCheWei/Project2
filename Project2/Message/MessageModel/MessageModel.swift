@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class MessageSet {
 
@@ -24,4 +25,28 @@ class MessageSet {
         attributedString1.append(attributedString2)
         label.attributedText = attributedString1
     }
+}
+
+class LoadMessage {
+    let userID: String?
+    let message: String?
+
+    init(userID: String, message: String) {
+        self.userID = userID
+        self.message = message
+    }
+    
+    init?(snapshot: DataSnapshot) {
+        guard
+            let value = snapshot.value as? [String: AnyObject],
+            let userID = value["idName"] as? String,
+            let message = value["message"] as? String
+            else {
+                return nil
+        }
+        
+        self.userID = userID
+        self.message = message
+    }
+
 }

@@ -180,9 +180,9 @@
 		BF47FC2D212FA3C6003E10FC /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				BF47FC3B212FE6B1003E10FC /* MessageModel */,
 				BF47FC36212FC55A003E10FC /* OtherUserMessageCell */,
 				BF47FC31212FA79A003E10FC /* MessageCell */,
+				BF47FC3B212FE6B1003E10FC /* MessageModel */,
 				BF47FC2E212FA3F7003E10FC /* MessageTableView */,
 			);
 			path = Message;
