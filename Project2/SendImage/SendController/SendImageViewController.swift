@@ -77,8 +77,12 @@ class SendImageViewController: UIViewController {
     }
 
     func uploadPostImage(imageURL: URL) {
-
-        self.imageIdRef.setValue("\(imageURL)")
+        guard let userID = Auth.auth().currentUser?.uid
+            else {
+                return
+        }
+        self.imageIdRef.setValue(["idName": userID,
+                            "postUrl": "\(imageURL)"] as [AnyHashable: Any])
     }
     func updataUserImages() {
         guard let user = Auth.auth().currentUser
