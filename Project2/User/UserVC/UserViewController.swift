@@ -97,7 +97,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let loadImage = LoadingImage.imageUrl[indexPath.section]
-        if let url = URL(string: loadImage) {
+        if let url = URL(string: loadImage.postUrl!) {
             ImageService.getImage(withURL: url) { (image) in
                 cell.sendImageView.image = image
             }

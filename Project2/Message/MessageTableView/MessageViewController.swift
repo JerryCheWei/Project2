@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
@@ -20,7 +21,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let titleID = UserDefaults.standard.string(forKey: "postImageID")
+        self.navigationItem.title = titleID
         // user cell xib
         let userNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
         messageTableView.register(userNib, forCellReuseIdentifier: "cell")
@@ -36,6 +38,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
         self.textHeightConstraint.isActive = true
         self.adjustTextViewHeight()
+        self.sendButton.isEnabled = false
     }
 
     func adjustTextViewHeight() {
@@ -61,9 +64,22 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func textViewDidChange(_ textView: UITextView) {
         self.adjustTextViewHeight()
+        self.sendButton.isEnabled = true
+        if self.messageTextView.text.isEmpty {
+        self.sendButton.isEnabled = false
+        }
+        if self.messageTextView.text == "\n" {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            self.messageTextView.resignFirstResponder()
+        }
     }
 
     @IBAction func sendButton(_ sender: Any) {
+        // send message
+        if let postImageID = UserDefaults.standard.string(forKey: "postImageID") {
+            self.sendMessage(postImageID: postImageID)
+        }
+
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         self.messageTextView.resignFirstResponder()
         self.messageTextView.text = nil
@@ -72,6 +88,16 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             self.messageTextView.textColor = UIColor.lightGray
             self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
             self.textHeightConstraint.isActive = true
+            self.sendButton.isEnabled = false
+        }
+    }
+
+    //
+    func sendMessage(postImageID: String) {
+        if let userID = Auth.auth().currentUser?.uid {
+            let messageRef = Database.database().reference().child("messages")
+            let postImageRef = messageRef.child("\(postImageID)").childByAutoId()
+            postImageRef.setValue(["\(userID)": self.messageTextView.text])
         }
     }
 
@@ -84,7 +110,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 20
+        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
