@@ -38,12 +38,20 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1l-rR-26Y">
-                                        <rect key="frame" x="60" y="17.5" width="334" height="20.5"/>
+                                        <rect key="frame" x="60" y="18" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="e1l-rR-26Y" firstAttribute="top" secondItem="ggF-wo-Uu6" secondAttribute="top" constant="18" id="7ht-kE-vdi"/>
+                                    <constraint firstItem="Jmk-xz-bko" firstAttribute="leading" secondItem="ggF-wo-Uu6" secondAttribute="leading" id="CUL-Lh-jeL"/>
+                                    <constraint firstAttribute="bottom" secondItem="e1l-rR-26Y" secondAttribute="bottom" constant="17" id="RQo-7W-LHB"/>
+                                    <constraint firstItem="e1l-rR-26Y" firstAttribute="leading" secondItem="Jmk-xz-bko" secondAttribute="trailing" constant="20" id="piM-id-RUd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jmk-xz-bko" secondAttribute="bottom" constant="7.5" id="yxN-x4-scn"/>
+                                    <constraint firstItem="Jmk-xz-bko" firstAttribute="top" secondItem="ggF-wo-Uu6" secondAttribute="top" constant="8" id="z5V-mG-tzn"/>
+                                </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-IP-Qdt">
                                 <rect key="frame" x="0.0" y="65.5" width="394" height="394"/>
@@ -54,8 +62,11 @@
                             </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BAV-IP-Qdt" secondAttribute="trailing" id="40z-Xi-rKr"/>
                             <constraint firstAttribute="trailing" secondItem="ggF-wo-Uu6" secondAttribute="trailing" id="Etx-1o-vLQ"/>
+                            <constraint firstItem="BAV-IP-Qdt" firstAttribute="top" secondItem="ggF-wo-Uu6" secondAttribute="bottom" constant="10" id="fTL-xI-cr9"/>
                             <constraint firstItem="ggF-wo-Uu6" firstAttribute="leading" secondItem="1fe-BM-QXj" secondAttribute="leading" id="l2M-Yh-g4A"/>
+                            <constraint firstItem="BAV-IP-Qdt" firstAttribute="leading" secondItem="1fe-BM-QXj" secondAttribute="leading" id="rpA-dG-Mqu"/>
                         </constraints>
                     </stackView>
                 </subviews>

@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func signoutButton(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            LoadingImage.imageUrl.removeAll()
 
             self.dismiss(animated: true, completion: nil)
         }
@@ -25,30 +24,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
-    var postImage = [String]()
+    var postImages = [PostImage]()
 
     func fetchImage() {
 
-        Database.database().reference().child("postImage").observe(.childAdded) { (snapshot) in
-            let post = snapshot.value as? String
-            if let loadPost = post {
-                self.postImage.append(loadPost)
-                self.collectionView.reloadData()
+        Database.database().reference().child("postImage").observe(.value) { (snapshot) in
+            var loadPostImage = [PostImage]()
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let loadPostImageItem = PostImage.init(snapshot: snapshot) {
+                        loadPostImage.append(loadPostImageItem)
+                }
             }
+            self.postImages = loadPostImage
+            self.collectionView.reloadData()
         }
 
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postImage.count
+        return postImages.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HomeCollectionViewCell
             else { fatalError() }
-        let postImage = self.postImage[indexPath.row]
+        let postImage = self.postImages[indexPath.row]
 
-        if let url = URL(string: postImage) {
+        if let url = URL(string: postImage.postUrl!) {
             ImageService.getImage(withURL: url) { (image) in
                 cell.loadAllImageView.image = image
             }
@@ -57,9 +60,41 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let postImageItem = postImages[indexPath.row]
+        let postImageID = postImageItem.idName
+        UserDefaults.standard.set(postImageID, forKey: "postImageID")
+        UserDefaults.standard.synchronize()
+        print(postImageID!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fetchImage()
     }
+}
+
+class PostImage {
+    let idName: String?
+    let postUrl: String?
+
+    init(idName: String, postUrl: String) {
+        self.idName = idName
+        self.postUrl = postUrl
+    }
+
+    init?(snapshot: DataSnapshot) {
+        guard
+        let value = snapshot.value as? [String: AnyObject],
+        let idName = value["idName"] as? String,
+        let postUrl = value["postUrl"] as? String
+            else {
+                return nil
+        }
+
+        self.idName = idName
+        self.postUrl = postUrl
+    }
+
 }
