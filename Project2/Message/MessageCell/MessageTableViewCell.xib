@@ -37,7 +37,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0E-vP-vHb">
                                 <rect key="frame" x="58" y="8" width="348" height="20.5"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="test test message">
+                                    <fragment content="nil message">
                                         <attributes>
                                             <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -66,8 +66,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="userImage" destination="Oqd-Ba-FHe" id="b4m-bX-Z64"/>
-                <outlet property="userMessage" destination="f0E-vP-vHb" id="fRL-Hc-AQb"/>
+                <outlet property="userImageView" destination="Oqd-Ba-FHe" id="b4m-bX-Z64"/>
+                <outlet property="userMessageLabel" destination="f0E-vP-vHb" id="fRL-Hc-AQb"/>
             </connections>
             <point key="canvasLocation" x="73" y="13.5"/>
         </tableViewCell>

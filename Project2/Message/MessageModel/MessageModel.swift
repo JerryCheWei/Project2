@@ -27,6 +27,32 @@ class MessageSet {
     }
 }
 
+class MessageModel {
+    static var allMessage = [LoadMessage]()
+
+    static func fetchMessage(messageTableView: UITableView) {
+        guard
+            let postImageID = UserDefaults.standard.string(forKey: "postImageID")
+            else {
+                return
+        }
+        allMessage.removeAll()
+        Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
+            var loadMessage = [LoadMessage]()
+            loadMessage.removeAll()
+            for child in snapshot.children.allObjects {
+                if let snapshot = child as? DataSnapshot,
+                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
+                    loadMessage.append(loadMessageItem)
+                }
+                MessageModel.allMessage = loadMessage
+                messageTableView.reloadData()
+            }
+        }
+
+    }
+}
+
 class LoadMessage {
     let userID: String?
     let message: String?
@@ -39,7 +65,7 @@ class LoadMessage {
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
-            let userID = value["idName"] as? String,
+            let userID = value["userID"] as? String,
             let message = value["message"] as? String
             else {
                 return nil
@@ -47,31 +73,5 @@ class LoadMessage {
 
         self.userID = userID
         self.message = message
-    }
-
-}
-
-class MessageModel {
-    static var allMessage = [LoadMessage]()
-
-    static func fetchMessage(messageTableView: UITableView) {
-        guard
-            let postImageID = UserDefaults.standard.string(forKey: "postImageID")
-            else {
-                return
-        }
-
-        Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
-            var loadMessage = [LoadMessage]()
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
-                    loadMessage.append(loadMessageItem)
-                }
-            }
-            MessageModel.allMessage = loadMessage
-            messageTableView.reloadData()
-        }
-
     }
 }

@@ -24,10 +24,8 @@ class LoadingImage {
                 let postImages = value["postImages"] as? [String],
                 let userName = value["userName"] as? String
                 else { return }
-            print(postImages)
             LoadingImage.userName = userName
             for postImage in postImages {
-                print(postImage)
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
                         if let loadImageItem = UserImages.init(snapshot: snapshot) {

@@ -10,16 +10,12 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
     //@IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var userMessage: UILabel!
-    var userName = "Jerry"
-    var messageText = "joidjpv voasidjvpo advj aosidj apo djv aosid jvasvwoei jov w weofi jw o."
+    @IBOutlet weak var userMessageLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Message Model
-        MessageSet.message(label: userMessage, userName: userName, messageText: messageText)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

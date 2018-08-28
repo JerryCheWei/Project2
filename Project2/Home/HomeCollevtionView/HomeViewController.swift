@@ -36,7 +36,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         loadPostImage.append(loadPostImageItem)
                 }
             }
-            print(loadPostImage)
             self.postImages = loadPostImage
             self.collectionView.reloadData()
         }
