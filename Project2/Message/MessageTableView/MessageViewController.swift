@@ -17,11 +17,18 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet var messageTableView: UITableView!
-    var textHeightConstraint: NSLayoutConstraint!
+    var textHeightConstraint = NSLayoutConstraint()
+    var imageID: String = ""
+
+    func commentInit(_ imageID: String) {
+        self.imageID = imageID
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let titleID = UserDefaults.standard.string(forKey: "postImageID")
+
+        print(imageID)
+        let titleID = self.imageID
         self.navigationItem.title = titleID
         // user cell xib
         let userNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
@@ -40,7 +47,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.adjustTextViewHeight()
         self.sendButton.isEnabled = false
         // fetchMessage
-        MessageModel.fetchMessage(messageTableView: self.messageTableView)
+        MessageModel.fetchMessage(messageTableView: self.messageTableView, postImageID: imageID)
     }
 
     func adjustTextViewHeight() {
@@ -78,9 +85,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBAction func sendButton(_ sender: Any) {
         // send message
-        if let postImageID = UserDefaults.standard.string(forKey: "postImageID") {
-            self.sendMessage(postImageID: postImageID)
-        }
+        let postImageID = self.imageID
+        self.sendMessage(postImageID: postImageID)
 
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         self.messageTextView.resignFirstResponder()
@@ -102,8 +108,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         let messageRef = Database.database().reference().child("messages")
         let postMessageRef = messageRef.child("\(postImageID)").childByAutoId()
-        postMessageRef.setValue(["userID": "\(userID)",
-                                 "message": self.messageTextView.text] as [AnyHashable: Any])
+        postMessageRef.setValue([
+                                "userID": "\(userID)",
+                                "message": self.messageTextView.text
+                                ] as [AnyHashable: Any])
     }
 
     // MARK: - Table view data source

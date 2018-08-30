@@ -11,7 +11,7 @@ import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var homeCollectionView: UICollectionView!
 
     @IBAction func signoutButton(_ sender: Any) {
         do {
@@ -37,7 +37,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
             self.postImages = loadPostImage
-            self.collectionView.reloadData()
+            self.homeCollectionView.reloadData()
         }
 
     }
@@ -47,54 +47,83 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HomeCollectionViewCell
-            else { fatalError() }
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? NewHomeCollectionViewCell
+            else {
+                fatalError()
+        }
+
         let postImage = self.postImages[indexPath.row]
 
         if let url = URL(string: postImage.postUrl!) {
             ImageService.getImage(withURL: url) { (image) in
-                cell.loadAllImageView.image = image
+                cell.postImageView.image = image
             }
         }
+        Database.database().reference().child("users").child(postImage.userID!).observe(.value) { (snapshot) in
+            guard
+                let value = snapshot.value as? [String: AnyObject],
+                let name = value["userName"] as? String
+                else {
+                    return
+            }
+            cell.userNameLabel.text = name
+        }
+
+        cell.userImageView.backgroundColor = .gray
+
+        // CellDelegate Protocol delegate
+        cell.deleggate = self
+        cell.indexPath = indexPath
+        cell.colorSet(view: cell.colorView)
 
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let postImageItem = postImages[indexPath.row]
-        let postImageID = postImageItem.idName
-        UserDefaults.standard.set(postImageID, forKey: "postImageID")
-        UserDefaults.standard.synchronize()
-        print(postImageID!)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fetchImage()
+        // set collcetion cell xib
+        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
+        homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+    }
+}
+
+extension HomeViewController: CellDelegateProtocol {
+    func passData(indexPath: Int) {
+       if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
+        let imageID = postImages[indexPath].idName {
+            messageVC.commentInit(imageID)
+            self.navigationController?.pushViewController(messageVC, animated: true)
+        }
     }
 }
 
 class PostImage {
     let idName: String?
     let postUrl: String?
+    let userID: String?
 
-    init(idName: String, postUrl: String) {
+    init(idName: String, postUrl: String, userID: String) {
         self.idName = idName
         self.postUrl = postUrl
+        self.userID = userID
     }
 
     init?(snapshot: DataSnapshot) {
         guard
         let value = snapshot.value as? [String: AnyObject],
         let idName = value["idName"] as? String,
-        let postUrl = value["postUrl"] as? String
+        let postUrl = value["postUrl"] as? String,
+        let userID = value["userID"] as? String
             else {
                 return nil
         }
 
         self.idName = idName
         self.postUrl = postUrl
+        self.userID = userID
     }
 
 }
