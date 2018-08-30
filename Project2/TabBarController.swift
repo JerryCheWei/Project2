@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
     func setupbtn() {
 
         // 設定圖片
-        let image = UIImage(named: "iconAddPhoto36pt")
+        let image = UIImage(named: "round_camera_alt_black_36pt")
         openCameraViewButton.setImage(image, for: .normal)
         openCameraViewButton.tintColor = .white
 
