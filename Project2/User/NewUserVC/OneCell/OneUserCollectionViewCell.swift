@@ -8,11 +8,23 @@
 
 import UIKit
 
+protocol OneCellDelegateProtocol {
+    func passData(indexPath: Int)
+}
+
+@IBDesignable
 class OneUserCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var messageButton: UIButton!
+    @IBOutlet weak var colorView: UIView!
 
+    var deleggate: OneCellDelegateProtocol?
+    var indexPath: IndexPath?
+
+    @IBAction func messageButton(_ sender: Any) {
+        deleggate?.passData(indexPath: (indexPath?.row)!)
+    }
 }

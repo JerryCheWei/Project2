@@ -27,7 +27,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(imageID)
+        navigationController?.isNavigationBarHidden = false
         let titleID = self.imageID
         self.navigationItem.title = titleID
         // user cell xib
