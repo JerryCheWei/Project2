@@ -16,6 +16,7 @@ class LoadingImage {
     static var loadImages = [UserImages]()
 
     static func fethImage(tableView: UITableView) {
+
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
@@ -25,6 +26,9 @@ class LoadingImage {
                 let userName = value["userName"] as? String
                 else { return }
             LoadingImage.userName = userName
+            imageUrl.removeAll()
+            loadImages.removeAll()
+
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
@@ -32,7 +36,6 @@ class LoadingImage {
                             loadImages.append(loadImageItem)
                         }
                         LoadingImage.imageUrl = loadImages
-                        print(LoadingImage.imageUrl)
                         tableView.reloadData()
 
                 }

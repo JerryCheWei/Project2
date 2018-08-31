@@ -34,6 +34,10 @@
 		BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */; };
 		BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E4A0211BF9B900404C2E /* Assets.xcassets */; };
 		BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */; };
+		BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA729D2139480200F69BF0 /* OneUserCollectionViewCell.swift */; };
+		BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */; };
+		BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */; };
+		BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		BFB6E4A0211BF9B900404C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB6E4A3211BF9B900404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFB6E4A5211BF9B900404C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFEA729D2139480200F69BF0 /* OneUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneUserCollectionViewCell.xib; sourceTree = "<group>"; };
+		BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +162,7 @@
 		BF1FB4C3212A9CF70022693C /* User */ = {
 			isa = PBXGroup;
 			children = (
+				BFEA729A2139460700F69BF0 /* NewUserVC */,
 				BF1FB505212BE5DA0022693C /* LoadImage.swift */,
 				BF1FB507212C23920022693C /* HeaderViewSet.swift */,
 				BF1FB500212BDBB80022693C /* UserTableViewCell */,
@@ -311,6 +320,33 @@
 			path = Project2;
 			sourceTree = "<group>";
 		};
+		BFEA729A2139460700F69BF0 /* NewUserVC */ = {
+			isa = PBXGroup;
+			children = (
+				BFEA729C213946BE00F69BF0 /* MoreCell */,
+				BFEA729B2139461D00F69BF0 /* OneCell */,
+			);
+			path = NewUserVC;
+			sourceTree = "<group>";
+		};
+		BFEA729B2139461D00F69BF0 /* OneCell */ = {
+			isa = PBXGroup;
+			children = (
+				BFEA729D2139480200F69BF0 /* OneUserCollectionViewCell.swift */,
+				BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */,
+			);
+			path = OneCell;
+			sourceTree = "<group>";
+		};
+		BFEA729C213946BE00F69BF0 /* MoreCell */ = {
+			isa = PBXGroup;
+			children = (
+				BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */,
+				BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */,
+			);
+			path = MoreCell;
+			sourceTree = "<group>";
+		};
 		DA558CE56B6F0FF1D0164B63 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,8 +421,10 @@
 				BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */,
 				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
+				BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */,
 				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
+				BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */,
 				BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,12 +498,14 @@
 			files = (
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
 				BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */,
+				BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
 				BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
+				BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */,
 				BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */,
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
 				BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */,
