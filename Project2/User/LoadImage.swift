@@ -78,6 +78,40 @@ class NewLoadingImage {
         }
     }
 }
+class MoreLoadingImage {
+    
+    static var imageUrl = [UserImages]()
+    static var userName = String()
+    static var loadImages = [UserImages]()
+    
+    static func fethImage(collectionView: UICollectionView) {
+        
+        guard let userRef = Auth.auth().currentUser
+            else { return }
+        let userid = userRef.uid
+        Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
+            guard let value = snapshot.value as? [String: AnyObject],
+                let postImages = value["postImages"] as? [String],
+                let userName = value["userName"] as? String
+                else { return }
+            MoreLoadingImage.userName = userName
+            imageUrl.removeAll()
+            loadImages.removeAll()
+            
+            for postImage in postImages {
+                Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
+                    
+                    if let loadImageItem = UserImages.init(snapshot: snapshot) {
+                        loadImages.append(loadImageItem)
+                    }
+                    MoreLoadingImage.imageUrl = loadImages
+                    collectionView.reloadData()
+                    
+                }
+            }
+        }
+    }
+}
 
 class UserImages {
     let idName: String?

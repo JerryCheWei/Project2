@@ -13,48 +13,93 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var oneCollectionView: UICollectionView!
 
     @IBOutlet weak var moreCellView: UIView!
-    @IBOutlet weak var moerCollectionView: UICollectionView!
+    @IBOutlet weak var moreCollectionView: UICollectionView!
+
+    @IBOutlet weak var oneCellButton: UIButton!
+    @IBAction func oneCellButton(_ sender: UIButton) {
+        moreCellView.isHidden = true
+        sender.isEnabled = false
+        self.moreCellButton.isEnabled = true
+    }
+    @IBOutlet weak var moreCellButton: UIButton!
+    @IBAction func moreCellButton(_ sender: UIButton) {
+        moreCellView.isHidden = false
+        sender.isEnabled = false
+        self.oneCellButton.isEnabled = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.isNavigationBarHidden = true
+        moreCellView.isHidden = true
+        self.oneCellButton.isEnabled = false
+        self.moreCellButton.isEnabled = true
+
+        // xib
         oneCellXib()
+        moreCellXib()
+
         // 抓貼文image
         NewLoadingImage.fethImage(collectionView: oneCollectionView)
-        moreCellView.isHidden = true
+        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
     }
 
-    // oneCollectionCell
+    // CollectionCell nib
     func oneCellXib() {
         let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
     }
+    func moreCellXib() {
+        let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)
+        moreCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+    }
 
     // collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(NewLoadingImage.imageUrl.count)
-        return NewLoadingImage.imageUrl.count
+        if collectionView == self.oneCollectionView {
+            return NewLoadingImage.imageUrl.count
+        }
+        else {
+            return MoreLoadingImage.imageUrl.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
-            else {
-                fatalError()
-        }
-
-        let loadImage = NewLoadingImage.imageUrl[indexPath.row]
-        if let url = URL(string: loadImage.postUrl!) {
-            ImageService.getImage(withURL: url) { (image) in
-                cellOne.postImageView.image = image
+        if collectionView == self.oneCollectionView {
+            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
+                else {
+                    fatalError()
             }
-        }
-        cellOne.userImageView.backgroundColor = .green
-        cellOne.userNameLabel.text = NewLoadingImage.userName
-        cellOne.deleggate = self
-        cellOne.indexPath = indexPath
 
-        return cellOne
+            let loadImage = NewLoadingImage.imageUrl[indexPath.row]
+            if let url = URL(string: loadImage.postUrl!) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cellOne.postImageView.image = image
+                }
+            }
+            cellOne.userImageView.backgroundColor = .green
+            cellOne.userNameLabel.text = NewLoadingImage.userName
+            cellOne.deleggate = self
+            cellOne.indexPath = indexPath
+
+            return cellOne
+        }
+        else {
+            guard let cellMore = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MoreUserCollectionViewCell
+                else {
+                    fatalError()
+            }
+
+            let loadImage = MoreLoadingImage.imageUrl[indexPath.row]
+            if let url = URL(string: loadImage.postUrl!) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cellMore.postImageView.image = image
+                }
+            }
+
+            return cellMore
+        }
     }
 }
 extension NewUserViewController: OneCellDelegateProtocol {

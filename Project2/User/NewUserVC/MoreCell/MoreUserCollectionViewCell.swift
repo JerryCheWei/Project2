@@ -8,11 +8,9 @@
 
 import UIKit
 
+@IBDesignable
 class MoreUserCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var postImageView: UIImageView!
 
 }

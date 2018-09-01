@@ -812,11 +812,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="147" height="30"/>
                                                 <color key="backgroundColor" red="0.36577690969999999" green="0.59279769189999998" blue="1" alpha="0.2224689640410959" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="瀑布流"/>
+                                                <connections>
+                                                    <action selector="oneCellButton:" destination="Da6-H9-SW0" eventType="touchUpInside" id="FaW-Vu-Sqd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khN-je-7xx">
                                                 <rect key="frame" x="167" y="0.0" width="147" height="30"/>
                                                 <color key="backgroundColor" red="0.90072595710000003" green="0.57820377209999996" blue="0.42183127009999999" alpha="0.2315657106" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="cell"/>
+                                                <connections>
+                                                    <action selector="moreCellButton:" destination="Da6-H9-SW0" eventType="touchUpInside" id="2MP-wx-HN4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -871,7 +877,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qav-QR-bch">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="437"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.90072595710000003" green="0.46405446649999998" blue="0.42183127009999999" alpha="0.59262628419999996" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="ZfC-iW-RdP">
                                             <size key="itemSize" width="135" height="135"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -879,15 +885,20 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="v6K-iq-N2j" customClass="MoreUserCollectionViewCell" customModule="Project2" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="v6K-iq-N2j" customClass="MoreUserCollectionViewCell" customModule="Project2" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </view>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Da6-H9-SW0" id="V3K-vA-dfK"/>
+                                            <outlet property="delegate" destination="Da6-H9-SW0" id="hWn-BE-iXF"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98017131976446703" green="0.87167360615718037" blue="0.77194511877813154" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -917,8 +928,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="qMe-uQ-gTy"/>
                     <connections>
-                        <outlet property="moerCollectionView" destination="qav-QR-bch" id="7TY-uI-kTw"/>
+                        <outlet property="moreCellButton" destination="khN-je-7xx" id="UU7-yK-Eut"/>
                         <outlet property="moreCellView" destination="mCy-Hg-yCr" id="6XT-QX-niT"/>
+                        <outlet property="moreCollectionView" destination="qav-QR-bch" id="7TY-uI-kTw"/>
+                        <outlet property="oneCellButton" destination="4NG-JI-wn7" id="G8F-GU-C45"/>
                         <outlet property="oneCollectionView" destination="Umb-I7-LOf" id="Ua0-Xz-Opa"/>
                     </connections>
                 </viewController>
