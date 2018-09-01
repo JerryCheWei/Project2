@@ -39,6 +39,7 @@
 		BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */; };
 		BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */; };
 		BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */; };
+		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -325,6 +327,7 @@
 		BFEA729A2139460700F69BF0 /* NewUserVC */ = {
 			isa = PBXGroup;
 			children = (
+				BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */,
 				BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */,
 				BFEA729B2139461D00F69BF0 /* OneCell */,
 				BFEA729C213946BE00F69BF0 /* MoreCell */,
@@ -509,6 +512,7 @@
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
+				BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */,
 				BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */,
 				BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */,
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,

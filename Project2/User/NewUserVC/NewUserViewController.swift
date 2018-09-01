@@ -10,8 +10,11 @@ import UIKit
 
 class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var oneCollectionView: UICollectionView!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userBackImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
 
+    @IBOutlet weak var oneCollectionView: UICollectionView!
     @IBOutlet weak var moreCellView: UIView!
     @IBOutlet weak var moreCollectionView: UICollectionView!
 
@@ -32,9 +35,12 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
 
         navigationController?.isNavigationBarHidden = true
-        moreCellView.isHidden = true
-        self.oneCellButton.isEnabled = false
-        self.moreCellButton.isEnabled = true
+        moreCellView.isHidden = false
+        self.oneCellButton.isEnabled = true
+        self.moreCellButton.isEnabled = false
+
+        // get header user name
+        LoadUserName.loadUserData(userNameLabel: self.userNameLabel)
 
         // xib
         oneCellXib()

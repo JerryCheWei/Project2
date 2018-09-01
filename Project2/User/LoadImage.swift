@@ -79,13 +79,13 @@ class NewLoadingImage {
     }
 }
 class MoreLoadingImage {
-    
+
     static var imageUrl = [UserImages]()
     static var userName = String()
     static var loadImages = [UserImages]()
-    
+
     static func fethImage(collectionView: UICollectionView) {
-        
+
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
@@ -97,16 +97,16 @@ class MoreLoadingImage {
             MoreLoadingImage.userName = userName
             imageUrl.removeAll()
             loadImages.removeAll()
-            
+
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
-                    
+
                     if let loadImageItem = UserImages.init(snapshot: snapshot) {
                         loadImages.append(loadImageItem)
                     }
                     MoreLoadingImage.imageUrl = loadImages
                     collectionView.reloadData()
-                    
+
                 }
             }
         }
