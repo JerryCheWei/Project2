@@ -786,12 +786,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yA2-gw-6Xa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="475"/>
+            <point key="canvasLocation" x="2733" y="942"/>
         </scene>
         <!--New User View Controller-->
         <scene sceneID="Xd8-8n-75P">
             <objects>
-                <viewController id="Da6-H9-SW0" customClass="NewUserViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Da6-H9-SW0" customClass="NewUserViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QKf-Ww-i86">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -951,11 +951,87 @@
                         <outlet property="userBackImageView" destination="gU7-qD-onr" id="n1e-0n-FDs"/>
                         <outlet property="userImageView" destination="PUB-wD-IQh" id="LiN-YY-Jge"/>
                         <outlet property="userNameLabel" destination="tqd-dc-IWH" id="n6T-ic-R75"/>
+                        <segue destination="2PX-fX-wXG" kind="push" id="Q3k-SK-SWF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dp-Jt-UpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="1204"/>
+            <point key="canvasLocation" x="64" y="915"/>
+        </scene>
+        <!--相片-->
+        <scene sceneID="Vif-l5-Cy9">
+            <objects>
+                <viewController storyboardIdentifier="postImageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2PX-fX-wXG" customClass="PostImageViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uPx-wY-plL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eW4-Gz-qiz">
+                                <rect key="frame" x="0.0" y="134" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eW4-Gz-qiz" secondAttribute="height" multiplier="1:1" id="ObB-IN-B4z"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1o-Ja-Gg9">
+                                <rect key="frame" x="20" y="553" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="aDl-Fc-Kfx"/>
+                                    <constraint firstAttribute="height" constant="30" id="yQk-Tc-K1L"/>
+                                </constraints>
+                                <state key="normal" image="iconMessage36pt"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hg-kg-4L8">
+                                <rect key="frame" x="10" y="74" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="R6q-Nb-2x7"/>
+                                    <constraint firstAttribute="height" constant="40" id="WQ4-xG-fro"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-cF-ca5">
+                                <rect key="frame" x="70" y="84" width="56" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DF-dK-Lk9">
+                                <rect key="frame" x="358" y="84" width="36" height="36"/>
+                                <state key="normal" image="iconMoreHoriz36pt"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5hg-kg-4L8" firstAttribute="leading" secondItem="uPx-wY-plL" secondAttribute="leading" constant="10" id="AkD-Vy-fpS"/>
+                            <constraint firstItem="I7h-cF-ca5" firstAttribute="leading" secondItem="5hg-kg-4L8" secondAttribute="trailing" constant="20" id="AvX-UI-mat"/>
+                            <constraint firstItem="I7h-cF-ca5" firstAttribute="top" secondItem="GDO-Wu-d01" secondAttribute="top" constant="20" id="Cqy-nm-Bhl"/>
+                            <constraint firstItem="j1o-Ja-Gg9" firstAttribute="leading" secondItem="GDO-Wu-d01" secondAttribute="leading" constant="20" id="KIc-dd-gjF"/>
+                            <constraint firstItem="eW4-Gz-qiz" firstAttribute="trailing" secondItem="GDO-Wu-d01" secondAttribute="trailing" id="TM2-h4-jZf"/>
+                            <constraint firstItem="eW4-Gz-qiz" firstAttribute="leading" secondItem="GDO-Wu-d01" secondAttribute="leading" id="Z71-Ri-KVY"/>
+                            <constraint firstItem="GDO-Wu-d01" firstAttribute="trailing" secondItem="7DF-dK-Lk9" secondAttribute="trailing" constant="20" id="iqe-qS-tjO"/>
+                            <constraint firstItem="5hg-kg-4L8" firstAttribute="top" secondItem="GDO-Wu-d01" secondAttribute="top" constant="10" id="jZR-zL-uur"/>
+                            <constraint firstItem="7DF-dK-Lk9" firstAttribute="top" secondItem="GDO-Wu-d01" secondAttribute="top" constant="20" id="kIE-xx-0L8"/>
+                            <constraint firstItem="eW4-Gz-qiz" firstAttribute="top" secondItem="GDO-Wu-d01" secondAttribute="top" constant="70" id="mnL-qa-VJ2"/>
+                            <constraint firstItem="j1o-Ja-Gg9" firstAttribute="top" secondItem="eW4-Gz-qiz" secondAttribute="bottom" constant="5" id="vfc-Qd-gRG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GDO-Wu-d01"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="相片" id="LC4-Qj-c1R"/>
+                    <connections>
+                        <outlet property="messageButton" destination="j1o-Ja-Gg9" id="why-I1-2O9"/>
+                        <outlet property="otherFunctionButton" destination="7DF-dK-Lk9" id="Cyw-7A-IJO"/>
+                        <outlet property="postImageView" destination="eW4-Gz-qiz" id="lps-iO-sjF"/>
+                        <outlet property="userImageView" destination="5hg-kg-4L8" id="4Xq-b6-pcw"/>
+                        <outlet property="userNameLabel" destination="I7h-cF-ca5" id="vs9-hm-pEV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qaH-RC-nyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028.985507246377" y="914.67391304347836"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GjH-g1-1ma">
@@ -990,13 +1066,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBf-n1-gBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736" y="942"/>
+            <point key="canvasLocation" x="-817" y="915"/>
         </scene>
     </scenes>
     <resources>
         <image name="CameraButton" width="122" height="122"/>
         <image name="iconHome36pt" width="36" height="36"/>
         <image name="iconIdentity36pt" width="36" height="36"/>
+        <image name="iconMessage36pt" width="36" height="36"/>
+        <image name="iconMoreHoriz36pt" width="36" height="36"/>
         <image name="round_apps_black_36pt" width="36" height="36"/>
         <image name="round_view_day_black_36pt" width="36" height="36"/>
         <image name="testImage" width="1920" height="1080"/>

@@ -40,6 +40,7 @@
 		BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */; };
 		BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */; };
 		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
+		BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
+		BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,11 +168,8 @@
 		BF1FB4C3212A9CF70022693C /* User */ = {
 			isa = PBXGroup;
 			children = (
+				BFEA72AC213B80F700F69BF0 /* OldUserVC */,
 				BFEA729A2139460700F69BF0 /* NewUserVC */,
-				BF1FB505212BE5DA0022693C /* LoadImage.swift */,
-				BF1FB507212C23920022693C /* HeaderViewSet.swift */,
-				BF1FB500212BDBB80022693C /* UserTableViewCell */,
-				BF1FB4C4212A9D180022693C /* UserVC */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -313,6 +312,7 @@
 				BF1FB4BA2129BC630022693C /* Home */,
 				BF47FC2D212FA3C6003E10FC /* Message */,
 				BF1FB4C3212A9CF70022693C /* User */,
+				BFEA72B6213BBDC200F69BF0 /* PostVC */,
 				BF1FB4B12129AD6D0022693C /* Camera */,
 				BF1FB4B22129AE1A0022693C /* SendImage */,
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
@@ -328,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */,
+				BF1FB505212BE5DA0022693C /* LoadImage.swift */,
 				BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */,
 				BFEA729B2139461D00F69BF0 /* OneCell */,
 				BFEA729C213946BE00F69BF0 /* MoreCell */,
@@ -351,6 +352,24 @@
 				BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */,
 			);
 			path = MoreCell;
+			sourceTree = "<group>";
+		};
+		BFEA72AC213B80F700F69BF0 /* OldUserVC */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FB507212C23920022693C /* HeaderViewSet.swift */,
+				BF1FB500212BDBB80022693C /* UserTableViewCell */,
+				BF1FB4C4212A9D180022693C /* UserVC */,
+			);
+			path = OldUserVC;
+			sourceTree = "<group>";
+		};
+		BFEA72B6213BBDC200F69BF0 /* PostVC */ = {
+			isa = PBXGroup;
+			children = (
+				BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */,
+			);
+			path = PostVC;
 			sourceTree = "<group>";
 		};
 		DA558CE56B6F0FF1D0164B63 /* Pods */ = {
@@ -510,6 +529,7 @@
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
+				BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */,

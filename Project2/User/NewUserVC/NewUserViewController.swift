@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol SelectedCollectionItemDelegate: class {
+    func selectedCollectionItem(index: Int)
+}
+
 class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    weak var delegate: SelectedCollectionItemDelegate?
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userBackImageView: UIImageView!
@@ -34,6 +40,8 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.isNavigationBarHidden = true
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
@@ -103,8 +111,15 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     cellMore.postImageView.image = image
                 }
             }
-
+            self.delegate = self
             return cellMore
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.moreCollectionView {
+            let index = indexPath.row
+            self.delegate?.selectedCollectionItem(index: index)
         }
     }
 }
@@ -116,5 +131,13 @@ extension NewUserViewController: OneCellDelegateProtocol {
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
-
+}
+extension NewUserViewController: SelectedCollectionItemDelegate {
+    func selectedCollectionItem(index: Int) {
+        if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
+            let postImageID = MoreLoadingImage.imageUrl[index].idName {
+            postImageVC.commendInit(postImageID: postImageID)
+            self.navigationController?.pushViewController(postImageVC, animated: true)
+        }
+    }
 }
