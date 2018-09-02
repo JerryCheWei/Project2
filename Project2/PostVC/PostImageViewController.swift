@@ -21,6 +21,15 @@ class PostImageViewController: UIViewController {
     func commendInit(postImageID: String) {
         self.postImageID = postImageID
     }
+    @IBAction func messageButton(_ sender: UIButton) {
+        if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
+            let imageID = self.postImageID {
+            messageVC.commentInit(imageID)
+            self.navigationController?.pushViewController(messageVC, animated: true)
+        }
+    }
+    @IBAction func otherFunctionButton(_ sender: UIButton) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

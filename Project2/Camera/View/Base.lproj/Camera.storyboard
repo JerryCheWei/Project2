@@ -979,6 +979,9 @@
                                     <constraint firstAttribute="height" constant="30" id="yQk-Tc-K1L"/>
                                 </constraints>
                                 <state key="normal" image="iconMessage36pt"/>
+                                <connections>
+                                    <action selector="messageButton:" destination="2PX-fX-wXG" eventType="touchUpInside" id="5fS-ax-4YK"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hg-kg-4L8">
                                 <rect key="frame" x="10" y="74" width="40" height="40"/>
@@ -1002,6 +1005,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DF-dK-Lk9">
                                 <rect key="frame" x="358" y="84" width="36" height="36"/>
                                 <state key="normal" image="iconMoreHoriz36pt"/>
+                                <connections>
+                                    <action selector="otherFunctionButton:" destination="2PX-fX-wXG" eventType="touchUpInside" id="jDj-f3-uAn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
