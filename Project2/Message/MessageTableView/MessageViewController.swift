@@ -27,9 +27,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(imageID)
-        let titleID = self.imageID
-        self.navigationItem.title = titleID
+        navigationController?.isNavigationBarHidden = false
+        self.navigationItem.title = "留言"
         // user cell xib
         let userNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
         messageTableView.register(userNib, forCellReuseIdentifier: "cell")
