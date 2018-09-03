@@ -21,6 +21,8 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var colorView: UIView!
     let backgroundGradientLayer = CAGradientLayer()
+    @IBOutlet weak var widthConstrain: NSLayoutConstraint!
+    @IBOutlet weak var messageLabel: UILabel!
 
     var deleggate: CellDelegateProtocol?
     var indexPath: IndexPath?
@@ -41,6 +43,12 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
         layer.endPoint = CGPoint(x: 0.5, y: 1.0)
         layer.startPoint = CGPoint(x: 0.5, y: 0.0)
         view.layer.insertSublayer(layer, at: 0)
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        let screenWidth = UIScreen.main.bounds.size.width
+        widthConstrain.constant = screenWidth - (2 * 10)
     }
 
 }

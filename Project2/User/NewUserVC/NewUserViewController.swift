@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SelectedCollectionItemDelegate: class {
     func selectedCollectionItem(index: Int)
@@ -61,8 +62,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     // CollectionCell nib
     func oneCellXib() {
-        let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
+//        let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
+//        oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)
@@ -81,7 +87,8 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.oneCollectionView {
-            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
+//            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
+            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? NewHomeCollectionViewCell
                 else {
                     fatalError()
             }
@@ -96,7 +103,33 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             cellOne.userNameLabel.text = NewLoadingImage.userName
             cellOne.deleggate = self
             cellOne.indexPath = indexPath
+            Database.database().reference().child("messages").child(NewLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
+                    var loadMessage = [String]()
+                    loadMessage.removeAll()
+                    for child in snapshot.children.allObjects {
+                        if let snapshot = child as? DataSnapshot {
+                            guard
+                                let value = snapshot.value as? [String: AnyObject],
+                                let message = value["message"] as? String,
+                                let userID = value["userID"] as? String
+                                else {
+                                    return
+                            }
+                            loadMessage.append(message)
+                            Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
+                                guard
+                                    let value = snapshot.value as? [String: AnyObject],
+                                    let name = value["userName"] as? String
+                                    else {
+                                        return
+                                }
+                                MessageSet.message(label: cellOne.messageLabel, userName: name, messageText: loadMessage[0])
+                            })
+                        }
+                    }
+                }
 
+            cellOne.messageLabel.text = " "
             return cellOne
         }
         else {
@@ -123,7 +156,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
 }
-extension NewUserViewController: OneCellDelegateProtocol {
+extension NewUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = NewLoadingImage.loadImages[indexPath].idName {

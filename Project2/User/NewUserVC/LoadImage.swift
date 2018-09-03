@@ -49,6 +49,7 @@ class NewLoadingImage {
     static var imageUrl = [UserImages]()
     static var userName = String()
     static var loadImages = [UserImages]()
+    static var allPostImages = [String]()
 
     static func fethImage(collectionView: UICollectionView) {
 
@@ -61,6 +62,7 @@ class NewLoadingImage {
                 let userName = value["userName"] as? String
                 else { return }
             NewLoadingImage.userName = userName
+            allPostImages = postImages
             imageUrl.removeAll()
             loadImages.removeAll()
 
