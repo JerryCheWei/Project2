@@ -21,6 +21,27 @@ class PostImageViewController: UIViewController {
     func commendInit(postImageID: String) {
         self.postImageID = postImageID
     }
+    @IBAction func messageButton(_ sender: UIButton) {
+        if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
+            let imageID = self.postImageID {
+            messageVC.commentInit(imageID)
+            self.navigationController?.pushViewController(messageVC, animated: true)
+        }
+    }
+    @IBAction func otherFunctionButton(_ sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancleAction = UIAlertAction(title: "取消",
+                                         style: .cancel,
+                                         handler: nil)
+
+// 刪除貼文功能(未完)
+        optionMenu.addAction(cancleAction)
+        let deleteAction = UIAlertAction(title: "刪除",
+                                         style: .destructive,
+                                         handler: nil)
+        optionMenu.addAction(deleteAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
