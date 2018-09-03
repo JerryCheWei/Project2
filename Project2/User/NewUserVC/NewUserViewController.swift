@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SelectedCollectionItemDelegate: class {
     func selectedCollectionItem(index: Int)
@@ -100,9 +101,35 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             cellOne.userImageView.backgroundColor = .green
             cellOne.userNameLabel.text = NewLoadingImage.userName
-//            cellOne.deleggate = self
+            cellOne.deleggate = self
             cellOne.indexPath = indexPath
+            Database.database().reference().child("messages").child(NewLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
+                    var loadMessage = [String]()
+                    loadMessage.removeAll()
+                    for child in snapshot.children.allObjects {
+                        if let snapshot = child as? DataSnapshot {
+                            guard
+                                let value = snapshot.value as? [String: AnyObject],
+                                let message = value["message"] as? String,
+                                let userID = value["userID"] as? String
+                                else {
+                                    return
+                            }
+                            loadMessage.append(message)
+                            Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
+                                guard
+                                    let value = snapshot.value as? [String: AnyObject],
+                                    let name = value["userName"] as? String
+                                    else {
+                                        return
+                                }
+                                MessageSet.message(label: cellOne.messageLabel, userName: name, messageText: loadMessage[0])
+                            })
+                        }
+                    }
+                }
 
+            cellOne.messageLabel.text = " "
             return cellOne
         }
         else {

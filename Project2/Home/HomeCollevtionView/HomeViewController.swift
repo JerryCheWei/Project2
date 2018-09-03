@@ -72,11 +72,37 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         cell.userImageView.backgroundColor = .gray
 
+        Database.database().reference().child("messages").child(postImage.idName!).observe(.value) { (snapshot) in
+            var loadMessage = [String]()
+                loadMessage.removeAll()
+                for child in snapshot.children.allObjects {
+                    if let snapshot = child as? DataSnapshot {
+                        guard
+                            let value = snapshot.value as? [String: AnyObject],
+                            let message = value["message"] as? String,
+                            let userID = value["userID"] as? String
+                            else {
+                                return
+                        }
+                        loadMessage.append(message)
+                        Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
+                            guard
+                            let value = snapshot.value as? [String: AnyObject],
+                            let name = value["userName"] as? String
+                                else {
+                                    return
+                            }
+                            MessageSet.message(label: cell.messageLabel, userName: name, messageText: loadMessage[0])
+                        })
+                    }
+            }
+        }
+
         // CellDelegate Protocol delegate
         cell.deleggate = self
         cell.indexPath = indexPath
         cell.colorSet(view: cell.colorView)
-        cell.messageLabel.text = "oijrgpwokengpwekgnpwkogewpokgnwpekognpwoeirngwpeoingwngpweognpweokgwpeokgnwpeong"
+        cell.messageLabel.text = " "
 
         return cell
     }
