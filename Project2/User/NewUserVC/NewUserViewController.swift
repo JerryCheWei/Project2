@@ -66,9 +66,10 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             if let userID = Auth.auth().currentUser?.uid {
                 let userRef = Database.database().reference().child("users").child(userID)
                 let storageRef = Storage.storage().reference().child("usersImage").child("\(userID).jpg")
-
+                let uploadMetadata = StorageMetadata()
+                uploadMetadata.contentType = "image/jpeg"
                 if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.5) {
-                    storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                    storageRef.putData(uploadData, metadata: uploadMetadata) { (metadata, error) in
                         if let error = error {
                             print(error)
                             return
@@ -85,7 +86,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                             }
                             print("userImageUrl: \(downloadURL)")
                             // database -> users/userID/ 建立 userImageUrl  data
-                            userRef.updateChildValues(["userImageUrl": downloadURL] as [AnyHashable: Any])
+                            userRef.updateChildValues(["userImageUrl": "\(downloadURL)"] as [AnyHashable: Any])
                         })
                     }
                 }

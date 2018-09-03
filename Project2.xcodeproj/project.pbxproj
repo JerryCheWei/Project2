@@ -10,7 +10,6 @@
 		4413640072A8C2AD6D678C0B /* Pods_Project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */; };
 		BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF13AD6E2137CDEA007B3290 /* NewHomeCollectionViewCell.swift */; };
 		BF13AD712137CDEA007B3290 /* NewHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF13AD6F2137CDEA007B3290 /* NewHomeCollectionViewCell.xib */; };
-		BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */; };
 		BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */; };
 		BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B82129B7A00022693C /* TabBarController.swift */; };
 		BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */; };
@@ -42,6 +41,7 @@
 		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
 		BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */; };
 		BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B9213D376B00F69BF0 /* FixImage.swift */; };
+		BFEA72BC213D727000F69BF0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72BB213D727000F69BF0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,6 @@
 		B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AD6E2137CDEA007B3290 /* NewHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF13AD6F2137CDEA007B3290 /* NewHomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewHomeCollectionViewCell.xib; sourceTree = "<group>"; };
-		BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageViewController.swift; sourceTree = "<group>"; };
 		BF1FB4B82129B7A00022693C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
 		BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		BFEA72B9213D376B00F69BF0 /* FixImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixImage.swift; sourceTree = "<group>"; };
+		BFEA72BB213D727000F69BF0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -320,8 +320,8 @@
 				BFB6E4A0211BF9B900404C2E /* Assets.xcassets */,
 				BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */,
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
-				BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */,
 				BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */,
+				BFEA72BB213D727000F69BF0 /* GoogleService-Info.plist */,
 				BFEA72B9213D376B00F69BF0 /* FixImage.swift */,
 			);
 			path = Project2;
@@ -447,10 +447,10 @@
 			files = (
 				BF13AD712137CDEA007B3290 /* NewHomeCollectionViewCell.xib in Resources */,
 				BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */,
+				BFEA72BC213D727000F69BF0 /* GoogleService-Info.plist in Resources */,
 				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
 				BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */,
-				BF1FB4AE2129A8B00022693C /* GoogleService-Info.plist in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
 				BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */,
 				BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */,
