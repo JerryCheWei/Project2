@@ -68,7 +68,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                 let storageRef = Storage.storage().reference().child("usersImage").child("\(userID).jpg")
                 let uploadMetadata = StorageMetadata()
                 uploadMetadata.contentType = "image/jpeg"
-                if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.5) {
+                if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.2) {
                     storageRef.putData(uploadData, metadata: uploadMetadata) { (metadata, error) in
                         if let error = error {
                             print(error)
@@ -94,6 +94,27 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
 
+    func uploadUserImage() {
+        guard
+        let userID = Auth.auth().currentUser?.uid
+            else {
+                return
+        }
+        Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
+            guard
+            let value = snapshot.value as? [String: AnyObject],
+            let userImageUrl = value["userImageUrl"] as? String
+                else {
+                    return
+            }
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url, completion: { (image) in
+                    self.userImageView.image = image
+                })
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -103,6 +124,9 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
         self.moreCellButton.isEnabled = false
+
+        // get user image
+        uploadUserImage()
 
         // get header user name
         LoadUserName.loadUserData(userNameLabel: self.userNameLabel)
@@ -155,10 +179,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     cellOne.postImageView.image = image
                 }
             }
-            cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameLabel.text = NewLoadingImage.userName
-            cellOne.deleggate = self
-            cellOne.indexPath = indexPath
             Database.database().reference().child("messages").child(NewLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                     var loadMessage = [String]()
                     loadMessage.removeAll()
@@ -180,11 +200,23 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                                         return
                                 }
                                 MessageSet.message(label: cellOne.messageLabel, userName: name, messageText: loadMessage[0])
+
                             })
                         }
                     }
                 }
 
+            let userImageUrl = NewLoadingImage.loadUserImageUrl
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url, completion: { (image) in
+                    cellOne.userImageView.image = image
+                })
+            }
+
+            cellOne.userImageView.backgroundColor = .green
+            cellOne.userNameLabel.text = NewLoadingImage.userName
+            cellOne.deleggate = self
+            cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
             return cellOne
         }

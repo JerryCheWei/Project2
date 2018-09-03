@@ -69,11 +69,17 @@ class PostImageViewController: UIViewController {
                 }
                 Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                     guard let value = snapshot.value as? [String: AnyObject],
-                        let name = value["userName"] as? String
+                        let name = value["userName"] as? String,
+                        let userImageUrl = value["userImageUrl"] as? String
                         else {
                             fatalError()
                     }
                     self.userNameLabel.text = name
+                    if let url = URL(string: userImageUrl) {
+                        ImageService.getImage(withURL: url) { (image) in
+                            self.userImageView.image = image
+                        }
+                    }
                 })
             }
         }

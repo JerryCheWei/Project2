@@ -50,6 +50,7 @@ class NewLoadingImage {
     static var userName = String()
     static var loadImages = [UserImages]()
     static var allPostImages = [String]()
+    static var loadUserImageUrl = String()
 
     static func fethImage(collectionView: UICollectionView) {
 
@@ -59,10 +60,12 @@ class NewLoadingImage {
         Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
             guard let value = snapshot.value as? [String: AnyObject],
                 let postImages = value["postImages"] as? [String],
-                let userName = value["userName"] as? String
+                let userName = value["userName"] as? String,
+                let userImageUrl = value["userImageUrl"] as? String
                 else { return }
             NewLoadingImage.userName = userName
             allPostImages = postImages
+            loadUserImageUrl = userImageUrl
             imageUrl.removeAll()
             loadImages.removeAll()
 
