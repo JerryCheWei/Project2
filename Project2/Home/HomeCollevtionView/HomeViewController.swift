@@ -63,11 +63,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         Database.database().reference().child("users").child(postImage.userID!).observe(.value) { (snapshot) in
             guard
                 let value = snapshot.value as? [String: AnyObject],
-                let name = value["userName"] as? String
+                let name = value["userName"] as? String,
+                let userImageUrl = value["userImageUrl"] as? String
                 else {
                     return
             }
             cell.userNameLabel.text = name
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cell.userImageView.image = image
+                }
+            }
         }
 
         cell.userImageView.backgroundColor = .gray

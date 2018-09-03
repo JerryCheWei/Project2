@@ -932,7 +932,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WXZ-8y-Phs"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qMe-uQ-gTy"/>
+                    <navigationItem key="navigationItem" id="qMe-uQ-gTy">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="gAX-ob-lMV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GQ3-on-8Ql">
+                                <rect key="frame" x="370" y="10" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="round_settings_black_24pt"/>
+                                <connections>
+                                    <action selector="settingUserImageButton:" destination="Da6-H9-SW0" eventType="touchUpInside" id="WHa-t8-eiA"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="moreCellButton" destination="khN-je-7xx" id="UU7-yK-Eut"/>
                         <outlet property="moreCellView" destination="mCy-Hg-yCr" id="6XT-QX-niT"/>
@@ -974,7 +986,7 @@
                                     <action selector="messageButton:" destination="2PX-fX-wXG" eventType="touchUpInside" id="5fS-ax-4YK"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hg-kg-4L8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hg-kg-4L8">
                                 <rect key="frame" x="10" y="74" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1073,6 +1085,7 @@
         <image name="iconMessage36pt" width="36" height="36"/>
         <image name="iconMoreHoriz36pt" width="36" height="36"/>
         <image name="round_apps_black_36pt" width="36" height="36"/>
+        <image name="round_settings_black_24pt" width="24" height="24"/>
         <image name="round_view_day_black_36pt" width="36" height="36"/>
         <image name="testImage" width="1920" height="1080"/>
     </resources>

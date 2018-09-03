@@ -13,7 +13,7 @@ protocol SelectedCollectionItemDelegate: class {
     func selectedCollectionItem(index: Int)
 }
 
-class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     weak var delegate: SelectedCollectionItemDelegate?
 
@@ -37,16 +37,96 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         sender.isEnabled = false
         self.oneCellButton.isEnabled = true
     }
+    @IBAction func settingUserImageButton(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        actionSheet.addAction(cancelAction)
+
+        let updataAction = UIAlertAction(title: "相簿選取", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = true
+            self.present(picker, animated: true, completion: nil)
+        }
+        actionSheet.addAction(updataAction)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        var selectedImageFromPicker: UIImage?
+        // 取得從 UIImagePickerController 選擇到的檔案
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageFromPicker = pickedImage
+        }
+        // 關閉圖庫
+        dismiss(animated: true, completion: nil)
+
+        if let selectedImage = selectedImageFromPicker {
+            if let userID = Auth.auth().currentUser?.uid {
+                let userRef = Database.database().reference().child("users").child(userID)
+                let storageRef = Storage.storage().reference().child("usersImage").child("\(userID).jpg")
+                let uploadMetadata = StorageMetadata()
+                uploadMetadata.contentType = "image/jpeg"
+                if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.2) {
+                    storageRef.putData(uploadData, metadata: uploadMetadata) { (metadata, error) in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        else {
+                            print("\(String(describing: metadata))")
+                        }
+
+                        storageRef.downloadURL(completion: { (url, error) in
+                            guard
+                                let downloadURL = url else {
+                                    print("\(String(describing: error))")
+                                    return
+                            }
+                            print("userImageUrl: \(downloadURL)")
+                            // database -> users/userID/ 建立 userImageUrl  data
+                            userRef.updateChildValues(["userImageUrl": "\(downloadURL)"] as [AnyHashable: Any])
+                        })
+                    }
+                }
+            }
+        }
+    }
+
+    func uploadUserImage() {
+        guard
+        let userID = Auth.auth().currentUser?.uid
+            else {
+                return
+        }
+        Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
+            guard
+            let value = snapshot.value as? [String: AnyObject],
+            let userImageUrl = value["userImageUrl"] as? String
+                else {
+                    return
+            }
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url, completion: { (image) in
+                    self.userImageView.image = image
+                })
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
         self.moreCellButton.isEnabled = false
+
+        // get user image
+        uploadUserImage()
 
         // get header user name
         LoadUserName.loadUserData(userNameLabel: self.userNameLabel)
@@ -99,10 +179,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     cellOne.postImageView.image = image
                 }
             }
-            cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameLabel.text = NewLoadingImage.userName
-            cellOne.deleggate = self
-            cellOne.indexPath = indexPath
             Database.database().reference().child("messages").child(NewLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                     var loadMessage = [String]()
                     loadMessage.removeAll()
@@ -124,11 +200,23 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                                         return
                                 }
                                 MessageSet.message(label: cellOne.messageLabel, userName: name, messageText: loadMessage[0])
+
                             })
                         }
                     }
                 }
 
+            let userImageUrl = NewLoadingImage.loadUserImageUrl
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url, completion: { (image) in
+                    cellOne.userImageView.image = image
+                })
+            }
+
+            cellOne.userImageView.backgroundColor = .green
+            cellOne.userNameLabel.text = NewLoadingImage.userName
+            cellOne.deleggate = self
+            cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
             return cellOne
         }
