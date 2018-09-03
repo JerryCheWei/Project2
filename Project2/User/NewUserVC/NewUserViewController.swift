@@ -61,8 +61,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     // CollectionCell nib
     func oneCellXib() {
-        let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
+//        let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
+//        oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)
@@ -81,7 +86,8 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.oneCollectionView {
-            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
+//            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
+            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? NewHomeCollectionViewCell
                 else {
                     fatalError()
             }
@@ -94,7 +100,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             cellOne.userImageView.backgroundColor = .green
             cellOne.userNameLabel.text = NewLoadingImage.userName
-            cellOne.deleggate = self
+//            cellOne.deleggate = self
             cellOne.indexPath = indexPath
 
             return cellOne
@@ -123,7 +129,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
 }
-extension NewUserViewController: OneCellDelegateProtocol {
+extension NewUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = NewLoadingImage.loadImages[indexPath].idName {

@@ -76,6 +76,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.deleggate = self
         cell.indexPath = indexPath
         cell.colorSet(view: cell.colorView)
+        cell.messageLabel.text = "oijrgpwokengpwekgnpwkogewpokgnwpekognpwoeirngwpeoingwngpweognpweokgwpeokgnwpeong"
 
         return cell
     }
@@ -87,6 +88,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // set collcetion cell xib
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
 }
 
