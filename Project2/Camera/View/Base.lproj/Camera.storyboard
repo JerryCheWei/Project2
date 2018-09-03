@@ -236,7 +236,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QN-3F-cbg">
                                                 <rect key="frame" x="0.0" y="656" width="414" height="60"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v4w-DX-5Tq">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v4w-DX-5Tq">
                                                         <rect key="frame" x="8" y="10" width="40" height="40"/>
                                                         <color key="backgroundColor" red="0.90072595710000003" green="0.46405446649999998" blue="0.42183127009999999" alpha="0.59262628419999996" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
