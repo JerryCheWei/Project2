@@ -47,6 +47,26 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.sendButton.isEnabled = false
         // fetchMessage
         MessageModel.fetchMessage(messageTableView: self.messageTableView, postImageID: imageID)
+        // fetch user image
+        self.fetchUserImage()
+    }
+
+    func fetchUserImage() {
+        if let userID = Auth.auth().currentUser?.uid {
+            Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
+                guard
+                    let value = snapshot.value as? [String: AnyObject],
+                    let userImageUrl = value["userImageUrl"] as? String
+                    else {
+                        return
+                }
+                if let url = URL(string: userImageUrl) {
+                    ImageService.getImage(withURL: url) { (image) in
+                        self.userImageView.image = image
+                    }
+                }
+            }
+        }
     }
 
     func adjustTextViewHeight() {
@@ -133,10 +153,16 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         Database.database().reference().child("users").child(allMessageItem.userID!).observe(.value) { (snapshot) in
                 guard
                     let value = snapshot.value as? [String: AnyObject],
-                    let name = value["userName"] as? String
+                    let name = value["userName"] as? String,
+                    let userImageUrl = value["userImageUrl"] as? String
                     else {
                         return
                 }
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cell.userImageView.image = image
+                }
+            }
                 // Message Model
             MessageSet.message(label: cell.userMessageLabel, userName: name, messageText: allMessageItem.message!)
             }
