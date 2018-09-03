@@ -41,6 +41,7 @@
 		BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */; };
 		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
 		BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */; };
+		BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B9213D376B00F69BF0 /* FixImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
 		BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
+		BFEA72B9213D376B00F69BF0 /* FixImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixImage.swift; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -320,6 +322,7 @@
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
 				BF1FB4AD2129A8B00022693C /* GoogleService-Info.plist */,
 				BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */,
+				BFEA72B9213D376B00F69BF0 /* FixImage.swift */,
 			);
 			path = Project2;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
 				BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */,
 				BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */,
+				BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
 				BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,

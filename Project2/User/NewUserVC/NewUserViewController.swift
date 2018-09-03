@@ -13,7 +13,7 @@ protocol SelectedCollectionItemDelegate: class {
     func selectedCollectionItem(index: Int)
 }
 
-class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     weak var delegate: SelectedCollectionItemDelegate?
 
@@ -37,13 +37,68 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         sender.isEnabled = false
         self.oneCellButton.isEnabled = true
     }
+    @IBAction func settingUserImageButton(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        actionSheet.addAction(cancelAction)
+
+        let updataAction = UIAlertAction(title: "相簿選取", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = true
+            self.present(picker, animated: true, completion: nil)
+        }
+        actionSheet.addAction(updataAction)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        var selectedImageFromPicker: UIImage?
+        // 取得從 UIImagePickerController 選擇到的檔案
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageFromPicker = pickedImage
+        }
+        // 關閉圖庫
+        dismiss(animated: true, completion: nil)
+
+        if let selectedImage = selectedImageFromPicker {
+            if let userID = Auth.auth().currentUser?.uid {
+                let userRef = Database.database().reference().child("users").child(userID)
+                let storageRef = Storage.storage().reference().child("usersImage").child("\(userID).jpg")
+
+                if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.5) {
+                    storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        else {
+                            print("\(String(describing: metadata))")
+                        }
+
+                        storageRef.downloadURL(completion: { (url, error) in
+                            guard
+                                let downloadURL = url else {
+                                    print("\(String(describing: error))")
+                                    return
+                            }
+                            print("userImageUrl: \(downloadURL)")
+                            // database -> users/userID/ 建立 userImageUrl  data
+                            userRef.updateChildValues(["userImageUrl": downloadURL] as [AnyHashable: Any])
+                        })
+                    }
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
         self.moreCellButton.isEnabled = false
