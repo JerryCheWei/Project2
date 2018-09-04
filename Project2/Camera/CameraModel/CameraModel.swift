@@ -57,6 +57,7 @@ class CameraSet {
                     }
                     // configure the session with the output for capturing our still image
                     self.stillImageOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+                    
                     if captureSession.canAddOutput(stillImageOutput) {
                         captureSession.addOutput(stillImageOutput)
                     }

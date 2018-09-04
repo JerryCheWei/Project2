@@ -13,7 +13,7 @@ import Firebase
 class MessageSet {
 
     // set message font
-    static func message(label: UILabel, userName: String, messageText: String) {
+    static func message(userName: String, messageText: String) -> NSAttributedString {
         let attrs1 = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold), NSAttributedStringKey.foregroundColor: UIColor.black]
 
         let attrs2 = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.black]
@@ -23,7 +23,7 @@ class MessageSet {
         let attributedString2 = NSMutableAttributedString(string: "\(messageText)", attributes: attrs2)
 
         attributedString1.append(attributedString2)
-        label.attributedText = attributedString1
+        return attributedString1
     }
 }
 

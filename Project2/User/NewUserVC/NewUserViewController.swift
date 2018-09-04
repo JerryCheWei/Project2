@@ -37,6 +37,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         sender.isEnabled = false
         self.oneCellButton.isEnabled = true
     }
+
     @IBAction func settingUserImageButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -50,7 +51,34 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.present(picker, animated: true, completion: nil)
         }
         actionSheet.addAction(updataAction)
+
+        let signOutAction = UIAlertAction(title: "登出", style: .destructive) { (_) in
+            self.signOut()
+        }
+        actionSheet.addAction(signOutAction)
+
         self.present(actionSheet, animated: true, completion: nil)
+    }
+
+    func signOut() {
+        let actionController = UIAlertController(title: "你確定要登出嗎？", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消",
+                                         style: .cancel,
+                                         handler: nil)
+        actionController.addAction(cancelAction)
+
+        let signoutAction = UIAlertAction(title: "登出", style: .destructive) { _ in
+            do {
+                try Auth.auth().signOut()
+
+                self.dismiss(animated: true, completion: nil)
+            }
+            catch let error {
+                print("Auth sign out failed: \(error)")
+            }
+        }
+        actionController.addAction(signoutAction)
+        self.present(actionController, animated: true, completion: nil)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
@@ -199,7 +227,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                                     else {
                                         return
                                 }
-                                MessageSet.message(label: cellOne.messageLabel, userName: name, messageText: loadMessage[0])
+                                cellOne.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
 
                             })
                         }
