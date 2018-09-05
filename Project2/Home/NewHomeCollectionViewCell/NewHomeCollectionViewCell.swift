@@ -10,6 +10,8 @@ import UIKit
 
 protocol CellDelegateProtocol {
     func passData(indexPath: Int)
+
+//    func otherFunctionPassData(indexPath: Int)
 }
 
 @IBDesignable
@@ -19,7 +21,8 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var messageButton: UIButton!
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var otherFunctionButton: UIButton!
+
     let backgroundGradientLayer = CAGradientLayer()
     @IBOutlet weak var widthConstrain: NSLayoutConstraint!
     @IBOutlet weak var messageLabel: UILabel!
@@ -30,20 +33,23 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
     @IBAction func messageButton(_ sender: Any) {
         deleggate?.passData(indexPath: (indexPath?.row)!)
     }
-
-    func colorSet(view: UIView) {
-        backgroundGradientLayer.frame = view.bounds
-
-        let layer = backgroundGradientLayer
-        view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        layer.colors = [
-                        UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor,
-                        UIColor(red: 1, green: 1, blue: 1, alpha: 0.0).cgColor
-                    ]
-        layer.endPoint = CGPoint(x: 0.5, y: 1.0)
-        layer.startPoint = CGPoint(x: 0.5, y: 0.0)
-        view.layer.insertSublayer(layer, at: 0)
+    @IBAction func otherFunctionButton(_ sender: UIButton) {
+//        deleggate?.otherFunctionPassData(indexPath: (indexPath?.row)!)
     }
+    
+//    func colorSet(view: UIView) {
+//        backgroundGradientLayer.frame = view.bounds
+//
+//        let layer = backgroundGradientLayer
+//        view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+//        layer.colors = [
+//                        UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor,
+//                        UIColor(red: 1, green: 1, blue: 1, alpha: 0.0).cgColor
+//                    ]
+//        layer.endPoint = CGPoint(x: 0.5, y: 1.0)
+//        layer.startPoint = CGPoint(x: 0.5, y: 0.0)
+//        view.layer.insertSublayer(layer, at: 0)
+//    }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.translatesAutoresizingMaskIntoConstraints = false

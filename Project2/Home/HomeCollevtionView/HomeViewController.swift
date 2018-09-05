@@ -69,6 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         Database.database().reference().child("messages").child(postImage.idName!).observe(.value) { (snapshot) in
             var loadMessage = [String]()
+            var names = [String]()
                 loadMessage.removeAll()
                 for child in snapshot.children.allObjects {
                     if let snapshot = child as? DataSnapshot {
@@ -87,7 +88,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 else {
                                     return
                             }
-                            cell.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
+                            names.append(name)
+                            cell.messageLabel.attributedText = MessageSet.message(userName: names[0], messageText: loadMessage[0])
                         })
                     }
             }
@@ -96,7 +98,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // CellDelegate Protocol delegate
         cell.deleggate = self
         cell.indexPath = indexPath
-        cell.colorSet(view: cell.colorView)
         cell.messageLabel.text = " "
 
         return cell
@@ -113,9 +114,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
     }
+    @IBAction func reloadButton(_ sender: Any) {
+        homeCollectionView.reloadData()
+    }
 }
 
 extension HomeViewController: CellDelegateProtocol {
+    
     func passData(indexPath: Int) {
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName {
@@ -123,6 +128,10 @@ extension HomeViewController: CellDelegateProtocol {
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
+
+//    func otherFunctionPassData(indexPath: Int) {
+//        <#code#>
+//    }
 }
 
 class PostImage {
