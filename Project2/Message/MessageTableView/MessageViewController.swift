@@ -37,6 +37,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.messageUIView.layer.cornerRadius = 20
         self.messageUIView.layer.borderColor = UIColor.gray.cgColor
         self.messageUIView.layer.borderWidth = 1
+        // table View
+        self.messageTableView.estimatedRowHeight = 60
+        self.messageTableView.rowHeight = UITableViewAutomaticDimension
 
         // textView place holder set
         self.messageTextView.text = "Enter your message ..."
@@ -164,7 +167,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
                 // Message Model
-            MessageSet.message(label: cell.userMessageLabel, userName: name, messageText: allMessageItem.message!)
+            cell.userMessageLabel.numberOfLines = 0
+            cell.userMessageLabel.attributedText = MessageSet.message(userName: name, messageText: allMessageItem.message!)
             }
         return cell
     }

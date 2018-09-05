@@ -102,6 +102,10 @@ class SendImageViewController: UIViewController {
         sendButton.isEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
+    // 裁切image
+    func image() {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,6 +143,5 @@ class SendImageViewController: UIViewController {
         if let imageData = UserDefaults.standard.object(forKey: "gatFilterImage") as? Data {
             uploadImageToFirebaseStorage(data: imageData)
         }
-
     }
 }

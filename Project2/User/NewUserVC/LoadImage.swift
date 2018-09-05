@@ -88,6 +88,7 @@ class MoreLoadingImage {
     static var imageUrl = [UserImages]()
     static var userName = String()
     static var loadImages = [UserImages]()
+    static var userPostImages = [String]()
 
     static func fethImage(collectionView: UICollectionView) {
 
@@ -102,6 +103,8 @@ class MoreLoadingImage {
             MoreLoadingImage.userName = userName
             imageUrl.removeAll()
             loadImages.removeAll()
+            userPostImages.removeAll()
+            userPostImages = postImages
 
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in

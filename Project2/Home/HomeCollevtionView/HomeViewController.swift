@@ -13,17 +13,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @IBOutlet weak var homeCollectionView: UICollectionView!
 
-    @IBAction func signoutButton(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-
-            self.dismiss(animated: true, completion: nil)
-        }
-        catch let error {
-            print("Auth sign out failed: \(error)")
-        }
-    }
-
     var postImages = [PostImage]()
 
     func fetchImage() {
@@ -98,7 +87,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 else {
                                     return
                             }
-                            MessageSet.message(label: cell.messageLabel, userName: name, messageText: loadMessage[0])
+                            cell.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
                         })
                     }
             }
