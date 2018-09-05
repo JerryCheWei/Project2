@@ -23,6 +23,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     func commentInit(_ imageID: String) {
         self.imageID = imageID
     }
+    @IBAction func reloadButton(_ sender: Any) {
+        messageTableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,7 +169,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                     cell.userImageView.image = image
                 }
             }
-                // Message Model
+            // Message Model
             cell.userMessageLabel.numberOfLines = 0
             cell.userMessageLabel.attributedText = MessageSet.message(userName: name, messageText: allMessageItem.message!)
             }

@@ -57,18 +57,19 @@ class CameraSet {
                     }
                     // configure the session with the output for capturing our still image
                     self.stillImageOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
-                    
+
                     if captureSession.canAddOutput(stillImageOutput) {
                         captureSession.addOutput(stillImageOutput)
                     }
 
                     // set up the camera preview layer
                     cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                    view.layer.addSublayer(cameraPreviewLayer)
                     cameraPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                    cameraPreviewLayer.frame = view.layer.frame
+                    cameraPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+                    cameraPreviewLayer.frame = view.layer.bounds
+                    view.layer.addSublayer(cameraPreviewLayer)
 
-                    view.bringSubview(toFront: cameraButton)
+//                    view.bringSubview(toFront: cameraButton)
                     captureSession.startRunning()
                 }
                 catch let error {

@@ -35,6 +35,7 @@ class MessageModel {
         Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
             var loadMessage = [LoadMessage]()
             loadMessage.removeAll()
+
             for child in snapshot.children.allObjects {
                 if let snapshot = child as? DataSnapshot,
                     let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
@@ -45,23 +46,6 @@ class MessageModel {
             }
         }
     }
-
-//    static var allCellMessage = [LoadMessage]()
-//
-//    static func fetchCellMessage(postImageID: String) {
-//        allMessage.removeAll()
-//        Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
-//            var loadMessage = [LoadMessage]()
-//            loadMessage.removeAll()
-//            for child in snapshot.children.allObjects {
-//                if let snapshot = child as? DataSnapshot,
-//                    let loadMessageItem = LoadMessage.init(snapshot: snapshot) {
-//                    loadMessage.append(loadMessageItem)
-//                }
-//                MessageModel.allCellMessage = loadMessage
-//            }
-//        }
-//    }
 }
 
 class LoadMessage {

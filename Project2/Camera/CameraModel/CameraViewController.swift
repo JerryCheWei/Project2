@@ -12,6 +12,7 @@ import Sharaku
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
     var stillImage: UIImage?
     // double tap switch from back to front facing camera
@@ -21,7 +22,9 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
-        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+//        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+        CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,7 @@ class CameraViewController: UIViewController {
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
+//        self.cameraView.addGestureRecognizer(toggleCameraGestureRecognizer)
     }
 
     @objc private func toggleCamera() {
@@ -80,12 +84,39 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             self.stillImage = UIImage(data: imageData)
+            if let stillImage = self.stillImage {
 
-            // open photo image filter VC
-            let imageFilterVC = SHViewController(image: stillImage!)
-            imageFilterVC.delegate = self
-            present(imageFilterVC, animated: true, completion: nil)
+                // photoImageFilterVC -> init(image)
+                let imageFilterVC = SHViewController(image: stillImage)
+                imageFilterVC.delegate = self
+                //open SHViewControllerVC
+                present(imageFilterVC, animated: true, completion: nil)
+            }
         }
+    }
+}
+extension UIImage {
+    var isPortrait: Bool {
+        return size.height > size.width
+    }
+    var isLandscape: Bool {
+        return size.width > size.height
+    }
+    var breadth: CGFloat {
+        return min(size.width, size.height)
+    }
+    var breadthSize: CGSize {
+        return CGSize(width: breadth, height: breadth)
+    }
+    var breadthRect: CGRect {
+        return CGRect(origin: .zero, size: breadthSize)
+    }
+    var squared: UIImage? {
+        UIGraphicsBeginImageContextWithOptions(breadthSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        guard let cgImage = cgImage?.cropping(to: CGRect(origin: CGPoint(x: isLandscape ? floor((size.width - size.height) / 2) : 0, y: isPortrait  ? floor((size.height - size.width) / 2) : 0), size: breadthSize)) else { return nil }
+        UIImage(cgImage: cgImage).draw(in: breadthRect)
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
 
@@ -93,14 +124,15 @@ extension CameraViewController: SHViewControllerDelegate {
 
     func shViewControllerImageDidFilter(image: UIImage) {
         // 取得套用濾鏡後的 image
-        let filteredImage: UIImage = image
-        if let filterImageData: NSData = UIImageJPEGRepresentation(filteredImage, 0.8) as NSData? {
-            UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
+        if let squaredFilteredImage: UIImage = image.squared {
+            if let filterImageData: NSData = UIImageJPEGRepresentation(squaredFilteredImage, 0.5) as NSData? {
+                UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 
-            print("O ~ Gat filter image in CameraVC")
-            let storyboard = UIStoryboard(name: "Camera", bundle: nil)
-            if let postImageVC  = storyboard.instantiateViewController(withIdentifier: "SendImageViewController") as? SendImageViewController {
-                self.navigationController?.pushViewController(postImageVC, animated: true)
+                print("O ~ Gat filter image in CameraVC")
+                let storyboard = UIStoryboard(name: "Camera", bundle: nil)
+                if let postImageVC  = storyboard.instantiateViewController(withIdentifier: "SendImageViewController") as? SendImageViewController {
+                    self.navigationController?.pushViewController(postImageVC, animated: true)
+                }
             }
         }
     }
