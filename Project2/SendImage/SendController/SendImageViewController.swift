@@ -102,10 +102,6 @@ class SendImageViewController: UIViewController {
         sendButton.isEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
-    // 裁切image
-    func image() {
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +129,7 @@ class SendImageViewController: UIViewController {
         }
     }
 
+    // 分享按鈕
     @IBAction func sendButton(_ sender: UIBarButtonItem) {
 
         // 重設進度條

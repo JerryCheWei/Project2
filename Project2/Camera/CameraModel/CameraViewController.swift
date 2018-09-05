@@ -12,6 +12,7 @@ import Sharaku
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
     var stillImage: UIImage?
     // double tap switch from back to front facing camera
@@ -21,7 +22,9 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
-        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+//        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
+        CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,7 @@ class CameraViewController: UIViewController {
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
+//        self.cameraView.addGestureRecognizer(toggleCameraGestureRecognizer)
     }
 
     @objc private func toggleCamera() {
@@ -80,11 +84,15 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             self.stillImage = UIImage(data: imageData)
+            if let stillImage = self.stillImage {
 
-            // open photo image filter VC
-            let imageFilterVC = SHViewController(image: stillImage!)
-            imageFilterVC.delegate = self
-            present(imageFilterVC, animated: true, completion: nil)
+                // photoImageFilterVC -> init(image)
+                let imageFilterVC = SHViewController(image: stillImage)
+                imageFilterVC.delegate = self
+
+                //open SHViewControllerVC
+                present(imageFilterVC, animated: true, completion: nil)
+            }
         }
     }
 }

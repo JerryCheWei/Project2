@@ -34,10 +34,21 @@
                                     <action selector="shutterButtonDidTap" destination="eMM-hO-pJ5" eventType="touchUpInside" id="PYb-w2-f8s"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dV-l8-njQ">
+                                <rect key="frame" x="0.0" y="161" width="414" height="414"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5dV-l8-njQ" secondAttribute="height" multiplier="1:1" id="H1g-x0-NIQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="38m-hp-Jso" firstAttribute="trailing" secondItem="5dV-l8-njQ" secondAttribute="trailing" id="4SY-qJ-GqD"/>
                             <constraint firstItem="HTe-KQ-GBN" firstAttribute="centerX" secondItem="uoT-uQ-zeB" secondAttribute="centerX" id="69z-Bi-IRJ"/>
+                            <constraint firstItem="5dV-l8-njQ" firstAttribute="centerX" secondItem="uoT-uQ-zeB" secondAttribute="centerX" id="VmD-Nl-TyZ"/>
+                            <constraint firstItem="5dV-l8-njQ" firstAttribute="leading" secondItem="38m-hp-Jso" secondAttribute="leading" id="hCD-Iq-gca"/>
+                            <constraint firstItem="5dV-l8-njQ" firstAttribute="centerY" secondItem="uoT-uQ-zeB" secondAttribute="centerY" id="nqv-bc-e5X"/>
                             <constraint firstItem="Rhh-QN-80J" firstAttribute="top" secondItem="HTe-KQ-GBN" secondAttribute="bottom" constant="49" id="wnQ-Ze-XUI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="38m-hp-Jso"/>
@@ -51,6 +62,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraButton" destination="HTe-KQ-GBN" id="6pt-eN-HrQ"/>
+                        <outlet property="cameraView" destination="5dV-l8-njQ" id="1MB-wq-d2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jn-an-fVd" sceneMemberID="firstResponder"/>
