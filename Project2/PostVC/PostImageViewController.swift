@@ -19,6 +19,7 @@ class PostImageViewController: UIViewController {
     var postImageID: String?
 
     func commendInit(postImageID: String) {
+        self.postImageID = String()
         self.postImageID = postImageID
     }
     @IBAction func messageButton(_ sender: UIButton) {
@@ -29,18 +30,56 @@ class PostImageViewController: UIViewController {
         }
     }
     @IBAction func otherFunctionButton(_ sender: UIButton) {
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
         let cancleAction = UIAlertAction(title: "取消",
                                          style: .cancel,
                                          handler: nil)
-
-// 刪除貼文功能(未完)
         optionMenu.addAction(cancleAction)
-        let deleteAction = UIAlertAction(title: "刪除",
-                                         style: .destructive,
-                                         handler: nil)
+
+        // 刪除貼文功能(未完)
+        let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
+            //delete firebase data
+            if let postImageID = self.postImageID {
+                //delete storage/images/(postImage.key)
+                self.deleteStorage(postImageID)
+                //delete postImage/(postImage.key)
+                self.deleteInPostImage(postImageID)
+                //delete messages/(postImage.key)
+                self.deleteInMessages(postImageID)
+                //delete users/(userID)/postImages["postImage.key"]
+                self.deleteInUser(postImageID)
+            }
+        }
         optionMenu.addAction(deleteAction)
+
         self.present(optionMenu, animated: true, completion: nil)
+    }
+    func deleteInPostImage(_ postImageID: String) {
+        Database.database().reference().child("postImage").child("\(postImageID)").setValue(nil)
+        print("delete postImage/\(postImageID)")
+    }
+    func deleteInMessages(_ postImageID: String) {
+        Database.database().reference().child("messages").child("\(postImageID)").setValue(nil)
+        print("delete messages/\(postImageID)")
+    }
+    func deleteInUser(_ postImageID: String) {
+        if let userID = Auth.auth().currentUser?.uid {
+           let deletePostImage = MoreLoadingImage.userPostImages.filter { $0 != "\(postImageID)"}
+            Database.database().reference().child("users").child(userID).updateChildValues(["postImages": deletePostImage])
+            print("delete users/(userID)/postImages[\(postImageID)]")
+        }
+    }
+    func deleteStorage(_ postImageID: String) {
+        let deleteRef = Storage.storage().reference().child("images/\(postImageID).jpg")
+            deleteRef.delete { (error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("firebase storage images/\(postImageID) is delete")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -49,7 +88,7 @@ class PostImageViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.isNavigationBarHidden = false
 
-        fetchImage()
+        self.fetchImage()
     }
 
     func fetchImage() {
@@ -60,7 +99,7 @@ class PostImageViewController: UIViewController {
                     let userID = value["userID"] as? String,
                     let postImage = value["postUrl"] as? String
                     else {
-                        fatalError()
+                        return
                 }
                 if let url = URL(string: postImage) {
                     ImageService.getImage(withURL: url, completion: { (image) in
@@ -72,7 +111,7 @@ class PostImageViewController: UIViewController {
                         let name = value["userName"] as? String,
                         let userImageUrl = value["userImageUrl"] as? String
                         else {
-                            fatalError()
+                            return
                     }
                     self.userNameLabel.text = name
                     if let url = URL(string: userImageUrl) {
