@@ -251,7 +251,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
 
             cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameLabel.text = NewLoadingImage.userName
+            cellOne.userNameButton.setTitle(NewLoadingImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
@@ -281,7 +281,15 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
 }
+
 extension NewUserViewController: CellDelegateProtocol {
+
+    func userNameButton(indexPath: Int) {
+        if let outherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController {
+            self.navigationController?.pushViewController(outherUserVC, animated: true)
+        }
+    }
+
     func otherFunctionPassData(indexPath: Int) {
         if Auth.auth().currentUser?.uid == NewLoadingImage.loadImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)

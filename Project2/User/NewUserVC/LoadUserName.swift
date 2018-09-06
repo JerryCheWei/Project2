@@ -26,4 +26,17 @@ class LoadUserName {
             userNameLabel.text = userName
         }
     }
+
+    static func loadOtherUserData(userNameLabel: UILabel, userID: String) {
+        let userRef = Database.database().reference(withPath: "users/\(userID)")
+        userRef.observe(.value) { (snapshot) in
+            guard
+                let value = snapshot.value as? [String: Any],
+                let userName = value["userName"] as? String
+                else {
+                    return
+            }
+            userNameLabel.text = userName
+        }
+    }
 }

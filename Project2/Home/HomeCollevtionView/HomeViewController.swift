@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 else {
                     return
             }
-            cell.userNameLabel.text = name
+            cell.userNameButton.setTitle(name, for: .normal)
             if let url = URL(string: userImageUrl) {
                 ImageService.getImage(withURL: url) { (image) in
                     cell.userImageView.image = image
@@ -120,6 +120,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 }
 
 extension HomeViewController: CellDelegateProtocol {
+    func userNameButton(indexPath: Int) {
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
+            let userID = postImages[indexPath].userID {
+            otherUserVC.commentInit(userID)
+            self.navigationController?.pushViewController(otherUserVC, animated: true)
+        }
+    }
     func passData(indexPath: Int) {
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName {
