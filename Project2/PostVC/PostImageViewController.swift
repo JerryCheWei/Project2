@@ -41,45 +41,19 @@ class PostImageViewController: UIViewController {
             //delete firebase data
             if let postImageID = self.postImageID {
                 //delete storage/images/(postImage.key)
-                self.deleteStorage(postImageID)
+                DeletePost.deleteStorage(postImageID)
                 //delete postImage/(postImage.key)
-                self.deleteInPostImage(postImageID)
+                DeletePost.deleteInPostImage(postImageID)
                 //delete messages/(postImage.key)
-                self.deleteInMessages(postImageID)
+                DeletePost.deleteInMessages(postImageID)
                 //delete users/(userID)/postImages["postImage.key"]
-                self.deleteInUser(postImageID)
+                DeletePost.deleteInUser(postImageID)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         optionMenu.addAction(deleteAction)
 
         self.present(optionMenu, animated: true, completion: nil)
-    }
-    func deleteInPostImage(_ postImageID: String) {
-        Database.database().reference().child("postImage").child("\(postImageID)").setValue(nil)
-        print("delete postImage/\(postImageID)")
-    }
-    func deleteInMessages(_ postImageID: String) {
-        Database.database().reference().child("messages").child("\(postImageID)").setValue(nil)
-        print("delete messages/\(postImageID)")
-    }
-    func deleteInUser(_ postImageID: String) {
-        if let userID = Auth.auth().currentUser?.uid {
-           let deletePostImage = MoreLoadingImage.userPostImages.filter { $0 != "\(postImageID)"}
-            Database.database().reference().child("users").child(userID).updateChildValues(["postImages": deletePostImage])
-            print("delete users/(userID)/postImages[\(postImageID)]")
-        }
-    }
-    func deleteStorage(_ postImageID: String) {
-        let deleteRef = Storage.storage().reference().child("images/\(postImageID).jpg")
-            deleteRef.delete { (error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("firebase storage images/\(postImageID) is delete")
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
     }
 
     override func viewDidLoad() {

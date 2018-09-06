@@ -120,7 +120,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 }
 
 extension HomeViewController: CellDelegateProtocol {
-    
     func passData(indexPath: Int) {
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName {
@@ -129,9 +128,40 @@ extension HomeViewController: CellDelegateProtocol {
         }
     }
 
-//    func otherFunctionPassData(indexPath: Int) {
-//        <#code#>
-//    }
+    func otherFunctionPassData(indexPath: Int) {
+        if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
+            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
+
+            let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
+                //delete firebase data
+                if let postImageID = self.postImages[indexPath].idName {
+                    //delete storage/images/(postImage.key)
+                    DeletePost.deleteStorage(postImageID)
+                    //delete postImage/(postImage.key)
+                    DeletePost.deleteInPostImage(postImageID)
+                    //delete messages/(postImage.key)
+                    DeletePost.deleteInMessages(postImageID)
+                    //delete users/(userID)/postImages["postImage.key"]
+                    DeletePost.deleteInUser(postImageID)
+                }
+            }
+            optionMenu.addAction(deleteAction)
+
+            self.present(optionMenu, animated: true, completion: nil)
+        }
+        else {
+            let optionMenu = UIAlertController(title: "刪除", message: "你不能刪除此貼文喔！", preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
+             self.present(optionMenu, animated: true, completion: nil)
+        }
+    }
 }
 
 class PostImage {

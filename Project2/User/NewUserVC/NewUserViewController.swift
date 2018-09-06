@@ -162,16 +162,21 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         // xib
         oneCellXib()
         moreCellXib()
-
         // 抓貼文image
+//        NewLoadingImage.fethImage(collectionView: oneCollectionView)
+//        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
+        print("viewDidLoad...")
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear...")
         NewLoadingImage.fethImage(collectionView: oneCollectionView)
         MoreLoadingImage.fethImage(collectionView: moreCollectionView)
     }
 
     // CollectionCell nib
     func oneCellXib() {
-//        let nib = UINib(nibName: "OneUserCollectionViewCell", bundle: nil)
-//        oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
         if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -195,7 +200,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.oneCollectionView {
-//            guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OneUserCollectionViewCell
             guard let cellOne = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? NewHomeCollectionViewCell
                 else {
                     fatalError()
@@ -273,6 +277,40 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 }
 extension NewUserViewController: CellDelegateProtocol {
+    func otherFunctionPassData(indexPath: Int) {
+        if Auth.auth().currentUser?.uid == NewLoadingImage.loadImages[indexPath].userID {
+            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
+
+            let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
+                //delete firebase data
+                if let postImageID = NewLoadingImage.loadImages[indexPath].idName {
+                    //delete storage/images/(postImage.key)
+                    DeletePost.deleteStorage(postImageID)
+                    //delete postImage/(postImage.key)
+                    DeletePost.deleteInPostImage(postImageID)
+                    //delete messages/(postImage.key)
+                    DeletePost.deleteInMessages(postImageID)
+                    //delete users/(userID)/postImages["postImage.key"]
+                    DeletePost.deleteInUser(postImageID)
+                    let optionMenu = UIAlertController(title: "刪除成功", message: nil, preferredStyle: .alert)
+                    let cancleAction = UIAlertAction(title: "ＯＫ", style: .default, handler: { (_) in
+                        NewLoadingImage.fethImage(collectionView: self.oneCollectionView)
+                        MoreLoadingImage.fethImage(collectionView: self.moreCollectionView)
+                    })
+                    optionMenu.addAction(cancleAction)
+                    self.present(optionMenu, animated: true, completion: nil)
+                }
+            }
+            optionMenu.addAction(deleteAction)
+
+            self.present(optionMenu, animated: true, completion: nil)
+        }
+    }
+
     func passData(indexPath: Int) {
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = NewLoadingImage.loadImages[indexPath].idName {
