@@ -12,13 +12,16 @@ protocol CellDelegateProtocol {
     func passData(indexPath: Int)
 
     func otherFunctionPassData(indexPath: Int)
+
+    func userNameButton(indexPath: Int)
 }
 
 @IBDesignable
 class NewHomeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
+//    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var otherFunctionButton: UIButton!
@@ -36,7 +39,9 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
     @IBAction func otherFunctionButton(_ sender: UIButton) {
         deleggate?.otherFunctionPassData(indexPath: (indexPath?.row)!)
     }
-
+    @IBAction func userNameButton(_ sender: UIButton) {
+        deleggate?.userNameButton(indexPath: (indexPath?.row)!)
+    }
 //    func colorSet(view: UIView) {
 //        backgroundGradientLayer.frame = view.bounds
 //

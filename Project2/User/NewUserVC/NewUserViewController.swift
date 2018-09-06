@@ -174,9 +174,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         print("viewDidLoad...")
 
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     // CollectionCell nib
     func oneCellXib() {
@@ -251,7 +248,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
 
             cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameLabel.text = NewLoadingImage.userName
+            cellOne.userNameButton.setTitle(NewLoadingImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
@@ -281,7 +278,17 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
 }
+
 extension NewUserViewController: CellDelegateProtocol {
+
+    func userNameButton(indexPath: Int) {
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
+            let userID = NewLoadingImage.loadImages[indexPath].userID {
+            otherUserVC.commentInit(userID)
+            self.navigationController?.pushViewController(otherUserVC, animated: true)
+        }
+    }
+
     func otherFunctionPassData(indexPath: Int) {
         if Auth.auth().currentUser?.uid == NewLoadingImage.loadImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
@@ -327,8 +334,9 @@ extension NewUserViewController: CellDelegateProtocol {
 extension NewUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
-            let postImageID = MoreLoadingImage.imageUrl[index].idName {
-            postImageVC.commendInit(postImageID: postImageID)
+            let postImageID = MoreLoadingImage.imageUrl[index].idName,
+            let userID = MoreLoadingImage.imageUrl[index].userID {
+            postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }
     }

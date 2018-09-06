@@ -14,14 +14,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="9yW-6h-m94" customClass="NewHomeCollectionViewCell" customModule="Project2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="488"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="522"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="380" height="488"/>
+                <rect key="frame" x="0.0" y="0.0" width="380" height="522"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHv-8M-wjf">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="488"/>
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="522"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKk-Ne-63J">
                                 <rect key="frame" x="0.0" y="57" width="380" height="380"/>
@@ -42,18 +42,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps4-yj-agB">
-                                <rect key="frame" x="58" y="15" width="86" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="message label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPM-xn-UFa">
-                                <rect key="frame" x="48" y="447" width="324" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-qb-suT">
                                 <rect key="frame" x="10" y="445" width="30" height="30"/>
                                 <constraints>
@@ -75,25 +63,40 @@
                                     <action selector="otherFunctionButton:" destination="9yW-6h-m94" eventType="touchUpInside" id="QyH-69-JjX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="message label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPM-xn-UFa">
+                                <rect key="frame" x="10" y="483" width="360" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHA-oj-1Zp">
+                                <rect key="frame" x="58" y="10" width="136" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="UserNameButton"/>
+                                <connections>
+                                    <action selector="userNameButton:" destination="9yW-6h-m94" eventType="touchUpInside" id="Gnf-5J-YKJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="L3v-86-0ut" secondAttribute="trailing" constant="10" id="2ie-cy-BMb"/>
-                            <constraint firstItem="MPM-xn-UFa" firstAttribute="top" secondItem="aKk-Ne-63J" secondAttribute="bottom" constant="10" id="2rl-8H-bHK"/>
                             <constraint firstItem="AiC-dO-Ysx" firstAttribute="leading" secondItem="LHv-8M-wjf" secondAttribute="leading" constant="8" id="3ko-X5-0DX"/>
-                            <constraint firstAttribute="trailing" secondItem="MPM-xn-UFa" secondAttribute="trailing" constant="8" id="8uc-yO-8x1"/>
+                            <constraint firstItem="MPM-xn-UFa" firstAttribute="top" secondItem="Ws2-qb-suT" secondAttribute="bottom" constant="8" id="8RM-uJ-75Y"/>
                             <constraint firstAttribute="width" constant="380" id="91s-2j-hCF"/>
                             <constraint firstAttribute="trailing" secondItem="aKk-Ne-63J" secondAttribute="trailing" id="CrZ-cV-fbd"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ws2-qb-suT" secondAttribute="bottom" constant="4" id="EGa-Xs-FIQ"/>
-                            <constraint firstItem="Ps4-yj-agB" firstAttribute="top" secondItem="LHv-8M-wjf" secondAttribute="top" constant="15" id="FEj-eW-mK0"/>
                             <constraint firstItem="L3v-86-0ut" firstAttribute="top" secondItem="LHv-8M-wjf" secondAttribute="top" constant="10" id="G8o-jv-mVd"/>
                             <constraint firstItem="Ws2-qb-suT" firstAttribute="leading" secondItem="LHv-8M-wjf" secondAttribute="leading" constant="10" id="PyM-fE-MPQ"/>
-                            <constraint firstItem="Ps4-yj-agB" firstAttribute="leading" secondItem="AiC-dO-Ysx" secondAttribute="trailing" constant="10" id="QKc-86-jjr"/>
-                            <constraint firstItem="MPM-xn-UFa" firstAttribute="leading" secondItem="Ws2-qb-suT" secondAttribute="trailing" constant="8" id="R3L-At-dNa"/>
-                            <constraint firstItem="aKk-Ne-63J" firstAttribute="top" secondItem="Ps4-yj-agB" secondAttribute="bottom" constant="22" id="Spx-6L-Cgr"/>
                             <constraint firstItem="Ws2-qb-suT" firstAttribute="top" secondItem="aKk-Ne-63J" secondAttribute="bottom" constant="8" id="Tbl-Dw-P53"/>
                             <constraint firstItem="AiC-dO-Ysx" firstAttribute="top" secondItem="LHv-8M-wjf" secondAttribute="top" constant="8" id="YIQ-1t-JcE"/>
+                            <constraint firstItem="uHA-oj-1Zp" firstAttribute="leading" secondItem="AiC-dO-Ysx" secondAttribute="trailing" constant="10" id="a16-ad-owq"/>
+                            <constraint firstItem="aKk-Ne-63J" firstAttribute="top" secondItem="uHA-oj-1Zp" secondAttribute="bottom" constant="14" id="aYR-6A-iM4"/>
                             <constraint firstItem="aKk-Ne-63J" firstAttribute="leading" secondItem="LHv-8M-wjf" secondAttribute="leading" id="g2q-tF-8rr"/>
-                            <constraint firstAttribute="bottom" secondItem="MPM-xn-UFa" secondAttribute="bottom" constant="5" id="wXC-1Y-r45"/>
+                            <constraint firstItem="MPM-xn-UFa" firstAttribute="leading" secondItem="LHv-8M-wjf" secondAttribute="leading" constant="10" id="h5r-BO-VEQ"/>
+                            <constraint firstAttribute="trailing" secondItem="MPM-xn-UFa" secondAttribute="trailing" constant="10" id="lam-IT-Cgn"/>
+                            <constraint firstItem="uHA-oj-1Zp" firstAttribute="top" secondItem="LHv-8M-wjf" secondAttribute="top" constant="10" id="rzs-TP-VUs"/>
+                            <constraint firstAttribute="bottom" secondItem="MPM-xn-UFa" secondAttribute="bottom" constant="8" id="s2S-kS-fsP"/>
                             <constraint firstItem="aKk-Ne-63J" firstAttribute="top" secondItem="AiC-dO-Ysx" secondAttribute="bottom" constant="9" id="xgI-cs-f3n"/>
                         </constraints>
                     </view>
@@ -107,17 +110,17 @@
                 <constraint firstItem="LHv-8M-wjf" firstAttribute="leading" secondItem="9yW-6h-m94" secondAttribute="leading" id="iLu-yT-DeZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="MJ5-al-f9J"/>
-            <size key="customSize" width="395" height="521"/>
+            <size key="customSize" width="395" height="555"/>
             <connections>
                 <outlet property="messageButton" destination="Ws2-qb-suT" id="uBs-ju-1yt"/>
                 <outlet property="messageLabel" destination="MPM-xn-UFa" id="F8d-Yi-1lp"/>
                 <outlet property="otherFunctionButton" destination="L3v-86-0ut" id="aJ5-8f-CdL"/>
                 <outlet property="postImageView" destination="aKk-Ne-63J" id="OJY-id-ccs"/>
                 <outlet property="userImageView" destination="AiC-dO-Ysx" id="PlI-Ui-kVL"/>
-                <outlet property="userNameLabel" destination="Ps4-yj-agB" id="wSt-br-wQj"/>
+                <outlet property="userNameButton" destination="uHA-oj-1Zp" id="TfM-k6-hH4"/>
                 <outlet property="widthConstrain" destination="91s-2j-hCF" id="wur-dI-qZC"/>
             </connections>
-            <point key="canvasLocation" x="109" y="19"/>
+            <point key="canvasLocation" x="109" y="36"/>
         </collectionViewCell>
     </objects>
     <resources>
