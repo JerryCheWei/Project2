@@ -17,10 +17,12 @@ class PostImageViewController: UIViewController {
     @IBOutlet weak var otherFunctionButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     var postImageID: String?
+    var userID: String?
 
-    func commendInit(postImageID: String) {
+    func commendInit(postImageID: String, userID: String) {
         self.postImageID = String()
         self.postImageID = postImageID
+        self.userID = userID
     }
     @IBAction func messageButton(_ sender: UIButton) {
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
@@ -30,30 +32,38 @@ class PostImageViewController: UIViewController {
         }
     }
     @IBAction func otherFunctionButton(_ sender: UIButton) {
-        let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
-        let cancleAction = UIAlertAction(title: "取消",
-                                         style: .cancel,
-                                         handler: nil)
-        optionMenu.addAction(cancleAction)
+        if Auth.auth().currentUser?.uid == userID {
+            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
 
-        // 刪除貼文功能(未完)
-        let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
-            //delete firebase data
-            if let postImageID = self.postImageID {
-                //delete storage/images/(postImage.key)
-                DeletePost.deleteStorage(postImageID)
-                //delete postImage/(postImage.key)
-                DeletePost.deleteInPostImage(postImageID)
-                //delete messages/(postImage.key)
-                DeletePost.deleteInMessages(postImageID)
-                //delete users/(userID)/postImages["postImage.key"]
-                DeletePost.deleteInUser(postImageID)
-                self.navigationController?.popViewController(animated: true)
+            let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
+                //delete firebase data
+                if let postImageID = self.postImageID {
+                    //delete storage/images/(postImage.key)
+                    DeletePost.deleteStorage(postImageID)
+                    //delete postImage/(postImage.key)
+                    DeletePost.deleteInPostImage(postImageID)
+                    //delete messages/(postImage.key)
+                    DeletePost.deleteInMessages(postImageID)
+                    //delete users/(userID)/postImages["postImage.key"]
+                    DeletePost.deleteInUser(postImageID)
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
+            optionMenu.addAction(deleteAction)
+            self.present(optionMenu, animated: true, completion: nil)
         }
-        optionMenu.addAction(deleteAction)
-
-        self.present(optionMenu, animated: true, completion: nil)
+        else {
+            let optionMenu = UIAlertController(title: "未來可擴增功能", message: nil, preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
+            self.present(optionMenu, animated: true, completion: nil)
+        }
     }
 
     override func viewDidLoad() {

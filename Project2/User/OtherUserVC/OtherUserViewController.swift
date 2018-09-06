@@ -11,6 +11,8 @@ import Firebase
 
 class OtherUserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    weak var delegate: SelectedCollectionItemDelegate?
+
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userBackImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -171,10 +173,27 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                     cellMore.postImageView.image = image
                 }
             }
-//            self.delegate = self
+            self.delegate = self
 
             return cellMore
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.moreCollectionView {
+            let index = indexPath.row
+            self.delegate?.selectedCollectionItem(index: index)
+        }
+    }
+}
+
+extension OtherUserViewController: SelectedCollectionItemDelegate {
+    func selectedCollectionItem(index: Int) {
+        if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
+            let postImageID = OtherUserMoreLoadingImage.imageUrl[index].idName,
+            let userID = OtherUserMoreLoadingImage.imageUrl[index].userID {
+            postImageVC.commendInit(postImageID: postImageID, userID: userID)
+            self.navigationController?.pushViewController(postImageVC, animated: true)
+        }
+    }
 }

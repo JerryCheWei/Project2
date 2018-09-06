@@ -332,8 +332,9 @@ extension NewUserViewController: CellDelegateProtocol {
 extension NewUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
-            let postImageID = MoreLoadingImage.imageUrl[index].idName {
-            postImageVC.commendInit(postImageID: postImageID)
+            let postImageID = MoreLoadingImage.imageUrl[index].idName,
+            let userID = MoreLoadingImage.imageUrl[index].userID {
+            postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }
     }
