@@ -282,8 +282,10 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension NewUserViewController: CellDelegateProtocol {
 
     func userNameButton(indexPath: Int) {
-        if let outherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController {
-            self.navigationController?.pushViewController(outherUserVC, animated: true)
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
+            let userID = NewLoadingImage.loadImages[indexPath].userID {
+            otherUserVC.commentInit(userID)
+            self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
     }
 

@@ -154,8 +154,8 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
             }
 
             cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameButton.setTitle(NewLoadingImage.userName, for: .normal)
-//            cellOne.deleggate = self
+            cellOne.userNameButton.setTitle(OtherUserLoadingImage.userName, for: .normal)
+            cellOne.deleggate = self
             cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
 
@@ -194,6 +194,35 @@ extension OtherUserViewController: SelectedCollectionItemDelegate {
             let userID = OtherUserMoreLoadingImage.imageUrl[index].userID {
             postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
+        }
+    }
+}
+
+extension OtherUserViewController: CellDelegateProtocol {
+    func passData(indexPath: Int) {
+        if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
+            let imageID = OtherUserLoadingImage.loadImages[indexPath].idName {
+            messageVC.commentInit(imageID)
+            self.navigationController?.pushViewController(messageVC, animated: true)
+        }
+    }
+
+    func otherFunctionPassData(indexPath: Int) {
+        if Auth.auth().currentUser?.uid != OtherUserMoreLoadingImage.loadImages[indexPath].userID {
+            let optionMenu = UIAlertController(title: "未來擴增功能", message: nil, preferredStyle: .actionSheet)
+            let cancleAction = UIAlertAction(title: "取消",
+                                             style: .cancel,
+                                             handler: nil)
+            optionMenu.addAction(cancleAction)
+            self.present(optionMenu, animated: true, completion: nil)
+        }
+    }
+
+    func userNameButton(indexPath: Int) {
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
+            let userID = OtherUserLoadingImage.imageUrl[indexPath].userID {
+            otherUserVC.commentInit(userID)
+            self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
     }
 }
