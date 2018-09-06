@@ -52,10 +52,16 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         self.oneCellButton.tintColor = UIColor.lightGray
         self.moreCellButton.isEnabled = false
         self.moreCellButton.tintColor = UIColor.blue
+        // xib
         oneCellXib()
         moreCellXib()
+        // get header user image
         uploadUserImage(self.userID)
+        // get header user name
         LoadUserName.loadOtherUserData(userNameLabel: self.userNameLabel, userID: self.userID)
+        // 抓貼文image
+        OtherUserLoadingImage.fethImage(collectionView: oneCollectionView, userID: self.userID)
+        OtherUserMoreLoadingImage.fethImage(collectionView: moreCollectionView, userID: self.userID)
     }
 
     // CollectionCell nib
@@ -89,10 +95,12 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.oneCollectionView {
-            return 1
+            print("OtherUserLoadingImage.imageUrl.count: \(OtherUserLoadingImage.imageUrl.count)")
+            return OtherUserLoadingImage.imageUrl.count
         }
         else {
-            return 1
+            print("OtherUserMoreLoadingImage.imageUrl.count: \(OtherUserMoreLoadingImage.imageUrl.count)")
+            return OtherUserMoreLoadingImage.imageUrl.count
         }
     }
 
@@ -103,6 +111,52 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                     fatalError()
             }
 
+            let loadImage = OtherUserLoadingImage.imageUrl[indexPath.row]
+            if let url = URL(string: loadImage.postUrl!) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cellOne.postImageView.image = image
+                }
+            }
+
+            Database.database().reference().child("messages").child(OtherUserLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
+                var loadMessage = [String]()
+                loadMessage.removeAll()
+                for child in snapshot.children.allObjects {
+                    if let snapshot = child as? DataSnapshot {
+                        guard
+                            let value = snapshot.value as? [String: AnyObject],
+                            let message = value["message"] as? String,
+                            let userID = value["userID"] as? String
+                            else {
+                                return
+                        }
+                        loadMessage.append(message)
+                        Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
+                            guard
+                                let value = snapshot.value as? [String: AnyObject],
+                                let name = value["userName"] as? String
+                                else {
+                                    return
+                            }
+                            cellOne.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
+                        })
+                    }
+                }
+            }
+
+            let userImageUrl = OtherUserLoadingImage.loadUserImageUrl
+            if let url = URL(string: userImageUrl) {
+                ImageService.getImage(withURL: url, completion: { (image) in
+                    cellOne.userImageView.image = image
+                })
+            }
+
+            cellOne.userImageView.backgroundColor = .green
+            cellOne.userNameButton.setTitle(NewLoadingImage.userName, for: .normal)
+//            cellOne.deleggate = self
+            cellOne.indexPath = indexPath
+            cellOne.messageLabel.text = " "
+
             return cellOne
         }
         else {
@@ -110,6 +164,14 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                 else {
                     fatalError()
                 }
+
+            let loadImage = OtherUserMoreLoadingImage.imageUrl[indexPath.row]
+            if let url = URL(string: loadImage.postUrl!) {
+                ImageService.getImage(withURL: url) { (image) in
+                    cellMore.postImageView.image = image
+                }
+            }
+//            self.delegate = self
 
             return cellMore
         }

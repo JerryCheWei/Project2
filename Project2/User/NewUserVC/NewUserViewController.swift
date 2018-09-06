@@ -174,9 +174,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         print("viewDidLoad...")
 
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     // CollectionCell nib
     func oneCellXib() {
