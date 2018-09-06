@@ -112,10 +112,10 @@ public class SHViewController: UIViewController {
     func applyFilter() {
         let filterName = filterNameList[filterIndex]
         if let image = self.image {
-            let image2 = fixOrientationOfImage(image: image)
-            let filteredImage = createFilteredImage(filterName: filterName, image: image2!)
-
-            imageView?.image = filteredImage
+            if let fixOrientationImage = fixOrientationOfImage(image: image) {
+                let filteredImage = createFilteredImage(filterName: filterName, image: fixOrientationImage)
+                imageView?.image = filteredImage
+            }
         }
     }
 
@@ -176,7 +176,7 @@ public class SHViewController: UIViewController {
         return UIImage(cgImage: CGImage)
     }
 
-    func createFilteredImage(filterName: String, image: UIImage) -> UIImage {
+    func createFilteredImage(filterName: String, image: UIImage) -> UIImage? {
         // 1 - create source image
         let sourceImage = CIImage(image: image)
 
@@ -191,9 +191,14 @@ public class SHViewController: UIViewController {
         let outputCGImage = context.createCGImage((filter?.outputImage!)!, from: (filter?.outputImage!.extent)!)
 
         // 5 - convert filtered CGImage to UIImage
-        let filteredImage = UIImage(cgImage: outputCGImage!)
-
-        return filteredImage
+        if outputCGImage != nil {
+            return UIImage(cgImage: outputCGImage!)
+        }
+        else {
+            
+            return nil
+        }
+//        let filteredImage = UIImage(cgImage: outputCGImage!)
     }
 
     func resizeImage(image: UIImage) -> UIImage {
