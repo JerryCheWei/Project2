@@ -29,13 +29,17 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBAction func oneCellButton(_ sender: UIButton) {
         moreCellView.isHidden = true
         sender.isEnabled = false
+        sender.tintColor = UIColor.blue
         self.moreCellButton.isEnabled = true
+        self.moreCellButton.tintColor = UIColor.lightGray
     }
     @IBOutlet weak var moreCellButton: UIButton!
     @IBAction func moreCellButton(_ sender: UIButton) {
         moreCellView.isHidden = false
         sender.isEnabled = false
+        sender.tintColor = UIColor.blue
         self.oneCellButton.isEnabled = true
+        self.oneCellButton.tintColor = UIColor.lightGray
     }
 
     @IBAction func settingUserImageButton(_ sender: UIButton) {
@@ -151,7 +155,9 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         navigationController?.isNavigationBarHidden = false
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
+        self.oneCellButton.tintColor = UIColor.lightGray
         self.moreCellButton.isEnabled = false
+        self.moreCellButton.tintColor = UIColor.blue
 
         // get user image
         uploadUserImage()
@@ -163,16 +169,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         oneCellXib()
         moreCellXib()
         // 抓貼文image
-//        NewLoadingImage.fethImage(collectionView: oneCollectionView)
-//        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
+        NewLoadingImage.fethImage(collectionView: oneCollectionView)
+        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
         print("viewDidLoad...")
 
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear...")
-        NewLoadingImage.fethImage(collectionView: oneCollectionView)
-        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
     }
 
     // CollectionCell nib
@@ -191,9 +194,11 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     // collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.oneCollectionView {
+            print("NewLoadingImage.imageUrl.count \(NewLoadingImage.imageUrl.count)")
             return NewLoadingImage.imageUrl.count
         }
         else {
+            print("MoreLoadingImage.imageUrl.count \(MoreLoadingImage.imageUrl.count)")
             return MoreLoadingImage.imageUrl.count
         }
     }
