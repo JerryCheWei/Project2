@@ -121,10 +121,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 extension HomeViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
-        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-            let userID = postImages[indexPath].userID {
-            otherUserVC.commentInit(userID)
-            self.navigationController?.pushViewController(otherUserVC, animated: true)
+        if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
+            if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
+                self.navigationController?.pushViewController(userVC, animated: true)
+            }
+        }
+        else {
+            if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
+                let userID = postImages[indexPath].userID {
+                otherUserVC.commentInit(userID)
+                self.navigationController?.pushViewController(otherUserVC, animated: true)
+            }
         }
     }
     func passData(indexPath: Int) {
