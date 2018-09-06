@@ -16,7 +16,7 @@ public protocol SHViewControllerDelegate {
 public class SHViewController: UIViewController {
     public var delegate: SHViewControllerDelegate?
     fileprivate let filterNameList = [
-        "No Filter",
+        "Normal",
         "CIPhotoEffectChrome",
         "CIPhotoEffectFade",
         "CIPhotoEffectInstant",
@@ -112,13 +112,71 @@ public class SHViewController: UIViewController {
     func applyFilter() {
         let filterName = filterNameList[filterIndex]
         if let image = self.image {
-            let filteredImage = createFilteredImage(filterName: filterName, image: image)
-
-            imageView?.image = filteredImage
+            if let fixOrientationImage = fixOrientationOfImage(image: image) {
+                let filteredImage = createFilteredImage(filterName: filterName, image: fixOrientationImage)
+                imageView?.image = filteredImage
+            }
         }
     }
 
-    func createFilteredImage(filterName: String, image: UIImage) -> UIImage {
+    func fixOrientationOfImage(image: UIImage) -> UIImage? {
+        if image.imageOrientation == .up {
+            return image
+        }
+        
+        // We need to calculate the proper transformation to make the image upright.
+        // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
+        var transform = CGAffineTransform.identity
+        
+        switch image.imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: image.size.height)
+            transform = transform.rotated(by: CGFloat(Double.pi))
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: 0)
+            transform = transform.rotated(by:  CGFloat(Double.pi / 2))
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: image.size.height)
+            transform = transform.rotated(by:  -CGFloat(Double.pi / 2))
+        default:
+            break
+        }
+        
+        switch image.imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: image.size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        default:
+            break
+        }
+        
+        // Now we draw the underlying CGImage into a new context, applying the transform
+        // calculated above.
+        guard let context = CGContext(data: nil, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: image.cgImage!.bitsPerComponent, bytesPerRow: 0, space: image.cgImage!.colorSpace!, bitmapInfo: image.cgImage!.bitmapInfo.rawValue) else {
+            return nil
+        }
+        
+        context.concatenate(transform)
+        
+        switch image.imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            context.draw(image.cgImage!, in: CGRect(x: 0, y: 0, width: image.size.height, height: image.size.width))
+        default:
+            context.draw(image.cgImage!, in: CGRect(origin: .zero, size: image.size))
+        }
+        
+        // And now we just create a new UIImage from the drawing context
+        guard let CGImage = context.makeImage() else {
+            return nil
+        }
+        
+        return UIImage(cgImage: CGImage)
+    }
+
+    func createFilteredImage(filterName: String, image: UIImage) -> UIImage? {
         // 1 - create source image
         let sourceImage = CIImage(image: image)
 
@@ -133,9 +191,14 @@ public class SHViewController: UIViewController {
         let outputCGImage = context.createCGImage((filter?.outputImage!)!, from: (filter?.outputImage!.extent)!)
 
         // 5 - convert filtered CGImage to UIImage
-        let filteredImage = UIImage(cgImage: outputCGImage!)
-
-        return filteredImage
+        if outputCGImage != nil {
+            return UIImage(cgImage: outputCGImage!)
+        }
+        else {
+            
+            return nil
+        }
+//        let filteredImage = UIImage(cgImage: outputCGImage!)
     }
 
     func resizeImage(image: UIImage) -> UIImage {

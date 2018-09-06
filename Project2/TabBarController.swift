@@ -17,6 +17,23 @@ class TabBarController: UITabBarController {
         setupbtn()
     }
 
+    func buttonColor(button: UIButton, lineWidth: CGFloat) {
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
+        gradient.colors = [UIColor.red.cgColor,
+                           UIColor.orange.cgColor,
+                           UIColor.yellow.cgColor]
+
+        let shape = CAShapeLayer()
+        shape.lineWidth = lineWidth
+//        shape.path = UIBezierPath(rect: button.bounds).cgPath
+        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 30).cgPath
+        shape.strokeColor = UIColor.black.cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        gradient.mask = shape
+
+        button.layer.addSublayer(gradient)
+    }
     /// 設定按鈕
     func setupbtn() {
 
@@ -30,15 +47,18 @@ class TabBarController: UITabBarController {
         openCameraViewButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.height/2 - 10)
 
         // 樣式設定
-//        let color = UIColor(red: 151/255, green: 216/255, blue: 246/255, alpha: 1)
-        let color = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
-        openCameraViewButton.backgroundColor = color
+        let tintcolor = UIColor(red: 221/255, green: 121/255, blue: 76/255, alpha: 1)
+        let backcolor = UIColor(red: 72/255, green: 72/255, blue: 72/255, alpha: 1)
+        openCameraViewButton.backgroundColor = backcolor
+        openCameraViewButton.tintColor = tintcolor
         openCameraViewButton.layer.masksToBounds = true
         openCameraViewButton.layer.cornerRadius = 30
+        self.buttonColor(button: openCameraViewButton, lineWidth: 5)
 
         // 添加按鈕
         tabBar.addSubview(openCameraViewButton)
         openCameraViewButton.addTarget(self, action: #selector(pushToCameraView), for: .touchUpInside)
+        tabBar.layer.cornerRadius = 10
     }
 
     @objc func pushToCameraView() {
