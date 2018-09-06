@@ -53,9 +53,6 @@ class NewLoadingImage {
 
     static func fethImage(collectionView: UICollectionView) {
 
-        allPostImages.removeAll()
-        imageUrl.removeAll()
-        loadImages.removeAll()
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
@@ -67,16 +64,17 @@ class NewLoadingImage {
             guard let postImages = value["postImages"] as? [String]
                 else {
                     print("NewLoadingImage no postImages")
+                    imageUrl.removeAll()
                     collectionView.reloadData()
                     return
             }
-            allPostImages.removeAll()
+
             imageUrl.removeAll()
             loadImages.removeAll()
+            print("NewLoadingImage removeAll")
             NewLoadingImage.userName = userName
             allPostImages = postImages
             loadUserImageUrl = userImageUrl
-
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
@@ -85,7 +83,7 @@ class NewLoadingImage {
                     }
                     NewLoadingImage.imageUrl = loadImages
                     collectionView.reloadData()
-
+//                    print("NewLoadingImage 1 \n\(imageUrl)\n\(loadImages)\n\(allPostImages)")
                 }
             }
         }
@@ -100,9 +98,6 @@ class MoreLoadingImage {
 
     static func fethImage(collectionView: UICollectionView) {
 
-        imageUrl.removeAll()
-        loadImages.removeAll()
-        userPostImages.removeAll()
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
@@ -113,15 +108,16 @@ class MoreLoadingImage {
             guard let postImages = value["postImages"] as? [String]
                 else {
                     print("MoreLoadingImage no postImages")
+                    imageUrl.removeAll()
                     collectionView.reloadData()
                     return
             }
+
             imageUrl.removeAll()
             loadImages.removeAll()
-            userPostImages.removeAll()
+            print("MoreLoadingImage removeAll")
             MoreLoadingImage.userName = userName
             userPostImages = postImages
-
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
@@ -130,7 +126,7 @@ class MoreLoadingImage {
                     }
                     MoreLoadingImage.imageUrl = loadImages
                     collectionView.reloadData()
-
+                    print("MoreLoadingImage 1 \n\(imageUrl)\n\(loadImages)\n\(userPostImages)")
                 }
             }
         }
