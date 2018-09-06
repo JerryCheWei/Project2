@@ -19,6 +19,7 @@
 		BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */; };
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
 		BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB507212C23920022693C /* HeaderViewSet.swift */; };
+		BF2928142140295F008F4921 /* DeletePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2928132140295F008F4921 /* DeletePost.swift */; };
 		BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2B212E7C34003E10FC /* ImageService.swift */; };
 		BF47FC30212FA5DA003E10FC /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */; };
 		BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */; };
@@ -58,6 +59,7 @@
 		BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		BF1FB507212C23920022693C /* HeaderViewSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewSet.swift; sourceTree = "<group>"; };
+		BF2928132140295F008F4921 /* DeletePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePost.swift; sourceTree = "<group>"; };
 		BF47FC2B212E7C34003E10FC /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF2928132140295F008F4921 /* DeletePost.swift */,
 				BF47FC2A212E7C10003E10FC /* ImageService */,
 				BF492EB5212D0E1000E544A7 /* Login */,
 				BF1FB4BA2129BC630022693C /* Home */,
@@ -544,6 +547,7 @@
 				BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */,
 				BF47FC3D212FE6C6003E10FC /* MessageModel.swift in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
+				BF2928142140295F008F4921 /* DeletePost.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */,
 				BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */,

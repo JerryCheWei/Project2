@@ -32,12 +32,11 @@ class LoadingImage {
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
-                        if let loadImageItem = UserImages.init(snapshot: snapshot) {
-                            loadImages.append(loadImageItem)
-                        }
-                        LoadingImage.imageUrl = loadImages
-                        tableView.reloadData()
-
+                if let loadImageItem = UserImages.init(snapshot: snapshot) {
+                        loadImages.append(loadImageItem)
+                    }
+                    LoadingImage.imageUrl = loadImages
+                    tableView.reloadData()
                 }
             }
         }
@@ -54,20 +53,29 @@ class NewLoadingImage {
 
     static func fethImage(collectionView: UICollectionView) {
 
+        allPostImages.removeAll()
+        imageUrl.removeAll()
+        loadImages.removeAll()
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
         Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
             guard let value = snapshot.value as? [String: AnyObject],
-                let postImages = value["postImages"] as? [String],
                 let userName = value["userName"] as? String,
                 let userImageUrl = value["userImageUrl"] as? String
                 else { return }
+            guard let postImages = value["postImages"] as? [String]
+                else {
+                    print("NewLoadingImage no postImages")
+                    collectionView.reloadData()
+                    return
+            }
+            allPostImages.removeAll()
+            imageUrl.removeAll()
+            loadImages.removeAll()
             NewLoadingImage.userName = userName
             allPostImages = postImages
             loadUserImageUrl = userImageUrl
-            imageUrl.removeAll()
-            loadImages.removeAll()
 
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
@@ -92,18 +100,26 @@ class MoreLoadingImage {
 
     static func fethImage(collectionView: UICollectionView) {
 
+        imageUrl.removeAll()
+        loadImages.removeAll()
+        userPostImages.removeAll()
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
         Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
             guard let value = snapshot.value as? [String: AnyObject],
-                let postImages = value["postImages"] as? [String],
                 let userName = value["userName"] as? String
                 else { return }
-            MoreLoadingImage.userName = userName
+            guard let postImages = value["postImages"] as? [String]
+                else {
+                    print("MoreLoadingImage no postImages")
+                    collectionView.reloadData()
+                    return
+            }
             imageUrl.removeAll()
             loadImages.removeAll()
             userPostImages.removeAll()
+            MoreLoadingImage.userName = userName
             userPostImages = postImages
 
             for postImage in postImages {

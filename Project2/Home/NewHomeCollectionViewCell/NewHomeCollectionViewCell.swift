@@ -11,7 +11,7 @@ import UIKit
 protocol CellDelegateProtocol {
     func passData(indexPath: Int)
 
-//    func otherFunctionPassData(indexPath: Int)
+    func otherFunctionPassData(indexPath: Int)
 }
 
 @IBDesignable
@@ -34,9 +34,9 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
         deleggate?.passData(indexPath: (indexPath?.row)!)
     }
     @IBAction func otherFunctionButton(_ sender: UIButton) {
-//        deleggate?.otherFunctionPassData(indexPath: (indexPath?.row)!)
+        deleggate?.otherFunctionPassData(indexPath: (indexPath?.row)!)
     }
-    
+
 //    func colorSet(view: UIView) {
 //        backgroundGradientLayer.frame = view.bounds
 //
