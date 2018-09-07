@@ -174,8 +174,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         oneCellXib()
         moreCellXib()
         // 抓貼文image
-        NewLoadingImage.fethImage(collectionView: oneCollectionView)
-        MoreLoadingImage.fethImage(collectionView: moreCollectionView)
+        NewLoadingImage.fethImage(oneCellCollectionView: oneCollectionView, moreCellCollectionView: moreCollectionView)
         print("viewDidLoad...")
 
     }
@@ -196,12 +195,11 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     // collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.oneCollectionView {
-            print("NewLoadingImage.imageUrl.count \(NewLoadingImage.imageUrl.count)")
+            print("NewLoadingImage.imageUrl.count -> \(NewLoadingImage.imageUrl.count)")
             return NewLoadingImage.imageUrl.count
         }
         else {
-            print("MoreLoadingImage.imageUrl.count \(MoreLoadingImage.imageUrl.count)")
-            return MoreLoadingImage.imageUrl.count
+            return NewLoadingImage.imageUrl.count
         }
     }
 
@@ -224,7 +222,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     for child in snapshot.children.allObjects {
                         if let snapshot = child as? DataSnapshot {
                             guard
-                                let value = snapshot.value as? [String: AnyObject],
+                                let value = snapshot.value as? [String: Any],
                                 let message = value["message"] as? String,
                                 let userID = value["userID"] as? String
                                 else {
@@ -233,7 +231,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                             loadMessage.append(message)
                             Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                                 guard
-                                    let value = snapshot.value as? [String: AnyObject],
+                                    let value = snapshot.value as? [String: Any],
                                     let name = value["userName"] as? String
                                     else {
                                         return
@@ -265,7 +263,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     fatalError()
             }
 
-            let loadImage = MoreLoadingImage.imageUrl[indexPath.row]
+            let loadImage = NewLoadingImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
                     cellMore.postImageView.image = image
@@ -317,8 +315,7 @@ extension NewUserViewController: CellDelegateProtocol {
                     DeletePost.deleteInUser(postImageID)
                     let optionMenu = UIAlertController(title: "刪除成功", message: nil, preferredStyle: .alert)
                     let cancleAction = UIAlertAction(title: "ＯＫ", style: .default, handler: { (_) in
-                        NewLoadingImage.fethImage(collectionView: self.oneCollectionView)
-                        MoreLoadingImage.fethImage(collectionView: self.moreCollectionView)
+                        NewLoadingImage.fethImage(oneCellCollectionView: self.oneCollectionView, moreCellCollectionView: self.moreCollectionView)
                     })
                     optionMenu.addAction(cancleAction)
                     self.present(optionMenu, animated: true, completion: nil)
@@ -343,8 +340,8 @@ extension NewUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
         Analytics.logEvent("userVc_ClickMoreCellOpenPostImageVc", parameters: nil)
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
-            let postImageID = MoreLoadingImage.imageUrl[index].idName,
-            let userID = MoreLoadingImage.imageUrl[index].userID {
+            let postImageID = NewLoadingImage.imageUrl[index].idName,
+            let userID = NewLoadingImage.imageUrl[index].userID {
             postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }

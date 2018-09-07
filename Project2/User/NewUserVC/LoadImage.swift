@@ -9,39 +9,6 @@
 import Foundation
 import Firebase
 
-class LoadingImage {
-
-    static var imageUrl = [UserImages]()
-    static var userName = String()
-    static var loadImages = [UserImages]()
-
-    static func fethImage(tableView: UITableView) {
-
-        guard let userRef = Auth.auth().currentUser
-            else { return }
-        let userid = userRef.uid
-        Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
-            guard let value = snapshot.value as? [String: AnyObject],
-                let postImages = value["postImages"] as? [String],
-                let userName = value["userName"] as? String
-                else { return }
-            LoadingImage.userName = userName
-            imageUrl.removeAll()
-            loadImages.removeAll()
-
-            for postImage in postImages {
-                Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
-
-                if let loadImageItem = UserImages.init(snapshot: snapshot) {
-                        loadImages.append(loadImageItem)
-                    }
-                    LoadingImage.imageUrl = loadImages
-                    tableView.reloadData()
-                }
-            }
-        }
-    }
-}
 //new
 class NewLoadingImage {
 
@@ -51,13 +18,13 @@ class NewLoadingImage {
     static var allPostImages = [String]()
     static var loadUserImageUrl = String()
 
-    static func fethImage(collectionView: UICollectionView) {
+    static func fethImage(oneCellCollectionView: UICollectionView, moreCellCollectionView: UICollectionView) {
 
         guard let userRef = Auth.auth().currentUser
             else { return }
         let userid = userRef.uid
         Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
-            guard let value = snapshot.value as? [String: AnyObject],
+            guard let value = snapshot.value as? [String: Any],
                 let userName = value["userName"] as? String,
                 let userImageUrl = value["userImageUrl"] as? String
                 else { return }
@@ -65,7 +32,7 @@ class NewLoadingImage {
                 else {
                     print("NewLoadingImage no postImages")
                     imageUrl.removeAll()
-                    collectionView.reloadData()
+                    moreCellCollectionView.reloadData()
                     return
             }
 
@@ -82,51 +49,9 @@ class NewLoadingImage {
                         loadImages.append(loadImageItem)
                     }
                     NewLoadingImage.imageUrl = loadImages
-                    collectionView.reloadData()
-//                    print("NewLoadingImage 1 \n\(imageUrl)\n\(loadImages)\n\(allPostImages)")
-                }
-            }
-        }
-    }
-}
-class MoreLoadingImage {
-
-    static var imageUrl = [UserImages]()
-    static var userName = String()
-    static var loadImages = [UserImages]()
-    static var userPostImages = [String]()
-
-    static func fethImage(collectionView: UICollectionView) {
-
-        guard let userRef = Auth.auth().currentUser
-            else { return }
-        let userid = userRef.uid
-        Database.database().reference(withPath: "users/\(userid)").observe(.value) { (snapshot) in
-            guard let value = snapshot.value as? [String: AnyObject],
-                let userName = value["userName"] as? String
-                else { return }
-            guard let postImages = value["postImages"] as? [String]
-                else {
-                    print("MoreLoadingImage no postImages")
-                    imageUrl.removeAll()
-                    collectionView.reloadData()
-                    return
-            }
-
-            imageUrl.removeAll()
-            loadImages.removeAll()
-            print("MoreLoadingImage removeAll")
-            MoreLoadingImage.userName = userName
-            userPostImages = postImages
-            for postImage in postImages {
-                Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
-
-                    if let loadImageItem = UserImages.init(snapshot: snapshot) {
-                        loadImages.append(loadImageItem)
-                    }
-                    MoreLoadingImage.imageUrl = loadImages
-                    collectionView.reloadData()
-                    print("MoreLoadingImage 1 \n\(imageUrl)\n\(loadImages)\n\(userPostImages)")
+                    oneCellCollectionView.reloadData()
+                    moreCellCollectionView.reloadData()
+                    print("NewLoadingImage class \n-> imageUrl \(imageUrl)\n-> loadImages \(loadImages)\n-> allPostImages \(allPostImages)\n")
                 }
             }
         }
@@ -198,7 +123,6 @@ class OtherUserLoadingImage {
                     }
                     OtherUserLoadingImage.imageUrl = loadImages
                     collectionView.reloadData()
-                    //                    print("NewLoadingImage 1 \n\(imageUrl)\n\(loadImages)\n\(allPostImages)")
                 }
             }
         }

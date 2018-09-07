@@ -14,11 +14,7 @@
 		BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B82129B7A00022693C /* TabBarController.swift */; };
 		BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */; };
 		BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4C12129BD770022693C /* HomeViewController.swift */; };
-		BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4FE212BDBA10022693C /* UserViewController.swift */; };
-		BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */; };
-		BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */; };
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
-		BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB507212C23920022693C /* HeaderViewSet.swift */; };
 		BF2928142140295F008F4921 /* DeletePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2928132140295F008F4921 /* DeletePost.swift */; };
 		BF2928192140F37F008F4921 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2928182140F37F008F4921 /* OtherUserViewController.swift */; };
 		BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2B212E7C34003E10FC /* ImageService.swift */; };
@@ -55,11 +51,7 @@
 		BF1FB4B82129B7A00022693C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF1FB4BD2129BCAF0022693C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF1FB4C12129BD770022693C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BF1FB4FE212BDBA10022693C /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
-		BF1FB507212C23920022693C /* HeaderViewSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewSet.swift; sourceTree = "<group>"; };
 		BF2928132140295F008F4921 /* DeletePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePost.swift; sourceTree = "<group>"; };
 		BF2928182140F37F008F4921 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		BF47FC2B212E7C34003E10FC /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
@@ -175,28 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				BF2928132140295F008F4921 /* DeletePost.swift */,
-				BFEA72AC213B80F700F69BF0 /* OldUserVC */,
 				BFEA729A2139460700F69BF0 /* NewUserVC */,
 				BF2928172140F341008F4921 /* OtherUserVC */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		BF1FB4C4212A9D180022693C /* UserVC */ = {
-			isa = PBXGroup;
-			children = (
-				BF1FB4FE212BDBA10022693C /* UserViewController.swift */,
-			);
-			path = UserVC;
-			sourceTree = "<group>";
-		};
-		BF1FB500212BDBB80022693C /* UserTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				BF1FB501212BDBFA0022693C /* UserTableViewCell.swift */,
-				BF1FB503212BDC2A0022693C /* UserTableViewCell.xib */,
-			);
-			path = UserTableViewCell;
 			sourceTree = "<group>";
 		};
 		BF2928172140F341008F4921 /* OtherUserVC */ = {
@@ -371,16 +345,6 @@
 			path = MoreCell;
 			sourceTree = "<group>";
 		};
-		BFEA72AC213B80F700F69BF0 /* OldUserVC */ = {
-			isa = PBXGroup;
-			children = (
-				BF1FB507212C23920022693C /* HeaderViewSet.swift */,
-				BF1FB500212BDBB80022693C /* UserTableViewCell */,
-				BF1FB4C4212A9D180022693C /* UserVC */,
-			);
-			path = OldUserVC;
-			sourceTree = "<group>";
-		};
 		BFEA72B6213BBDC200F69BF0 /* PostVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,7 +425,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF13AD712137CDEA007B3290 /* NewHomeCollectionViewCell.xib in Resources */,
-				BF1FB504212BDC2A0022693C /* UserTableViewCell.xib in Resources */,
 				BFEA72BC213D727000F69BF0 /* GoogleService-Info.plist in Resources */,
 				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
@@ -555,13 +518,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
-				BF1FB4FF212BDBA10022693C /* UserViewController.swift in Sources */,
 				BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */,
 				BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */,
 				BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */,
 				BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */,
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
-				BF1FB502212BDBFA0022693C /* UserTableViewCell.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */,
@@ -577,7 +538,6 @@
 				BF2928142140295F008F4921 /* DeletePost.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF2928192140F37F008F4921 /* OtherUserViewController.swift in Sources */,
-				BF1FB508212C23920022693C /* HeaderViewSet.swift in Sources */,
 				BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */,
 				BF47FC30212FA5DA003E10FC /* MessageViewController.swift in Sources */,
 				BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */,
