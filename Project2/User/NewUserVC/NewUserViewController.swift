@@ -174,7 +174,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         oneCellXib()
         moreCellXib()
         // 抓貼文image
-        NewLoadingImage.fethImage(oneCellCollectionView: oneCollectionView, moreCellCollectionView: moreCollectionView)
+        LoadingUserPostImage.fethImage(oneCellCollectionView: oneCollectionView, moreCellCollectionView: moreCollectionView)
         print("viewDidLoad...")
 
     }
@@ -195,11 +195,11 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     // collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.oneCollectionView {
-            print("NewLoadingImage.imageUrl.count -> \(NewLoadingImage.imageUrl.count)")
-            return NewLoadingImage.imageUrl.count
+            print("NewLoadingImage.imageUrl.count -> \(LoadingUserPostImage.imageUrl.count)")
+            return LoadingUserPostImage.imageUrl.count
         }
         else {
-            return NewLoadingImage.imageUrl.count
+            return LoadingUserPostImage.imageUrl.count
         }
     }
 
@@ -210,13 +210,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     fatalError()
             }
 
-            let loadImage = NewLoadingImage.imageUrl[indexPath.row]
+            let loadImage = LoadingUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
                     cellOne.postImageView.image = image
                 }
             }
-            Database.database().reference().child("messages").child(NewLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
+            Database.database().reference().child("messages").child(LoadingUserPostImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                     var loadMessage = [String]()
                     loadMessage.removeAll()
                     for child in snapshot.children.allObjects {
@@ -243,7 +243,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 }
 
-            let userImageUrl = NewLoadingImage.loadUserImageUrl
+            let userImageUrl = LoadingUserPostImage.loadUserImageUrl
             if let url = URL(string: userImageUrl) {
                 ImageService.getImage(withURL: url, completion: { (image) in
                     cellOne.userImageView.image = image
@@ -251,7 +251,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
 
             cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameButton.setTitle(NewLoadingImage.userName, for: .normal)
+            cellOne.userNameButton.setTitle(LoadingUserPostImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
@@ -263,7 +263,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                     fatalError()
             }
 
-            let loadImage = NewLoadingImage.imageUrl[indexPath.row]
+            let loadImage = LoadingUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
                     cellMore.postImageView.image = image
@@ -287,7 +287,7 @@ extension NewUserViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
         Analytics.logEvent("userVc_ClickUserNameButton", parameters: nil)
         if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-            let userID = NewLoadingImage.loadImages[indexPath].userID {
+            let userID = LoadingUserPostImage.loadImages[indexPath].userID {
             otherUserVC.commentInit(userID)
             self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
@@ -295,7 +295,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
     func otherFunctionPassData(indexPath: Int) {
         Analytics.logEvent("userVc_ClickOtherFunctionButton", parameters: nil)
-        if Auth.auth().currentUser?.uid == NewLoadingImage.loadImages[indexPath].userID {
+        if Auth.auth().currentUser?.uid == LoadingUserPostImage.loadImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
@@ -304,7 +304,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
             let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
                 //delete firebase data
-                if let postImageID = NewLoadingImage.loadImages[indexPath].idName {
+                if let postImageID = LoadingUserPostImage.loadImages[indexPath].idName {
                     //delete storage/images/(postImage.key)
                     DeletePost.deleteStorage(postImageID)
                     //delete postImage/(postImage.key)
@@ -315,7 +315,7 @@ extension NewUserViewController: CellDelegateProtocol {
                     DeletePost.deleteInUser(postImageID)
                     let optionMenu = UIAlertController(title: "刪除成功", message: nil, preferredStyle: .alert)
                     let cancleAction = UIAlertAction(title: "ＯＫ", style: .default, handler: { (_) in
-                        NewLoadingImage.fethImage(oneCellCollectionView: self.oneCollectionView, moreCellCollectionView: self.moreCollectionView)
+                        LoadingUserPostImage.fethImage(oneCellCollectionView: self.oneCollectionView, moreCellCollectionView: self.moreCollectionView)
                     })
                     optionMenu.addAction(cancleAction)
                     self.present(optionMenu, animated: true, completion: nil)
@@ -330,7 +330,7 @@ extension NewUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         Analytics.logEvent("userVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = NewLoadingImage.loadImages[indexPath].idName {
+            let imageID = LoadingUserPostImage.loadImages[indexPath].idName {
             messageVC.commentInit(imageID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
@@ -340,8 +340,8 @@ extension NewUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
         Analytics.logEvent("userVc_ClickMoreCellOpenPostImageVc", parameters: nil)
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
-            let postImageID = NewLoadingImage.imageUrl[index].idName,
-            let userID = NewLoadingImage.imageUrl[index].userID {
+            let postImageID = LoadingUserPostImage.imageUrl[index].idName,
+            let userID = LoadingUserPostImage.imageUrl[index].userID {
             postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }
