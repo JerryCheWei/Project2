@@ -409,8 +409,9 @@
 				BFB6E48F211BF9B300404C2E /* Sources */,
 				BFB6E490211BF9B300404C2E /* Frameworks */,
 				BFB6E491211BF9B300404C2E /* Resources */,
-				BFB6E4AB211C037B00404C2E /* ShellScript */,
+				BFB6E4AB211C037B00404C2E /* swiftlint */,
 				D7EACB3444012DE83BF5CC15 /* [CP] Embed Pods Frameworks */,
+				BF29281C21424145008F4921 /* firebase crash */,
 			);
 			buildRules = (
 			);
@@ -492,13 +493,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BFB6E4AB211C037B00404C2E /* ShellScript */ = {
+		BF29281C21424145008F4921 /* firebase crash */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "firebase crash";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
+		BFB6E4AB211C037B00404C2E /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -710,6 +726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3FWJUGAS6;
 				INFOPLIST_FILE = Project2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -729,6 +746,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3FWJUGAS6;
 				INFOPLIST_FILE = Project2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -12,4 +12,7 @@ target 'Project2' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
 
+  pod 'Fabric', '~> 1.7.7'
+  pod 'Crashlytics', '~> 3.10.2'
+
 end
