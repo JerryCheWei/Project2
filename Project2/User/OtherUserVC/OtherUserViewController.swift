@@ -203,7 +203,7 @@ extension OtherUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         Analytics.logEvent("otherUserVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = LoadingOtherUserPostImage.loadImages[indexPath].idName {
+            let imageID = LoadingOtherUserPostImage.imageUrl[indexPath].idName {
             messageVC.commentInit(imageID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
@@ -211,7 +211,7 @@ extension OtherUserViewController: CellDelegateProtocol {
 
     func otherFunctionPassData(indexPath: Int) {
         Analytics.logEvent("otherUserVc_ClickOtherFunctionButton", parameters: nil)
-        if Auth.auth().currentUser?.uid != LoadingOtherUserPostImage.loadImages[indexPath].userID {
+        if Auth.auth().currentUser?.uid != LoadingOtherUserPostImage.imageUrl[indexPath].userID {
             let optionMenu = UIAlertController(title: "未來擴增功能", message: nil, preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,

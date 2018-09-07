@@ -287,7 +287,7 @@ extension NewUserViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
         Analytics.logEvent("userVc_ClickUserNameButton", parameters: nil)
         if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-            let userID = LoadingUserPostImage.loadImages[indexPath].userID {
+            let userID = LoadingUserPostImage.imageUrl[indexPath].userID {
             otherUserVC.commentInit(userID)
             self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
@@ -295,7 +295,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
     func otherFunctionPassData(indexPath: Int) {
         Analytics.logEvent("userVc_ClickOtherFunctionButton", parameters: nil)
-        if Auth.auth().currentUser?.uid == LoadingUserPostImage.loadImages[indexPath].userID {
+        if Auth.auth().currentUser?.uid == LoadingUserPostImage.imageUrl[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
@@ -304,7 +304,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
             let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { _ in
                 //delete firebase data
-                if let postImageID = LoadingUserPostImage.loadImages[indexPath].idName {
+                if let postImageID = LoadingUserPostImage.imageUrl[indexPath].idName {
                     //delete storage/images/(postImage.key)
                     DeletePost.deleteStorage(postImageID)
                     //delete postImage/(postImage.key)
@@ -315,7 +315,8 @@ extension NewUserViewController: CellDelegateProtocol {
                     DeletePost.deleteInUser(postImageID)
                     let optionMenu = UIAlertController(title: "刪除成功", message: nil, preferredStyle: .alert)
                     let cancleAction = UIAlertAction(title: "ＯＫ", style: .default, handler: { (_) in
-                        LoadingUserPostImage.fethImage(oneCellCollectionView: self.oneCollectionView, moreCellCollectionView: self.moreCollectionView)
+                        self.oneCollectionView.reloadData()
+                        self.moreCollectionView.reloadData()
                     })
                     optionMenu.addAction(cancleAction)
                     self.present(optionMenu, animated: true, completion: nil)
@@ -330,7 +331,7 @@ extension NewUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         Analytics.logEvent("userVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = LoadingUserPostImage.loadImages[indexPath].idName {
+            let imageID = LoadingUserPostImage.imageUrl[indexPath].idName {
             messageVC.commentInit(imageID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }

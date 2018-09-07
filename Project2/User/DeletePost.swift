@@ -28,7 +28,7 @@ class DeletePost {
                     else { return }
             let deletePostImage = postImages.filter { $0 != "\(postImageID)"}
                 Database.database().reference().child("users").child(userID).updateChildValues(["postImages": deletePostImage])
-                print("delete users/(userID)/postImages[\(postImageID)]")
+                print("delete users/\(userID)/postImages[\(postImageID)]")
             }
         }
     }
