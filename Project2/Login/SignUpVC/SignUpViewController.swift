@@ -17,8 +17,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     let successLogin = "successLogin"
 
-    @IBAction func loginVC(_ sender: UIButton) {
+    @IBAction func backLoginVCButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
     }
     func loggedin() {
         self.clearAllTextField()
@@ -48,6 +49,7 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func sendButton(_ sender: UIButton) {
+        Analytics.logEvent("signUpVc_SendSignUpButton", parameters: nil)
         guard
             let userName = self.userNameTextField.text,
             let email = self.emailTextField.text,

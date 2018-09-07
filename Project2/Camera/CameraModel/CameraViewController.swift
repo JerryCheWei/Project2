@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Sharaku
+import Firebase
 
 class CameraViewController: UIViewController {
 
@@ -64,6 +65,7 @@ class CameraViewController: UIViewController {
     }
 
     @IBAction func shutterButtonDidTap() {
+        Analytics.logEvent("cameraVc_ClickShutterButton", parameters: nil)
         let settings = AVCapturePhotoSettings()
         let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,

@@ -403,6 +403,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9U7-e1-2kf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="mNh-1E-gyK">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENO-wi-544">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <color key="backgroundColor" red="0.74222715736040601" green="0.55082111262898814" blue="0.35409662824021115" alpha="0.68190817636986301" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Spx-qt-yIk">
                                         <rect key="frame" x="82" y="300" width="250" height="201"/>
                                         <subviews>
@@ -453,10 +460,12 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-AD-NLy">
-                                                <rect key="frame" x="97.666666666666657" y="171" width="55" height="30"/>
+                                                <rect key="frame" x="97" y="171" width="56" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
-                                                    <action selector="signUpButton:" destination="WZO-Qv-036" eventType="touchUpInside" id="vdq-Fv-h2x"/>
+                                                    <action selector="openSignUpVCButton:" destination="WZO-Qv-036" eventType="touchUpInside" id="vdq-Fv-h2x"/>
                                                     <segue destination="Ci0-g9-Aya" kind="presentation" identifier="signupVC" id="xrG-n5-nn2"/>
                                                 </connections>
                                             </button>
@@ -465,8 +474,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mNh-1E-gyK" secondAttribute="bottom" id="1Dg-8T-H7L"/>
                                     <constraint firstItem="Spx-qt-yIk" firstAttribute="centerX" secondItem="9U7-e1-2kf" secondAttribute="centerX" id="2fL-jF-iUc"/>
+                                    <constraint firstItem="mNh-1E-gyK" firstAttribute="top" secondItem="9U7-e1-2kf" secondAttribute="top" id="5kX-7q-1O0"/>
+                                    <constraint firstItem="ENO-wi-544" firstAttribute="top" secondItem="9U7-e1-2kf" secondAttribute="top" id="UId-nD-4dz"/>
+                                    <constraint firstItem="ENO-wi-544" firstAttribute="leading" secondItem="9U7-e1-2kf" secondAttribute="leading" id="hNY-2Q-e9F"/>
                                     <constraint firstItem="Spx-qt-yIk" firstAttribute="top" secondItem="9U7-e1-2kf" secondAttribute="top" constant="300" id="kSV-WY-xQ6"/>
+                                    <constraint firstAttribute="bottom" secondItem="ENO-wi-544" secondAttribute="bottom" id="ozF-fT-jKp"/>
+                                    <constraint firstAttribute="trailing" secondItem="mNh-1E-gyK" secondAttribute="trailing" id="r2n-b5-ijR"/>
+                                    <constraint firstItem="mNh-1E-gyK" firstAttribute="leading" secondItem="9U7-e1-2kf" secondAttribute="leading" id="tkF-cs-ujU"/>
+                                    <constraint firstAttribute="trailing" secondItem="ENO-wi-544" secondAttribute="trailing" id="wEa-vh-au4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -504,7 +521,7 @@
                                         <rect key="frame" x="188" y="641" width="38" height="30"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
-                                            <action selector="loginVC:" destination="Ci0-g9-Aya" eventType="touchUpInside" id="tUn-Ly-Iyu"/>
+                                            <action selector="backLoginVCButton:" destination="Ci0-g9-Aya" eventType="touchUpInside" id="tUn-Ly-Iyu"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3p-ig-A2d">
@@ -1281,6 +1298,7 @@
         <image name="iconIdentity36pt" width="36" height="36"/>
         <image name="iconMessage36pt" width="36" height="36"/>
         <image name="iconMoreHoriz36pt" width="36" height="36"/>
+        <image name="loginBackground" width="2925" height="3617"/>
         <image name="round_apps_black_36pt" width="36" height="36"/>
         <image name="round_settings_black_24pt" width="24" height="24"/>
         <image name="round_view_day_black_36pt" width="36" height="36"/>

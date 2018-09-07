@@ -23,6 +23,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
     @IBOutlet weak var oneCellButton: UIButton!
     @IBAction func oneCellButton(_ sender: UIButton) {
+        Analytics.logEvent("otherUserVc_OneCellModeButton", parameters: nil)
         moreCellView.isHidden = true
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -31,6 +32,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     @IBOutlet weak var moreCellButton: UIButton!
     @IBAction func moreCellButton(_ sender: UIButton) {
+        Analytics.logEvent("otherUserVc_MoreCellModeButton", parameters: nil)
         moreCellView.isHidden = false
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -189,6 +191,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
 extension OtherUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
+        Analytics.logEvent("otherUserVc_ClickMoreCellOpenPostImageVc", parameters: nil)
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
             let postImageID = OtherUserMoreLoadingImage.imageUrl[index].idName,
             let userID = OtherUserMoreLoadingImage.imageUrl[index].userID {
@@ -200,6 +203,7 @@ extension OtherUserViewController: SelectedCollectionItemDelegate {
 
 extension OtherUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
+        Analytics.logEvent("otherUserVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = OtherUserLoadingImage.loadImages[indexPath].idName {
             messageVC.commentInit(imageID)
@@ -208,6 +212,7 @@ extension OtherUserViewController: CellDelegateProtocol {
     }
 
     func otherFunctionPassData(indexPath: Int) {
+        Analytics.logEvent("otherUserVc_ClickOtherFunctionButton", parameters: nil)
         if Auth.auth().currentUser?.uid != OtherUserMoreLoadingImage.loadImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "未來擴增功能", message: nil, preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
@@ -220,11 +225,13 @@ extension OtherUserViewController: CellDelegateProtocol {
 
     func userNameButton(indexPath: Int) {
         if Auth.auth().currentUser?.uid == OtherUserLoadingImage.imageUrl[indexPath].userID {
+            Analytics.logEvent("otherUserVc_ClickSelfUserNameButton", parameters: nil)
             if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
                 self.navigationController?.pushViewController(userVC, animated: true)
             }
         }
         else {
+            Analytics.logEvent("otherUserVc_ClickUserNameButton", parameters: nil)
             if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
                 let userID = OtherUserLoadingImage.imageUrl[indexPath].userID {
                 otherUserVC.commentInit(userID)

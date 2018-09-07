@@ -17,8 +17,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    @IBAction func signUpButton(_ sender: UIButton) {
+    @IBAction func openSignUpVCButton(_ sender: UIButton) {
         sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
+        Analytics.logEvent("loginVc_openSignUpVCButton", parameters: nil)
     }
 
     @objc func openSignUpVC() {
@@ -39,7 +40,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
-
+        Analytics.logEvent("loginVc_loginButton", parameters: nil)
         guard
             let email = self.emailTextField.text,
             let password = self.passwordTextField.text,
