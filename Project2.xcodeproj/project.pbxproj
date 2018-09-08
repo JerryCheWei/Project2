@@ -35,7 +35,7 @@
 		BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */; };
 		BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */; };
 		BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */; };
-		BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */; };
+		BFEA72A9213980C800F69BF0 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A8213980C800F69BF0 /* UserViewController.swift */; };
 		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
 		BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */; };
 		BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B9213D376B00F69BF0 /* FixImage.swift */; };
@@ -74,7 +74,7 @@
 		BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFEA72A22139482000F69BF0 /* MoreUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreUserCollectionViewCell.xib; sourceTree = "<group>"; };
-		BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		BFEA72A8213980C800F69BF0 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
 		BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		BFEA72B9213D376B00F69BF0 /* FixImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixImage.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 			children = (
 				BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */,
 				BF1FB505212BE5DA0022693C /* LoadImage.swift */,
-				BFEA72A8213980C800F69BF0 /* NewUserViewController.swift */,
+				BFEA72A8213980C800F69BF0 /* UserViewController.swift */,
 				BFEA729B2139461D00F69BF0 /* OneCell */,
 				BFEA729C213946BE00F69BF0 /* MoreCell */,
 			);
@@ -525,7 +525,7 @@
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */,
-				BFEA72A9213980C800F69BF0 /* NewUserViewController.swift in Sources */,
+				BFEA72A9213980C800F69BF0 /* UserViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */,
 				BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */,

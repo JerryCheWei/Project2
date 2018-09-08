@@ -139,6 +139,7 @@ extension HomeViewController: CellDelegateProtocol {
         Analytics.logEvent("homeVc_ClickMessageButton", parameters: nil)
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName {
+//             MessageModel.fetchMessage(postImageID: imageID)
             messageVC.commentInit(imageID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }

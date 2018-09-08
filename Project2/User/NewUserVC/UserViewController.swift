@@ -45,7 +45,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 
     @IBAction func settingUserImageButton(_ sender: UIButton) {
-        Analytics.logEvent("userVcSettingUserImageButton", parameters: nil)
+        Analytics.logEvent("userVc_SettingUserImageButton", parameters: nil)
         let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         actionSheet.addAction(cancelAction)

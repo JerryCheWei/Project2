@@ -108,7 +108,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
-    @IBAction func sendButton(_ sender: Any) {
+    @IBAction func sendMessageButton(_ sender: Any) {
         Analytics.logEvent("messageVc_SendMessageButton", parameters: nil)
         // send message
         let postImageID = self.imageID
@@ -123,6 +123,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
             self.textHeightConstraint.isActive = true
             self.sendButton.isEnabled = false
+            self.messageTableView.reloadData()
         }
     }
 
@@ -159,7 +160,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
         Database.database().reference().child("users").child(allMessageItem.userID!).observe(.value) { (snapshot) in
                 guard
-                    let value = snapshot.value as? [String: AnyObject],
+                    let value = snapshot.value as? [String: Any],
                     let name = value["userName"] as? String,
                     let userImageUrl = value["userImageUrl"] as? String
                     else {

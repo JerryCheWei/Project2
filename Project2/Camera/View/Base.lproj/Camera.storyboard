@@ -271,7 +271,7 @@
                                                                 <rect key="frame" x="290" y="8" width="36" height="30"/>
                                                                 <state key="normal" title="Send"/>
                                                                 <connections>
-                                                                    <action selector="sendButton:" destination="4HX-eY-zgO" eventType="touchUpInside" id="1KV-ez-DqT"/>
+                                                                    <action selector="sendMessageButton:" destination="4HX-eY-zgO" eventType="touchUpInside" id="1KV-ez-DqT"/>
                                                                 </connections>
                                                             </button>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdG-Gb-blG">
@@ -706,7 +706,9 @@
         <scene sceneID="KyE-NT-Owe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HXu-ZS-j3s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="iconHome36pt" id="tKT-Lv-IsG"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconHome36pt" id="tKT-Lv-IsG">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rql-h4-uiG">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -1004,7 +1006,9 @@
         <scene sceneID="cQe-6V-Ezt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Muy-AH-wlO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="iconIdentity36pt" id="nr2-2M-DP7"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconIdentity36pt" id="nr2-2M-DP7">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aei-pi-ztf">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
