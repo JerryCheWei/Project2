@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import Crashlytics
 
 class TabBarController: UITabBarController {
 

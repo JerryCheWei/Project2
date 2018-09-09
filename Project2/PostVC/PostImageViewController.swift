@@ -25,6 +25,7 @@ class PostImageViewController: UIViewController {
         self.userID = userID
     }
     @IBAction func messageButton(_ sender: UIButton) {
+        Analytics.logEvent("postImageVc_OpenMessageVcButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = self.postImageID {
             messageVC.commentInit(imageID)
@@ -32,6 +33,7 @@ class PostImageViewController: UIViewController {
         }
     }
     @IBAction func otherFunctionButton(_ sender: UIButton) {
+        Analytics.logEvent("postImageVc_OtherFunctionButton", parameters: nil)
         if Auth.auth().currentUser?.uid == userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",

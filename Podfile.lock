@@ -1,4 +1,7 @@
 PODS:
+  - Crashlytics (3.10.3):
+    - Fabric (~> 1.7.8)
+  - Fabric (1.7.8)
   - Firebase/Auth (5.4.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.2)
@@ -44,6 +47,8 @@ PODS:
   - Sharaku (1.0.2)
 
 DEPENDENCIES:
+  - Crashlytics (~> 3.10.2)
+  - Fabric (~> 1.7.7)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -52,6 +57,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -66,6 +73,8 @@ SPEC REPOS:
     - Sharaku
 
 SPEC CHECKSUMS:
+  Crashlytics: 2aea305161a2122492698c75af27f2b98aa49a25
+  Fabric: fba4684a95df789565b0b27fc5b6e68f1755af32
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseAuth: 096e457cdd4274412a66c4a35874787e411f5a03
@@ -79,6 +88,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Sharaku: c18de569fc99f6e936f46ca812b571826cc658a7
 
-PODFILE CHECKSUM: ffcfe1c887a9b629716094ce42672ebeef1e9013
+PODFILE CHECKSUM: 847a12ae83932fbaaac9bc0196cdc10deab3d3ea
 
 COCOAPODS: 1.5.3

@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         loadPostImage.append(loadPostImageItem)
                 }
             }
-            self.postImages = loadPostImage
+            self.postImages = loadPostImage.reversed()
             self.homeCollectionView.reloadData()
         }
 
@@ -41,6 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             else {
                 fatalError()
         }
+        cell.postImageView.image = nil
 
         let postImage = self.postImages[indexPath.row]
 
@@ -51,7 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         Database.database().reference().child("users").child(postImage.userID!).observe(.value) { (snapshot) in
             guard
-                let value = snapshot.value as? [String: AnyObject],
+                let value = snapshot.value as? [String: Any],
                 let name = value["userName"] as? String,
                 let userImageUrl = value["userImageUrl"] as? String
                 else {
@@ -74,7 +75,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 for child in snapshot.children.allObjects {
                     if let snapshot = child as? DataSnapshot {
                         guard
-                            let value = snapshot.value as? [String: AnyObject],
+                            let value = snapshot.value as? [String: Any],
                             let message = value["message"] as? String,
                             let userID = value["userID"] as? String
                             else {
@@ -83,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         loadMessage.append(message)
                         Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                             guard
-                            let value = snapshot.value as? [String: AnyObject],
+                            let value = snapshot.value as? [String: Any],
                             let name = value["userName"] as? String
                                 else {
                                     return
@@ -121,6 +122,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 extension HomeViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
+        Analytics.logEvent("homeVc_ClickUserNameButton", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
                 self.navigationController?.pushViewController(userVC, animated: true)
@@ -135,6 +137,7 @@ extension HomeViewController: CellDelegateProtocol {
         }
     }
     func passData(indexPath: Int) {
+        Analytics.logEvent("homeVc_ClickMessageButton", parameters: nil)
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName {
             messageVC.commentInit(imageID)
@@ -143,6 +146,7 @@ extension HomeViewController: CellDelegateProtocol {
     }
 
     func otherFunctionPassData(indexPath: Int) {
+        Analytics.logEvent("homeVc_ClickOtherFunctionButton", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",

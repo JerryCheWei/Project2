@@ -23,6 +23,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
     @IBOutlet weak var oneCellButton: UIButton!
     @IBAction func oneCellButton(_ sender: UIButton) {
+        Analytics.logEvent("otherUserVc_OneCellModeButton", parameters: nil)
         moreCellView.isHidden = true
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -31,6 +32,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     @IBOutlet weak var moreCellButton: UIButton!
     @IBAction func moreCellButton(_ sender: UIButton) {
+        Analytics.logEvent("otherUserVc_MoreCellModeButton", parameters: nil)
         moreCellView.isHidden = false
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -62,8 +64,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         // get header user name
         LoadUserName.loadOtherUserData(userNameLabel: self.userNameLabel, userID: self.userID)
         // 抓貼文image
-        OtherUserLoadingImage.fethImage(collectionView: oneCollectionView, userID: self.userID)
-        OtherUserMoreLoadingImage.fethImage(collectionView: moreCollectionView, userID: self.userID)
+        LoadingOtherUserPostImage.fethImage(oneCellCollectionView: oneCollectionView, moreCellCollectionView: moreCollectionView, userID: self.userID)
     }
 
     // CollectionCell nib
@@ -97,12 +98,11 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.oneCollectionView {
-            print("OtherUserLoadingImage.imageUrl.count: \(OtherUserLoadingImage.imageUrl.count)")
-            return OtherUserLoadingImage.imageUrl.count
+            print("OtherUserLoadingImage.imageUrl.count: \(LoadingOtherUserPostImage.imageUrl.count)")
+            return LoadingOtherUserPostImage.imageUrl.count
         }
         else {
-            print("OtherUserMoreLoadingImage.imageUrl.count: \(OtherUserMoreLoadingImage.imageUrl.count)")
-            return OtherUserMoreLoadingImage.imageUrl.count
+            return LoadingOtherUserPostImage.imageUrl.count
         }
     }
 
@@ -113,14 +113,14 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                     fatalError()
             }
 
-            let loadImage = OtherUserLoadingImage.imageUrl[indexPath.row]
+            let loadImage = LoadingOtherUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
                     cellOne.postImageView.image = image
                 }
             }
 
-            Database.database().reference().child("messages").child(OtherUserLoadingImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
+            Database.database().reference().child("messages").child(LoadingOtherUserPostImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                 var loadMessage = [String]()
                 loadMessage.removeAll()
                 for child in snapshot.children.allObjects {
@@ -146,7 +146,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                 }
             }
 
-            let userImageUrl = OtherUserLoadingImage.loadUserImageUrl
+            let userImageUrl = LoadingOtherUserPostImage.loadUserImageUrl
             if let url = URL(string: userImageUrl) {
                 ImageService.getImage(withURL: url, completion: { (image) in
                     cellOne.userImageView.image = image
@@ -154,7 +154,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
             }
 
             cellOne.userImageView.backgroundColor = .green
-            cellOne.userNameButton.setTitle(OtherUserLoadingImage.userName, for: .normal)
+            cellOne.userNameButton.setTitle(LoadingOtherUserPostImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath
             cellOne.messageLabel.text = " "
@@ -167,7 +167,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                     fatalError()
                 }
 
-            let loadImage = OtherUserMoreLoadingImage.imageUrl[indexPath.row]
+            let loadImage = LoadingOtherUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
                     cellMore.postImageView.image = image
@@ -189,9 +189,10 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
 extension OtherUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
+        Analytics.logEvent("otherUserVc_ClickMoreCellOpenPostImageVc", parameters: nil)
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
-            let postImageID = OtherUserMoreLoadingImage.imageUrl[index].idName,
-            let userID = OtherUserMoreLoadingImage.imageUrl[index].userID {
+            let postImageID = LoadingOtherUserPostImage.imageUrl[index].idName,
+            let userID = LoadingOtherUserPostImage.imageUrl[index].userID {
             postImageVC.commendInit(postImageID: postImageID, userID: userID)
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }
@@ -200,15 +201,17 @@ extension OtherUserViewController: SelectedCollectionItemDelegate {
 
 extension OtherUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
+        Analytics.logEvent("otherUserVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = OtherUserLoadingImage.loadImages[indexPath].idName {
+            let imageID = LoadingOtherUserPostImage.imageUrl[indexPath].idName {
             messageVC.commentInit(imageID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
 
     func otherFunctionPassData(indexPath: Int) {
-        if Auth.auth().currentUser?.uid != OtherUserMoreLoadingImage.loadImages[indexPath].userID {
+        Analytics.logEvent("otherUserVc_ClickOtherFunctionButton", parameters: nil)
+        if Auth.auth().currentUser?.uid != LoadingOtherUserPostImage.imageUrl[indexPath].userID {
             let optionMenu = UIAlertController(title: "未來擴增功能", message: nil, preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
@@ -219,14 +222,16 @@ extension OtherUserViewController: CellDelegateProtocol {
     }
 
     func userNameButton(indexPath: Int) {
-        if Auth.auth().currentUser?.uid == OtherUserLoadingImage.imageUrl[indexPath].userID {
+        if Auth.auth().currentUser?.uid == LoadingOtherUserPostImage.imageUrl[indexPath].userID {
+            Analytics.logEvent("otherUserVc_ClickSelfUserNameButton", parameters: nil)
             if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
                 self.navigationController?.pushViewController(userVC, animated: true)
             }
         }
         else {
+            Analytics.logEvent("otherUserVc_ClickUserNameButton", parameters: nil)
             if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-                let userID = OtherUserLoadingImage.imageUrl[indexPath].userID {
+                let userID = LoadingOtherUserPostImage.imageUrl[indexPath].userID {
                 otherUserVC.commentInit(userID)
                 self.navigationController?.pushViewController(otherUserVC, animated: true)
             }
