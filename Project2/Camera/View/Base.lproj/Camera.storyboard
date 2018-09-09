@@ -947,6 +947,7 @@
                                     <constraint firstAttribute="width" constant="30" id="aDl-Fc-Kfx"/>
                                     <constraint firstAttribute="height" constant="30" id="yQk-Tc-K1L"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="iconMessage36pt"/>
                                 <connections>
                                     <action selector="messageButton:" destination="2PX-fX-wXG" eventType="touchUpInside" id="5fS-ax-4YK"/>
@@ -973,6 +974,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DF-dK-Lk9">
                                 <rect key="frame" x="358" y="84" width="36" height="36"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" image="iconMoreHoriz36pt"/>
                                 <connections>
                                     <action selector="otherFunctionButton:" destination="2PX-fX-wXG" eventType="touchUpInside" id="jDj-f3-uAn"/>

@@ -69,13 +69,15 @@ class LoadingUserPostImage {
             loadUserImageUrl = userImageUrl
             imageUrl.removeAll()
             print("NewLoadingImage removeAll")
+            var images = [UserImages]()
 
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
                     if let loadImageItem = UserImages.init(snapshot: snapshot) {
-                        LoadingUserPostImage.imageUrl.append(loadImageItem)
+                        images.append(loadImageItem)
                     }
+                    LoadingUserPostImage.imageUrl = images.reversed()
                     oneCellCollectionView.reloadData()
                     moreCellCollectionView.reloadData()
                     print("NewLoadingImage class \n-> imageUrl \(imageUrl) \n-> allPostImages \(allPostImages)\n")
@@ -114,12 +116,14 @@ class LoadingOtherUserPostImage {
             LoadingOtherUserPostImage.userName = userName
             allPostImages = postImages
             loadUserImageUrl = userImageUrl
+            var images = [UserImages]()
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
 
                     if let loadImageItem = UserImages.init(snapshot: snapshot) {
-                        LoadingOtherUserPostImage.imageUrl.append(loadImageItem)
+                        images.append(loadImageItem)
                     }
+                    LoadingOtherUserPostImage.imageUrl = images.reversed()
                     oneCellCollectionView.reloadData()
                     moreCellCollectionView.reloadData()
                 }

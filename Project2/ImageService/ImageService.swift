@@ -16,9 +16,7 @@ class ImageService {
     static func downloadImage(withURL url: URL, completion: @escaping (_ image: UIImage?) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: url) { data, responseUrl, error in
             var downloadedImage: UIImage?
-
             downloadedImage = nil
-
             if let data = data {
                 downloadedImage = UIImage(data: data)
             }

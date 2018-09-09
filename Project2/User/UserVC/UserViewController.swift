@@ -139,7 +139,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
             guard
-            let value = snapshot.value as? [String: AnyObject],
+            let value = snapshot.value as? [String: Any],
             let userImageUrl = value["userImageUrl"] as? String
                 else {
                     return
@@ -209,7 +209,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                 else {
                     fatalError()
             }
-
+            cellOne.postImageView.image = nil
             let loadImage = LoadingUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
@@ -262,7 +262,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                 else {
                     fatalError()
             }
-
+            cellMore.postImageView.image = nil
             let loadImage = LoadingUserPostImage.imageUrl[indexPath.row]
             if let url = URL(string: loadImage.postUrl!) {
                 ImageService.getImage(withURL: url) { (image) in
