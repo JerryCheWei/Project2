@@ -59,7 +59,7 @@ class LoadMessage {
 
     init?(snapshot: DataSnapshot) {
         guard
-            let value = snapshot.value as? [String: AnyObject],
+            let value = snapshot.value as? [String: Any],
             let userID = value["userID"] as? String,
             let message = value["message"] as? String
             else {

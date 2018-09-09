@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2928132140295F008F4921 /* DeletePost.swift */,
-				BFEA729A2139460700F69BF0 /* NewUserVC */,
+				BFEA729A2139460700F69BF0 /* UserVC */,
 				BF2928172140F341008F4921 /* OtherUserVC */,
 			);
 			path = User;
@@ -315,7 +315,7 @@
 			path = Project2;
 			sourceTree = "<group>";
 		};
-		BFEA729A2139460700F69BF0 /* NewUserVC */ = {
+		BFEA729A2139460700F69BF0 /* UserVC */ = {
 			isa = PBXGroup;
 			children = (
 				BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */,
@@ -324,7 +324,7 @@
 				BFEA729B2139461D00F69BF0 /* OneCell */,
 				BFEA729C213946BE00F69BF0 /* MoreCell */,
 			);
-			path = NewUserVC;
+			path = UserVC;
 			sourceTree = "<group>";
 		};
 		BFEA729B2139461D00F69BF0 /* OneCell */ = {

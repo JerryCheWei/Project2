@@ -40,6 +40,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.messageUIView.layer.cornerRadius = 20
         self.messageUIView.layer.borderColor = UIColor.gray.cgColor
         self.messageUIView.layer.borderWidth = 1
+
         // table View
         self.messageTableView.estimatedRowHeight = 60
         self.messageTableView.rowHeight = UITableViewAutomaticDimension
