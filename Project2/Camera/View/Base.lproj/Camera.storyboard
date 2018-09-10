@@ -80,7 +80,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8i-eH-dnm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="696"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-48-pIv">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-48-pIv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GWQ-48-pIv" secondAttribute="height" multiplier="1:1" id="AhD-iA-QCg"/>
@@ -154,7 +154,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="HXu-ZS-j3s" kind="relationship" relationship="viewControllers" id="jBq-n3-bbh"/>
-                        <segue destination="ger-r4-hX0" kind="relationship" relationship="viewControllers" id="gze-KN-19p"/>
                         <segue destination="Muy-AH-wlO" kind="relationship" relationship="viewControllers" id="nS8-Fx-tVx"/>
                     </connections>
                 </tabBarController>
@@ -729,7 +728,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HXu-ZS-j3s" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="iconHome36pt" selectedImage="baseline_home_black_36pt" id="tKT-Lv-IsG">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                        <inset key="imageInsets" minX="-20" minY="6" maxX="20" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rql-h4-uiG">
@@ -1010,28 +1009,12 @@
             </objects>
             <point key="canvasLocation" x="1028.985507246377" y="914.67391304347836"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="GjH-g1-1ma">
-            <objects>
-                <viewController id="ger-r4-hX0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4fk-px-zLX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="7IC-As-c1p"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" id="aNg-lk-zxc"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iaL-Vt-rpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2149" y="915"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cQe-6V-Ezt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Muy-AH-wlO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="iconIdentity36pt" selectedImage="baseline_person_black_36pt" id="nr2-2M-DP7">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                        <inset key="imageInsets" minX="20" minY="6" maxX="-20" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aei-pi-ztf">
