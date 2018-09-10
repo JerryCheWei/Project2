@@ -65,6 +65,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         actionSheet.addAction(signOutAction)
 
+        let userPrivacvAction = UIAlertAction(title: "使用者隱私權條款", style: .default) { (_) in
+            if let readUserPrivacyVC = self.storyboard?.instantiateViewController(withIdentifier: "readUserPrivacyVC") as? ReadUserPrivacyViewController {
+                self.navigationController?.pushViewController(readUserPrivacyVC, animated: true)
+            }
+        }
+        actionSheet.addAction(userPrivacvAction)
+
         self.present(actionSheet, animated: true, completion: nil)
     }
 
@@ -158,6 +165,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.tintColor = .black
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
         self.oneCellButton.tintColor = UIColor.lightGray

@@ -17,6 +17,8 @@
 		BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB505212BE5DA0022693C /* LoadImage.swift */; };
 		BF2928142140295F008F4921 /* DeletePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2928132140295F008F4921 /* DeletePost.swift */; };
 		BF2928192140F37F008F4921 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2928182140F37F008F4921 /* OtherUserViewController.swift */; };
+		BF29281F21462C36008F4921 /* UserPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29281E21462C36008F4921 /* UserPrivacyViewController.swift */; };
+		BF292821214662A3008F4921 /* ReadUserPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF292820214662A3008F4921 /* ReadUserPrivacyViewController.swift */; };
 		BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2B212E7C34003E10FC /* ImageService.swift */; };
 		BF47FC30212FA5DA003E10FC /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */; };
 		BF47FC33212FA7CD003E10FC /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */; };
@@ -54,6 +56,8 @@
 		BF1FB505212BE5DA0022693C /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		BF2928132140295F008F4921 /* DeletePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePost.swift; sourceTree = "<group>"; };
 		BF2928182140F37F008F4921 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
+		BF29281E21462C36008F4921 /* UserPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivacyViewController.swift; sourceTree = "<group>"; };
+		BF292820214662A3008F4921 /* ReadUserPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUserPrivacyViewController.swift; sourceTree = "<group>"; };
 		BF47FC2B212E7C34003E10FC /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		BF47FC2F212FA5DA003E10FC /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		BF47FC32212FA7CD003E10FC /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 			path = OtherUserVC;
 			sourceTree = "<group>";
 		};
+		BF29281D21462C02008F4921 /* UserPrivacy */ = {
+			isa = PBXGroup;
+			children = (
+				BF29281E21462C36008F4921 /* UserPrivacyViewController.swift */,
+				BF292820214662A3008F4921 /* ReadUserPrivacyViewController.swift */,
+			);
+			path = UserPrivacy;
+			sourceTree = "<group>";
+		};
 		BF47FC2A212E7C10003E10FC /* ImageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +240,7 @@
 		BF492EB5212D0E1000E544A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				BF29281D21462C02008F4921 /* UserPrivacy */,
 				BF492EB6212D0E2400E544A7 /* LoginVC */,
 				BF492EB8212D0E4E00E544A7 /* SignUpVC */,
 			);
@@ -517,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF292821214662A3008F4921 /* ReadUserPrivacyViewController.swift in Sources */,
 				BF1FB4BE2129BCAF0022693C /* HomeCollectionViewCell.swift in Sources */,
 				BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */,
 				BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */,
@@ -532,6 +547,7 @@
 				BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */,
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
 				BF47FC2C212E7C34003E10FC /* ImageService.swift in Sources */,
+				BF29281F21462C36008F4921 /* UserPrivacyViewController.swift in Sources */,
 				BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */,
 				BF47FC3D212FE6C6003E10FC /* MessageModel.swift in Sources */,
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
