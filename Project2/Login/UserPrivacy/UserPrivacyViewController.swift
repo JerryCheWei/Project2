@@ -11,6 +11,8 @@ import UIKit
 class UserPrivacyViewController: UIViewController {
 
     @IBOutlet weak var agreeButton: UIButton!
+    @IBOutlet weak var disagreeButton: UIButton!
+
     @IBAction func agreeButtonAction(_ sender: Any) {
         if let signUpVC = storyboard?.instantiateViewController(withIdentifier: "signUpVC") as? SignUpViewController {
             signUpVC.commentInit(true)
@@ -20,10 +22,10 @@ class UserPrivacyViewController: UIViewController {
     @IBAction func disagree(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "使用者隱私權條款"
         navigationController?.navigationBar.tintColor = .black
     }
-
 }
