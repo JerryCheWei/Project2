@@ -158,6 +158,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.tintColor = .black
         moreCellView.isHidden = false
         self.oneCellButton.isEnabled = true
         self.oneCellButton.tintColor = UIColor.lightGray

@@ -481,7 +481,7 @@
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
                                                     <action selector="openSignUpVCButton:" destination="WZO-Qv-036" eventType="touchUpInside" id="vdq-Fv-h2x"/>
-                                                    <segue destination="Ci0-g9-Aya" kind="presentation" identifier="signupVC" id="xrG-n5-nn2"/>
+                                                    <segue destination="snL-bI-S04" kind="presentation" identifier="signupVC" id="0rZ-oR-2Le"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -525,12 +525,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f36-5L-HQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-817.39130434782612" y="-778.53260869565224"/>
+            <point key="canvasLocation" x="-1726" y="-779"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="9aJ-IK-BUC">
             <objects>
-                <viewController id="Ci0-g9-Aya" customClass="SignUpViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ci0-g9-Aya" customClass="SignUpViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HT4-fk-YEI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -711,17 +711,61 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="whw-AK-XrB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Emb-pj-akp">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Oui-Mw-bDg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="hOQ-iR-muf" id="hMK-Uk-Py1"/>
                         <outlet property="emailTextField" destination="Vfn-VA-HLE" id="2a9-lG-Nps"/>
                         <outlet property="passwordTextField" destination="pMd-7r-jd4" id="TdK-0d-z8n"/>
+                        <outlet property="sendButton" destination="Hkd-OM-eqf" id="7NX-Me-aIt"/>
                         <outlet property="userNameTextField" destination="ExY-Rl-i6p" id="NfN-kh-uY0"/>
                         <segue destination="Syl-dp-XDj" kind="presentation" identifier="successLogin" id="bzL-m4-jpO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gt-eC-QVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13.043478260869566" y="-779.34782608695662"/>
+            <point key="canvasLocation" x="894.20289855072474" y="-779.34782608695662"/>
+        </scene>
+        <!--User Privacy View Controller-->
+        <scene sceneID="exC-lN-agn">
+            <objects>
+                <viewController storyboardIdentifier="userPrivacy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IhM-JL-zqm" customClass="UserPrivacyViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S08-TR-P9T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qCo-Dr-m9g"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YEd-XB-8Ht">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="P2h-Dk-fNd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a9C-UF-BeZ">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="不同意"/>
+                                <connections>
+                                    <action selector="disagree:" destination="IhM-JL-zqm" eventType="touchUpInside" id="J5d-75-tAa"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="shT-hH-vWI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UbZ-4q-oLf">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="同意"/>
+                                <connections>
+                                    <action selector="agreeButtonAction:" destination="IhM-JL-zqm" eventType="touchUpInside" id="czQ-Sp-BVl"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="agreeButton" destination="UbZ-4q-oLf" id="I97-qz-H2R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OHE-4I-Xey" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="-779"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KyE-NT-Owe">
@@ -1199,6 +1243,24 @@
             </objects>
             <point key="canvasLocation" x="1929" y="113"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CHp-Zb-pvw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="snL-bI-S04" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tt3-bU-M3S">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IhM-JL-zqm" kind="relationship" relationship="rootViewController" id="2jY-c8-EZu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tll-eC-SHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-842" y="-779"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CameraButton" width="122" height="122"/>
@@ -1214,6 +1276,6 @@
         <image name="round_view_day_black_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5wi-AV-0l7"/>
+        <segue reference="bzL-m4-jpO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,27 +15,41 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     let successLogin = "successLogin"
+    var agreeUserPrivacy: Bool = false
+
+    func commentInit(_ agree: Bool) {
+        agreeUserPrivacy = agree
+    }
 
     @IBAction func backLoginVCButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
     }
-    func loggedin() {
-        self.clearAllTextField()
-        self.performSegue(withIdentifier: self.successLogin, sender: nil)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.sendButton.isEnabled = self.agreeUserPrivacy
+    }
+
     func clearAllTextField() {
         self.userNameTextField.text = ""
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
         self.confirmPasswordTextField.text = ""
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func loggedin() {
+        self.clearAllTextField()
+        self.performSegue(withIdentifier: self.successLogin, sender: nil)
     }
-
     func saveUserInformation() {
         guard let user = Auth.auth().currentUser
             else {
@@ -72,9 +86,10 @@ class SignUpViewController: UIViewController {
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
         } else {
-            Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { (user, error) in
+            Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.confirmPasswordTextField.text!, completion: { (user, error) in
 
                 if error == nil, user == user {
+                    // 已註冊至 Firebase
                     Auth.auth().signIn(withEmail: self.emailTextField.text!,
                                        password: self.passwordTextField.text!, completion: nil)
                     print("success sign up !!!")

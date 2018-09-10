@@ -32,6 +32,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
         navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "留言"
+        navigationController?.navigationBar.tintColor = .black
         // user cell xib
         let userNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
         messageTableView.register(userNib, forCellReuseIdentifier: "cell")
