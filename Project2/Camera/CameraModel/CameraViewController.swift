@@ -126,7 +126,8 @@ extension CameraViewController: SHViewControllerDelegate {
 
     func shViewControllerImageDidFilter(image: UIImage) {
         // 取得套用濾鏡後的 image
-        if let squaredFilteredImage: UIImage = fixOrientationOfImage(image: image.squared!) {
+        if let fixOrientationOfImage: UIImage = fixOrientationOfImage(image: image) {
+            let squaredFilteredImage: UIImage = fixOrientationOfImage.squared!
             if let filterImageData: NSData = UIImageJPEGRepresentation(squaredFilteredImage, 0.5) as NSData? {
                 UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 

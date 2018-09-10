@@ -196,7 +196,7 @@ public class SHViewController: UIViewController {
         }
         else {
             
-            return nil
+            return image
         }
 //        let filteredImage = UIImage(cgImage: outputCGImage!)
     }
