@@ -41,11 +41,14 @@
                                     <constraint firstAttribute="width" secondItem="5dV-l8-njQ" secondAttribute="height" multiplier="1:1" id="H1g-x0-NIQ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYY-bt-Xyn">
-                                <rect key="frame" x="348" y="632" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYY-bt-Xyn">
+                                <rect key="frame" x="334" y="644" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lBZ-RN-g2r"/>
+                                    <constraint firstAttribute="width" constant="40" id="qlS-6F-aJb"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="iconFlashOff"/>
                                 <connections>
                                     <action selector="cameraFlashModeButton:" destination="eMM-hO-pJ5" eventType="touchUpInside" id="L9E-uU-a7g"/>
                                 </connections>
@@ -55,7 +58,9 @@
                         <constraints>
                             <constraint firstItem="38m-hp-Jso" firstAttribute="trailing" secondItem="5dV-l8-njQ" secondAttribute="trailing" id="4SY-qJ-GqD"/>
                             <constraint firstItem="HTe-KQ-GBN" firstAttribute="centerX" secondItem="uoT-uQ-zeB" secondAttribute="centerX" id="69z-Bi-IRJ"/>
+                            <constraint firstItem="Rhh-QN-80J" firstAttribute="top" secondItem="EYY-bt-Xyn" secondAttribute="bottom" constant="52" id="AVx-z8-srD"/>
                             <constraint firstItem="5dV-l8-njQ" firstAttribute="centerX" secondItem="uoT-uQ-zeB" secondAttribute="centerX" id="VmD-Nl-TyZ"/>
+                            <constraint firstItem="38m-hp-Jso" firstAttribute="trailing" secondItem="EYY-bt-Xyn" secondAttribute="trailing" constant="40" id="gGC-y5-eya"/>
                             <constraint firstItem="5dV-l8-njQ" firstAttribute="leading" secondItem="38m-hp-Jso" secondAttribute="leading" id="hCD-Iq-gca"/>
                             <constraint firstItem="5dV-l8-njQ" firstAttribute="centerY" secondItem="uoT-uQ-zeB" secondAttribute="centerY" id="nqv-bc-e5X"/>
                             <constraint firstItem="Rhh-QN-80J" firstAttribute="top" secondItem="HTe-KQ-GBN" secondAttribute="bottom" constant="49" id="wnQ-Ze-XUI"/>
@@ -72,11 +77,12 @@
                     <connections>
                         <outlet property="cameraButton" destination="HTe-KQ-GBN" id="6pt-eN-HrQ"/>
                         <outlet property="cameraView" destination="5dV-l8-njQ" id="1MB-wq-d2s"/>
+                        <outlet property="flashButton" destination="EYY-bt-Xyn" id="Ya4-e1-cX9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jn-an-fVd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813" y="1686"/>
+            <point key="canvasLocation" x="-813.04347826086962" y="1685.8695652173915"/>
         </scene>
         <!--Send Image View Controller-->
         <scene sceneID="NpK-En-l61">
@@ -1310,6 +1316,7 @@
         <image name="CameraButton" width="122" height="122"/>
         <image name="baseline_home_black_36pt" width="36" height="36"/>
         <image name="baseline_person_black_36pt" width="36" height="36"/>
+        <image name="iconFlashOff" width="50" height="50"/>
         <image name="iconHome36pt" width="36" height="36"/>
         <image name="iconIdentity36pt" width="36" height="36"/>
         <image name="iconMessage36pt" width="36" height="36"/>

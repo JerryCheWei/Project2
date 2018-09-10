@@ -13,6 +13,7 @@ import Firebase
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
     var stillImage: UIImage?
@@ -23,7 +24,6 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
-//        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
         CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
 
     }
@@ -34,7 +34,6 @@ class CameraViewController: UIViewController {
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
-//        self.cameraView.addGestureRecognizer(toggleCameraGestureRecognizer)
     }
 
     @objc private func toggleCamera() {
@@ -84,15 +83,15 @@ class CameraViewController: UIViewController {
     @IBAction func cameraFlashModeButton(_ sender: UIButton) {
         if flash == .offFlash {
             flash = .onFlash
-            sender.setTitle("on", for: .normal)
+            sender.setImage(UIImage(named: "iconFlashOn"), for: .normal)
         }
         else if flash == .onFlash {
             flash = .autoFlash
-            sender.setTitle("auto", for: .normal)
+            sender.setImage(UIImage(named: "iconFlashAuto"), for: .normal)
         }
         else {
             flash = .offFlash
-            sender.setTitle("off", for: .normal)
+            sender.setImage(UIImage(named: "iconFlashOff"), for: .normal)
         }
     }
 
