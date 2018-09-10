@@ -13,6 +13,7 @@ import Firebase
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
     var stillImage: UIImage?
@@ -23,7 +24,6 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
-//        CameraSet.setupInputOutput(view: view, cameraButton: cameraButton)
         CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
 
     }
@@ -34,7 +34,6 @@ class CameraViewController: UIViewController {
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
-//        self.cameraView.addGestureRecognizer(toggleCameraGestureRecognizer)
     }
 
     @objc private func toggleCamera() {
@@ -64,6 +63,38 @@ class CameraViewController: UIViewController {
         CameraSet.captureSession.commitConfiguration()
     }
 
+    enum CurrentFlashMode {
+        case offFlash
+        case onFlash
+        case autoFlash
+    }
+    func getSettings(settings: AVCapturePhotoSettings, camera: AVCaptureDevice, flashMode: CurrentFlashMode) -> AVCapturePhotoSettings {
+
+        if camera.hasFlash {
+            switch flashMode {
+            case .autoFlash: settings.flashMode = .auto
+            case .onFlash: settings.flashMode = .on
+            default: settings.flashMode = .off
+            }
+        }
+        return settings
+    }
+    var flash: CurrentFlashMode = .offFlash
+    @IBAction func cameraFlashModeButton(_ sender: UIButton) {
+        if flash == .offFlash {
+            flash = .onFlash
+            sender.setImage(UIImage(named: "iconFlashOn"), for: .normal)
+        }
+        else if flash == .onFlash {
+            flash = .autoFlash
+            sender.setImage(UIImage(named: "iconFlashAuto"), for: .normal)
+        }
+        else {
+            flash = .offFlash
+            sender.setImage(UIImage(named: "iconFlashOff"), for: .normal)
+        }
+    }
+
     @IBAction func shutterButtonDidTap() {
         Analytics.logEvent("cameraVc_ClickShutterButton", parameters: nil)
         let settings = AVCapturePhotoSettings()
@@ -73,6 +104,7 @@ class CameraViewController: UIViewController {
                              kCVPixelBufferHeightKey as String: 160
                              ]
         settings.previewPhotoFormat = previewFormat
+        _ = getSettings(settings: settings, camera: CameraSet.currentDevice, flashMode: flash)
        CameraSet.stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
