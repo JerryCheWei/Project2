@@ -122,11 +122,12 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
 
             Database.database().reference().child("messages").child(LoadingOtherUserPostImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                 var loadMessage = [String]()
+                var names = [String]()
                 loadMessage.removeAll()
                 for child in snapshot.children.allObjects {
                     if let snapshot = child as? DataSnapshot {
                         guard
-                            let value = snapshot.value as? [String: AnyObject],
+                            let value = snapshot.value as? [String: Any],
                             let message = value["message"] as? String,
                             let userID = value["userID"] as? String
                             else {
@@ -135,12 +136,13 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                         loadMessage.append(message)
                         Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                             guard
-                                let value = snapshot.value as? [String: AnyObject],
+                                let value = snapshot.value as? [String: Any],
                                 let name = value["userName"] as? String
                                 else {
                                     return
                             }
-                            cellOne.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
+                            names.append(name)
+                            cellOne.messageLabel.attributedText = MessageSet.message(userName: names[0], messageText: loadMessage[0])
                         })
                     }
                 }
