@@ -41,6 +41,15 @@
                                     <constraint firstAttribute="width" secondItem="5dV-l8-njQ" secondAttribute="height" multiplier="1:1" id="H1g-x0-NIQ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYY-bt-Xyn">
+                                <rect key="frame" x="348" y="632" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cameraFlashModeButton:" destination="eMM-hO-pJ5" eventType="touchUpInside" id="L9E-uU-a7g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
