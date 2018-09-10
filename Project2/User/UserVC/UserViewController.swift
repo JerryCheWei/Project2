@@ -218,6 +218,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             Database.database().reference().child("messages").child(LoadingUserPostImage.allPostImages[indexPath.row]).observe(.value) { (snapshot) in
                     var loadMessage = [String]()
+                    var names = [String]()
                     loadMessage.removeAll()
                     for child in snapshot.children.allObjects {
                         if let snapshot = child as? DataSnapshot {
@@ -236,7 +237,8 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                                     else {
                                         return
                                 }
-                                cellOne.messageLabel.attributedText = MessageSet.message(userName: name, messageText: loadMessage[0])
+                                names.append(name)
+                                cellOne.messageLabel.attributedText = MessageSet.message(userName: names[0], messageText: loadMessage[0])
 
                             })
                         }
