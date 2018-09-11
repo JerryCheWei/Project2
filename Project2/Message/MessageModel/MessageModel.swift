@@ -31,7 +31,7 @@ class MessageModel {
     static var allMessage = [LoadMessage]()
 
     static func fetchMessage(messageTableView: UITableView, postImageID: String) {
-
+        allMessage.removeAll()
         Database.database().reference().child("messages").child(postImageID).observe(.value) { (snapshot) in
             allMessage.removeAll()
 

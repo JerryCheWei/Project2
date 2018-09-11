@@ -41,12 +41,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             else {
                 fatalError()
         }
+        let postImage = self.postImages[indexPath.row]
+
         cell.postImageView.image = nil
         cell.userImageView.image = UIImage(named: "iconUserImage")
         cell.userImageView.tintColor = .gray
         cell.userImageView.backgroundColor = .white
-
-        let postImage = self.postImages[indexPath.row]
 
         if let url = URL(string: postImage.postUrl!) {
             ImageService.getImage(withURL: url) { (image) in
@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // CellDelegate Protocol delegate
         cell.deleggate = self
         cell.indexPath = indexPath
-        cell.messageLabel.text = " "
+        cell.messageLabel.text = "\n"
 
         return cell
     }
