@@ -101,7 +101,7 @@ class PostImageViewController: UIViewController {
                         let name = value["userName"] as? String
                         else { return }
                     self.userNameLabel.text = name
-                    
+
                     if let userImageUrl = value["userImageUrl"] as? String {
                         if let url = URL(string: userImageUrl) {
                             ImageService.getImage(withURL: url) { (image) in

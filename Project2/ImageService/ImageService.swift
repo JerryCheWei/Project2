@@ -14,7 +14,7 @@ class ImageService {
     static let cache = NSCache<NSString, UIImage>()
 
     static func downloadImage(withURL url: URL, completion: @escaping (_ image: UIImage?) -> Void) {
-        let dataTask = URLSession.shared.dataTask(with: url) { data, responseUrl, error in
+        let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
             var downloadedImage: UIImage?
             downloadedImage = nil
             if let data = data {

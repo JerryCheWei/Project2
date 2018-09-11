@@ -11,6 +11,7 @@ import Firebase
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -125,5 +126,21 @@ extension SignUpViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.passwordTextField {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
+        }
+        else if textField == self.confirmPasswordTextField {
+             self.scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+        }
+        else {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
