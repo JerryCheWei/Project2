@@ -23,9 +23,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     func commentInit(_ imageID: String) {
         self.imageID = imageID
     }
-    @IBAction func reloadButton(_ sender: Any) {
-        messageTableView.reloadData()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

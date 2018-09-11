@@ -360,19 +360,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zbN-dg-oNx"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jtJ-Vc-0ah">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="ml6-Pw-cwQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SnW-ju-LnG">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Reload"/>
-                                <connections>
-                                    <action selector="reloadButton:" destination="4HX-eY-zgO" eventType="touchUpInside" id="lNq-mI-tLs"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="jtJ-Vc-0ah"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
