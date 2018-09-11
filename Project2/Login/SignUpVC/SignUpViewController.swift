@@ -11,6 +11,7 @@ import Firebase
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var backColorView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -29,12 +30,28 @@ class SignUpViewController: UIViewController {
         Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
     }
 
+    let backgroundGradientLayer = CAGradientLayer()
+    func colorSet(view: UIView ) {
+
+        backgroundGradientLayer.frame = view.bounds
+        let layer = backgroundGradientLayer
+        // 為了讓view為半透明
+        view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+
+        layer.colors = [
+            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.4).cgColor,
+            UIColor(red: 151/255, green: 67/255, blue: 240/255, alpha: 0.5).cgColor
+        ]
+        layer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        layer.endPoint = CGPoint(x: 1.0, y: 1.0)
+
+        view.layer.insertSublayer(layer, at: 0)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.isNavigationBarHidden = false
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        navigationController?.isNavigationBarHidden = true
+        colorSet(view: self.backColorView)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
