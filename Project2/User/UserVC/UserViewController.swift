@@ -86,7 +86,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             Analytics.logEvent("userVc_SignOutAlertAction", parameters: nil)
             do {
                 try Auth.auth().signOut()
-
+                LoadingUserPostImage.imageUrl.removeAll()
                 self.dismiss(animated: true, completion: nil)
             }
             catch let error {
@@ -144,17 +144,19 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             else {
                 return
         }
+        self.userImageView.image = UIImage(named: "iconUserImage")
+        self.userImageView.tintColor = .gray
+        self.userImageView.backgroundColor = .white
         Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
             guard
-            let value = snapshot.value as? [String: Any],
-            let userImageUrl = value["userImageUrl"] as? String
-                else {
-                    return
-            }
-            if let url = URL(string: userImageUrl) {
-                ImageService.getImage(withURL: url, completion: { (image) in
-                    self.userImageView.image = image
-                })
+            let value = snapshot.value as? [String: Any]
+                else { return }
+            if let userImageUrl = value["userImageUrl"] as? String {
+                if let url = URL(string: userImageUrl) {
+                    ImageService.getImage(withURL: url, completion: { (image) in
+                        self.userImageView.image = image
+                    })
+                }
             }
         }
     }
@@ -252,6 +254,9 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                         }
                     }
                 }
+            cellOne.userImageView.image = UIImage(named: "iconUserImage")
+            cellOne.userImageView.tintColor = .gray
+            cellOne.userImageView.backgroundColor = .white
 
             let userImageUrl = LoadingUserPostImage.loadUserImageUrl
             if let url = URL(string: userImageUrl) {
@@ -260,7 +265,6 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                 })
             }
 
-            cellOne.userImageView.backgroundColor = .green
             cellOne.userNameButton.setTitle(LoadingUserPostImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath

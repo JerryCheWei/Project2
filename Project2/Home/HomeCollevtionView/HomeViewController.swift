@@ -42,6 +42,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError()
         }
         cell.postImageView.image = nil
+        cell.userImageView.image = UIImage(named: "iconUserImage")
+        cell.userImageView.tintColor = .gray
+        cell.userImageView.backgroundColor = .white
 
         let postImage = self.postImages[indexPath.row]
 
@@ -53,20 +56,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         Database.database().reference().child("users").child(postImage.userID!).observe(.value) { (snapshot) in
             guard
                 let value = snapshot.value as? [String: Any],
-                let name = value["userName"] as? String,
-                let userImageUrl = value["userImageUrl"] as? String
+                let name = value["userName"] as? String
                 else {
                     return
             }
             cell.userNameButton.setTitle(name, for: .normal)
-            if let url = URL(string: userImageUrl) {
-                ImageService.getImage(withURL: url) { (image) in
-                    cell.userImageView.image = image
+
+            if let userImageUrl = value["userImageUrl"] as? String {
+                if let url = URL(string: userImageUrl) {
+                    ImageService.getImage(withURL: url) { (image) in
+                        cell.userImageView.image = image
+                    }
                 }
             }
         }
-
-        cell.userImageView.backgroundColor = .gray
 
         Database.database().reference().child("messages").child(postImage.idName!).observe(.value) { (snapshot) in
             var loadMessage = [String]()

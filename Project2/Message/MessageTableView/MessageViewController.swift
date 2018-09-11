@@ -60,17 +60,19 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func fetchUserImage() {
+        self.userImageView.image = UIImage(named: "iconUserImage")
+        self.userImageView.backgroundColor = .white
+        self.userImageView.tintColor = .gray
         if let userID = Auth.auth().currentUser?.uid {
             Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
                 guard
-                    let value = snapshot.value as? [String: AnyObject],
-                    let userImageUrl = value["userImageUrl"] as? String
-                    else {
-                        return
-                }
-                if let url = URL(string: userImageUrl) {
-                    ImageService.getImage(withURL: url) { (image) in
-                        self.userImageView.image = image
+                    let value = snapshot.value as? [String: Any]
+                    else { return }
+                if let userImageUrl = value["userImageUrl"] as? String {
+                    if let url = URL(string: userImageUrl) {
+                        ImageService.getImage(withURL: url) { (image) in
+                            self.userImageView.image = image
+                        }
                     }
                 }
             }
@@ -159,20 +161,23 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 fatalError()
         }
         let allMessageItem = MessageModel.allMessage[indexPath.row]
+        cell.userImageView.image = UIImage(named: "iconUserImage")
+        cell.userImageView.backgroundColor = .white
+        cell.userImageView.tintColor = .gray
 
         Database.database().reference().child("users").child(allMessageItem.userID!).observe(.value) { (snapshot) in
                 guard
                     let value = snapshot.value as? [String: Any],
-                    let name = value["userName"] as? String,
-                    let userImageUrl = value["userImageUrl"] as? String
-                    else {
-                        return
-                }
-            if let url = URL(string: userImageUrl) {
-                ImageService.getImage(withURL: url) { (image) in
-                    cell.userImageView.image = image
+                    let name = value["userName"] as? String
+                    else { return }
+            if let userImageUrl = value["userImageUrl"] as? String {
+                if let url = URL(string: userImageUrl) {
+                    ImageService.getImage(withURL: url) { (image) in
+                        cell.userImageView.image = image
+                    }
                 }
             }
+
             // Message Model
             cell.userMessageLabel.numberOfLines = 0
             cell.userMessageLabel.attributedText = MessageSet.message(userName: name, messageText: allMessageItem.message!)
