@@ -165,23 +165,28 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.userImageView.backgroundColor = .white
         cell.userImageView.tintColor = .gray
 
-        Database.database().reference().child("users").child(allMessageItem.userID!).observe(.value) { (snapshot) in
+        if let userID = allMessageItem.userID,
+            let message = allMessageItem.message {
+
+            cell.userMessageLabel.text = message
+            Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
                 guard
                     let value = snapshot.value as? [String: Any],
                     let name = value["userName"] as? String
                     else { return }
-            if let userImageUrl = value["userImageUrl"] as? String {
-                if let url = URL(string: userImageUrl) {
-                    ImageService.getImage(withURL: url) { (image) in
-                        cell.userImageView.image = image
+                // Message Model
+                cell.userMessageLabel.numberOfLines = 0
+                cell.userMessageLabel.attributedText = MessageSet.message(userName: name, messageText: message)
+                if let userImageUrl = value["userImageUrl"] as? String {
+                    if let url = URL(string: userImageUrl) {
+                        ImageService.getImage(withURL: url) { (image) in
+                            cell.userImageView.image = image
+                        }
                     }
                 }
             }
+        }
 
-            // Message Model
-            cell.userMessageLabel.numberOfLines = 0
-            cell.userMessageLabel.attributedText = MessageSet.message(userName: name, messageText: allMessageItem.message!)
-            }
         return cell
     }
 
