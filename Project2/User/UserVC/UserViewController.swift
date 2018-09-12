@@ -300,9 +300,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
     func userNameButton(indexPath: Int) {
         Analytics.logEvent("userVc_ClickUserNameButton", parameters: nil)
-        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-            let userID = LoadingUserPostImage.imageUrl[indexPath].userID {
-            otherUserVC.commentInit(userID)
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
             self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
     }
