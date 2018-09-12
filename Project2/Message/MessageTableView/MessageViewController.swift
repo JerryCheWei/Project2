@@ -145,6 +145,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                                 ] as [AnyHashable: Any])
     }
 
+    // open email
     func sendMail(messageUserID: String, messagesBody: String, key: String) {
         let myController: MFMailComposeViewController = MFMailComposeViewController()
         let userID = "被檢舉者 UserID:\n\(messageUserID)\n"
@@ -213,7 +214,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                 deleteAction.backgroundColor = .red
                 let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
-                    print("回報")
+                    print("留言回報")
                     completionHandler(true)
                     self.sendMail(messageUserID: MessageModel.allMessage[indexPath.row].userID!, messagesBody: MessageModel.allMessage[indexPath.row].message!, key: MessageModel.allMessage[indexPath.row].key!)
                 }
