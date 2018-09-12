@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var messageUIView: UIView!
@@ -142,6 +143,19 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                                 ] as [AnyHashable: Any])
     }
 
+    func sendMail() {
+        let myController: MFMailComposeViewController = MFMailComposeViewController()
+
+        if MFMailComposeViewController.canSendMail() {
+            myController.mailComposeDelegate = self
+            myController.setToRecipients(["jerrychang585@gmail.com"])
+            self.present(myController, animated: true, completion: nil)
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -170,17 +184,20 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             let request = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                 print("回報")
                 completionHandler(true)
+
+                self.sendMail()
+
             }
             let comfiguration = UISwipeActionsConfiguration(actions: [deleteAction, request])
             comfiguration.performsFirstActionWithFullSwipe = false
             return comfiguration
         }
         else {
-            let request = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
+            let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                 print("回報")
                 completionHandler(true)
             }
-            let comfiguration = UISwipeActionsConfiguration(actions: [request])
+            let comfiguration = UISwipeActionsConfiguration(actions: [returns])
             comfiguration.performsFirstActionWithFullSwipe = false
             return comfiguration
         }
