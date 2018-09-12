@@ -145,17 +145,28 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                                 ] as [AnyHashable: Any])
     }
 
-    func sendMail() {
+    func sendMail(messageUserID: String, messagesBody: String, key: String) {
         let myController: MFMailComposeViewController = MFMailComposeViewController()
+        let userID = "被檢舉者 UserID:\n\(messageUserID)\n"
+        let messageBody = "被檢舉留言內容:\n\(messagesBody)\n"
+        let messageRef = "檢舉留言貼文ID:\n\(imageID)/\(key)\n"
 
         if MFMailComposeViewController.canSendMail() {
             myController.mailComposeDelegate = self
-            myController.setToRecipients(["jerrychang585@gmail.com"])
+            myController.setToRecipients(["jerry.chang0912@gmail.com"])
+            myController.setSubject("檢舉留言回報")
+            myController.setMessageBody("\(userID)\n\(messageBody)\n\(messageRef) \n以下請簡短敘述檢舉理由:\n", isHTML: false)
             self.present(myController, animated: true, completion: nil)
         }
     }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+        if result == .sent {
+            let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出回報內容，將儘速審核。", preferredStyle: .alert)
+            let click = UIAlertAction(title: "確認", style: .cancel, handler: nil)
+            successSentAction.addAction(click)
+            self.present(successSentAction, animated: true, completion: nil)
+        }
     }
 
     // MARK: - Table view data source
@@ -171,21 +182,45 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     // 刪除、回報功能
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if Auth.auth().currentUser?.uid == userID {
-            let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
-                print("delete")
-                // delete firebase message database
-                let ref = Database.database().reference().child("messages").child(self.imageID)
-                let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
-                messageItem.removeValue()
-                // remove tableView cell
-                MessageModel.allMessage.remove(at: indexPath.row)
+            if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
+                let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
+                    print("delete")
+                    // delete firebase message database
+                    let ref = Database.database().reference().child("messages").child(self.imageID)
+                    let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
+                    messageItem.removeValue()
+                    // remove tableView cell
+                    MessageModel.allMessage.remove(at: indexPath.row)
 
-                completionHandler(true)
+                    completionHandler(true)
+                }
+                deleteAction.backgroundColor = .red
+                let comfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+                comfiguration.performsFirstActionWithFullSwipe = false
+                return comfiguration
             }
-            deleteAction.backgroundColor = .red
-            let comfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-            comfiguration.performsFirstActionWithFullSwipe = false
-            return comfiguration
+            else {
+                let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
+                    print("delete")
+                    // delete firebase message database
+                    let ref = Database.database().reference().child("messages").child(self.imageID)
+                    let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
+                    messageItem.removeValue()
+                    // remove tableView cell
+                    MessageModel.allMessage.remove(at: indexPath.row)
+
+                    completionHandler(true)
+                }
+                deleteAction.backgroundColor = .red
+                let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
+                    print("回報")
+                    completionHandler(true)
+                    self.sendMail(messageUserID: MessageModel.allMessage[indexPath.row].userID!, messagesBody: MessageModel.allMessage[indexPath.row].message!, key: MessageModel.allMessage[indexPath.row].key!)
+                }
+                let comfiguration = UISwipeActionsConfiguration(actions: [returns, deleteAction])
+                comfiguration.performsFirstActionWithFullSwipe = false
+                return comfiguration
+            }
         }
         else {
             if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
@@ -209,7 +244,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                     print("回報")
                     completionHandler(true)
-                    self.sendMail()
+                    self.sendMail(messageUserID: MessageModel.allMessage[indexPath.row].userID!, messagesBody: MessageModel.allMessage[indexPath.row].message!, key: MessageModel.allMessage[indexPath.row].key!)
                 }
                 let comfiguration = UISwipeActionsConfiguration(actions: [returns])
                 comfiguration.performsFirstActionWithFullSwipe = false
