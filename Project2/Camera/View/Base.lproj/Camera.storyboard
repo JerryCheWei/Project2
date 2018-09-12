@@ -209,19 +209,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4SD-uX-9F5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="rkN-b0-f69">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Wf3-oQ-G0C">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HK1-A5-guH">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Reload"/>
-                                <connections>
-                                    <action selector="reloadButton:" destination="3Da-BC-IGo" eventType="touchUpInside" id="eWX-f1-igE"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="rkN-b0-f69"/>
                     <connections>
                         <outlet property="homeCollectionView" destination="TeL-QO-P6n" id="78T-OO-Dl1"/>
                     </connections>
