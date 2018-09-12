@@ -152,28 +152,22 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         return MessageModel.allMessage.count
     }
 
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
-//            // delete firebase message
-//            if editingStyle == .delete {
-//                let ref = Database.database().reference().child("messages").child(imageID)
-//                let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
-//                messageItem.removeValue()
-//            }
-//            if editingStyle == .delete {
-//                MessageModel.allMessage.remove(at: indexPath.row)
-//                tableView.reloadData()
-//            }
-//        }
-//    }
+    // 刪除、回報功能
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
-            let deleteAction = UIContextualAction(style: .normal, title: "刪除留言") { (action, view, completionHandler) in
+            let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
                 print("delete")
+                // delete firebase message database
+                let ref = Database.database().reference().child("messages").child(self.imageID)
+                let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
+                messageItem.removeValue()
+                // remove tableView cell
+                MessageModel.allMessage.remove(at: indexPath.row)
+
                 completionHandler(true)
             }
             deleteAction.backgroundColor = .red
-            let request = UIContextualAction(style: .normal, title: "回報") { (action, view, completionHandler) in
+            let request = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                 print("回報")
                 completionHandler(true)
             }
@@ -182,7 +176,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             return comfiguration
         }
         else {
-            let request = UIContextualAction(style: .normal, title: "回報") { (action, view, completionHandler) in
+            let request = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                 print("回報")
                 completionHandler(true)
             }

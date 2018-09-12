@@ -118,6 +118,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeCollectionView.reloadData()
+    }
     @IBAction func reloadButton(_ sender: Any) {
         homeCollectionView.reloadData()
     }
