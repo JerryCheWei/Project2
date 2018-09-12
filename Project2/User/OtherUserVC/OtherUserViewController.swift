@@ -210,8 +210,9 @@ extension OtherUserViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         Analytics.logEvent("otherUserVc_ClickMessageButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = LoadingOtherUserPostImage.imageUrl[indexPath].idName {
-            messageVC.commentInit(imageID)
+            let imageID = LoadingOtherUserPostImage.imageUrl[indexPath].idName,
+        let userID = LoadingOtherUserPostImage.imageUrl[indexPath].userID {
+            messageVC.commentInit(imageID, userID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }

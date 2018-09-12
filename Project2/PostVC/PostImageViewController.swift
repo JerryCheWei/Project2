@@ -27,8 +27,9 @@ class PostImageViewController: UIViewController {
     @IBAction func messageButton(_ sender: UIButton) {
         Analytics.logEvent("postImageVc_OpenMessageVcButton", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-            let imageID = self.postImageID {
-            messageVC.commentInit(imageID)
+            let imageID = self.postImageID ,
+            let userID = self.userID {
+            messageVC.commentInit(imageID, userID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
