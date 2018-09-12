@@ -152,6 +152,46 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         return MessageModel.allMessage.count
     }
 
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
+//            // delete firebase message
+//            if editingStyle == .delete {
+//                let ref = Database.database().reference().child("messages").child(imageID)
+//                let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
+//                messageItem.removeValue()
+//            }
+//            if editingStyle == .delete {
+//                MessageModel.allMessage.remove(at: indexPath.row)
+//                tableView.reloadData()
+//            }
+//        }
+//    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
+            let deleteAction = UIContextualAction(style: .normal, title: "刪除留言") { (action, view, completionHandler) in
+                print("delete")
+                completionHandler(true)
+            }
+            deleteAction.backgroundColor = .red
+            let request = UIContextualAction(style: .normal, title: "回報") { (action, view, completionHandler) in
+                print("回報")
+                completionHandler(true)
+            }
+            let comfiguration = UISwipeActionsConfiguration(actions: [deleteAction, request])
+            comfiguration.performsFirstActionWithFullSwipe = false
+            return comfiguration
+        }
+        else {
+            let request = UIContextualAction(style: .normal, title: "回報") { (action, view, completionHandler) in
+                print("回報")
+                completionHandler(true)
+            }
+            let comfiguration = UISwipeActionsConfiguration(actions: [request])
+            comfiguration.performsFirstActionWithFullSwipe = false
+            return comfiguration
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MessageTableViewCell
             else {
