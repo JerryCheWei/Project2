@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var homeCollectionView: UICollectionView!
 
@@ -118,6 +119,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeCollectionView.reloadData()
+    }
     @IBAction func reloadButton(_ sender: Any) {
         homeCollectionView.reloadData()
     }
@@ -142,8 +147,9 @@ extension HomeViewController: CellDelegateProtocol {
     func passData(indexPath: Int) {
         Analytics.logEvent("homeVc_ClickMessageButton", parameters: nil)
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
-        let imageID = postImages[indexPath].idName {
-            messageVC.commentInit(imageID)
+        let imageID = postImages[indexPath].idName ,
+        let postUserID = postImages[indexPath].userID {
+            messageVC.commentInit(imageID, postUserID)
             self.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
@@ -175,12 +181,41 @@ extension HomeViewController: CellDelegateProtocol {
             self.present(optionMenu, animated: true, completion: nil)
         }
         else {
-            let optionMenu = UIAlertController(title: "刪除", message: "你不能刪除此貼文喔！", preferredStyle: .actionSheet)
+            let optionMenu = UIAlertController(title: "檢舉", message: "你確定要檢舉此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
                                              handler: nil)
             optionMenu.addAction(cancleAction)
+            let returns = UIAlertAction(title: "檢舉此貼文", style: .destructive) { (_) in
+                print("貼文回報")
+                self.sendMail(postImageUserID: self.postImages[indexPath].userID!, postImageID: self.postImages[indexPath].idName!)
+            }
+            optionMenu.addAction(returns)
              self.present(optionMenu, animated: true, completion: nil)
+        }
+    }
+
+    // open email
+    func sendMail(postImageUserID: String, postImageID: String) {
+        let myController: MFMailComposeViewController = MFMailComposeViewController()
+        let userID = "被檢舉者 UserID:\n\(postImageUserID)\n"
+        let postImageID = "被檢舉貼文ID:\n\(postImageID)\n"
+
+        if MFMailComposeViewController.canSendMail() {
+            myController.mailComposeDelegate = self
+            myController.setToRecipients(["jerry.chang0912@gmail.com"])
+            myController.setSubject("檢舉貼文回報")
+            myController.setMessageBody("\(userID)\n\(postImageID)\n以下請簡短敘述檢舉理由:\n", isHTML: false)
+            self.present(myController, animated: true, completion: nil)
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        if result == .sent {
+            let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出回報內容，將儘速審核。", preferredStyle: .alert)
+            let click = UIAlertAction(title: "確認", style: .cancel, handler: nil)
+            successSentAction.addAction(click)
+            self.present(successSentAction, animated: true, completion: nil)
         }
     }
 }

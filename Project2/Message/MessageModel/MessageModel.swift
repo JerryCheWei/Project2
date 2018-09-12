@@ -50,10 +50,12 @@ class MessageModel {
 class LoadMessage {
     let userID: String?
     let message: String?
+    let key: String?
 
-    init(userID: String, message: String) {
+    init(userID: String, message: String, key: String) {
         self.userID = userID
         self.message = message
+        self.key = key
     }
 
     init?(snapshot: DataSnapshot) {
@@ -64,8 +66,8 @@ class LoadMessage {
             else {
                 return nil
         }
-
         self.userID = userID
         self.message = message
+        self.key = snapshot.key
     }
 }
