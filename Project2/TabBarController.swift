@@ -28,7 +28,6 @@ class TabBarController: UITabBarController {
 
         let shape = CAShapeLayer()
         shape.lineWidth = lineWidth
-//        shape.path = UIBezierPath(rect: button.bounds).cgPath
         shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 30).cgPath
         shape.strokeColor = UIColor.black.cgColor
         shape.fillColor = UIColor.clear.cgColor

@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.colorSet(view: self.colorView)
-        self.buttonColor(button: self.loginButton, lineWidth: 3)
+//        self.buttonColor(button: self.loginButton, lineWidth: 3)
     }
 
     let backgroundGradientLayer = CAGradientLayer()
@@ -69,8 +69,8 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
 
         layer.colors = [
-            UIColor(red: 255/255, green: 224/255, blue: 49/255, alpha: 0.4).cgColor,
-            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.6).cgColor
+            UIColor(red: 255/255, green: 224/255, blue: 49/255, alpha: 0.2).cgColor,
+            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.4).cgColor
         ]
         layer.endPoint = CGPoint(x: 1.0, y: 1.0)
         layer.startPoint = CGPoint(x: 0.0, y: 0.0)

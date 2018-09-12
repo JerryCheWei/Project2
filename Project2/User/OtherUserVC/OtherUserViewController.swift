@@ -82,17 +82,19 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     }
 
     func uploadUserImage(_ userID: String) {
+        self.userImageView.image = UIImage(named: "iconUserImage")
+        self.userImageView.tintColor = .gray
+        self.userImageView.backgroundColor = .white
         Database.database().reference().child("users").child(userID).observe(.value) { (snapshot) in
             guard
-                let value = snapshot.value as? [String: AnyObject],
-                let userImageUrl = value["userImageUrl"] as? String
-                else {
-                    return
-            }
-            if let url = URL(string: userImageUrl) {
-                ImageService.getImage(withURL: url, completion: { (image) in
-                    self.userImageView.image = image
-                })
+                let value = snapshot.value as? [String: Any]
+                else { return }
+            if let userImageUrl = value["userImageUrl"] as? String {
+                if let url = URL(string: userImageUrl) {
+                    ImageService.getImage(withURL: url, completion: { (image) in
+                        self.userImageView.image = image
+                    })
+                }
             }
         }
     }
@@ -149,6 +151,9 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                 }
             }
 
+            cellOne.userImageView.backgroundColor = .white
+            cellOne.userImageView.image = UIImage(named: "iconUserImage")
+            cellOne.userImageView.tintColor = .gray
             let userImageUrl = LoadingOtherUserPostImage.loadUserImageUrl
             if let url = URL(string: userImageUrl) {
                 ImageService.getImage(withURL: url, completion: { (image) in
@@ -156,7 +161,6 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
                 })
             }
 
-            cellOne.userImageView.backgroundColor = .green
             cellOne.userNameButton.setTitle(LoadingOtherUserPostImage.userName, for: .normal)
             cellOne.deleggate = self
             cellOne.indexPath = indexPath

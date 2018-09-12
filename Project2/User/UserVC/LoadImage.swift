@@ -50,23 +50,25 @@ class LoadingUserPostImage {
         Database.database().reference(withPath: "users/\(userID)").observe(.value) { (snapshot) in
             guard
                 let value = snapshot.value as? [String: Any],
-                let userName = value["userName"] as? String,
-                let userImageUrl = value["userImageUrl"] as? String
-            else {
-                return
+                let userName = value["userName"] as? String
+            else { return }
+            LoadingUserPostImage.userName = userName
+
+            if let userImageUrl = value["userImageUrl"] as? String {
+                loadUserImageUrl = userImageUrl
             }
+
             guard
                 let postImages = value["postImages"] as? [String]
             else {
                 print("NewLoadingImage no postImages")
                 imageUrl.removeAll()
+                oneCellCollectionView.reloadData()
                 moreCellCollectionView.reloadData()
                 return
             }
 
-            LoadingUserPostImage.userName = userName
             allPostImages = postImages.reversed()
-            loadUserImageUrl = userImageUrl
             imageUrl.removeAll()
             print("NewLoadingImage removeAll")
             var images = [UserImages]()
@@ -99,9 +101,14 @@ class LoadingOtherUserPostImage {
 
         Database.database().reference(withPath: "users/\(userID)").observe(.value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any],
-                let userName = value["userName"] as? String,
-                let userImageUrl = value["userImageUrl"] as? String
+                let userName = value["userName"] as? String
                 else { return }
+            LoadingOtherUserPostImage.userName = userName
+
+            if let userImageUrl = value["userImageUrl"] as? String {
+                loadUserImageUrl = userImageUrl
+            }
+
             guard let postImages = value["postImages"] as? [String]
                 else {
                     print("NewLoadingImage no postImages")
@@ -113,9 +120,8 @@ class LoadingOtherUserPostImage {
 
             imageUrl.removeAll()
             print("NewLoadingImage removeAll")
-            LoadingOtherUserPostImage.userName = userName
+
             allPostImages = postImages.reversed()
-            loadUserImageUrl = userImageUrl
             var images = [UserImages]()
             for postImage in postImages {
                 Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in

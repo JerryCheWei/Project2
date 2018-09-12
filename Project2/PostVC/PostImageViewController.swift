@@ -81,7 +81,7 @@ class PostImageViewController: UIViewController {
         if let postImageID = self.postImageID {
             print(postImageID)
             Database.database().reference().child("postImage").child(postImageID).observe(.value) { (snapshot) in
-                guard let value = snapshot.value as? [String: AnyObject],
+                guard let value = snapshot.value as? [String: Any],
                     let userID = value["userID"] as? String,
                     let postImage = value["postUrl"] as? String
                     else {
@@ -92,17 +92,21 @@ class PostImageViewController: UIViewController {
                         self.postImageView.image = image
                     })
                 }
+
+                self.userImageView.image = UIImage(named: "iconUserImage")
+                self.userImageView.tintColor = .gray
+                self.userImageView.backgroundColor = .white
                 Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
-                    guard let value = snapshot.value as? [String: AnyObject],
-                        let name = value["userName"] as? String,
-                        let userImageUrl = value["userImageUrl"] as? String
-                        else {
-                            return
-                    }
+                    guard let value = snapshot.value as? [String: Any],
+                        let name = value["userName"] as? String
+                        else { return }
                     self.userNameLabel.text = name
-                    if let url = URL(string: userImageUrl) {
-                        ImageService.getImage(withURL: url) { (image) in
-                            self.userImageView.image = image
+
+                    if let userImageUrl = value["userImageUrl"] as? String {
+                        if let url = URL(string: userImageUrl) {
+                            ImageService.getImage(withURL: url) { (image) in
+                                self.userImageView.image = image
+                            }
                         }
                     }
                 })
