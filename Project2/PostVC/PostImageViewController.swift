@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class PostImageViewController: UIViewController {
+class PostImageViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -60,12 +61,42 @@ class PostImageViewController: UIViewController {
             self.present(optionMenu, animated: true, completion: nil)
         }
         else {
-            let optionMenu = UIAlertController(title: "未來可擴增功能", message: nil, preferredStyle: .actionSheet)
+            let optionMenu = UIAlertController(title: "檢舉", message: "你確定要檢舉此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
                                              handler: nil)
             optionMenu.addAction(cancleAction)
+
+            let returns = UIAlertAction(title: "檢舉此貼文", style: .destructive) { (_) in
+                print("貼文回報")
+                self.sendMail(postImageUserID: self.userID!, postImageID: self.postImageID!)
+            }
+            optionMenu.addAction(returns)
             self.present(optionMenu, animated: true, completion: nil)
+        }
+    }
+
+    // open email
+    func sendMail(postImageUserID: String, postImageID: String) {
+        let myController: MFMailComposeViewController = MFMailComposeViewController()
+        let userID = "被檢舉者 UserID:\n\(postImageUserID)\n"
+        let postImageID = "被檢舉貼文ID:\n\(postImageID)\n"
+
+        if MFMailComposeViewController.canSendMail() {
+            myController.mailComposeDelegate = self
+            myController.setToRecipients(["jerry.chang0912@gmail.com"])
+            myController.setSubject("檢舉貼文回報")
+            myController.setMessageBody("\(userID)\n\(postImageID)\n以下請簡短敘述檢舉理由:\n", isHTML: false)
+            self.present(myController, animated: true, completion: nil)
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        if result == .sent {
+            let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出回報內容，將儘速審核。", preferredStyle: .alert)
+            let click = UIAlertAction(title: "確認", style: .cancel, handler: nil)
+            successSentAction.addAction(click)
+            self.present(successSentAction, animated: true, completion: nil)
         }
     }
 

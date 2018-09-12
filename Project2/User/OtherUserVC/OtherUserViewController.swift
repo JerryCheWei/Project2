@@ -258,7 +258,7 @@ extension OtherUserViewController: CellDelegateProtocol {
         let myController: MFMailComposeViewController = MFMailComposeViewController()
         let userID = "被檢舉者 UserID:\n\(postImageUserID)\n"
         let postImageID = "被檢舉貼文ID:\n\(postImageID)\n"
-        
+
         if MFMailComposeViewController.canSendMail() {
             myController.mailComposeDelegate = self
             myController.setToRecipients(["jerry.chang0912@gmail.com"])
