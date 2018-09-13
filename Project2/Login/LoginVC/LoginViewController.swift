@@ -56,7 +56,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.colorSet(view: self.colorView)
+        // tap view dismissKeyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     let backgroundGradientLayer = CAGradientLayer()

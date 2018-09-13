@@ -80,10 +80,18 @@ class SignUpViewController: UIViewController {
         colorSet(view: self.backColorView)
         allLabelShadowSet()
         allTextFieldSet()
+        // tap view dismissKeyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.sendButton.isEnabled = self.agreeUserPrivacy
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 
     func clearAllTextField() {

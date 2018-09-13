@@ -71,7 +71,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         if self.messageTextView.text.isEmpty {
-            self.messageTextView.text = "Enter your message ..."
+            self.messageTextView.text = "新增留言......"
             self.messageTextView.textColor = UIColor.lightGray
             self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
             self.textHeightConstraint.isActive = true
