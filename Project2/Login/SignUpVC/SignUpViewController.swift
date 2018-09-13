@@ -21,6 +21,11 @@ class SignUpViewController: UIViewController {
     let successLogin = "successLogin"
     var agreeUserPrivacy: Bool = false
 
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!
+
     func commentInit(_ agree: Bool) {
         agreeUserPrivacy = agree
     }
@@ -36,11 +41,11 @@ class SignUpViewController: UIViewController {
         backgroundGradientLayer.frame = view.bounds
         let layer = backgroundGradientLayer
         // 為了讓view為半透明
-        view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        view.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
 
         layer.colors = [
-            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.4).cgColor,
-            UIColor(red: 151/255, green: 67/255, blue: 240/255, alpha: 0.5).cgColor
+            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.7).cgColor,
+            UIColor(red: 151/255, green: 67/255, blue: 240/255, alpha: 0.8).cgColor
         ]
         layer.startPoint = CGPoint(x: 0.0, y: 0.0)
         layer.endPoint = CGPoint(x: 1.0, y: 1.0)
@@ -48,14 +53,45 @@ class SignUpViewController: UIViewController {
         view.layer.insertSublayer(layer, at: 0)
     }
 
+    func labelShadowSet(_ label: UILabel) {
+        label.shadowOffset = CGSize(width: 1, height: 1)
+        label.shadowColor = .black
+    }
+    func allLabelShadowSet() {
+        self.labelShadowSet(self.userNameLabel)
+        self.labelShadowSet(self.emailLabel)
+        self.labelShadowSet(self.passwordLabel)
+        self.labelShadowSet(self.confirmPasswordLabel)
+    }
+
+    func textFieldSet(_ textfield: UITextField) {
+        textfield.layer.addBorder(edge: .bottom, color: .white, thickness: 1)
+    }
+    func allTextFieldSet() {
+        self.textFieldSet(self.userNameTextField)
+        self.textFieldSet(self.emailTextField)
+        self.textFieldSet(self.passwordTextField)
+        self.textFieldSet(self.confirmPasswordTextField)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         colorSet(view: self.backColorView)
+        allLabelShadowSet()
+        allTextFieldSet()
+        // tap view dismissKeyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.sendButton.isEnabled = self.agreeUserPrivacy
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 
     func clearAllTextField() {
@@ -159,5 +195,28 @@ extension SignUpViewController: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
          self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+}
+
+extension CALayer {
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        let borders = CALayer()
+
+        switch edge {
+        case .top:
+            borders.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
+        case .bottom:
+            borders.frame = CGRect(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
+        case .left:
+            borders.frame = CGRect(x: 0, y: 0 + thickness, width: thickness, height: frame.height - thickness * 2)
+        case .right:
+            borders.frame = CGRect(x: frame.width - thickness, y: 0 + thickness, width: thickness, height: frame.height - thickness * 2)
+        default:
+            break
+        }
+
+        borders.backgroundColor = color.cgColor
+
+        self.addSublayer(borders)
     }
 }

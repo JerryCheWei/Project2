@@ -123,9 +123,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewWillAppear(animated)
         homeCollectionView.reloadData()
     }
-    @IBAction func reloadButton(_ sender: Any) {
-        homeCollectionView.reloadData()
-    }
 }
 
 extension HomeViewController: CellDelegateProtocol {

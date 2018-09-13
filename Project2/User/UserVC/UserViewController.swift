@@ -234,11 +234,15 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                         if let snapshot = child as? DataSnapshot {
                             guard
                                 let value = snapshot.value as? [String: Any],
-                                let message = value["message"] as? String,
-                                let userID = value["userID"] as? String
-                                else {
-                                    return
+                                let userID = value["userID"] as? String,
+                                let message = value["message"] as? String
+                            else {
+                                loadMessage.removeAll()
+                                names.removeAll()
+                                collectionView.reloadData()
+                                return
                             }
+
                             loadMessage.append(message)
                             Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                                 guard
@@ -300,9 +304,7 @@ extension NewUserViewController: CellDelegateProtocol {
 
     func userNameButton(indexPath: Int) {
         Analytics.logEvent("userVc_ClickUserNameButton", parameters: nil)
-        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "otherUserVC") as? OtherUserViewController,
-            let userID = LoadingUserPostImage.imageUrl[indexPath].userID {
-            otherUserVC.commentInit(userID)
+        if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
             self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
     }

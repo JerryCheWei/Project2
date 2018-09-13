@@ -57,6 +57,34 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         MessageModel.fetchMessage(messageTableView: self.messageTableView, postImageID: imageID)
         // fetch user image
         self.fetchUserImage()
+        // tap view dismissKeyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        // messageTableView 呈現最新 message
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+
+            self.moveToBottom()
+        }
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        if self.messageTextView.text.isEmpty {
+            self.messageTextView.text = "新增留言......"
+            self.messageTextView.textColor = UIColor.lightGray
+            self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
+            self.textHeightConstraint.isActive = true
+            self.sendButton.isEnabled = false
+        }
+    }
+
+    func moveToBottom() {
+        if MessageModel.allMessage.count > 0 {
+            let indexPath = IndexPath(row: MessageModel.allMessage.count - 1, section: 0)
+
+            messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
     }
 
     func fetchUserImage() {
@@ -97,7 +125,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 270), animated: true)
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
     func textViewDidChange(_ textView: UITextView) {
@@ -128,6 +156,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             self.textHeightConstraint.isActive = true
             self.sendButton.isEnabled = false
             self.messageTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                self.moveToBottom()
+            }
         }
     }
 
