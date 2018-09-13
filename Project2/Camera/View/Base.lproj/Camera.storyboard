@@ -233,7 +233,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FQB-JG-Uqb">
-                                                <rect key="frame" x="0.0" y="-1" width="414" height="673"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="612"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="mq7-k6-Zio">
@@ -319,9 +319,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="FQB-JG-Uqb" firstAttribute="top" secondItem="Hgl-Ib-hac" secondAttribute="top" id="0cD-ZX-tgZ"/>
                                             <constraint firstItem="9QN-3F-cbg" firstAttribute="trailing" secondItem="FQB-JG-Uqb" secondAttribute="trailing" id="24f-TF-93f"/>
-                                            <constraint firstItem="FQB-JG-Uqb" firstAttribute="centerY" secondItem="Hgl-Ib-hac" secondAttribute="centerY" id="Ssu-VY-Pd0"/>
-                                            <constraint firstItem="9QN-3F-cbg" firstAttribute="bottom" secondItem="FQB-JG-Uqb" secondAttribute="bottom" id="YJv-c9-t0W"/>
+                                            <constraint firstItem="9QN-3F-cbg" firstAttribute="top" secondItem="FQB-JG-Uqb" secondAttribute="bottom" id="YJv-c9-t0W"/>
                                             <constraint firstAttribute="trailing" secondItem="9QN-3F-cbg" secondAttribute="trailing" id="dFM-jN-h2w"/>
                                             <constraint firstAttribute="bottom" secondItem="9QN-3F-cbg" secondAttribute="bottom" id="dZ8-s2-pvX"/>
                                             <constraint firstItem="9QN-3F-cbg" firstAttribute="leading" secondItem="Hgl-Ib-hac" secondAttribute="leading" id="klX-1U-c5J"/>
@@ -1361,6 +1361,6 @@
         <image name="round_view_day_black_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bzL-m4-jpO"/>
+        <segue reference="5wi-AV-0l7"/>
     </inferredMetricsTieBreakers>
 </document>

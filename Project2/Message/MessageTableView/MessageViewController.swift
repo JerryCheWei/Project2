@@ -57,22 +57,33 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         MessageModel.fetchMessage(messageTableView: self.messageTableView, postImageID: imageID)
         // fetch user image
         self.fetchUserImage()
-        //
-        NotificationCenter.default.addObserver(self, selector: #selector(MessageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(MessageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
+        // tap view dismissKeyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        // messageTableView 呈現最新 message
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
 
-    @objc func keyboardWillShow(_ notification:Notification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            messageTableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+            self.moveToBottom()
         }
     }
-    @objc func keyboardWillHide(_ notification:Notification) {
-        
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            messageTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        if self.messageTextView.text.isEmpty {
+            self.messageTextView.text = "Enter your message ..."
+            self.messageTextView.textColor = UIColor.lightGray
+            self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
+            self.textHeightConstraint.isActive = true
+            self.sendButton.isEnabled = false
+        }
+    }
+
+    func moveToBottom() {
+        if MessageModel.allMessage.count > 0 {
+            let indexPath = IndexPath(row: MessageModel.allMessage.count - 1, section: 0)
+
+            messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
 
@@ -145,6 +156,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             self.textHeightConstraint.isActive = true
             self.sendButton.isEnabled = false
             self.messageTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                self.moveToBottom()
+            }
         }
     }
 
