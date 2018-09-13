@@ -278,7 +278,8 @@
                                                             </button>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdG-Gb-blG">
                                                                 <rect key="frame" x="5" y="5" width="280" height="33"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 <connections>
@@ -286,7 +287,6 @@
                                                                 </connections>
                                                             </textView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="xdG-Gb-blG" firstAttribute="leading" secondItem="iu8-Q5-Xwy" secondAttribute="leading" constant="5" id="Cjk-lI-mCt"/>
                                                             <constraint firstAttribute="trailing" secondItem="pO1-pJ-TlE" secondAttribute="trailing" constant="15" id="JDN-aj-wGO"/>
@@ -305,7 +305,7 @@
                                                         </variation>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.7499464897" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="2Hd-u7-z4n"/>
                                                     <constraint firstAttribute="bottom" secondItem="iu8-Q5-Xwy" secondAttribute="bottom" constant="10" id="8Je-31-cJf"/>
@@ -1362,6 +1362,6 @@
         <image name="round_view_day_black_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5wi-AV-0l7"/>
+        <segue reference="bzL-m4-jpO"/>
     </inferredMetricsTieBreakers>
 </document>

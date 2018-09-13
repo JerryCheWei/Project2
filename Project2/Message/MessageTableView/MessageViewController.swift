@@ -125,7 +125,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 270), animated: true)
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
     func textViewDidChange(_ textView: UITextView) {
