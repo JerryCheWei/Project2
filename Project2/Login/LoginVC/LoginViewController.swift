@@ -40,12 +40,12 @@ class LoginViewController: UIViewController {
         let gradient = CAGradientLayer()
         gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
         gradient.colors = [UIColor.red.cgColor,
-                           UIColor.orange.cgColor,
-                           UIColor.yellow.cgColor]
+                           UIColor.yellow.cgColor,
+                           UIColor.orange.cgColor]
 
         let shape = CAShapeLayer()
         shape.lineWidth = lineWidth
-        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 30).cgPath
+        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 12).cgPath
         shape.strokeColor = UIColor.black.cgColor
         shape.fillColor = UIColor.clear.cgColor
         gradient.mask = shape
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.colorSet(view: self.colorView)
-//        self.buttonColor(button: self.loginButton, lineWidth: 3)
+//        self.buttonColor(button: self.loginButton, lineWidth: 5)
     }
 
     let backgroundGradientLayer = CAGradientLayer()
@@ -66,11 +66,11 @@ class LoginViewController: UIViewController {
         backgroundGradientLayer.frame = view.bounds
         let layer = backgroundGradientLayer
         // 為了讓view為半透明
-        view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        view.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
 
         layer.colors = [
-            UIColor(red: 255/255, green: 224/255, blue: 49/255, alpha: 0.2).cgColor,
-            UIColor(red: 240/255, green: 69/255, blue: 121/255, alpha: 0.4).cgColor
+            UIColor(red: 0/255, green: 189/255, blue: 130/255, alpha: 0.7).cgColor,
+            UIColor(red: 57/255, green: 102/255, blue: 224/255, alpha: 0.8).cgColor
         ]
         layer.endPoint = CGPoint(x: 1.0, y: 1.0)
         layer.startPoint = CGPoint(x: 0.0, y: 0.0)

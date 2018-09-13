@@ -57,6 +57,23 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         MessageModel.fetchMessage(messageTableView: self.messageTableView, postImageID: imageID)
         // fetch user image
         self.fetchUserImage()
+        //
+        NotificationCenter.default.addObserver(self, selector: #selector(MessageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(MessageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ notification:Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            messageTableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+        }
+    }
+    @objc func keyboardWillHide(_ notification:Notification) {
+        
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            messageTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        }
     }
 
     func fetchUserImage() {
