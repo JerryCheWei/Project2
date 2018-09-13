@@ -47,7 +47,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.messageTableView.rowHeight = UITableViewAutomaticDimension
 
         // textView place holder set
-        self.messageTextView.text = "Enter your message ..."
+        self.messageTextView.text = "新增留言......"
         self.messageTextView.textColor = UIColor.lightGray
         self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
         self.textHeightConstraint.isActive = true
@@ -150,7 +150,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         self.messageTextView.resignFirstResponder()
         self.messageTextView.text = nil
         if self.messageTextView.text.isEmpty {
-            self.messageTextView.text = "Enter your message ..."
+            self.messageTextView.text = "新增留言......"
             self.messageTextView.textColor = UIColor.lightGray
             self.textHeightConstraint = self.messageTextView.heightAnchor.constraint(equalToConstant: 30)
             self.textHeightConstraint.isActive = true
