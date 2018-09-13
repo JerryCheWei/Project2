@@ -121,7 +121,7 @@
                         <viewLayoutGuide key="safeArea" id="Dwk-XO-cDZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="pBU-L8-qb0">
-                        <barButtonItem key="rightBarButtonItem" title="分享" id="3gQ-Nu-PNe">
+                        <barButtonItem key="rightBarButtonItem" title="發佈" id="3gQ-Nu-PNe">
                             <connections>
                                 <action selector="sendButton:" destination="ijf-ip-WCC" id="SZK-Sd-b9z"/>
                             </connections>
@@ -271,6 +271,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pO1-pJ-TlE">
                                                                 <rect key="frame" x="290" y="8" width="36" height="30"/>
+                                                                <color key="tintColor" red="0.86666666670000003" green="0.47450980390000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="送出"/>
                                                                 <connections>
                                                                     <action selector="sendMessageButton:" destination="4HX-eY-zgO" eventType="touchUpInside" id="1KV-ez-DqT"/>
