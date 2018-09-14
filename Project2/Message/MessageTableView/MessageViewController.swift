@@ -232,24 +232,24 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 return comfiguration
             }
             else {
-                let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
-                    print("delete")
-                    // delete firebase message database
-                    let ref = Database.database().reference().child("messages").child(self.imageID)
-                    let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
-                    messageItem.removeValue()
-                    // remove tableView cell
-                    MessageModel.allMessage.remove(at: indexPath.row)
-
-                    completionHandler(true)
-                }
-                deleteAction.backgroundColor = .red
+//                let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
+//                    print("delete")
+//                    // delete firebase message database
+//                    let ref = Database.database().reference().child("messages").child(self.imageID)
+//                    let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
+//                    messageItem.removeValue()
+//                    // remove tableView cell
+//                    MessageModel.allMessage.remove(at: indexPath.row)
+//
+//                    completionHandler(true)
+//                }
+//                deleteAction.backgroundColor = .red
                 let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                     print("留言回報")
                     completionHandler(true)
                     self.sendMail(messageUserID: MessageModel.allMessage[indexPath.row].userID!, messagesBody: MessageModel.allMessage[indexPath.row].message!, key: MessageModel.allMessage[indexPath.row].key!)
                 }
-                let comfiguration = UISwipeActionsConfiguration(actions: [returns, deleteAction])
+                let comfiguration = UISwipeActionsConfiguration(actions: [returns])
                 comfiguration.performsFirstActionWithFullSwipe = false
                 return comfiguration
             }
