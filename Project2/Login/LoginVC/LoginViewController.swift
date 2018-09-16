@@ -11,22 +11,23 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var signVCButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var colorView: UIView!
-    let signUpVC = "signupVC"
+    let signUpVC = "signUpVC"
     let successLogin = "successLogin"
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
-        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
+//        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
         Analytics.logEvent("loginVc_openSignUpVCButton", parameters: nil)
     }
-
     @objc func openSignUpVC() {
         self.performSegue(withIdentifier: self.signUpVC, sender: nil)
     }
+
     func loggedin() {
         self.clearAllTextField()
         self.performSegue(withIdentifier: self.successLogin, sender: nil)
@@ -36,22 +37,23 @@ class LoginViewController: UIViewController {
         self.passwordTextField.text = ""
     }
 
-    func buttonColor(button: UIButton, lineWidth: CGFloat) {
-        let gradient = CAGradientLayer()
-        gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
-        gradient.colors = [UIColor.red.cgColor,
-                           UIColor.yellow.cgColor,
-                           UIColor.orange.cgColor]
-
-        let shape = CAShapeLayer()
-        shape.lineWidth = lineWidth
-        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 12).cgPath
-        shape.strokeColor = UIColor.black.cgColor
-        shape.fillColor = UIColor.clear.cgColor
-        gradient.mask = shape
-
-        button.layer.addSublayer(gradient)
-    }
+// Button 漸層外框
+//    func buttonColor(button: UIButton, lineWidth: CGFloat) {
+//        let gradient = CAGradientLayer()
+//        gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
+//        gradient.colors = [UIColor.red.cgColor,
+//                           UIColor.yellow.cgColor,
+//                           UIColor.orange.cgColor]
+//
+//        let shape = CAShapeLayer()
+//        shape.lineWidth = lineWidth
+//        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 12).cgPath
+//        shape.strokeColor = UIColor.black.cgColor
+//        shape.fillColor = UIColor.clear.cgColor
+//        gradient.mask = shape
+//
+//        button.layer.addSublayer(gradient)
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,8 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
+        self.signVCButton.layer.borderWidth = 2
+        self.signVCButton.layer.borderColor = UIColor.white.cgColor
     }
 
     @objc func dismissKeyboard() {
