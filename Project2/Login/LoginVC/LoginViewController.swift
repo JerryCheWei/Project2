@@ -105,11 +105,8 @@ class LoginViewController: UIViewController {
         }
     }
     @objc func keyboardWillHide(notify: NSNotification) {
-
-        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height/2
-            }
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
     }
 

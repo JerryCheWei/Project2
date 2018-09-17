@@ -79,26 +79,24 @@ class SignUpViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         // keyboard set
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-//    @objc func keyboardWillShow(notify: NSNotification) {
-//
-//        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y == 0 {
-//                self.view.frame.origin.y -= keyboardSize.height
-//            }
-//        }
-//    }
-//    @objc func keyboardWillHide(notify: NSNotification) {
-//
-//        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y != 0 {
-//                self.view.frame.origin.y += keyboardSize.height
-//            }
-//        }
-//    }
+    @objc func keyboardWillShow(notify: NSNotification) {
+
+        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height/3
+            }
+        }
+    }
+    @objc func keyboardWillHide(notify: NSNotification) {
+
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -192,21 +190,21 @@ extension SignUpViewController: UITextFieldDelegate {
         return true
     }
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.passwordTextField {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
-        }
-        else if textField == self.confirmPasswordTextField {
-             self.scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
-        }
-        else {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-
-        }
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if textField == self.passwordTextField {
+//            self.scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
+//        }
+//        else if textField == self.confirmPasswordTextField {
+//             self.scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+//        }
+//        else {
+//            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+//
+//        }
+//    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+//    }
 }
 
 extension CALayer {
