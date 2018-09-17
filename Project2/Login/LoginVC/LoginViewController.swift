@@ -16,6 +16,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var colorView: UIView!
     let signUpVC = "signUpVC"
     let successLogin = "successLogin"
+    let emailImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 24))
+    let passwordImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 24))
+    let emailImage = UIImage(named: "round_local_post_office_white_24pt")
+    let passwordImage = UIImage(named: "round_lock_white_24pt")
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -64,6 +68,17 @@ class LoginViewController: UIViewController {
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
         self.signVCButton.layer.borderWidth = 2
         self.signVCButton.layer.borderColor = UIColor.white.cgColor
+        //
+        self.emailTextField.leftViewMode = UITextFieldViewMode.always
+        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
+        emailImageView.tintColor = .white
+        emailImageView.contentMode = .scaleAspectFit
+        passwordImageView.tintColor = .white
+        passwordImageView.contentMode = .scaleAspectFit
+        emailImageView.image =  self.emailImage
+        self.emailTextField.leftView = emailImageView
+        passwordImageView.image =  self.passwordImage
+        self.passwordTextField.leftView = passwordImageView
     }
 
     @objc func dismissKeyboard() {
