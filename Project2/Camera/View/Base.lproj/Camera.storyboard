@@ -840,7 +840,23 @@
                     <view key="view" contentMode="scaleToFill" id="S08-TR-P9T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8W-gl-BWg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qCo-Dr-m9g" firstAttribute="bottom" secondItem="B8W-gl-BWg" secondAttribute="bottom" id="4Su-BP-LC0"/>
+                            <constraint firstItem="B8W-gl-BWg" firstAttribute="top" secondItem="qCo-Dr-m9g" secondAttribute="top" id="ABt-zQ-4br"/>
+                            <constraint firstItem="qCo-Dr-m9g" firstAttribute="trailing" secondItem="B8W-gl-BWg" secondAttribute="trailing" id="Hlw-eG-Ynn"/>
+                            <constraint firstItem="B8W-gl-BWg" firstAttribute="leading" secondItem="qCo-Dr-m9g" secondAttribute="leading" id="W0l-tC-MjT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qCo-Dr-m9g"/>
                     </view>
                     <navigationItem key="navigationItem" id="YEd-XB-8Ht">
@@ -868,6 +884,7 @@
                     <connections>
                         <outlet property="agreeButton" destination="UbZ-4q-oLf" id="I97-qz-H2R"/>
                         <outlet property="disagreeButton" destination="a9C-UF-BeZ" id="cYw-Xu-hEK"/>
+                        <outlet property="userPrivacyWebView" destination="B8W-gl-BWg" id="uGE-wW-DCF"/>
                         <segue destination="Ci0-g9-Aya" kind="presentation" identifier="signUpVC" id="JUI-5X-1F0"/>
                     </connections>
                 </viewController>
@@ -1172,10 +1189,29 @@
                     <view key="view" contentMode="scaleToFill" id="rCz-dp-JpK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIB-Rm-old">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ahq-3Z-8pq" firstAttribute="bottom" secondItem="fIB-Rm-old" secondAttribute="bottom" id="8TB-VQ-qc2"/>
+                            <constraint firstItem="Ahq-3Z-8pq" firstAttribute="trailing" secondItem="fIB-Rm-old" secondAttribute="trailing" id="L0g-x3-Oal"/>
+                            <constraint firstItem="fIB-Rm-old" firstAttribute="top" secondItem="Ahq-3Z-8pq" secondAttribute="top" id="biI-3w-7R6"/>
+                            <constraint firstItem="fIB-Rm-old" firstAttribute="leading" secondItem="Ahq-3Z-8pq" secondAttribute="leading" id="eRP-H8-2sa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ahq-3Z-8pq"/>
                     </view>
                     <navigationItem key="navigationItem" id="NPi-fW-vzv"/>
+                    <connections>
+                        <outlet property="userPrivacyWebView" destination="fIB-Rm-old" id="CDG-gz-LHJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEN-yd-VI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -230,7 +230,7 @@ class PostImage {
 
     init?(snapshot: DataSnapshot) {
         guard
-        let value = snapshot.value as? [String: AnyObject],
+        let value = snapshot.value as? [String: Any],
         let idName = value["idName"] as? String,
         let postUrl = value["postUrl"] as? String,
         let userID = value["userID"] as? String
