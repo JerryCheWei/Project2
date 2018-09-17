@@ -11,22 +11,27 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var signVCButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var colorView: UIView!
-    let signUpVC = "signupVC"
+    let signUpVC = "signUpVC"
     let successLogin = "successLogin"
+    let emailImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 24))
+    let passwordImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 24))
+    let emailImage = UIImage(named: "round_local_post_office_white_24pt")
+    let passwordImage = UIImage(named: "round_lock_white_24pt")
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
-        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
+//        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
         Analytics.logEvent("loginVc_openSignUpVCButton", parameters: nil)
     }
-
     @objc func openSignUpVC() {
         self.performSegue(withIdentifier: self.signUpVC, sender: nil)
     }
+
     func loggedin() {
         self.clearAllTextField()
         self.performSegue(withIdentifier: self.successLogin, sender: nil)
@@ -36,22 +41,43 @@ class LoginViewController: UIViewController {
         self.passwordTextField.text = ""
     }
 
-    func buttonColor(button: UIButton, lineWidth: CGFloat) {
-        let gradient = CAGradientLayer()
-        gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
-        gradient.colors = [UIColor.red.cgColor,
-                           UIColor.yellow.cgColor,
-                           UIColor.orange.cgColor]
-
-        let shape = CAShapeLayer()
-        shape.lineWidth = lineWidth
-        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 12).cgPath
-        shape.strokeColor = UIColor.black.cgColor
-        shape.fillColor = UIColor.clear.cgColor
-        gradient.mask = shape
-
-        button.layer.addSublayer(gradient)
+    func textFieldSet(_ textfield: UITextField) {
+        textfield.layer.addBorder(edge: .bottom, color: .white, thickness: 1)
     }
+    func allTextFieldSet() {
+        self.textFieldSet(self.emailTextField)
+        self.textFieldSet(self.passwordTextField)
+
+        // leftImageView
+        self.emailTextField.leftViewMode = UITextFieldViewMode.always
+        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
+        emailImageView.tintColor = .white
+        emailImageView.contentMode = .scaleAspectFit
+        passwordImageView.tintColor = .white
+        passwordImageView.contentMode = .scaleAspectFit
+        emailImageView.image =  self.emailImage
+        self.emailTextField.leftView = emailImageView
+        passwordImageView.image =  self.passwordImage
+        self.passwordTextField.leftView = passwordImageView
+    }
+
+// Button 漸層外框
+//    func buttonColor(button: UIButton, lineWidth: CGFloat) {
+//        let gradient = CAGradientLayer()
+//        gradient.frame =  CGRect(origin: CGPoint.zero, size: button.frame.size)
+//        gradient.colors = [UIColor.red.cgColor,
+//                           UIColor.yellow.cgColor,
+//                           UIColor.orange.cgColor]
+//
+//        let shape = CAShapeLayer()
+//        shape.lineWidth = lineWidth
+//        shape.path = UIBezierPath(roundedRect: button.bounds, cornerRadius: 12).cgPath
+//        shape.strokeColor = UIColor.black.cgColor
+//        shape.fillColor = UIColor.clear.cgColor
+//        gradient.mask = shape
+//
+//        button.layer.addSublayer(gradient)
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +85,32 @@ class LoginViewController: UIViewController {
         // tap view dismissKeyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        // keyboard set
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
+        self.signVCButton.layer.borderWidth = 2
+        self.signVCButton.layer.borderColor = UIColor.white.cgColor
+
+        self.allTextFieldSet()
+    }
+
+    @objc func keyboardWillShow(notify: NSNotification) {
+
+        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height/2
+            }
+        }
+    }
+    @objc func keyboardWillHide(notify: NSNotification) {
+
+        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height/2
+            }
+        }
     }
 
     @objc func dismissKeyboard() {

@@ -13,7 +13,7 @@ class SendImageViewController: UIViewController {
 
     var filterImage: UIImage?
     @IBOutlet weak var sendImageView: UIImageView!
-    @IBOutlet weak var sendButton: UIBarButtonItem!
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     var readImages: [String] = []
     // Database Ref
@@ -130,12 +130,16 @@ class SendImageViewController: UIViewController {
     }
 
     // 分享按鈕
-    @IBAction func sendButton(_ sender: UIBarButtonItem) {
+    @IBAction func sendButton(_ sender: UIButton) {
         Analytics.logEvent("sendImageVc_sendImageButton", parameters: nil)
         // 重設進度條
         progressView.progress = 0
         scrollView.addSubview(progressView)
         sender.isEnabled = false
+        if sender.isEnabled == false {
+            sender.backgroundColor = .lightGray
+            sender.tintColor = .black
+        }
 
         if let imageData = UserDefaults.standard.object(forKey: "gatFilterImage") as? Data {
             uploadImageToFirebaseStorage(data: imageData)

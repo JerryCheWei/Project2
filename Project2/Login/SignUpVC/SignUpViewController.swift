@@ -19,20 +19,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     let successLogin = "successLogin"
-    var agreeUserPrivacy: Bool = false
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var confirmPasswordLabel: UILabel!
 
-    func commentInit(_ agree: Bool) {
-        agreeUserPrivacy = agree
-    }
-
     @IBAction func backLoginVCButton(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
         Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     let backgroundGradientLayer = CAGradientLayer()
@@ -83,11 +78,27 @@ class SignUpViewController: UIViewController {
         // tap view dismissKeyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        // keyboard set
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.sendButton.isEnabled = self.agreeUserPrivacy
-    }
+
+//    @objc func keyboardWillShow(notify: NSNotification) {
+//
+//        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0 {
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//    @objc func keyboardWillHide(notify: NSNotification) {
+//
+//        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)

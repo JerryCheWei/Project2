@@ -12,13 +12,12 @@ class UserPrivacyViewController: UIViewController {
 
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var disagreeButton: UIButton!
+    let signUpVC = "signUpVC"
 
-    @IBAction func agreeButtonAction(_ sender: Any) {
-        if let signUpVC = storyboard?.instantiateViewController(withIdentifier: "signUpVC") as? SignUpViewController {
-            signUpVC.commentInit(true)
-            navigationController?.pushViewController(signUpVC, animated: true)
-        }
+    @IBAction func agreeButtonAction(_ sender: UIButton) {
+         self.performSegue(withIdentifier: signUpVC, sender: nil)
     }
+
     @IBAction func disagree(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -28,4 +27,5 @@ class UserPrivacyViewController: UIViewController {
         navigationItem.title = "使用者隱私權條款"
         navigationController?.navigationBar.tintColor = .black
     }
+
 }
