@@ -497,7 +497,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="4yn-HV-w41"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                                                         <color key="tintColor" red="0.9951923077" green="0.9903846154" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <state key="normal" title="註冊"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -580,22 +580,25 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="註冊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3p-ig-A2d">
-                                                <rect key="frame" x="167.33333333333334" y="50" width="80" height="48"/>
+                                                <rect key="frame" x="167" y="50" width="80" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="7kx-1Q-l75"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="gJJ-vZ-rEC">
-                                                <rect key="frame" x="87" y="107.99999999999997" width="240" height="478.33333333333326"/>
+                                                <rect key="frame" x="87" y="108.00000000000003" width="240" height="442.66666666666674"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-cP-FhD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="375.66666666666669"/>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-cP-FhD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="360.66666666666669"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mgR-xs-HdF">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mgR-xs-HdF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="67.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用者名稱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ur-Z1-1QP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -623,11 +626,11 @@
                                                                     <constraint firstAttribute="trailing" secondItem="ExY-Rl-i6p" secondAttribute="trailing" id="y2a-E5-GgW"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hqm-Wu-POQ">
-                                                                <rect key="frame" x="0.0" y="102.66666666666666" width="240" height="67.666666666666657"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hqm-Wu-POQ">
+                                                                <rect key="frame" x="0.0" y="97.666666666666657" width="240" height="67.666666666666657"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="創建登入帳號 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vg-HI-g8Q">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="106.66666666666667" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -655,11 +658,11 @@
                                                                     <constraint firstAttribute="trailing" secondItem="Vfn-VA-HLE" secondAttribute="trailing" id="x4o-mW-fKb"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uTD-dQ-Xtw">
-                                                                <rect key="frame" x="0.0" y="205.33333333333331" width="240" height="67.666666666666686"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uTD-dQ-Xtw">
+                                                                <rect key="frame" x="0.0" y="195.33333333333331" width="240" height="67.666666666666686"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="創建密碼" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ut-lJ-cel">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -687,11 +690,11 @@
                                                                     <constraint firstAttribute="trailing" secondItem="pMd-7r-jd4" secondAttribute="trailing" id="Ptc-e4-b2e"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WJU-BG-sVB">
-                                                                <rect key="frame" x="0.0" y="308" width="240" height="67.666666666666686"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WJU-BG-sVB">
+                                                                <rect key="frame" x="0.0" y="293" width="240" height="67.666666666666686"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認密碼" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZi-kg-90q">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -733,17 +736,18 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkd-OM-eqf">
-                                                        <rect key="frame" x="40" y="415.66666666666663" width="160" height="62.666666666666686"/>
+                                                        <rect key="frame" x="40" y="400.66666666666663" width="160" height="42"/>
                                                         <color key="backgroundColor" red="0.98962027133611108" green="0.25520572520555551" blue="0.37791308431388887" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="94C-pn-0jh"/>
+                                                            <constraint firstAttribute="height" constant="42" id="Qc3-n1-SJs"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="送出"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
+                                                                <integer key="value" value="21"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -772,7 +776,6 @@
                                         <constraints>
                                             <constraint firstItem="gJJ-vZ-rEC" firstAttribute="top" secondItem="Z3p-ig-A2d" secondAttribute="bottom" constant="10" id="6Hl-c8-JHK"/>
                                             <constraint firstItem="6Hu-xt-ds2" firstAttribute="top" secondItem="apu-bG-h2y" secondAttribute="top" constant="10" id="NXJ-A5-aEZ"/>
-                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="gJJ-vZ-rEC" secondAttribute="bottom" constant="129.66999999999999" id="TPQ-be-BGW"/>
                                             <constraint firstItem="Z3p-ig-A2d" firstAttribute="centerX" secondItem="apu-bG-h2y" secondAttribute="centerX" id="Vct-Dr-WVO"/>
                                             <constraint firstItem="6Hu-xt-ds2" firstAttribute="leading" secondItem="apu-bG-h2y" secondAttribute="leading" constant="20" id="ZqJ-4M-Ink"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="6Hu-xt-ds2" secondAttribute="trailing" constant="318" id="eSR-ov-f3c"/>
@@ -1421,6 +1424,6 @@
         <image name="round_view_day_black_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5wi-AV-0l7"/>
+        <segue reference="bzL-m4-jpO"/>
     </inferredMetricsTieBreakers>
 </document>

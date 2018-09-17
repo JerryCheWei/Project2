@@ -41,6 +41,26 @@ class LoginViewController: UIViewController {
         self.passwordTextField.text = ""
     }
 
+    func textFieldSet(_ textfield: UITextField) {
+        textfield.layer.addBorder(edge: .bottom, color: .white, thickness: 1)
+    }
+    func allTextFieldSet() {
+        self.textFieldSet(self.emailTextField)
+        self.textFieldSet(self.passwordTextField)
+
+        // leftImageView
+        self.emailTextField.leftViewMode = UITextFieldViewMode.always
+        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
+        emailImageView.tintColor = .white
+        emailImageView.contentMode = .scaleAspectFit
+        passwordImageView.tintColor = .white
+        passwordImageView.contentMode = .scaleAspectFit
+        emailImageView.image =  self.emailImage
+        self.emailTextField.leftView = emailImageView
+        passwordImageView.image =  self.passwordImage
+        self.passwordTextField.leftView = passwordImageView
+    }
+
 // Button 漸層外框
 //    func buttonColor(button: UIButton, lineWidth: CGFloat) {
 //        let gradient = CAGradientLayer()
@@ -68,17 +88,8 @@ class LoginViewController: UIViewController {
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
         self.signVCButton.layer.borderWidth = 2
         self.signVCButton.layer.borderColor = UIColor.white.cgColor
-        //
-        self.emailTextField.leftViewMode = UITextFieldViewMode.always
-        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
-        emailImageView.tintColor = .white
-        emailImageView.contentMode = .scaleAspectFit
-        passwordImageView.tintColor = .white
-        passwordImageView.contentMode = .scaleAspectFit
-        emailImageView.image =  self.emailImage
-        self.emailTextField.leftView = emailImageView
-        passwordImageView.image =  self.passwordImage
-        self.passwordTextField.leftView = passwordImageView
+
+        self.allTextFieldSet()
     }
 
     @objc func dismissKeyboard() {

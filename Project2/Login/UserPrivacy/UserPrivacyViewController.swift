@@ -27,4 +27,5 @@ class UserPrivacyViewController: UIViewController {
         navigationItem.title = "使用者隱私權條款"
         navigationController?.navigationBar.tintColor = .black
     }
+
 }

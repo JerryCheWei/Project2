@@ -19,20 +19,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     let successLogin = "successLogin"
-//    var agreeUserPrivacy: Bool = false
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var confirmPasswordLabel: UILabel!
 
-//    func commentInit(_ agree: Bool) {
-//        agreeUserPrivacy = agree
-//    }
-
     @IBAction func backLoginVCButton(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
         Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     let backgroundGradientLayer = CAGradientLayer()
