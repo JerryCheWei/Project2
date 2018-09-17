@@ -175,6 +175,13 @@ extension HomeViewController: CellDelegateProtocol {
             }
             optionMenu.addAction(deleteAction)
 
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
             self.present(optionMenu, animated: true, completion: nil)
         }
         else {
@@ -188,6 +195,14 @@ extension HomeViewController: CellDelegateProtocol {
                 self.sendMail(postImageUserID: self.postImages[indexPath].userID!, postImageID: self.postImages[indexPath].idName!)
             }
             optionMenu.addAction(returns)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
              self.present(optionMenu, animated: true, completion: nil)
         }
     }

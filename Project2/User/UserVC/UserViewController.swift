@@ -44,7 +44,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.oneCellButton.tintColor = UIColor.lightGray
     }
 
-    @IBAction func settingUserImageButton(_ sender: UIButton) {
+    @IBAction func settingUserImageButton(_ sender: AnyObject) {
         Analytics.logEvent("userVc_SettingUserImageButton", parameters: nil)
         let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -71,6 +71,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
         }
         actionSheet.addAction(userPrivacvAction)
+
+        // iPad
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
 
         self.present(actionSheet, animated: true, completion: nil)
     }
@@ -339,6 +346,13 @@ extension NewUserViewController: CellDelegateProtocol {
                 }
             }
             optionMenu.addAction(deleteAction)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
 
             self.present(optionMenu, animated: true, completion: nil)
         }

@@ -287,6 +287,9 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pO1-pJ-TlE">
                                                                 <rect key="frame" x="290" y="5" width="36" height="33"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="3ia-gb-CdO"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="tintColor" red="0.86666666670000003" green="0.47450980390000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="送出"/>
@@ -297,9 +300,12 @@
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdG-Gb-blG">
                                                                 <rect key="frame" x="5" y="5" width="280" height="33"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="wOV-oT-siT"/>
+                                                                </constraints>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="4HX-eY-zgO" id="tQg-22-5bt"/>
                                                                 </connections>
@@ -308,7 +314,6 @@
                                                         <constraints>
                                                             <constraint firstItem="xdG-Gb-blG" firstAttribute="leading" secondItem="iu8-Q5-Xwy" secondAttribute="leading" constant="5" id="Cjk-lI-mCt"/>
                                                             <constraint firstAttribute="trailing" secondItem="pO1-pJ-TlE" secondAttribute="trailing" constant="15" id="JDN-aj-wGO"/>
-                                                            <constraint firstItem="pO1-pJ-TlE" firstAttribute="leading" secondItem="iu8-Q5-Xwy" secondAttribute="leading" constant="290" id="WhB-Rs-Z4I"/>
                                                             <constraint firstAttribute="bottom" secondItem="pO1-pJ-TlE" secondAttribute="bottom" constant="5" id="ZXi-eE-va2"/>
                                                             <constraint firstItem="xdG-Gb-blG" firstAttribute="top" secondItem="iu8-Q5-Xwy" secondAttribute="top" constant="5" id="ddS-vW-ZM8"/>
                                                             <constraint firstItem="pO1-pJ-TlE" firstAttribute="leading" secondItem="xdG-Gb-blG" secondAttribute="trailing" constant="5" id="i1h-hd-idU"/>

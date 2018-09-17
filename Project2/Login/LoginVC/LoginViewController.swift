@@ -118,7 +118,7 @@ class LoginViewController: UIViewController {
 
     func colorSet(view: UIView ) {
 
-        backgroundGradientLayer.frame = view.bounds
+        backgroundGradientLayer.frame = self.view.frame
         let layer = backgroundGradientLayer
         // 為了讓view為半透明
         view.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)

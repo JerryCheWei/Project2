@@ -232,6 +232,14 @@ extension OtherUserViewController: CellDelegateProtocol {
                 self.sendMail(postImageUserID: LoadingOtherUserPostImage.imageUrl[indexPath].userID!, postImageID: LoadingOtherUserPostImage.imageUrl[indexPath].idName!)
             }
             optionMenu.addAction(returns)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
             self.present(optionMenu, animated: true, completion: nil)
         }
     }
