@@ -1,0 +1,90 @@
+
+/* Class = "UILabel"; text = "創建登入帳號 "; ObjectID = "1vg-HI-g8Q"; */
+"1vg-HI-g8Q.text" = "創建登入帳號 ";
+
+/* Class = "UILabel"; text = "使用者名稱"; ObjectID = "4Ur-Z1-1QP"; */
+"4Ur-Z1-1QP.text" = "使用者名稱";
+
+/* Class = "UITextField"; placeholder = "輸入密碼"; ObjectID = "58K-xt-8l0"; */
+"58K-xt-8l0.placeholder" = "輸入密碼";
+
+/* Class = "UIButton"; normalTitle = "發佈"; ObjectID = "5qn-4o-k1G"; */
+"5qn-4o-k1G.normalTitle" = "發佈";
+
+/* Class = "UIButton"; normalTitle = "返回登入"; ObjectID = "6Hu-xt-ds2"; */
+"6Hu-xt-ds2.normalTitle" = "返回登入";
+
+/* Class = "UILabel"; text = "創建密碼"; ObjectID = "9Ut-lJ-cel"; */
+"9Ut-lJ-cel.text" = "創建密碼";
+
+/* Class = "UITextField"; placeholder = "輸入名稱"; ObjectID = "ExY-Rl-i6p"; */
+"ExY-Rl-i6p.placeholder" = "輸入名稱";
+
+/* Class = "UIButton"; normalTitle = "送出"; ObjectID = "Hkd-OM-eqf"; */
+"Hkd-OM-eqf.normalTitle" = "送出";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "I7h-cF-ca5"; */
+"I7h-cF-ca5.text" = "Name";
+
+/* Class = "UILabel"; text = "Share Your Own Scence"; ObjectID = "J11-OS-krL"; */
+"J11-OS-krL.text" = "Share Your Own Scence";
+
+/* Class = "UINavigationItem"; title = "相機"; ObjectID = "J5v-nu-KbM"; */
+"J5v-nu-KbM.title" = "相機";
+
+/* Class = "UILabel"; text = "SYOS"; ObjectID = "JeW-X6-rY4"; */
+"JeW-X6-rY4.text" = "SYOS";
+
+/* Class = "UINavigationItem"; title = "相片"; ObjectID = "LC4-Qj-c1R"; */
+"LC4-Qj-c1R.title" = "相片";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Oui-Mw-bDg"; */
+"Oui-Mw-bDg.title" = " ";
+
+/* Class = "UILabel"; text = "確認密碼"; ObjectID = "SZi-kg-90q"; */
+"SZi-kg-90q.text" = "確認密碼";
+
+/* Class = "UIButton"; normalTitle = "同意"; ObjectID = "UbZ-4q-oLf"; */
+"UbZ-4q-oLf.normalTitle" = "同意";
+
+/* Class = "UITextField"; placeholder = "輸入電子郵件"; ObjectID = "Vfn-VA-HLE"; */
+"Vfn-VA-HLE.placeholder" = "輸入電子郵件";
+
+/* Class = "UINavigationItem"; title = "使用者隱私權條款"; ObjectID = "YEd-XB-8Ht"; */
+"YEd-XB-8Ht.title" = "使用者隱私權條款";
+
+/* Class = "UILabel"; text = "註冊"; ObjectID = "Z3p-ig-A2d"; */
+"Z3p-ig-A2d.text" = "註冊";
+
+/* Class = "UITextField"; placeholder = "輸入帳號(電子郵件)"; ObjectID = "a21-WH-RSI"; */
+"a21-WH-RSI.placeholder" = "輸入帳號(電子郵件)";
+
+/* Class = "UIButton"; normalTitle = "不同意"; ObjectID = "a9C-UF-BeZ"; */
+"a9C-UF-BeZ.normalTitle" = "不同意";
+
+/* Class = "UIBarButtonItem"; title = "取消"; ObjectID = "gIo-vb-dwc"; */
+"gIo-vb-dwc.title" = "取消";
+
+/* Class = "UIButton"; normalTitle = "註冊"; ObjectID = "hKG-AD-NLy"; */
+"hKG-AD-NLy.normalTitle" = "註冊";
+
+/* Class = "UITextField"; placeholder = "輸入確認密碼"; ObjectID = "hOQ-iR-muf"; */
+"hOQ-iR-muf.placeholder" = "輸入確認密碼";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "nPQ-bl-YHX"; */
+"nPQ-bl-YHX.text" = "Name";
+
+/* Class = "UITextField"; placeholder = "輸入密碼"; ObjectID = "pMd-7r-jd4"; */
+"pMd-7r-jd4.placeholder" = "輸入密碼";
+
+/* Class = "UIButton"; normalTitle = "送出"; ObjectID = "pO1-pJ-TlE"; */
+"pO1-pJ-TlE.normalTitle" = "送出";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "rkN-b0-f69"; */
+"rkN-b0-f69.title" = "Home";
+
+/* Class = "UIButton"; normalTitle = "登入"; ObjectID = "t7C-T2-brh"; */
+"t7C-T2-brh.normalTitle" = "登入";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "tqd-dc-IWH"; */
+"tqd-dc-IWH.text" = "Name";
