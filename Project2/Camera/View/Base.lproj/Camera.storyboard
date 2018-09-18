@@ -132,7 +132,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Dwk-XO-cDZ" firstAttribute="trailing" secondItem="k8i-eH-dnm" secondAttribute="trailing" id="NOf-ca-jnf"/>
                             <constraint firstItem="Dwk-XO-cDZ" firstAttribute="bottom" secondItem="k8i-eH-dnm" secondAttribute="bottom" id="Tlq-lj-iWw"/>
