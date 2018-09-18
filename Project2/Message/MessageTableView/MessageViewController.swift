@@ -80,7 +80,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
                 let frame = value.cgRectValue
                 let intersection = frame.intersection(self.view.frame)
-                self.messageViewBottom.constant += intersection.height
+                self.messageViewBottom.constant = intersection.height
 
                 UIView.animate(withDuration: duration, delay: 0.0,
                                options: UIViewAnimationOptions(rawValue: curve), animations: {

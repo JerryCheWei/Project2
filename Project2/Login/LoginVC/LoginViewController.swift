@@ -11,6 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var signVCButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var colorView: UIView!
@@ -30,6 +31,14 @@ class LoginViewController: UIViewController {
     }
     @objc func openSignUpVC() {
         self.performSegue(withIdentifier: self.signUpVC, sender: nil)
+    }
+
+    func labelShadowSet(_ label: UILabel) {
+        label.shadowOffset = CGSize(width: 1.3, height: 1.3)
+        label.shadowColor = .black
+    }
+    func allLabelShadowSet() {
+        self.labelShadowSet(self.appTitle)
     }
 
     func loggedin() {
@@ -81,6 +90,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.allLabelShadowSet()
         self.colorSet(view: self.colorView)
         // tap view dismissKeyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
