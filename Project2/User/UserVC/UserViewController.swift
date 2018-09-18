@@ -27,7 +27,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     @IBOutlet weak var oneCellButton: UIButton!
     @IBAction func oneCellButton(_ sender: UIButton) {
-        Analytics.logEvent("userVc_OneCellModeButton", parameters: nil)
+        Analytics.logEvent("user_one_cell_mode_button", parameters: nil)
         moreCellView.isHidden = true
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -36,7 +36,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     @IBOutlet weak var moreCellButton: UIButton!
     @IBAction func moreCellButton(_ sender: UIButton) {
-        Analytics.logEvent("userVc_MoreCellModeButton", parameters: nil)
+        Analytics.logEvent("user_more_cell_mode_button", parameters: nil)
         moreCellView.isHidden = false
         sender.isEnabled = false
         sender.tintColor = UIColor.blue
@@ -45,13 +45,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 
     @IBAction func settingUserImageButton(_ sender: AnyObject) {
-        Analytics.logEvent("userVc_SettingUserImageButton", parameters: nil)
+        Analytics.logEvent("user_setting_user_image_button", parameters: nil)
         let actionSheet = UIAlertController(title: "上傳頭像", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         actionSheet.addAction(cancelAction)
 
         let updataAction = UIAlertAction(title: "相簿選取", style: .default) { (_) in
-            Analytics.logEvent("userVc_UsePhotoLibraryUpdateUserImage", parameters: nil)
+            Analytics.logEvent("user_use_photo_library_update_user_image", parameters: nil)
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
             picker.delegate = self
@@ -90,7 +90,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         actionController.addAction(cancelAction)
 
         let signoutAction = UIAlertAction(title: "登出", style: .destructive) { _ in
-            Analytics.logEvent("userVc_SignOutAlertAction", parameters: nil)
+            Analytics.logEvent("user_sign_out_alert_action", parameters: nil)
             do {
                 try Auth.auth().signOut()
                 LoadingUserPostImage.imageUrl.removeAll()
@@ -310,14 +310,14 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension NewUserViewController: CellDelegateProtocol {
 
     func userNameButton(indexPath: Int) {
-        Analytics.logEvent("userVc_ClickUserNameButton", parameters: nil)
+        Analytics.logEvent("user_click_user_name_button", parameters: nil)
         if let otherUserVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
             self.navigationController?.pushViewController(otherUserVC, animated: true)
         }
     }
 
     func otherFunctionPassData(indexPath: Int) {
-        Analytics.logEvent("userVc_ClickOtherFunctionButton", parameters: nil)
+        Analytics.logEvent("home_click_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == LoadingUserPostImage.imageUrl[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
@@ -359,7 +359,7 @@ extension NewUserViewController: CellDelegateProtocol {
     }
 
     func passData(indexPath: Int) {
-        Analytics.logEvent("userVc_ClickMessageButton", parameters: nil)
+        Analytics.logEvent("user_click_message_button", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = LoadingUserPostImage.imageUrl[indexPath].idName ,
             let userID = LoadingUserPostImage.imageUrl[indexPath].userID {
@@ -370,7 +370,7 @@ extension NewUserViewController: CellDelegateProtocol {
 }
 extension NewUserViewController: SelectedCollectionItemDelegate {
     func selectedCollectionItem(index: Int) {
-        Analytics.logEvent("userVc_ClickMoreCellOpenPostImageVc", parameters: nil)
+        Analytics.logEvent("user_click_more_cell_open_post_image", parameters: nil)
         if let postImageVC = storyboard?.instantiateViewController(withIdentifier: "postImageVC") as? PostImageViewController,
             let postImageID = LoadingUserPostImage.imageUrl[index].idName,
             let userID = LoadingUserPostImage.imageUrl[index].userID {

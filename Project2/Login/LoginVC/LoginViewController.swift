@@ -26,11 +26,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
-//        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
-        Analytics.logEvent("loginVc_openSignUpVCButton", parameters: nil)
-    }
-    @objc func openSignUpVC() {
-        self.performSegue(withIdentifier: self.signUpVC, sender: nil)
+        Analytics.logEvent("login_open_SignUp_button", parameters: nil)
     }
 
     func labelShadowSet(_ label: UILabel) {
@@ -143,7 +139,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
-        Analytics.logEvent("loginVc_loginButton", parameters: nil)
+        Analytics.logEvent("login_login_button", parameters: nil)
         guard
             let email = self.emailTextField.text,
             let password = self.passwordTextField.text,

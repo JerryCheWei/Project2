@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 extension HomeViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickUserNameButton", parameters: nil)
+        Analytics.logEvent("home_click_user_name_button", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
                 self.navigationController?.pushViewController(userVC, animated: true)
@@ -142,7 +142,7 @@ extension HomeViewController: CellDelegateProtocol {
         }
     }
     func passData(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickMessageButton", parameters: nil)
+        Analytics.logEvent("home_click_message_button", parameters: nil)
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName ,
         let postUserID = postImages[indexPath].userID {
@@ -152,7 +152,7 @@ extension HomeViewController: CellDelegateProtocol {
     }
 
     func otherFunctionPassData(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickOtherFunctionButton", parameters: nil)
+        Analytics.logEvent("home_click_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",

@@ -102,7 +102,7 @@ class CameraViewController: UIViewController {
 //            present(imageFilterVC, animated: true, completion: nil)
 //        }
 
-        Analytics.logEvent("cameraVc_ClickShutterButton", parameters: nil)
+        Analytics.logEvent("camera_click_shutter_button", parameters: nil)
         let settings = AVCapturePhotoSettings()
         let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,

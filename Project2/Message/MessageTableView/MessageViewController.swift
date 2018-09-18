@@ -170,7 +170,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     @IBAction func sendMessageButton(_ sender: Any) {
-        Analytics.logEvent("messageVc_SendMessageButton", parameters: nil)
+        Analytics.logEvent("message_send_message_button", parameters: nil)
         // send message
         let postImageID = self.imageID
         self.sendMessage(postImageID: postImageID)
