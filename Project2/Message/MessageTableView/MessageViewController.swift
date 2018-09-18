@@ -12,6 +12,8 @@ import MessageUI
 
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var messageViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var messageAllView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var messageUIView: UIView!
     @IBOutlet weak var messageTextView: UITextView!
@@ -60,10 +62,42 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // tap view dismissKeyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        // keyboard set
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         // messageTableView 呈現最新 message
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
 
             self.moveToBottom()
+        }
+    }
+
+    @objc func keyboardWillShow(notify: NSNotification) {
+            if let userInfo = notify.userInfo,
+                let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+                let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+                let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+
+                let frame = value.cgRectValue
+                let intersection = frame.intersection(self.view.frame)
+                self.messageViewBottom.constant = intersection.height
+
+                UIView.animate(withDuration: duration, delay: 0.0,
+                               options: UIViewAnimationOptions(rawValue: curve), animations: {
+                                self.view.layoutIfNeeded()
+                                }, completion: nil)
+            }
+    }
+    @objc func keyboardWillHide(notify: NSNotification) {
+        if let userInfo = notify.userInfo,
+            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+            self.messageViewBottom.constant = 0
+
+            UIView.animate(withDuration: duration, delay: 0.0,
+                           options: UIViewAnimationOptions(rawValue: curve), animations: {
+                            self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
 
@@ -122,7 +156,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // TextField delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: 270), animated: true)
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.white
@@ -134,14 +167,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.messageTextView.text.isEmpty {
         self.sendButton.isEnabled = false
         }
-        if self.messageTextView.text == "\n" {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            self.messageTextView.resignFirstResponder()
-        }
     }
 
     @IBAction func sendMessageButton(_ sender: Any) {
-        Analytics.logEvent("messageVc_SendMessageButton", parameters: nil)
+        Analytics.logEvent("message_send_message_button", parameters: nil)
         // send message
         let postImageID = self.imageID
         self.sendMessage(postImageID: postImageID)

@@ -131,7 +131,7 @@ class SendImageViewController: UIViewController {
 
     // 分享按鈕
     @IBAction func sendButton(_ sender: UIButton) {
-        Analytics.logEvent("sendImageVc_sendImageButton", parameters: nil)
+        Analytics.logEvent("send_image_send_image_button", parameters: nil)
         // 重設進度條
         progressView.progress = 0
         scrollView.addSubview(progressView)

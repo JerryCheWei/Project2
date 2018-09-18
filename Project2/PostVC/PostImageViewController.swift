@@ -26,7 +26,7 @@ class PostImageViewController: UIViewController, MFMailComposeViewControllerDele
         self.userID = userID
     }
     @IBAction func messageButton(_ sender: UIButton) {
-        Analytics.logEvent("postImageVc_OpenMessageVcButton", parameters: nil)
+        Analytics.logEvent("post_image_open_message_button", parameters: nil)
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
             let imageID = self.postImageID ,
             let userID = self.userID {
@@ -35,7 +35,7 @@ class PostImageViewController: UIViewController, MFMailComposeViewControllerDele
         }
     }
     @IBAction func otherFunctionButton(_ sender: UIButton) {
-        Analytics.logEvent("postImageVc_OtherFunctionButton", parameters: nil)
+        Analytics.logEvent("post_image_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
@@ -58,6 +58,14 @@ class PostImageViewController: UIViewController, MFMailComposeViewControllerDele
                 }
             }
             optionMenu.addAction(deleteAction)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
             self.present(optionMenu, animated: true, completion: nil)
         }
         else {
@@ -72,6 +80,14 @@ class PostImageViewController: UIViewController, MFMailComposeViewControllerDele
                 self.sendMail(postImageUserID: self.userID!, postImageID: self.postImageID!)
             }
             optionMenu.addAction(returns)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
             self.present(optionMenu, animated: true, completion: nil)
         }
     }

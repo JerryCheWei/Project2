@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 extension HomeViewController: CellDelegateProtocol {
     func userNameButton(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickUserNameButton", parameters: nil)
+        Analytics.logEvent("home_click_user_name_button", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             if let userVC = storyboard?.instantiateViewController(withIdentifier: "userVC") as? NewUserViewController {
                 self.navigationController?.pushViewController(userVC, animated: true)
@@ -142,7 +142,7 @@ extension HomeViewController: CellDelegateProtocol {
         }
     }
     func passData(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickMessageButton", parameters: nil)
+        Analytics.logEvent("home_click_message_button", parameters: nil)
        if  let messageVC = storyboard?.instantiateViewController(withIdentifier: "messageVC") as? MessageViewController,
         let imageID = postImages[indexPath].idName ,
         let postUserID = postImages[indexPath].userID {
@@ -152,7 +152,7 @@ extension HomeViewController: CellDelegateProtocol {
     }
 
     func otherFunctionPassData(indexPath: Int) {
-        Analytics.logEvent("homeVc_ClickOtherFunctionButton", parameters: nil)
+        Analytics.logEvent("home_click_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
             let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
@@ -175,6 +175,13 @@ extension HomeViewController: CellDelegateProtocol {
             }
             optionMenu.addAction(deleteAction)
 
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
             self.present(optionMenu, animated: true, completion: nil)
         }
         else {
@@ -188,6 +195,14 @@ extension HomeViewController: CellDelegateProtocol {
                 self.sendMail(postImageUserID: self.postImages[indexPath].userID!, postImageID: self.postImages[indexPath].idName!)
             }
             optionMenu.addAction(returns)
+
+            // iPad
+            if let popoverController = optionMenu.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+
              self.present(optionMenu, animated: true, completion: nil)
         }
     }
@@ -230,7 +245,7 @@ class PostImage {
 
     init?(snapshot: DataSnapshot) {
         guard
-        let value = snapshot.value as? [String: AnyObject],
+        let value = snapshot.value as? [String: Any],
         let idName = value["idName"] as? String,
         let postUrl = value["postUrl"] as? String,
         let userID = value["userID"] as? String

@@ -11,6 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var signVCButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var colorView: UIView!
@@ -25,11 +26,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
-//        sender.addTarget(self, action: #selector(openSignUpVC), for: .touchUpInside)
-        Analytics.logEvent("loginVc_openSignUpVCButton", parameters: nil)
+        Analytics.logEvent("login_open_SignUp_button", parameters: nil)
     }
-    @objc func openSignUpVC() {
-        self.performSegue(withIdentifier: self.signUpVC, sender: nil)
+
+    func labelShadowSet(_ label: UILabel) {
+        label.shadowOffset = CGSize(width: 1.3, height: 1.3)
+        label.shadowColor = .black
+    }
+    func allLabelShadowSet() {
+        self.labelShadowSet(self.appTitle)
     }
 
     func loggedin() {
@@ -81,6 +86,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.allLabelShadowSet()
         self.colorSet(view: self.colorView)
         // tap view dismissKeyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -100,7 +106,7 @@ class LoginViewController: UIViewController {
 
         if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height/2
+                self.view.frame.origin.y -= keyboardSize.height/5
             }
         }
     }
@@ -109,7 +115,6 @@ class LoginViewController: UIViewController {
             self.view.frame.origin.y = 0
         }
     }
-
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -118,7 +123,7 @@ class LoginViewController: UIViewController {
 
     func colorSet(view: UIView ) {
 
-        backgroundGradientLayer.frame = view.bounds
+        backgroundGradientLayer.frame = self.view.frame
         let layer = backgroundGradientLayer
         // 為了讓view為半透明
         view.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
@@ -134,7 +139,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
-        Analytics.logEvent("loginVc_loginButton", parameters: nil)
+        Analytics.logEvent("login_login_button", parameters: nil)
         guard
             let email = self.emailTextField.text,
             let password = self.passwordTextField.text,

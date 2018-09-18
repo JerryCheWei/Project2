@@ -25,11 +25,9 @@ class CameraViewController: UIViewController {
         CameraSet.setupCaptureSession()
         CameraSet.checkCamera()
         CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // toggle the Camera
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
@@ -96,7 +94,15 @@ class CameraViewController: UIViewController {
     }
 
     @IBAction func shutterButtonDidTap() {
-        Analytics.logEvent("cameraVc_ClickShutterButton", parameters: nil)
+        // 模擬器測試用
+//        if  let stillImage = UIImage(named: "oliver-plattner-527165-unsplash") {
+//            let imageFilterVC = SHViewController(image: stillImage)
+//            imageFilterVC.delegate = self
+//            //open SHViewControllerVC
+//            present(imageFilterVC, animated: true, completion: nil)
+//        }
+
+        Analytics.logEvent("camera_click_shutter_button", parameters: nil)
         let settings = AVCapturePhotoSettings()
         let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,

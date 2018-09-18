@@ -26,14 +26,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordLabel: UILabel!
 
     @IBAction func backLoginVCButton(_ sender: UIButton) {
-        Analytics.logEvent("signUpVc_backLoginVCButton", parameters: nil)
+        Analytics.logEvent("signUp_back_Login_button", parameters: nil)
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     let backgroundGradientLayer = CAGradientLayer()
     func colorSet(view: UIView ) {
 
-        backgroundGradientLayer.frame = view.bounds
+        backgroundGradientLayer.frame = self.view.frame
         let layer = backgroundGradientLayer
         // 為了讓view為半透明
         view.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
@@ -126,7 +126,7 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func sendButton(_ sender: UIButton) {
-        Analytics.logEvent("signUpVc_SendSignUpButton", parameters: nil)
+        Analytics.logEvent("signUp_send_signUp_button", parameters: nil)
         guard
             let userName = self.userNameTextField.text,
             let email = self.emailTextField.text,
@@ -189,22 +189,6 @@ extension SignUpViewController: UITextFieldDelegate {
         }
         return true
     }
-
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == self.passwordTextField {
-//            self.scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
-//        }
-//        else if textField == self.confirmPasswordTextField {
-//             self.scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
-//        }
-//        else {
-//            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-//
-//        }
-//    }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-//    }
 }
 
 extension CALayer {
