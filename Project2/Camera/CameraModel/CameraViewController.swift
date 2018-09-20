@@ -33,18 +33,6 @@ class CameraViewController: UIViewController {
                 self.gotoSetting()
             }
         }
-
-        //Photos
-        let photos = PHPhotoLibrary.authorizationStatus()
-        if photos == .notDetermined {
-            PHPhotoLibrary.requestAuthorization({status in
-                if status == .authorized {
-
-                } else {
-                    self.gotoSettingPhoto()
-                }
-            })
-        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +66,7 @@ class CameraViewController: UIViewController {
     }
     func gotoSettingPhoto() {
         let alertController: UIAlertController = UIAlertController.init(title: "請至裝置的「設定」> 「SYOS」，允許 SYOS 存取相簿", message: nil, preferredStyle: .alert)
-        
+
         let sure: UIAlertAction = UIAlertAction.init(title: "設定", style: .default) { (_) in
             if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
                 if UIApplication.shared.canOpenURL(url) {
@@ -89,9 +77,7 @@ class CameraViewController: UIViewController {
             }
         }
 
-        let cancel = UIAlertAction.init(title: "OK", style: .cancel) { (_) in
-            self.dismiss(animated: true, completion: nil)
-        }
+        let cancel = UIAlertAction.init(title: "OK", style: .cancel)
 
         alertController.addAction(sure)
         alertController.addAction(cancel)
@@ -239,12 +225,20 @@ extension CameraViewController: SHViewControllerDelegate {
                     self.navigationController?.pushViewController(postImageVC, animated: true)
                 }
 
-                // save photo
-                PHPhotoLibrary.shared().performChanges({
-                    // Add the captured photo's file data as the main resource for the Photos asset.
-                    let creationRequest = PHAssetCreationRequest.forAsset()
-                    creationRequest.addResource(with: .photo, data: filterImageData as Data, options: nil)
-                }, completionHandler: nil)
+                //Photos
+//                let photos = PHPhotoLibrary.authorizationStatus()
+                    PHPhotoLibrary.requestAuthorization({status in
+                        if status == .authorized {
+                        // save photo
+                        PHPhotoLibrary.shared().performChanges({
+                            // Add the captured photo's file data as the main resource for the Photos asset.
+                            let creationRequest = PHAssetCreationRequest.forAsset()
+                            creationRequest.addResource(with: .photo, data: filterImageData as Data, options: nil)
+                        }, completionHandler: nil)
+                    } else {
+                        self.gotoSettingPhoto()
+                    }
+                })
             }
         }
     }
