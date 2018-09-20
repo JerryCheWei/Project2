@@ -88,11 +88,11 @@ class CameraViewController: UIViewController {
                 }
             }
         }
-        
+
         let cancel = UIAlertAction.init(title: "OK", style: .cancel) { (_) in
             self.dismiss(animated: true, completion: nil)
         }
-        
+
         alertController.addAction(sure)
         alertController.addAction(cancel)
         self.present(alertController, animated: true, completion: nil)
@@ -238,6 +238,13 @@ extension CameraViewController: SHViewControllerDelegate {
                 if let postImageVC  = storyboard.instantiateViewController(withIdentifier: "SendImageViewController") as? SendImageViewController {
                     self.navigationController?.pushViewController(postImageVC, animated: true)
                 }
+
+                // save photo
+                PHPhotoLibrary.shared().performChanges({
+                    // Add the captured photo's file data as the main resource for the Photos asset.
+                    let creationRequest = PHAssetCreationRequest.forAsset()
+                    creationRequest.addResource(with: .photo, data: filterImageData as Data, options: nil)
+                }, completionHandler: nil)
             }
         }
     }
