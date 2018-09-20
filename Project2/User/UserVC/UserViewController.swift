@@ -55,7 +55,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
             picker.delegate = self
-            picker.allowsEditing = true
+//            picker.allowsEditing = true
             self.present(picker, animated: true, completion: nil)
         }
         actionSheet.addAction(updataAction)
