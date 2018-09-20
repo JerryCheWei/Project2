@@ -319,7 +319,7 @@ extension NewUserViewController: CellDelegateProtocol {
     func otherFunctionPassData(indexPath: Int) {
         Analytics.logEvent("home_click_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == LoadingUserPostImage.imageUrl[indexPath].userID {
-            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
+            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？\n刪除後將無法復原此貼文。", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
                                              handler: nil)
