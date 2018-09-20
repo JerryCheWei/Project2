@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var homeCollectionView: UICollectionView!
     let userID = Auth.auth().currentUser?.uid
     var postImages = [PostImage]()
+    var dismissValue = [String]()
 
     func fetchImage() {
 
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         print("~~~~~~~~~~~~~~~~~~ \(posts)")
                     }
                     Database.database().reference().child("dismiss").child(userID).observe(.value, with: { (snapshot) in
+                        self.dismissValue.removeAll()
                         guard let value = snapshot.value as? [String]
                             else {
                                 Database.database().reference().child("postImage").observe(.value) { (snapshot) in
@@ -46,14 +48,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 return
                         }
 
+                        self.dismissValue = value
+                        var postIDs = posts
                         for postID in value {
-                            dismiss = posts.filter { $0 != "\(postID)"}
+                            postIDs = postIDs.filter { $0 != "\(postID)"}
+                            dismiss = postIDs
                             print("dismiss~~~~~~~~~~~~~~~~~~ \(dismiss)")
                         }
-                         var loadPostImage = [PostImage]()
+                        var loadPostImage = [PostImage]()
                         for postImage in dismiss {
                             Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
-                                
                                 if let loadPostImageItem = PostImage.init(snapshot: snapshot) {
                                     loadPostImage.append(loadPostImageItem)
                                 }
@@ -244,7 +248,7 @@ extension HomeViewController: CellDelegateProtocol {
             }
             optionMenu.addAction(returns)
             let dismissPostImage = UIAlertAction(title: "隱藏貼文", style: .default) { (_) in
-//                self.dismissPostImage()
+                self.dismissPostImage(postImageID: self.postImages[indexPath].idName!)
             }
             optionMenu.addAction(dismissPostImage)
 
@@ -278,7 +282,6 @@ extension HomeViewController: CellDelegateProtocol {
         if result == .sent {
             let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出檢舉回報內容，將儘速審核。\n你將不會再看到此貼文。", preferredStyle: .alert)
             let click = UIAlertAction(title: "確認", style: .cancel) { (_) in
-                self.dismissPostImage()
             }
             successSentAction.addAction(click)
             self.present(successSentAction, animated: true, completion: nil)
@@ -286,8 +289,11 @@ extension HomeViewController: CellDelegateProtocol {
     }
 
     // 隱藏貼文
-    func dismissPostImage() {
-        
+    func dismissPostImage(postImageID: String) {
+        if let userID = self.userID {
+            self.dismissValue.append(postImageID)
+            Database.database().reference().child("dismiss").updateChildValues([userID: self.dismissValue])
+        }
     }
 }
 
