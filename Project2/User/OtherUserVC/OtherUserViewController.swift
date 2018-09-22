@@ -233,10 +233,10 @@ extension OtherUserViewController: CellDelegateProtocol {
             }
             optionMenu.addAction(returns)
 
-            let dismissPostImage = UIAlertAction(title: "隱藏貼文", style: .cancel) { (_) in
-                self.dismissPostImage()
-            }
-            optionMenu.addAction(dismissPostImage)
+//            let dismissPostImage = UIAlertAction(title: "隱藏貼文", style: .cancel) { (_) in
+//                self.dismissPostImage()
+//            }
+//            optionMenu.addAction(dismissPostImage)
 
             // iPad
             if let popoverController = optionMenu.popoverPresentationController {
@@ -285,15 +285,10 @@ extension OtherUserViewController: CellDelegateProtocol {
         if result == .sent {
             let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出檢舉回報內容，將儘速審核。\n你將不會再看到此貼文。", preferredStyle: .alert)
             let click = UIAlertAction(title: "確認", style: .cancel) { (_) in
-                self.dismissPostImage()
             }
             successSentAction.addAction(click)
             self.present(successSentAction, animated: true, completion: nil)
         }
     }
 
-    // 隱藏貼文
-    func dismissPostImage() {
-        
-    }
 }

@@ -226,9 +226,8 @@ extension CameraViewController: SHViewControllerDelegate {
                 }
 
                 //Photos
-//                let photos = PHPhotoLibrary.authorizationStatus()
-                    PHPhotoLibrary.requestAuthorization({status in
-                        if status == .authorized {
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status == .authorized {
                         // save photo
                         PHPhotoLibrary.shared().performChanges({
                             // Add the captured photo's file data as the main resource for the Photos asset.
