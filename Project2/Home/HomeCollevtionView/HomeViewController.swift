@@ -13,26 +13,77 @@ import MessageUI
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var homeCollectionView: UICollectionView!
-
+    let userID = Auth.auth().currentUser?.uid
     var postImages = [PostImage]()
+    var dismissValue = [String]()
 
     func fetchImage() {
 
-        Database.database().reference().child("postImage").observe(.value) { (snapshot) in
-            var loadPostImage = [PostImage]()
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let loadPostImageItem = PostImage.init(snapshot: snapshot) {
-                        loadPostImage.append(loadPostImageItem)
+        if let userID = self.userID {
+            // 1
+            Database.database().reference().child("postImage").observe(.value) { (snapshot) in
+                var posts = [String]()
+
+                for childs in snapshot.children {
+                    if let child = childs as? DataSnapshot {
+                        posts.append(child.key)
+                        print("~~~~~~~~~~~~~~~~~~ \(posts)")
+                    }
+                    Database.database().reference().child("dismiss").child(userID).observe(.value, with: { (snapshot) in
+                        self.dismissValue.removeAll()
+                        guard let value = snapshot.value as? [String]
+                            else {
+                                Database.database().reference().child("postImage").observe(.value) { (snapshot) in
+                                    var loadPostImage = [PostImage]()
+                                    for child in snapshot.children {
+                                        if let snapshot = child as? DataSnapshot,
+                                            let loadPostImageItem = PostImage.init(snapshot: snapshot) {
+                                                loadPostImage.append(loadPostImageItem)
+                                        }
+                                        self.postImages = loadPostImage.reversed()
+                                        self.homeCollectionView.reloadData()
+                                    }
+                                }
+                                return
+                        }
+
+                        self.dismissValue = value
+                        var dismiss = posts
+
+                        for postID in value {
+                            dismiss = dismiss.filter { $0 != "\(postID)"}
+                            print("dismiss~~~~~~~~~~~~~~~~~~ \(dismiss)")
+                        }
+                        var loadPostImage = [PostImage]()
+                        for postImage in dismiss {
+                            Database.database().reference().child("postImage").child(postImage).observe(.value) { (snapshot) in
+                                if let loadPostImageItem = PostImage.init(snapshot: snapshot) {
+                                    loadPostImage.append(loadPostImageItem)
+                                }
+                                self.postImages = loadPostImage.reversed()
+                                self.homeCollectionView.reloadData()
+                            }
+                        }
+                    })
                 }
             }
-            self.postImages = loadPostImage.reversed()
-            self.homeCollectionView.reloadData()
         }
 
+//        Database.database().reference().child("postImage").observe(.value) { (snapshot) in
+//            var loadPostImage = [PostImage]()
+//            for child in snapshot.children {
+//                if let snapshot = child as? DataSnapshot,
+//                    let loadPostImageItem = PostImage.init(snapshot: snapshot) {
+//                        loadPostImage.append(loadPostImageItem)
+//                }
+//                self.postImages = loadPostImage.reversed()
+//                self.homeCollectionView.reloadData()
+//            }
+//        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("postImages.count ~~~~~~~~~~~ \(postImages.count)")
         return postImages.count
     }
 
@@ -154,7 +205,7 @@ extension HomeViewController: CellDelegateProtocol {
     func otherFunctionPassData(indexPath: Int) {
         Analytics.logEvent("home_click_other_function_button", parameters: nil)
         if Auth.auth().currentUser?.uid == postImages[indexPath].userID {
-            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？", preferredStyle: .actionSheet)
+            let optionMenu = UIAlertController(title: "刪除", message: "你確定要刪除此貼文？\n刪除後將無法復原此貼文。", preferredStyle: .actionSheet)
             let cancleAction = UIAlertAction(title: "取消",
                                              style: .cancel,
                                              handler: nil)
@@ -195,6 +246,10 @@ extension HomeViewController: CellDelegateProtocol {
                 self.sendMail(postImageUserID: self.postImages[indexPath].userID!, postImageID: self.postImages[indexPath].idName!)
             }
             optionMenu.addAction(returns)
+            let dismissPostImage = UIAlertAction(title: "隱藏貼文", style: .default) { (_) in
+                self.dismissPostImage(postImageID: self.postImages[indexPath].idName!)
+            }
+            optionMenu.addAction(dismissPostImage)
 
             // iPad
             if let popoverController = optionMenu.popoverPresentationController {
@@ -224,10 +279,19 @@ extension HomeViewController: CellDelegateProtocol {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
         if result == .sent {
-            let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出回報內容，將儘速審核。", preferredStyle: .alert)
-            let click = UIAlertAction(title: "確認", style: .cancel, handler: nil)
+            let successSentAction = UIAlertController(title: "回報送出", message: "已成功送出檢舉回報內容，將儘速審核。\n你將不會再看到此貼文。", preferredStyle: .alert)
+            let click = UIAlertAction(title: "確認", style: .cancel) { (_) in
+            }
             successSentAction.addAction(click)
             self.present(successSentAction, animated: true, completion: nil)
+        }
+    }
+
+    // 隱藏貼文
+    func dismissPostImage(postImageID: String) {
+        if let userID = self.userID {
+            self.dismissValue.append(postImageID)
+            Database.database().reference().child("dismiss").updateChildValues([userID: self.dismissValue])
         }
     }
 }

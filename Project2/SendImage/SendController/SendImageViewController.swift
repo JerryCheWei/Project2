@@ -118,7 +118,7 @@ class SendImageViewController: UIViewController {
         let userRef = Database.database().reference(withPath: "users/\(user.uid)")
         userRef.observe(.value) { (snapshot) in
             guard
-            let value = snapshot.value as? [String: AnyObject],
+            let value = snapshot.value as? [String: Any],
             let readPostImages = value["postImages"] as? [String]
                 else {
                     return

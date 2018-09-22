@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Sharaku
 import Firebase
+import Photos
 
 class CameraViewController: UIViewController {
 
@@ -22,9 +23,16 @@ class CameraViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        CameraSet.setupCaptureSession()
-        CameraSet.checkCamera()
-        CameraSet.setupInputOutput(view: self.cameraView, cameraButton: cameraButton)
+        // Camera
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+            if response {
+                CameraSet.setupCaptureSession()
+                CameraSet.checkCamera()
+                CameraSet.setupInputOutput(view: self.cameraView, cameraButton: self.cameraButton)
+            } else {
+                self.gotoSetting()
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +40,48 @@ class CameraViewController: UIViewController {
         toggleCameraGestureRecognizer.numberOfTapsRequired = 2
         toggleCameraGestureRecognizer.addTarget(self, action: #selector(toggleCamera))
         view.addGestureRecognizer(toggleCameraGestureRecognizer)
+    }
+
+    //去設置權限
+    func gotoSetting() {
+        let alertController: UIAlertController = UIAlertController.init(title: "請至裝置的「設定」> 「SYOS」，允許 SYOS 存取相機", message: nil, preferredStyle: .alert)
+
+        let sure: UIAlertAction = UIAlertAction.init(title: "設定", style: .default) { (_) in
+            if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                }
+            }
+        }
+
+        let cancel = UIAlertAction.init(title: "OK", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+
+        alertController.addAction(sure)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    func gotoSettingPhoto() {
+        let alertController: UIAlertController = UIAlertController.init(title: "請至裝置的「設定」> 「SYOS」，允許 SYOS 存取相簿", message: nil, preferredStyle: .alert)
+
+        let sure: UIAlertAction = UIAlertAction.init(title: "設定", style: .default) { (_) in
+            if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                }
+            }
+        }
+
+        let cancel = UIAlertAction.init(title: "OK", style: .cancel)
+
+        alertController.addAction(sure)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     @objc private func toggleCamera() {
@@ -174,6 +224,20 @@ extension CameraViewController: SHViewControllerDelegate {
                 if let postImageVC  = storyboard.instantiateViewController(withIdentifier: "SendImageViewController") as? SendImageViewController {
                     self.navigationController?.pushViewController(postImageVC, animated: true)
                 }
+
+                //Photos
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status == .authorized {
+                        // save photo
+                        PHPhotoLibrary.shared().performChanges({
+                            // Add the captured photo's file data as the main resource for the Photos asset.
+                            let creationRequest = PHAssetCreationRequest.forAsset()
+                            creationRequest.addResource(with: .photo, data: filterImageData as Data, options: nil)
+                        }, completionHandler: nil)
+                    } else {
+                        self.gotoSettingPhoto()
+                    }
+                })
             }
         }
     }
