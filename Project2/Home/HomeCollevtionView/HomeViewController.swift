@@ -23,7 +23,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             // 1
             Database.database().reference().child("postImage").observe(.value) { (snapshot) in
                 var posts = [String]()
-                var dismiss = [String]()
 
                 for childs in snapshot.children {
                     if let child = childs as? DataSnapshot {
@@ -49,10 +48,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         }
 
                         self.dismissValue = value
-                        var postIDs = posts
+                        var dismiss = posts
+
                         for postID in value {
-                            postIDs = postIDs.filter { $0 != "\(postID)"}
-                            dismiss = postIDs
+                            dismiss = dismiss.filter { $0 != "\(postID)"}
                             print("dismiss~~~~~~~~~~~~~~~~~~ \(dismiss)")
                         }
                         var loadPostImage = [PostImage]()
