@@ -19,15 +19,15 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>不開同意機使用權限，SYOS 將無法使用相機</string>
+	<string>開啟照相功能，是否允許開啟相機使用權限？</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>不同意相簿使用權限，SYOS 將無法使用相簿</string>
+	<string>開啟儲存相片功能，是否允許開啟相簿使用權限？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>不同意相簿使用權限，SYOS 將無法使用相簿</string>
+	<string>開啟儲存相片功能，是否允許開啟相簿使用權限？</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
