@@ -91,6 +91,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
 
         let signoutAction = UIAlertAction(title: "登出", style: .destructive) { _ in
             Analytics.logEvent("user_sign_out_alert_action", parameters: nil)
+
             do {
                 try Auth.auth().signOut()
                 LoadingUserPostImage.imageUrl.removeAll()

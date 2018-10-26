@@ -32,15 +32,27 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     func googleSingIn() {
 
-        let googleSignInButton = GIDSignInButton()
-        googleSignInButton.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        googleSignInButton.center.x = view.center.x
-        googleSignInButton.center.y = view.center.y+200
-        view.addSubview(googleSignInButton)
-
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signInSilently()
-//        GIDSignIn.sharedInstance().signIn()
+
+//        let googleSignInButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+//        googleSignInButton.center.x = view.center.x
+//        googleSignInButton.center.y = view.center.y+200
+//        view.addSubview(googleSignInButton)
+
+        let googleCustomSignInButton = UIButton(type: .system)
+        googleCustomSignInButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
+        googleCustomSignInButton.center.x = view.center.x
+        googleCustomSignInButton.center.y = view.center.y+200
+        googleCustomSignInButton.backgroundColor = .white
+        googleCustomSignInButton.setTitle("Google signIn", for: .normal)
+        googleCustomSignInButton.layer.cornerRadius = 25
+        googleCustomSignInButton.addTarget(self, action: #selector(tapGoogleSingInButton), for: .touchUpInside)
+        view.addSubview(googleCustomSignInButton)
+
+    }
+
+    @objc func tapGoogleSingInButton() {
+        GIDSignIn.sharedInstance().signIn()
     }
 
     func labelShadowSet(_ label: UILabel) {

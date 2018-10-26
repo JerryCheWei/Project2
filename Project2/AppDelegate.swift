@@ -49,32 +49,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("Google signIn Error -> \(err)")
             return
         }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
+        else {
+            guard let authentication = user.authentication else { return }
+            // 註冊至 Firebase
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                           accessToken: authentication.accessToken)
 
-        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
-            if let error = error {
-                print("google sign in error -> \(error)")
-                return
-            }
-            else {
-                let successLogin = "successLogin"
-                self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
+            Auth.auth().signInAndRetrieveData(with: credential) { (_ authResult, error) in
+                if let error = error {
+                    print("google sign in error -> \(error)")
+                    return
+                }
+                else {
+                    let successLogin = "successLogin"
+                    // Perform any operations on signed in user here.
+                    guard
+                        let userId = user.userID,               // For client-side use only!
+                        let idToken = user.authentication.idToken, // Safe to send to the server
+                        let fullName = user.profile.name,
+                        let givenName = user.profile.givenName,
+                        let familyName = user.profile.familyName,
+                        let email = user.profile.email
+                        else {
+                            return
+                    }
+                    self.saveUserInformation(userName: fullName, email: email)
+
+                    print(userId, idToken, fullName, givenName, familyName, email)
+                    self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
+                }
             }
         }
 
-        // Perform any operations on signed in user here.
-        let userId = user.userID                  // For client-side use only!
-        let idToken = user.authentication.idToken // Safe to send to the server
-        let fullName = user.profile.name
-        let givenName = user.profile.givenName
-        let familyName = user.profile.familyName
-        let email = user.profile.email
-
-        print(userId as Any, idToken as Any, fullName as Any, givenName as Any, familyName as Any, email as Any)
-        // ...
     }
+
+    func saveUserInformation(userName: String, email: String) {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let usersRef = Database.database().reference().child("users").child(user.uid)
+        usersRef.setValue(
+            ["userName": userName,
+             "email": email
+            ])
+    }
+
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         // ...
