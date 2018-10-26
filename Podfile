@@ -11,6 +11,7 @@ target 'Project2' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'

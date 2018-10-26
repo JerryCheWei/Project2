@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var signVCButton: UIButton!
@@ -27,6 +28,11 @@ class LoginViewController: UIViewController {
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
         Analytics.logEvent("login_open_SignUp_button", parameters: nil)
+    }
+
+    func googleSingIn() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
 
     func labelShadowSet(_ label: UILabel) {

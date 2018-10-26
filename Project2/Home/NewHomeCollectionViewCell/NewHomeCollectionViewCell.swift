@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CellDelegateProtocol {
+protocol CellDelegateProtocol: class {
     func passData(indexPath: Int)
 
     func otherFunctionPassData(indexPath: Int)
@@ -30,7 +30,7 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var widthConstrain: NSLayoutConstraint!
     @IBOutlet weak var messageLabel: UILabel!
 
-    var deleggate: CellDelegateProtocol?
+    weak var deleggate: CellDelegateProtocol?
     var indexPath: IndexPath?
 
     @IBAction func messageButton(_ sender: Any) {
