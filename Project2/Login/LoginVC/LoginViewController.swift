@@ -31,8 +31,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
 
     func googleSingIn() {
+
+        let googleSignInButton = GIDSignInButton()
+        googleSignInButton.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        googleSignInButton.center.x = view.center.x
+        googleSignInButton.center.y = view.center.y+200
+        view.addSubview(googleSignInButton)
+
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
+        GIDSignIn.sharedInstance().signInSilently()
+//        GIDSignIn.sharedInstance().signIn()
     }
 
     func labelShadowSet(_ label: UILabel) {
@@ -106,6 +114,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         self.signVCButton.layer.borderColor = UIColor.white.cgColor
 
         self.allTextFieldSet()
+
+        self.googleSingIn()
     }
 
     @objc func keyboardWillShow(notify: NSNotification) {
