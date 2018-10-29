@@ -31,7 +31,6 @@ class YTLiveStreamingViewController: UIViewController {
                               description: "\(descriptionTextField.text ?? "")",
                               startTime: self.date!) { (_) in
             print("create broadcast")
-            
         }
     }
 
