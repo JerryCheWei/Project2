@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import GoogleSignIn
+import YTLiveStreaming
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -23,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // google signIn
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
 
         //離線後也可監聽
         Database.database().isPersistenceEnabled = true
@@ -31,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let successLogin = "successLogin"
             if Auth.auth().currentUser != nil {
                 // User is signed in.
+                print(GoogleOAuth2.sharedInstance.accessToken ?? "")
                 self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
             }
         }
@@ -65,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     // Perform any operations on signed in user here.
                     guard
                         let userId = user.userID,               // For client-side use only!
-                        let idToken = user.authentication.idToken, // Safe to send to the server
+                        let accessToken = user.authentication.accessToken, // Safe to send to the server
                         let fullName = user.profile.name,
                         let givenName = user.profile.givenName,
                         let familyName = user.profile.familyName,
@@ -74,8 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                             return
                     }
                     self.saveUserInformation(userName: fullName, email: email)
+                    GoogleOAuth2.sharedInstance.accessToken = accessToken
 
-                    print("\(userId)\n\(idToken)\n\(fullName) \n\(givenName)\n\(familyName)\n\(email)")
+                    print("\(userId)\n\(accessToken)\n\(fullName) \n\(givenName)\n\(familyName)\n\(email)")
                     self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
                 }
             }
