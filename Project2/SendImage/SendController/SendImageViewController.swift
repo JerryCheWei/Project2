@@ -92,7 +92,7 @@ class SendImageViewController: UIViewController {
                 return
         }
         let userRef = Database.database().reference(withPath: "users/\(user.uid)")
-        readImages.append(imageIdRef.key)
+        readImages.append(imageIdRef.key!)
         userRef.updateChildValues(["postImages": self.readImages])
     }
 

@@ -52,6 +52,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
 
     @objc func tapGoogleSingInButton() {
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
         GIDSignIn.sharedInstance().signIn()
     }
 

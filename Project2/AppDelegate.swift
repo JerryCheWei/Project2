@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     }
                     self.saveUserInformation(userName: fullName, email: email)
 
-                    print(userId, idToken, fullName, givenName, familyName, email)
+                    print("\(userId)\n\(idToken)\n\(fullName) \n\(givenName)\n\(familyName)\n\(email)")
                     self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
                 }
             }
