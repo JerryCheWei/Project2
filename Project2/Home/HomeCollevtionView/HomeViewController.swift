@@ -9,9 +9,17 @@
 import UIKit
 import Firebase
 import MessageUI
+import YTLiveStreaming
+import GoogleSignIn
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
+    @IBAction func goLiveVCButton(_ sender: UIButton) {
+        guard let liveVC = storyboard?.instantiateViewController(withIdentifier: "YTStreaming") else {
+            return
+        }
+        present(liveVC, animated: true, completion: nil)
+    }
     @IBOutlet weak var homeCollectionView: UICollectionView!
     let userID = Auth.auth().currentUser?.uid
     var postImages = [PostImage]()
@@ -169,6 +177,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
+
+        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
+        GoogleOAuth2.sharedInstance.accessToken = accessToken
+        print("accessToken: \(accessToken ?? "no get token")")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

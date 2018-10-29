@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
+    func getAccessToken(_ accessToken: String) {
+        UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
+        UserDefaults.standard.synchronize()
+    }
+    func getRefreshToken(_ refreshToken: String) {
+        UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
+        UserDefaults.standard.synchronize()
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -30,13 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         //離線後也可監聽
         Database.database().isPersistenceEnabled = true
+
         Auth.auth().addStateDidChangeListener { (auth, _) in
             //  判斷是否登錄中
             let successLogin = "successLogin"
             if Auth.auth().currentUser != nil {
                 // User is signed in.
-                print(GoogleOAuth2.sharedInstance.accessToken ?? "")
                 self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
+                print("success sign in !")
             }
         }
         return true
@@ -74,14 +84,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                         let fullName = user.profile.name,
                         let givenName = user.profile.givenName,
                         let familyName = user.profile.familyName,
-                        let email = user.profile.email
+                        let email = user.profile.email,
+                        let refreshToken = user.authentication.refreshToken
                         else {
                             return
                     }
                     self.saveUserInformation(userName: fullName, email: email)
                     GoogleOAuth2.sharedInstance.accessToken = accessToken
+                    
+                    self.getAccessToken(accessToken)
+                    self.getRefreshToken(refreshToken)
 
                     print("\(userId)\n\(accessToken)\n\(fullName) \n\(givenName)\n\(familyName)\n\(email)")
+                    print("refreshToken: \(refreshToken)")
                     self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
                 }
             }
