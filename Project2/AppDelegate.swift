@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UserDefaults.standard.synchronize()
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
 
@@ -44,6 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             //  判斷是否登錄中
             let successLogin = "successLogin"
             if Auth.auth().currentUser != nil {
+                if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+                    GIDSignIn.sharedInstance().signInSilently()
+                }
+                else {
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+                }
                 // User is signed in.
                 self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
                 print("success sign in !")
@@ -52,10 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url as URL?,
-                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                 annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
     }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -91,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     }
                     self.saveUserInformation(userName: fullName, email: email)
                     GoogleOAuth2.sharedInstance.accessToken = accessToken
-                    
+
                     self.getAccessToken(accessToken)
                     self.getRefreshToken(refreshToken)
 

@@ -46,7 +46,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
         // table View
         self.messageTableView.estimatedRowHeight = 60
-        self.messageTableView.rowHeight = UITableViewAutomaticDimension
+        self.messageTableView.rowHeight = UITableView.automaticDimension
 
         // textView place holder set
         self.messageTextView.text = "新增留言......"
@@ -63,8 +63,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         // keyboard set
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         // messageTableView 呈現最新 message
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
 
@@ -74,28 +74,28 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @objc func keyboardWillShow(notify: NSNotification) {
             if let userInfo = notify.userInfo,
-                let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-                let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-                let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+                let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+                let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+                let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
 
                 let frame = value.cgRectValue
                 let intersection = frame.intersection(self.view.frame)
                 self.messageViewBottom.constant = intersection.height
 
                 UIView.animate(withDuration: duration, delay: 0.0,
-                               options: UIViewAnimationOptions(rawValue: curve), animations: {
+                               options: UIView.AnimationOptions(rawValue: curve), animations: {
                                 self.view.layoutIfNeeded()
                                 }, completion: nil)
             }
     }
     @objc func keyboardWillHide(notify: NSNotification) {
         if let userInfo = notify.userInfo,
-            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-            let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+            let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
             self.messageViewBottom.constant = 0
 
             UIView.animate(withDuration: duration, delay: 0.0,
-                           options: UIViewAnimationOptions(rawValue: curve), animations: {
+                           options: UIView.AnimationOptions(rawValue: curve), animations: {
                             self.view.layoutIfNeeded()
             }, completion: nil)
         }

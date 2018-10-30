@@ -27,6 +27,8 @@
 		BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
+		BF8D93E5218819FA007C6608 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D93E4218819FA007C6608 /* Alert.swift */; };
+		BF8D93E821884660007C6608 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D93E72188465F007C6608 /* Preview.swift */; };
 		BFB6E497211BF9B400404C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E496211BF9B400404C2E /* AppDelegate.swift */; };
 		BFB6E49C211BF9B400404C2E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB6E49A211BF9B400404C2E /* Camera.storyboard */; };
 		BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */; };
@@ -36,6 +38,7 @@
 		BFC94CB32186F4A900BEE8AA /* YTLiveStreamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC94CB22186F4A900BEE8AA /* YTLiveStreamingViewController.swift */; };
 		BFC94CB7218703FD00BEE8AA /* LFLivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC94CB6218703FD00BEE8AA /* LFLivePreview.swift */; };
 		BFC94CB92187121600BEE8AA /* LFLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC94CB82187121600BEE8AA /* LFLiveViewController.swift */; };
+		BFC94CBD2187641E00BEE8AA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC94CBC2187641E00BEE8AA /* Helpers.swift */; };
 		BFEA729F2139480200F69BF0 /* OneUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA729D2139480200F69BF0 /* OneUserCollectionViewCell.swift */; };
 		BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */; };
 		BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */; };
@@ -69,8 +72,11 @@
 		BF47FC3C212FE6C6003E10FC /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		BF492EB9212D0E7900E544A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BF7E9965218777840024340A /* Sharaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sharaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		BF8D93E4218819FA007C6608 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		BF8D93E72188465F007C6608 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		BFB6E493211BF9B400404C2E /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB6E496211BF9B400404C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFB6E49B211BF9B400404C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
@@ -82,6 +88,7 @@
 		BFC94CB22186F4A900BEE8AA /* YTLiveStreamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTLiveStreamingViewController.swift; sourceTree = "<group>"; };
 		BFC94CB6218703FD00BEE8AA /* LFLivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFLivePreview.swift; sourceTree = "<group>"; };
 		BFC94CB82187121600BEE8AA /* LFLiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFLiveViewController.swift; sourceTree = "<group>"; };
+		BFC94CBC2187641E00BEE8AA /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		BFEA729D2139480200F69BF0 /* OneUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFEA729E2139480200F69BF0 /* OneUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFEA72A12139482000F69BF0 /* MoreUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +116,7 @@
 		56CC6670F86D2DF4952ECD02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF7E9965218777840024340A /* Sharaku.framework */,
 				B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */,
 			);
 			name = Frameworks;
@@ -287,6 +295,26 @@
 			path = Project2/Camera/CameraModel;
 			sourceTree = SOURCE_ROOT;
 		};
+		BF8D93E62188449D007C6608 /* NewYTstream */ = {
+			isa = PBXGroup;
+			children = (
+				BF8D93E4218819FA007C6608 /* Alert.swift */,
+				BFC94CBC2187641E00BEE8AA /* Helpers.swift */,
+				BF8D93E72188465F007C6608 /* Preview.swift */,
+				BF8D93E9218846FB007C6608 /* Controller */,
+			);
+			path = NewYTstream;
+			sourceTree = "<group>";
+		};
+		BF8D93E9218846FB007C6608 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BFC94CB22186F4A900BEE8AA /* YTLiveStreamingViewController.swift */,
+				BFC94CB82187121600BEE8AA /* LFLiveViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BFB6E48A211BF9B300404C2E = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +338,7 @@
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF8D93E62188449D007C6608 /* NewYTstream */,
 				BFC94CB12186F47500BEE8AA /* YTLiveStreaming */,
 				BF47FC2A212E7C10003E10FC /* ImageService */,
 				BF492EB5212D0E1000E544A7 /* Login */,
@@ -333,9 +362,7 @@
 		BFC94CB12186F47500BEE8AA /* YTLiveStreaming */ = {
 			isa = PBXGroup;
 			children = (
-				BFC94CB22186F4A900BEE8AA /* YTLiveStreamingViewController.swift */,
 				BFC94CB6218703FD00BEE8AA /* LFLivePreview.swift */,
-				BFC94CB82187121600BEE8AA /* LFLiveViewController.swift */,
 			);
 			path = YTLiveStreaming;
 			sourceTree = "<group>";
@@ -424,6 +451,7 @@
 				TargetAttributes = {
 					BFB6E492211BF9B300404C2E = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 0;
@@ -532,7 +560,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		D7EACB3444012DE83BF5CC15 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -594,9 +622,11 @@
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */,
 				BFC94CB32186F4A900BEE8AA /* YTLiveStreamingViewController.swift in Sources */,
+				BF8D93E821884660007C6608 /* Preview.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* UserViewController.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */,
+				BFC94CBD2187641E00BEE8AA /* Helpers.swift in Sources */,
 				BFEA72A32139482000F69BF0 /* MoreUserCollectionViewCell.swift in Sources */,
 				BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */,
 				BF1FB506212BE5DA0022693C /* LoadImage.swift in Sources */,
@@ -607,6 +637,7 @@
 				BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */,
 				BFC94CB7218703FD00BEE8AA /* LFLivePreview.swift in Sources */,
 				BF2928142140295F008F4921 /* DeletePost.swift in Sources */,
+				BF8D93E5218819FA007C6608 /* Alert.swift in Sources */,
 				BFC94CB92187121600BEE8AA /* LFLiveViewController.swift in Sources */,
 				BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */,
 				BF2928192140F37F008F4921 /* OtherUserViewController.swift in Sources */,
@@ -765,13 +796,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3FWJUGAS6;
 				INFOPLIST_FILE = Project2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = IOS.Project2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -785,13 +817,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3FWJUGAS6;
 				INFOPLIST_FILE = Project2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = IOS.Project2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

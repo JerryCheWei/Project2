@@ -105,10 +105,13 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.present(actionController, animated: true, completion: nil)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         var selectedImageFromPicker: UIImage?
         // 取得從 UIImagePickerController 選擇到的檔案
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             selectedImageFromPicker = pickedImage
         }
         // 關閉圖庫
@@ -120,7 +123,7 @@ class NewUserViewController: UIViewController, UICollectionViewDelegate, UIColle
                 let storageRef = Storage.storage().reference().child("usersImage").child("\(userID).jpg")
                 let uploadMetadata = StorageMetadata()
                 uploadMetadata.contentType = "image/jpeg"
-                if let uploadData = UIImageJPEGRepresentation(selectedImage, 0.2) {
+                if let uploadData = selectedImage.jpegData(compressionQuality: 0.2) {
                     storageRef.putData(uploadData, metadata: uploadMetadata) { (metadata, error) in
                         if let error = error {
                             print(error)
@@ -379,4 +382,14 @@ extension NewUserViewController: SelectedCollectionItemDelegate {
             self.navigationController?.pushViewController(postImageVC, animated: true)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

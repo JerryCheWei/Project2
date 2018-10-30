@@ -52,7 +52,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
 
     @objc func tapGoogleSingInButton() {
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
         GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
         GIDSignIn.sharedInstance().signIn()
     }
 
@@ -81,8 +83,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         self.textFieldSet(self.passwordTextField)
 
         // leftImageView
-        self.emailTextField.leftViewMode = UITextFieldViewMode.always
-        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
+        self.emailTextField.leftViewMode = UITextField.ViewMode.always
+        self.passwordTextField.leftViewMode = UITextField.ViewMode.always
         emailImageView.tintColor = .white
         emailImageView.contentMode = .scaleAspectFit
         passwordImageView.tintColor = .white
@@ -119,8 +121,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         // keyboard set
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
         self.signVCButton.layer.borderWidth = 2
@@ -133,7 +135,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @objc func keyboardWillShow(notify: NSNotification) {
 
-        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notify.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height/5
             }
