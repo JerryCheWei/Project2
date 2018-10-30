@@ -21,25 +21,24 @@ class Alert: NSObject {
         return SingletonWrapper.sharedInstance
     }
 
-//    fileprivate override init() {
-//        let screenBounds = UIScreen.main.bounds
-//        popupWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: screenBounds.width, height: screenBounds.height))
-//        popupWindow.windowLevel = UIWindow.Level.statusBar + 1
-//
-//        rootVC = StatusBarShowingViewController()
-//        popupWindow.rootViewController = rootVC
-//
-//        super.init()
-//    }
+    fileprivate override init() {
+        let screenBounds = UIScreen.main.bounds
+        popupWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: screenBounds.width, height: screenBounds.height))
+        popupWindow.windowLevel = UIWindow.Level.statusBar + 1
 
-    func showOk(_ title: String, message: String, onComplete: @escaping ()->Void = {  }) {
+        popupWindow.rootViewController = rootVC
+
+        super.init()
+    }
+
+    func showOk(_ title: String, message: String, viewController: UIViewController) {
         popupWindow.isHidden = false
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
-            self.resignPopupWindow()
-            onComplete()
-        }))
-        rootVC.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { (_) in
+            viewController.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        viewController.present(alert, animated: true, completion: nil)
     }
 
     func showOkCancel(_ title: String, message: String, onComplete: (()->Void)?, onCancel: (()->Void)?) {

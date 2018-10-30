@@ -9,12 +9,6 @@
 import UIKit
 import YTLiveStreaming
 
-//protocol YouTubeLiveVideoOutput: class {
-//    func startPublishing(completed: @escaping (String?, String?) -> Void)
-//    func finishPublishing()
-//    func cancelPublishing()
-//}
-
 class LFLiveViewController: UIViewController {
 
     @IBOutlet weak var currentStatusLabel: UILabel!
@@ -49,24 +43,27 @@ class LFLiveViewController: UIViewController {
     @IBAction func changeCameraPositionButtonPressed(_ sender: Any) {
         lfView.changeCameraPosition()
     }
+
     @IBAction func closeButtonPressed(_ sender: Any) {
         self.cancelPublishing()
-        navigationController?.isNavigationBarHidden = false
     }
+
     @IBAction func topStopLiveButton(_ sender: Any) {
         if stopOrStartLiveButton.isSelected {
             stopOrStartLiveButton.isSelected = false
             stopOrStartLiveButton.setTitle("Start live broadcast", for: .normal)
             lfView.stopPublishing()
             self.finishPublishing()
-            navigationController?.isNavigationBarHidden = false
         } else {
             stopOrStartLiveButton.isSelected = true
             stopOrStartLiveButton.setTitle("Finish live broadcast", for: .normal)
-            startPublishing() { streamURL, streamName in
-                if let streamURL = streamURL, let streamName = streamName {
+            startPublishing { (streamURL, streamName) in
+                if let streamURL = streamURL,
+                    let streamName = streamName {
+
                     let streamUrl = "\(streamURL)/\(streamName)"
                     self.lfView.startPublishing(withStreamURL: streamUrl)
+
                 }
                 print("start live now !!")
             }
@@ -106,6 +103,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         }
         input.completeBroadcast(broadcast, completion: { success in
             self.dismissVideoStreamViewController()
+            self.navigationController?.isNavigationBarHidden = false
         })
     }
 
@@ -118,8 +116,9 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         input.deleteBroadcast(id: broadcast.id, completion: { success in
             if success {
                 print("Broadcast \"\(broadcast.id)\" was deleted!")
+                self.navigationController?.isNavigationBarHidden = false
             } else {
-                Alert.sharedInstance.showOk("Sorry, system detected error while deleting the video.", message: "You can try to delete it in your YouTube account")
+//                Alert.sharedInstance.showOk("Sorry, system detected error while deleting the video.", message: "You can try to delete it in your YouTube account", viewController: self)
             }
             self.dismissVideoStreamViewController()
         })
@@ -127,6 +126,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
 
     func dismissVideoStreamViewController() {
         print("dismiss live vc")
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -174,9 +174,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // set collcetion cell xib
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-        }
+//        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+//        }
 
         let accessToken = UserDefaults.standard.string(forKey: "accessToken")
         GoogleOAuth2.sharedInstance.accessToken = accessToken
