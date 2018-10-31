@@ -174,6 +174,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // set collcetion cell xib
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        #warning("TODO: cell 自動調整踏小顯示問題")
 //        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
 //            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
 //        }

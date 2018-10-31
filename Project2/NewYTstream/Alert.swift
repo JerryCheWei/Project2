@@ -31,8 +31,16 @@ class Alert: NSObject {
         super.init()
     }
 
+    func showFinishLive(title: String?, message: String?, closeView: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+                closeView.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        closeView.present(alert, animated: true, completion: nil)
+    }
+
     func showOk(_ title: String, message: String, viewController: UIViewController) {
-        popupWindow.isHidden = false
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (_) in
             viewController.dismiss(animated: true, completion: nil)

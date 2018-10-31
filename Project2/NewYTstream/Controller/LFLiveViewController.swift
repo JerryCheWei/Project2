@@ -55,6 +55,7 @@ class LFLiveViewController: UIViewController {
             lfView.stopPublishing()
             self.finishPublishing()
         } else {
+            self.closeButton.isHidden = true
             stopOrStartLiveButton.isSelected = true
             stopOrStartLiveButton.setTitle("Finish live broadcast", for: .normal)
             startPublishing { (streamURL, streamName) in
@@ -102,9 +103,12 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
                 return
         }
         input.completeBroadcast(broadcast, completion: { success in
-            self.dismissVideoStreamViewController()
+            Alert.sharedInstance.showFinishLive(title: "已結束串流", message: "恭喜，順利結束直播！", closeView: self)
             self.navigationController?.isNavigationBarHidden = false
         })
+        self.showCurrentStatus(currStatus: "■ END")
+         self.currentStatusLabel.layer.removeAllAnimations()
+         self.currentStatusLabel.alpha = 1
     }
 
     func cancelPublishing() {
@@ -118,9 +122,8 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
                 print("Broadcast \"\(broadcast.id)\" was deleted!")
                 self.navigationController?.isNavigationBarHidden = false
             } else {
-//                Alert.sharedInstance.showOk("Sorry, system detected error while deleting the video.", message: "You can try to delete it in your YouTube account", viewController: self)
+                Alert.sharedInstance.showOk("Sorry, system detected error while deleting the video.", message: "You can try to delete it in your YouTube account", viewController: self)
             }
-            self.dismissVideoStreamViewController()
         })
     }
 
@@ -129,4 +132,18 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 
+    func didTransitionToLiveStatus() {
+        self.showCurrentStatus(currStatus: "● LIVE")
+        self.currentStatusLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.currentStatusLabel.alpha = 0
+        }, completion: nil)
+    }
+
+    func didTransitionToStatus(broadcastStatus: String?, streamStatus: String?, healthStatus: String?) {
+        if let broadcastStatus = broadcastStatus, let streamStatus = streamStatus, let healthStatus = healthStatus {
+            let text = "status: \(broadcastStatus) [\(streamStatus),\(healthStatus)]"
+            self.showCurrentStatus(currStatus: text)
+        }
+    }
 }

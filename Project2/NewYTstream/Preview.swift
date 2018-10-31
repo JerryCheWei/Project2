@@ -26,8 +26,13 @@ class Preview: UIView, LFLiveSessionDelegate {
     }()
 
     func liveSession(_ session: LFLiveSession?, debugInfo: LFLiveDebug?) {
-        print("debugInfo uploadSpeed: \(String(describing: formatedSpeed(bytes: Float((debugInfo?.currentBandwidth)! as CGFloat), elapsedMilli: Float(debugInfo!.elapsedMilli))))")
-
+        if let bytes = debugInfo?.currentBandwidth,
+            let elapsedMilli = debugInfo?.elapsedMilli {
+            print("debugInfo uploadSpeed: \(formatedSpeed(bytes: Float(bytes), elapsedMilli: Float(elapsedMilli)) ?? "error")")
+        }
+        else {
+            print("can not get uploadSpeed ??????")
+        }
     }
     func liveSession(_ session: LFLiveSession?, errorCode: LFLiveSocketErrorCode) {
         if let errorCode = errorCode as? CVarArg {

@@ -44,5 +44,16 @@ class YTLiveStreamingViewController: UIViewController {
         }
 
     }
+}
 
+extension YTLiveStreamingViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.titleTextField {
+            self.descriptionTextField.becomeFirstResponder()
+        }
+        if textField == self.descriptionTextField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
