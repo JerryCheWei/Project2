@@ -81,10 +81,12 @@ class SendImageViewController: UIViewController {
             else {
                 return
         }
-        self.imageIdRef.setValue(["idName": imageIdRef.key,
-                            "postUrl": "\(imageURL)",
-                            "userID": "\(userID)"
-                            ] as [AnyHashable: Any])
+        if let key: String = imageIdRef.key {
+            self.imageIdRef.setValue(
+                ["idName": key,
+                 "postUrl": "\(imageURL)",
+                "userID": "\(userID)"] as [AnyHashable: Any])
+        }
     }
     func updataUserImages() {
         guard let user = Auth.auth().currentUser

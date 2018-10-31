@@ -94,8 +94,6 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
                 print("name: \(name)\nurl: \(url)\ntime: \(time)\nstartBroadcast !!!!")
                 completed(url, name)
             }
-
-           self.userLive(isLive: true)
         })
     }
 
@@ -113,7 +111,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         self.showCurrentStatus(currStatus: "■ END")
         self.currentStatusLabel.layer.removeAllAnimations()
         self.currentStatusLabel.alpha = 1
-        self.userLive(isLive: false)
+        self.pushStreamUrlToFirebase(isCanSeeLive: false)
     }
 
     func cancelPublishing() {
@@ -143,6 +141,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.currentStatusLabel.alpha = 0
         }, completion: nil)
+        self.pushStreamUrlToFirebase(isCanSeeLive: true)
     }
 
     func didTransitionToStatus(broadcastStatus: String?, streamStatus: String?, healthStatus: String?) {
@@ -170,22 +169,27 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         }
     }
 
-    func userLive(isLive: Bool) {
-        guard let user = Auth.auth().currentUser
-            else {
-                return
-        }
-        let usersRef = Database.database().reference().child("users").child(user.uid)
-        if isLive {
-            usersRef.updateChildValues([
-                "isOnLive": "Youtube live url"
-                ])
-        }
-        else {
-            usersRef.updateChildValues([
-                "isOnLive": ""
-                ])
-        }
+    // 上傳 streamUrl 到 Firebase
+    func pushStreamUrlToFirebase(isCanSeeLive: Bool) {
+        if let broadcast = self.liveBroadcast {
+            let streamUrl = "https://www.youtube.com/watch?v=\(broadcast.id)"
 
+            guard let user = Auth.auth().currentUser
+                else {
+                    return
+            }
+
+            if isCanSeeLive {
+                let liveStreamsRef = Database.database().reference().child("liveStreams").child(user.uid)
+                liveStreamsRef.updateChildValues(
+                            ["liveStream": streamUrl,
+                             "userID": user.uid
+                            ])
+            }
+            else {
+                Database.database().reference().child("liveStreams").child(user.uid).removeValue()
+            }
+        }
     }
+
 }

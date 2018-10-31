@@ -24,7 +24,20 @@ class YTLiveStreamingViewController: UIViewController {
     @IBAction func closeStreamVC(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+
     @IBAction func liveNowButton(_ sender: Any) {
+
+        if let title = titleTextField.text,
+            title.count <= 0 {
+            print("請輸入標題")
+            Alert.sharedInstance.showEnterTitle(title: "Error", message: "請輸入標題", closeView: self)
+        }
+        else {
+            self.startCreateBroadcast()
+        }
+    }
+
+    func startCreateBroadcast() {
         let startDate = Helpers.dateAfter(Date(), after: (hour: 0, minute: 1, second: 0))
 
         if let title = titleTextField.text,
@@ -42,8 +55,8 @@ class YTLiveStreamingViewController: UIViewController {
                 }
             }
         }
-
     }
+
 }
 
 extension YTLiveStreamingViewController: UITextFieldDelegate {
