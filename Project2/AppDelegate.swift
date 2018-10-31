@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             if Auth.auth().currentUser != nil {
                 if GIDSignIn.sharedInstance().hasAuthInKeychain() {
                     GIDSignIn.sharedInstance().signInSilently()
+                    print("TODO signInSilently()")
                 }
                 else {
 //                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
@@ -118,9 +119,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 return
         }
         let usersRef = Database.database().reference().child("users").child(user.uid)
-        usersRef.setValue(
-            ["userName": userName,
-             "email": email
+        usersRef.updateChildValues([
+            "userName": userName,
+            "email": email
             ])
     }
 

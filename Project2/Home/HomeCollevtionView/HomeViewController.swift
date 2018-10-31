@@ -51,6 +51,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                         self.postImages = loadPostImage.reversed()
                                         self.homeCollectionView.reloadData()
                                     }
+                                    self.refreshControl.endRefreshing()
                                 }
                                 return
                         }
@@ -72,6 +73,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 self.homeCollectionView.reloadData()
                             }
                         }
+                        self.refreshControl.endRefreshing()
                     })
                 }
             }
@@ -182,10 +184,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let accessToken = UserDefaults.standard.string(forKey: "accessToken")
         GoogleOAuth2.sharedInstance.accessToken = accessToken
         print("accessToken: \(accessToken ?? "no get token")")
+
+        refreshControl = UIRefreshControl()
+        homeCollectionView.addSubview(refreshControl)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        homeCollectionView.reloadData()
+//        homeCollectionView.reloadData()
+    }
+
+    var refreshControl: UIRefreshControl!
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            fetchImage()
+        }
     }
 }
 

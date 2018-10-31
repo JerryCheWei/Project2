@@ -8,6 +8,7 @@
 
 import UIKit
 import YTLiveStreaming
+import Firebase
 
 class LFLiveViewController: UIViewController {
 
@@ -30,7 +31,7 @@ class LFLiveViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         cameraButton.isExclusiveTouch = true
         closeButton.isExclusiveTouch = true
-        stopOrStartLiveButton.setTitle("Start live broadcast", for: .normal)
+        stopOrStartLiveButton.setTitle("Start live", for: .normal)
         currentStatusLabel.text = " "
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -51,13 +52,14 @@ class LFLiveViewController: UIViewController {
     @IBAction func topStopLiveButton(_ sender: Any) {
         if stopOrStartLiveButton.isSelected {
             stopOrStartLiveButton.isSelected = false
-            stopOrStartLiveButton.setTitle("Start live broadcast", for: .normal)
+            stopOrStartLiveButton.setTitle("Stop live", for: .normal)
+            stopOrStartLiveButton.isEnabled = false
             lfView.stopPublishing()
             self.finishPublishing()
         } else {
             self.closeButton.isHidden = true
             stopOrStartLiveButton.isSelected = true
-            stopOrStartLiveButton.setTitle("Finish live broadcast", for: .normal)
+            stopOrStartLiveButton.setTitle("Finish live", for: .normal)
             startPublishing { (streamURL, streamName) in
                 if let streamURL = streamURL,
                     let streamName = streamName {
@@ -92,6 +94,8 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
                 print("name: \(name)\nurl: \(url)\ntime: \(time)\nstartBroadcast !!!!")
                 completed(url, name)
             }
+
+           self.userLive(isLive: true)
         })
     }
 
@@ -107,8 +111,9 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
             self.navigationController?.isNavigationBarHidden = false
         })
         self.showCurrentStatus(currStatus: "■ END")
-         self.currentStatusLabel.layer.removeAllAnimations()
-         self.currentStatusLabel.alpha = 1
+        self.currentStatusLabel.layer.removeAllAnimations()
+        self.currentStatusLabel.alpha = 1
+        self.userLive(isLive: false)
     }
 
     func cancelPublishing() {
@@ -142,8 +147,45 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
 
     func didTransitionToStatus(broadcastStatus: String?, streamStatus: String?, healthStatus: String?) {
         if let broadcastStatus = broadcastStatus, let streamStatus = streamStatus, let healthStatus = healthStatus {
-            let text = "status: \(broadcastStatus) [\(streamStatus),\(healthStatus)]"
+            let text = "串流狀態: \(broadcastStatus) [\(streamStatus),\(healthStatus)]"
+            print(text)
             self.showCurrentStatus(currStatus: text)
+
+//            switch broadcastStatus {
+//            case "ready":
+//                print("準備")
+//            case "complete":
+//                print("結束")
+//            case "live":
+//                print("正在直播")
+//            case "liveStarting":
+//                print("準備中...")
+//            case "testStarting":
+//                print("準備中...")
+//
+//            default:
+//                print("")
+//            }
+
         }
+    }
+
+    func userLive(isLive: Bool) {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let usersRef = Database.database().reference().child("users").child(user.uid)
+        if isLive {
+            usersRef.updateChildValues([
+                "isOnLive": "Youtube live url"
+                ])
+        }
+        else {
+            usersRef.updateChildValues([
+                "isOnLive": ""
+                ])
+        }
+
     }
 }
