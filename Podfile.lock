@@ -105,6 +105,7 @@ PODS:
   - Result (3.2.4)
   - Sharaku (1.0.2)
   - SwiftyJSON (4.2.0)
+  - XCDYouTubeKit (2.6.0)
   - YTLiveStreaming (0.2.7):
     - KeychainAccess
     - LFLiveKit
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleSignIn
   - Sharaku
+  - XCDYouTubeKit (~> 2.6)
   - YTLiveStreaming
 
 SPEC REPOS:
@@ -149,6 +151,7 @@ SPEC REPOS:
     - Result
     - Sharaku
     - SwiftyJSON
+    - XCDYouTubeKit
     - YTLiveStreaming
 
 SPEC CHECKSUMS:
@@ -177,8 +180,9 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   Sharaku: c18de569fc99f6e936f46ca812b571826cc658a7
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  XCDYouTubeKit: 76f14b161e9563541a3674b6b5bfb61c4b72b269
   YTLiveStreaming: 57b1643d204d5a2abfeb4ed8323dc32fd04513b3
 
-PODFILE CHECKSUM: 64c9e87268f4d3059b191225fa679677ec7945c6
+PODFILE CHECKSUM: d257475e0081eedb185e2e1e45bbda5d756c4f52
 
 COCOAPODS: 1.5.3

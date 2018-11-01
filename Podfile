@@ -13,6 +13,7 @@ target 'Project2' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'YTLiveStreaming'
+  pod "XCDYouTubeKit", "~> 2.6"
 
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'

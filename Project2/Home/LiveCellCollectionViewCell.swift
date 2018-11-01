@@ -9,6 +9,6 @@
 import UIKit
 
 class LiveCellCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var liveUserImageView: UIImageView!
 }

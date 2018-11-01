@@ -111,7 +111,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         self.liveCollectionView.reloadData()
     }
-    #warning("TODO: 建立 live 列表")
+
     // MARK: collectionDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == liveCollectionView {
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     fatalError()
             }
 
-            livecell.liveUserImageView.backgroundColor = .blue
+            livecell.liveUserImageView.backgroundColor = .gray
 
             if let userId = self.liveStream[indexPath.row].userID {
                 Database.database().reference().child("users").child(userId).observe(.value) { (snapshot) in
@@ -156,6 +156,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         else {
             return homeCellSet(collectionView, indexPath: indexPath)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == liveCollectionView {
+            if let liveBroadcastID = liveStream[indexPath.row].liveBroadcastID {
+                YouTubePlayer.playYoutubeID(liveBroadcastID, viewController: self)
+            }
         }
     }
 
@@ -254,6 +262,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        homeCollectionView.reloadData()
+         self.liveCollectionView.reloadData()
     }
 
     var refreshControl: UIRefreshControl!
@@ -417,24 +426,24 @@ class PostImage {
 //"liveStream": streamUrl
 //"userID": user.uid
 class LiveStream {
-    let liveStream: String?
+    let liveBroadcastID: String?
     let userID: String?
-    
-    init(liveStream: String, userID: String) {
-        self.liveStream = liveStream
+
+    init(liveBroadcastID: String, userID: String) {
+        self.liveBroadcastID = liveBroadcastID
         self.userID = userID
     }
-    
+
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: Any],
-            let liveStream = value["liveStream"] as? String,
+            let liveBroadcastID = value["liveBroadcastID"] as? String,
             let userID = value["userID"] as? String
             else {
                 return nil
         }
-        
-        self.liveStream = liveStream
+
+        self.liveBroadcastID = liveBroadcastID
         self.userID = userID
     }
 }

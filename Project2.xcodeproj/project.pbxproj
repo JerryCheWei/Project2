@@ -26,6 +26,8 @@
 		BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EB9212D0E7900E544A7 /* LoginViewController.swift */; };
 		BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */; };
 		BF67BFA5218A1C77007B9A77 /* LiveCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */; };
+		BF67BFA8218AA2E8007B9A77 /* YoutubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67BFA7218AA2E8007B9A77 /* YoutubePlayer.swift */; };
+		BF67BFAA218AA30E007B9A77 /* YoutubePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67BFA9218AA30E007B9A77 /* YoutubePlayerViewController.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BF8D93E5218819FA007C6608 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D93E4218819FA007C6608 /* Alert.swift */; };
@@ -73,6 +75,8 @@
 		BF492EB9212D0E7900E544A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF67BFA7218AA2E8007B9A77 /* YoutubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayer.swift; sourceTree = "<group>"; };
+		BF67BFA9218AA30E007B9A77 /* YoutubePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerViewController.swift; sourceTree = "<group>"; };
 		BF7E9965218777840024340A /* Sharaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sharaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +275,15 @@
 			path = SignUpVC;
 			sourceTree = "<group>";
 		};
+		BF67BFA6218A9F45007B9A77 /* LivePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				BF67BFA7218AA2E8007B9A77 /* YoutubePlayer.swift */,
+				BF67BFA9218AA30E007B9A77 /* YoutubePlayerViewController.swift */,
+			);
+			path = LivePlayer;
+			sourceTree = "<group>";
+		};
 		BF81FA39211EC94D0030FABF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +352,7 @@
 			children = (
 				BFB6E496211BF9B400404C2E /* AppDelegate.swift */,
 				BF1FB4B82129B7A00022693C /* TabBarController.swift */,
+				BF67BFA6218A9F45007B9A77 /* LivePlayer */,
 				BF8D93E62188449D007C6608 /* NewYTstream */,
 				BF47FC2A212E7C10003E10FC /* ImageService */,
 				BF492EB5212D0E1000E544A7 /* Login */,
@@ -572,6 +586,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/Sharaku/Sharaku.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/YTLiveStreaming/YTLiveStreaming.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -589,6 +604,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sharaku.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YTLiveStreaming.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -613,6 +629,8 @@
 				BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */,
 				BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */,
 				BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */,
+				BF67BFAA218AA30E007B9A77 /* YoutubePlayerViewController.swift in Sources */,
+				BF67BFA8218AA2E8007B9A77 /* YoutubePlayer.swift in Sources */,
 				BFC94CB32186F4A900BEE8AA /* YTLiveStreamingViewController.swift in Sources */,
 				BF8D93E821884660007C6608 /* Preview.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* UserViewController.swift in Sources */,

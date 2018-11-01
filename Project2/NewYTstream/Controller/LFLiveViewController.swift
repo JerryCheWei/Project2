@@ -172,7 +172,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
     // 上傳 streamUrl 到 Firebase
     func pushStreamUrlToFirebase(isCanSeeLive: Bool) {
         if let broadcast = self.liveBroadcast {
-            let streamUrl = "https://www.youtube.com/watch?v=\(broadcast.id)"
+            let broadcastID = "\(broadcast.id)"
 
             guard let user = Auth.auth().currentUser
                 else {
@@ -182,7 +182,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
             if isCanSeeLive {
                 let liveStreamsRef = Database.database().reference().child("liveStreams").child(user.uid)
                 liveStreamsRef.updateChildValues(
-                            ["liveStream": streamUrl,
+                            ["liveBroadcastID": broadcastID,
                              "userID": user.uid
                             ])
             }
