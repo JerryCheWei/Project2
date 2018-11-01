@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD3KETfErYSy4x68MQmeJsBs24UPSA37LU</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -17,17 +19,40 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.81766326798-05bd267bicaq8os3bumvs8b7no2vo1ea</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.128668186162-p51hiahptku10l3i0gbpbg83me3on0eo</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>1</string>
+	<key>CLIENT_ID</key>
+	<string>128668186162-p51hiahptku10l3i0gbpbg83me3on0eo.apps.googleusercontent.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>不開同意機使用權限，SYOS 將無法使用相機</string>
+	<string>SYOS 需要存取相機功能，讓你盡情拍下美麗景色分享給所有人，請問是否允許開啟相機使用權限？</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>不同意相簿使用權限，SYOS 將無法使用相簿</string>
+	<string>SYOS 需要存取相簿功能，讓你存下編輯後的美麗景色，請問是否允許開啟相簿使用權限？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>不同意相簿使用權限，SYOS 將無法使用相簿</string>
+	<string>SYOS 需要存取相簿功能，讓你存下編輯後的美麗景色，請問是否允許開啟相簿使用權限？</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -47,5 +72,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>kTCCServiceMediaLibrary</key>
+	<string></string>
 </dict>
 </plist>

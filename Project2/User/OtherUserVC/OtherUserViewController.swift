@@ -73,9 +73,10 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     func oneCellXib() {
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-        }
+        #warning("TODO: cell 自動調整踏小顯示問題")
+//        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+//        }
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)

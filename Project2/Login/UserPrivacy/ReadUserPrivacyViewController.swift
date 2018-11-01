@@ -21,7 +21,7 @@ class ReadUserPrivacyViewController: UIViewController, WKNavigationDelegate, WKU
         navigationItem.title = "使用者隱私權條款"
         navigationController?.navigationBar.tintColor = .black
         // 進度條
-        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        myActivityIndicator = UIActivityIndicatorView(style: .gray)
         myActivityIndicator?.center = CGPoint(
             x: fullScreenSize.width * 0.5,
             y: fullScreenSize.height * 0.3)

@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var signVCButton: UIButton!
@@ -27,6 +28,34 @@ class LoginViewController: UIViewController {
 
     @IBAction func openSignUpVCButton(_ sender: UIButton) {
         Analytics.logEvent("login_open_SignUp_button", parameters: nil)
+    }
+
+    func googleSingIn() {
+
+        GIDSignIn.sharedInstance().uiDelegate = self
+
+//        let googleSignInButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+//        googleSignInButton.center.x = view.center.x
+//        googleSignInButton.center.y = view.center.y+200
+//        view.addSubview(googleSignInButton)
+
+        let googleCustomSignInButton = UIButton(type: .system)
+        googleCustomSignInButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
+        googleCustomSignInButton.center.x = view.center.x
+        googleCustomSignInButton.center.y = view.center.y+200
+        googleCustomSignInButton.backgroundColor = .white
+        googleCustomSignInButton.setTitle("Google signIn", for: .normal)
+        googleCustomSignInButton.layer.cornerRadius = 25
+        googleCustomSignInButton.addTarget(self, action: #selector(tapGoogleSingInButton), for: .touchUpInside)
+        view.addSubview(googleCustomSignInButton)
+
+    }
+
+    @objc func tapGoogleSingInButton() {
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+        GIDSignIn.sharedInstance().signIn()
     }
 
     func labelShadowSet(_ label: UILabel) {
@@ -54,8 +83,8 @@ class LoginViewController: UIViewController {
         self.textFieldSet(self.passwordTextField)
 
         // leftImageView
-        self.emailTextField.leftViewMode = UITextFieldViewMode.always
-        self.passwordTextField.leftViewMode = UITextFieldViewMode.always
+        self.emailTextField.leftViewMode = UITextField.ViewMode.always
+        self.passwordTextField.leftViewMode = UITextField.ViewMode.always
         emailImageView.tintColor = .white
         emailImageView.contentMode = .scaleAspectFit
         passwordImageView.tintColor = .white
@@ -92,19 +121,21 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         // keyboard set
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
 //        self.buttonColor(button: self.loginButton, lineWidth: 5)
         self.signVCButton.layer.borderWidth = 2
         self.signVCButton.layer.borderColor = UIColor.white.cgColor
 
         self.allTextFieldSet()
+
+        self.googleSingIn()
     }
 
     @objc func keyboardWillShow(notify: NSNotification) {
 
-        if let keyboardSize = (notify.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notify.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height/5
             }

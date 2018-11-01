@@ -14,9 +14,9 @@ class MessageSet {
 
     // set message font
     static func message(userName: String, messageText: String) -> NSAttributedString {
-        let attrs1 = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold), NSAttributedStringKey.foregroundColor: UIColor.black]
+        let attrs1 = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold), NSAttributedString.Key.foregroundColor: UIColor.black]
 
-        let attrs2 = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.black]
+        let attrs2 = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.black]
 
         let attributedString1 = NSMutableAttributedString(string: "\(userName)  ", attributes: attrs1)
 

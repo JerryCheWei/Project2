@@ -9,26 +9,125 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleSignIn
+import YTLiveStreaming
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func getAccessToken(_ accessToken: String) {
+        UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
+        UserDefaults.standard.synchronize()
+    }
+    func getRefreshToken(_ refreshToken: String) {
+        UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
+        UserDefaults.standard.synchronize()
+    }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+
+        // google signIn
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+
         //離線後也可監聽
         Database.database().isPersistenceEnabled = true
+
         Auth.auth().addStateDidChangeListener { (auth, _) in
             //  判斷是否登錄中
             let successLogin = "successLogin"
             if Auth.auth().currentUser != nil {
+                if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+                    GIDSignIn.sharedInstance().signInSilently()
+                    print("TODO signInSilently()")
+                }
+                else {
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+                }
                 // User is signed in.
                 self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
+                print("success sign in !")
             }
         }
         return true
+    }
+
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL?,
+                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+    }
+
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let err = error {
+            print("Google signIn Error -> \(err)")
+            return
+        }
+        else {
+            guard let authentication = user.authentication else { return }
+            // 註冊至 Firebase
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                           accessToken: authentication.accessToken)
+
+            Auth.auth().signInAndRetrieveData(with: credential) { (_ authResult, error) in
+                if let error = error {
+                    print("google sign in error -> \(error)")
+                    return
+                }
+                else {
+                    let successLogin = "successLogin"
+                    // Perform any operations on signed in user here.
+                    guard
+                        let userId = user.userID,               // For client-side use only!
+                        let accessToken = user.authentication.accessToken, // Safe to send to the server
+                        let fullName = user.profile.name,
+                        let givenName = user.profile.givenName,
+                        let familyName = user.profile.familyName,
+                        let email = user.profile.email,
+                        let refreshToken = user.authentication.refreshToken
+                        else {
+                            return
+                    }
+                    self.saveUserInformation(userName: fullName, email: email)
+                    GoogleOAuth2.sharedInstance.accessToken = accessToken
+
+                    self.getAccessToken(accessToken)
+                    self.getRefreshToken(refreshToken)
+
+                    print("\(userId)\n\(accessToken)\n\(fullName) \n\(givenName)\n\(familyName)\n\(email)")
+                    print("refreshToken: \(refreshToken)")
+                    self.window?.rootViewController?.performSegue(withIdentifier: successLogin, sender: nil)
+                }
+            }
+        }
+
+    }
+
+    func saveUserInformation(userName: String, email: String) {
+        guard let user = Auth.auth().currentUser
+            else {
+                return
+        }
+        let usersRef = Database.database().reference().child("users").child(user.uid)
+        usersRef.updateChildValues([
+            "userName": userName,
+            "email": email
+            ])
+    }
+
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

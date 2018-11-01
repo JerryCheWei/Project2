@@ -47,9 +47,9 @@ class CameraViewController: UIViewController {
         let alertController: UIAlertController = UIAlertController.init(title: "請至裝置的「設定」> 「SYOS」，允許 SYOS 存取相機", message: nil, preferredStyle: .alert)
 
         let sure: UIAlertAction = UIAlertAction.init(title: "設定", style: .default) { (_) in
-            if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
+            if let url = URL.init(string: UIApplication.openSettingsURLString) {
                 if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (_) in
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (_) in
                         self.dismiss(animated: true, completion: nil)
                     })
                 }
@@ -68,9 +68,9 @@ class CameraViewController: UIViewController {
         let alertController: UIAlertController = UIAlertController.init(title: "請至裝置的「設定」> 「SYOS」，允許 SYOS 存取相簿", message: nil, preferredStyle: .alert)
 
         let sure: UIAlertAction = UIAlertAction.init(title: "設定", style: .default) { (_) in
-            if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
+            if let url = URL.init(string: UIApplication.openSettingsURLString) {
                 if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (_) in
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (_) in
                         self.dismiss(animated: true, completion: nil)
                     })
                 }
@@ -216,7 +216,7 @@ extension CameraViewController: SHViewControllerDelegate {
         // 取得套用濾鏡後的 image
         if let fixOrientationOfImage: UIImage = fixOrientationOfImage(image: image) {
             let squaredFilteredImage: UIImage = fixOrientationOfImage.squared!
-            if let filterImageData: NSData = UIImageJPEGRepresentation(squaredFilteredImage, 0.5) as NSData? {
+            if let filterImageData: NSData = squaredFilteredImage.jpegData(compressionQuality: 0.5) as NSData? {
                 UserDefaults.standard.set(filterImageData, forKey: "gatFilterImage")
 
                 print("O ~ Gat filter image in CameraVC")
@@ -295,4 +295,9 @@ extension CameraViewController: SHViewControllerDelegate {
         }
         return UIImage(cgImage: CGImage)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
