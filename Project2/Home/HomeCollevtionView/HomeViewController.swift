@@ -14,16 +14,20 @@ import GoogleSignIn
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var liveCollectionView: UICollectionView!
+    @IBOutlet weak var homeCollectionView: UICollectionView!
+
     @IBAction func goLiveVCButton(_ sender: UIButton) {
         guard let liveVC = storyboard?.instantiateViewController(withIdentifier: "YTStreaming") else {
             return
         }
         present(liveVC, animated: true, completion: nil)
     }
-    @IBOutlet weak var homeCollectionView: UICollectionView!
+
     let userID = Auth.auth().currentUser?.uid
     var postImages = [PostImage]()
     var dismissValue = [String]()
+    var liveStream = [LiveStream]()
 
     func fetchImage() {
 
@@ -92,13 +96,70 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        }
     }
 
+    func fetchLiveStream() {
+        self.liveStream.removeAll()
+        Database.database().reference().child("liveStreams").observe(.value) { (snapshot) in
+            self.liveStream.removeAll()
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let liveStreamItem = LiveStream.init(snapshot: snapshot) {
+                    self.liveStream.append(liveStreamItem)
+                    self.liveCollectionView.reloadData()
+                }
+            }
+            self.refreshControl.endRefreshing()
+        }
+        self.liveCollectionView.reloadData()
+    }
+    #warning("TODO: 建立 live 列表")
+    // MARK: collectionDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("postImages.count ~~~~~~~~~~~ \(postImages.count)")
-        return postImages.count
+        if collectionView == liveCollectionView {
+            return self.liveStream.count
+        }
+        else {
+            print("postImages.count ~~~~~~~~~~~ \(postImages.count)")
+            return postImages.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+        if collectionView == liveCollectionView {
+
+            guard let livecell = collectionView.dequeueReusableCell(withReuseIdentifier: "liveCell", for: indexPath) as? LiveCellCollectionViewCell
+                else {
+                    fatalError()
+            }
+
+            livecell.liveUserImageView.backgroundColor = .blue
+
+            if let userId = self.liveStream[indexPath.row].userID {
+                Database.database().reference().child("users").child(userId).observe(.value) { (snapshot) in
+                    guard
+                        let value = snapshot.value as? [String: Any]
+                        else {
+                            return
+                    }
+
+                    if let userImageUrl = value["userImageUrl"] as? String {
+                        if let url = URL(string: userImageUrl) {
+                            ImageService.getImage(withURL: url) { (image) in
+                                livecell.liveUserImageView.image = image
+                            }
+                        }
+                    }
+                }
+            }
+
+            return livecell
+        }
+        else {
+            return homeCellSet(collectionView, indexPath: indexPath)
+        }
+    }
+
+    func homeCellSet(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? NewHomeCollectionViewCell
             else {
                 fatalError()
@@ -136,28 +197,28 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         Database.database().reference().child("messages").child(postImage.idName!).observe(.value) { (snapshot) in
             var loadMessage = [String]()
             var names = [String]()
-                loadMessage.removeAll()
-                for child in snapshot.children.allObjects {
-                    if let snapshot = child as? DataSnapshot {
+            loadMessage.removeAll()
+            for child in snapshot.children.allObjects {
+                if let snapshot = child as? DataSnapshot {
+                    guard
+                        let value = snapshot.value as? [String: Any],
+                        let message = value["message"] as? String,
+                        let userID = value["userID"] as? String
+                        else {
+                            return
+                    }
+                    loadMessage.append(message)
+                    Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
                         guard
                             let value = snapshot.value as? [String: Any],
-                            let message = value["message"] as? String,
-                            let userID = value["userID"] as? String
+                            let name = value["userName"] as? String
                             else {
                                 return
                         }
-                        loadMessage.append(message)
-                        Database.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
-                            guard
-                            let value = snapshot.value as? [String: Any],
-                            let name = value["userName"] as? String
-                                else {
-                                    return
-                            }
-                            names.append(name)
-                            cell.messageLabel.attributedText = MessageSet.message(userName: names[0], messageText: loadMessage[0])
-                        })
-                    }
+                        names.append(name)
+                        cell.messageLabel.attributedText = MessageSet.message(userName: names[0], messageText: loadMessage[0])
+                    })
+                }
             }
         }
 
@@ -173,6 +234,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
 
         fetchImage()
+        fetchLiveStream()
+
         // set collcetion cell xib
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
@@ -198,6 +261,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshControl.isRefreshing {
             fetchImage()
+            fetchLiveStream()
         }
     }
 }
@@ -348,4 +412,29 @@ class PostImage {
         self.userID = userID
     }
 
+}
+
+//"liveStream": streamUrl
+//"userID": user.uid
+class LiveStream {
+    let liveStream: String?
+    let userID: String?
+    
+    init(liveStream: String, userID: String) {
+        self.liveStream = liveStream
+        self.userID = userID
+    }
+    
+    init?(snapshot: DataSnapshot) {
+        guard
+            let value = snapshot.value as? [String: Any],
+            let liveStream = value["liveStream"] as? String,
+            let userID = value["userID"] as? String
+            else {
+                return nil
+        }
+        
+        self.liveStream = liveStream
+        self.userID = userID
+    }
 }

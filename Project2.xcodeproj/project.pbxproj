@@ -25,6 +25,7 @@
 		BF47FC3D212FE6C6003E10FC /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FC3C212FE6C6003E10FC /* MessageModel.swift */; };
 		BF492EBA212D0E7900E544A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EB9212D0E7900E544A7 /* LoginViewController.swift */; };
 		BF492EBC212D0EF800E544A7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */; };
+		BF67BFA5218A1C77007B9A77 /* LiveCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */; };
 		BF81FA3C211EE1350030FABF /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3B211EE1350030FABF /* CameraModel.swift */; };
 		BF81FA3F211EE1670030FABF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81FA3E211EE1670030FABF /* CameraViewController.swift */; };
 		BF8D93E5218819FA007C6608 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D93E4218819FA007C6608 /* Alert.swift */; };
@@ -71,6 +72,7 @@
 		BF47FC3C212FE6C6003E10FC /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		BF492EB9212D0E7900E544A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF492EBB212D0EF800E544A7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF7E9965218777840024340A /* Sharaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sharaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF81FA3B211EE1350030FABF /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		BF81FA3E211EE1670030FABF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				BF1FB4BB2129BC6C0022693C /* HomeCollevtionView */,
 				BF13AD722137CDF7007B3290 /* NewHomeCollectionViewCell */,
+				BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				BFC94CB32186F4A900BEE8AA /* YTLiveStreamingViewController.swift in Sources */,
 				BF8D93E821884660007C6608 /* Preview.swift in Sources */,
 				BFEA72A9213980C800F69BF0 /* UserViewController.swift in Sources */,
+				BF67BFA5218A1C77007B9A77 /* LiveCellCollectionViewCell.swift in Sources */,
 				BFB6E49F211BF9B400404C2E /* Project2.xcdatamodeld in Sources */,
 				BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */,
 				BFC94CBD2187641E00BEE8AA /* Helpers.swift in Sources */,
