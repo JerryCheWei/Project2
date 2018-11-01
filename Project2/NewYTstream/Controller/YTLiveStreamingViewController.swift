@@ -11,21 +11,28 @@ import YTLiveStreaming
 
 class YTLiveStreamingViewController: UIViewController {
 
+    @IBOutlet weak var liveNowButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    var refreshControl: UIActivityIndicatorView!
 
     var input: YTLiveStreaming = YTLiveStreaming()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        refreshControl = UIActivityIndicatorView()
+        refreshControl.color = .red
+        refreshControl.center.x = view.center.x
+        refreshControl.center.y = titleTextField.center.y+40
+        view.addSubview(refreshControl)
     }
 
     @IBAction func closeStreamVC(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func liveNowButton(_ sender: Any) {
+    @IBAction func liveNowButton(_ sender: UIButton) {
 
         if let title = titleTextField.text,
             title.count <= 0 {
@@ -34,6 +41,8 @@ class YTLiveStreamingViewController: UIViewController {
         }
         else {
             self.startCreateBroadcast()
+            sender.isEnabled = false
+            self.refreshControl.startAnimating()
         }
     }
 
@@ -49,9 +58,11 @@ class YTLiveStreamingViewController: UIViewController {
                         LFLiveVC.into(liveBroadcast: breadcast)
                         self.navigationController?.pushViewController(LFLiveVC, animated: true)
                     }
+                    self.refreshControl.stopAnimating()
                 }
                 else {
                     print("createBroadcast error")
+                    Alert.sharedInstance.showRetakeToken(title: "重新登入", message: "Youtube 權限已逾時", viewController: self, self.refreshControl, button: self.liveNowButton)
                 }
             }
         }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 class Alert: NSObject {
 
@@ -38,15 +39,6 @@ class Alert: NSObject {
         closeView.present(alert, animated: true, completion: nil)
     }
 
-    func showFinishLive(title: String?, message: String?, closeView: UIViewController) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
-                closeView.dismiss(animated: true, completion: nil)
-        }
-        alert.addAction(okAction)
-        closeView.present(alert, animated: true, completion: nil)
-    }
-
     func showOk(_ title: String, message: String, viewController: UIViewController) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (_) in
@@ -56,4 +48,17 @@ class Alert: NSObject {
         viewController.present(alert, animated: true, completion: nil)
     }
 
+    func showRetakeToken(title: String?, message: String?, viewController: UIViewController, _ activityIndicatorView: UIActivityIndicatorView, button: UIButton) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "允許", style: .default) { (_) in
+            GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+            GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+            GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+            GIDSignIn.sharedInstance()?.signInSilently()
+            activityIndicatorView.stopAnimating()
+            button.isEnabled = true
+        }
+        alert.addAction(okAction)
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

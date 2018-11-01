@@ -105,7 +105,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
                 return
         }
         input.completeBroadcast(broadcast, completion: { success in
-            Alert.sharedInstance.showFinishLive(title: "已結束串流", message: "恭喜，順利結束直播！", closeView: self)
+            Alert.sharedInstance.showOk("已結束串流", message: "恭喜，順利結束直播！", viewController: self)
             self.navigationController?.isNavigationBarHidden = false
         })
         self.showCurrentStatus(currStatus: "■ END")
