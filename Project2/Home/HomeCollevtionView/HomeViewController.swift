@@ -12,7 +12,7 @@ import MessageUI
 import YTLiveStreaming
 import GoogleSignIn
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var liveCollectionView: UICollectionView!
     @IBOutlet weak var homeCollectionView: UICollectionView!
@@ -238,6 +238,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == homeCollectionView {
+            return CGSize(width: self.homeCollectionView.frame.width-20, height: 522)
+        }
+        else {
+            return CGSize(width: 50, height: 50)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -247,10 +256,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // set collcetion cell xib
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        #warning("TODO: cell 自動調整踏小顯示問題")
-//        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-//        }
 
         let accessToken = UserDefaults.standard.string(forKey: "accessToken")
         GoogleOAuth2.sharedInstance.accessToken = accessToken

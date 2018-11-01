@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import MessageUI
 
-class OtherUserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
+class OtherUserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     weak var delegate: SelectedCollectionItemDelegate?
 
@@ -74,9 +74,6 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
         #warning("TODO: cell 自動調整踏小顯示問題")
-//        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-//        }
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)
@@ -192,6 +189,15 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         if collectionView == self.moreCollectionView {
             let index = indexPath.row
             self.delegate?.selectedCollectionItem(index: index)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == oneCollectionView {
+            return CGSize(width: self.oneCollectionView.frame.width-20, height: 522)
+        }
+        else {
+            return CGSize(width: (self.moreCollectionView.frame.width/3)-5, height: (self.moreCollectionView.frame.width/3)-5)
         }
     }
 }

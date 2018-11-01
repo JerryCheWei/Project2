@@ -55,11 +55,11 @@ class NewHomeCollectionViewCell: UICollectionViewCell {
 //        layer.startPoint = CGPoint(x: 0.5, y: 0.0)
 //        view.layer.insertSublayer(layer, at: 0)
 //    }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        let screenWidth = UIScreen.main.bounds.size.width
-        widthConstrain.constant = screenWidth - (2 * 10)
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        let screenWidth = UIScreen.main.bounds.size.width
+//        widthConstrain.constant = screenWidth - (2 * 10)
+//    }
 
 }
