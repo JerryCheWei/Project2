@@ -47,36 +47,36 @@ class Preview: UIView, LFLiveSessionDelegate {
             print(String(format: "liveStateDidChange: %ld", state))
         }
 
-        switch state {
-        case .ready:
-            stateLabel.text = "No connect"
-            print("No connect")
-        case .pending:
-            stateLabel.text = "Connecting..."
-            print("Connecting...")
-        case .start:
-            stateLabel.text = "Connected"
-            print("Connected")
-        case .error:
-            stateLabel.text = "Connection error"
-            print("Connection error")
-        case .stop:
-            stateLabel.text = "No Connected"
-            print("No Connected")
-        case .refresh:
-            stateLabel.text = "正在刷新..."
-            print("正在刷新...")
-        }
+//        switch state {
+//        case .ready:
+//            stateLabel.text = "No connect"
+//            print("No connect")
+//        case .pending:
+//            stateLabel.text = "Connecting..."
+//            print("Connecting...")
+//        case .start:
+//            stateLabel.text = "Connected"
+//            print("Connected")
+//        case .error:
+//            stateLabel.text = "Connection error"
+//            print("Connection error")
+//        case .stop:
+//            stateLabel.text = "No Connected"
+//            print("No Connected")
+//        case .refresh:
+//            stateLabel.text = "正在刷新..."
+//            print("正在刷新...")
+//        }
 
     }
-    #warning("TODO: 修正 stateLabel 無法顯示問題")
-    let stateLabel: UILabel = {
-        let stateLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 80, height: 40))
-        stateLabel.text = "Not Connected"
-        stateLabel.textColor = UIColor.white
-        stateLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-        return stateLabel
-    }()
+//    #warning("TODO: 修正 stateLabel 無法顯示問題")
+//    let stateLabel: UILabel = {
+//        let stateLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 80, height: 40))
+//        stateLabel.text = "Not Connected"
+//        stateLabel.textColor = UIColor.white
+//        stateLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+//        return stateLabel
+//    }()
 
 }
 

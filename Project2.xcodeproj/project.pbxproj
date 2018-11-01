@@ -10,6 +10,7 @@
 		4413640072A8C2AD6D678C0B /* Pods_Project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */; };
 		BF13AD702137CDEA007B3290 /* NewHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF13AD6E2137CDEA007B3290 /* NewHomeCollectionViewCell.swift */; };
 		BF13AD712137CDEA007B3290 /* NewHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF13AD6F2137CDEA007B3290 /* NewHomeCollectionViewCell.xib */; };
+		BF1DFB0C218B01FA00B93FAE /* LiveCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1DFB0B218B01FA00B93FAE /* LiveCellCollectionViewCell.xib */; };
 		BF1FB4B72129AEFF0022693C /* SendImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */; };
 		BF1FB4B92129B7A00022693C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4B82129B7A00022693C /* TabBarController.swift */; };
 		BF1FB4C22129BD770022693C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FB4C12129BD770022693C /* HomeViewController.swift */; };
@@ -57,6 +58,7 @@
 		B4909F2DFFA46B40244B1F66 /* Pods_Project2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AD6E2137CDEA007B3290 /* NewHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF13AD6F2137CDEA007B3290 /* NewHomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewHomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF1DFB0B218B01FA00B93FAE /* LiveCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveCellCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF1FB4B62129AEFF0022693C /* SendImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageViewController.swift; sourceTree = "<group>"; };
 		BF1FB4B82129B7A00022693C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF1FB4C12129BD770022693C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,15 @@
 			path = NewHomeCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		BF1DFB0D218B078300B93FAE /* LIveCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF1DFB0B218B01FA00B93FAE /* LiveCellCollectionViewCell.xib */,
+				BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */,
+			);
+			path = LIveCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		BF1FB4B12129AD6D0022693C /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,9 +175,9 @@
 		BF1FB4BA2129BC630022693C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BF1DFB0D218B078300B93FAE /* LIveCollectionViewCell */,
 				BF1FB4BB2129BC6C0022693C /* HomeCollevtionView */,
 				BF13AD722137CDF7007B3290 /* NewHomeCollectionViewCell */,
-				BF67BFA4218A1C77007B9A77 /* LiveCellCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -494,6 +505,7 @@
 				BFEA72BC213D727000F69BF0 /* GoogleService-Info-dont-change.plist in Resources */,
 				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
+				BF1DFB0C218B01FA00B93FAE /* LiveCellCollectionViewCell.xib in Resources */,
 				BFEA72A42139482000F69BF0 /* MoreUserCollectionViewCell.xib in Resources */,
 				BFB6E4A1211BF9B900404C2E /* Assets.xcassets in Resources */,
 				BFEA72A02139480200F69BF0 /* OneUserCollectionViewCell.xib in Resources */,

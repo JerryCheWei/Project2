@@ -29,6 +29,46 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var dismissValue = [String]()
     var liveStream = [LiveStream]()
 
+    var refreshControl: UIRefreshControl!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        fetchImage()
+        fetchLiveStream()
+
+        // set all collcetion cell xib
+        self.setXib()
+
+        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
+        GoogleOAuth2.sharedInstance.accessToken = accessToken
+        print("accessToken: \(accessToken ?? "no get token")")
+
+        refreshControl = UIRefreshControl()
+        homeCollectionView.addSubview(refreshControl)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.liveCollectionView.reloadData()
+    }
+
+    func setXib() {
+        // homeCell
+        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
+        homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        // liveCell
+        let liveNib = UINib.init(nibName: "LiveCellCollectionViewCell", bundle: nil)
+        liveCollectionView.register(liveNib, forCellWithReuseIdentifier: "liveCell")
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            fetchImage()
+            fetchLiveStream()
+        }
+    }
+
     func fetchImage() {
 
         if let userID = self.userID {
@@ -133,6 +173,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
 
             livecell.liveUserImageView.backgroundColor = .gray
+            livecell.liveUserImageView.layer.cornerRadius = 20
+
+            livecell.circleView.layer.cornerRadius = 25
+            livecell.circleView.layer.borderWidth = 3
+            livecell.circleView.layer.borderColor = UIColor.red.cgColor
+            livecell.circleView.alpha = 1
+
+            UIView.animate(withDuration: 0.7, delay: 0, options: [.repeat, .autoreverse, .allowUserInteraction], animations: {
+                livecell.circleView.alpha = 0.2
+            }, completion: nil)
 
             if let userId = self.liveStream[indexPath.row].userID {
                 Database.database().reference().child("users").child(userId).observe(.value) { (snapshot) in
@@ -161,6 +211,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == liveCollectionView {
+            print(indexPath.row)
             if let liveBroadcastID = liveStream[indexPath.row].liveBroadcastID {
                 YouTubePlayer.playYoutubeID(liveBroadcastID, viewController: self)
             }
@@ -244,38 +295,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         else {
             return CGSize(width: 50, height: 50)
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        fetchImage()
-        fetchLiveStream()
-
-        // set collcetion cell xib
-        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
-        homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-
-        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
-        GoogleOAuth2.sharedInstance.accessToken = accessToken
-        print("accessToken: \(accessToken ?? "no get token")")
-
-        refreshControl = UIRefreshControl()
-        homeCollectionView.addSubview(refreshControl)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        homeCollectionView.reloadData()
-         self.liveCollectionView.reloadData()
-    }
-
-    var refreshControl: UIRefreshControl!
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if refreshControl.isRefreshing {
-            fetchImage()
-            fetchLiveStream()
         }
     }
 }

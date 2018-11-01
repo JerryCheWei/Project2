@@ -73,7 +73,6 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     func oneCellXib() {
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        #warning("TODO: cell 自動調整踏小顯示問題")
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)

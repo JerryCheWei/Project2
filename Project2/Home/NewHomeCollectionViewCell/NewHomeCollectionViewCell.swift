@@ -20,7 +20,6 @@ protocol CellDelegateProtocol: class {
 class NewHomeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
-//    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var messageButton: UIButton!

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -441,7 +442,7 @@
                                             <inset key="sectionInset" minX="10" minY="5" maxX="0.0" maxY="5"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="liveCell" id="f8M-ho-Tk7" customClass="LiveCellCollectionViewCell" customModule="Project2" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="liveCell" id="f8M-ho-Tk7">
                                                 <rect key="frame" x="10" y="5" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -449,24 +450,21 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K5Y-sM-OWY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <integer key="value" value="25"/>
+                                                                    <integer key="value" value="20"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="K5Y-sM-OWY" secondAttribute="bottom" id="C0o-UO-qYi"/>
-                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="leading" secondItem="f8M-ho-Tk7" secondAttribute="leading" id="YIL-yA-cmL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="K5Y-sM-OWY" secondAttribute="trailing" id="k0C-qC-A08"/>
-                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="top" secondItem="f8M-ho-Tk7" secondAttribute="top" id="rSV-Jn-Aza"/>
+                                                    <constraint firstAttribute="bottom" secondItem="K5Y-sM-OWY" secondAttribute="bottom" constant="5" id="C0o-UO-qYi"/>
+                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="leading" secondItem="f8M-ho-Tk7" secondAttribute="leading" constant="5" id="YIL-yA-cmL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="K5Y-sM-OWY" secondAttribute="trailing" constant="5" id="k0C-qC-A08"/>
+                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="top" secondItem="f8M-ho-Tk7" secondAttribute="top" constant="5" id="rSV-Jn-Aza"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="liveUserImageView" destination="K5Y-sM-OWY" id="DLQ-UB-joP"/>
-                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
