@@ -50,7 +50,6 @@
 		BFEA72AB213AF93A00F69BF0 /* LoadUserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */; };
 		BFEA72B8213BBDEC00F69BF0 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */; };
 		BFEA72BA213D376B00F69BF0 /* FixImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA72B9213D376B00F69BF0 /* FixImage.swift */; };
-		BFEA72BC213D727000F69BF0 /* GoogleService-Info-dont-change.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFEA72BB213D727000F69BF0 /* GoogleService-Info-dont-change.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +102,6 @@
 		BFEA72AA213AF93A00F69BF0 /* LoadUserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserName.swift; sourceTree = "<group>"; };
 		BFEA72B7213BBDEC00F69BF0 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		BFEA72B9213D376B00F69BF0 /* FixImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixImage.swift; sourceTree = "<group>"; };
-		BFEA72BB213D727000F69BF0 /* GoogleService-Info-dont-change.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dont-change.plist"; sourceTree = "<group>"; };
 		FBE29137E3E4D97876435CF3 /* Pods-Project2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project2/Pods-Project2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -377,7 +375,6 @@
 				BFB6E4A2211BF9B900404C2E /* LaunchScreen.storyboard */,
 				BFB6E4A5211BF9B900404C2E /* Info.plist */,
 				BFB6E49D211BF9B400404C2E /* Project2.xcdatamodeld */,
-				BFEA72BB213D727000F69BF0 /* GoogleService-Info-dont-change.plist */,
 				BFC94CAF2186CA1500BEE8AA /* GoogleService-Info.plist */,
 				BFEA72B9213D376B00F69BF0 /* FixImage.swift */,
 			);
@@ -502,7 +499,6 @@
 			files = (
 				BF13AD712137CDEA007B3290 /* NewHomeCollectionViewCell.xib in Resources */,
 				BFC94CB02186CA1600BEE8AA /* GoogleService-Info.plist in Resources */,
-				BFEA72BC213D727000F69BF0 /* GoogleService-Info-dont-change.plist in Resources */,
 				BF47FC35212FA80B003E10FC /* MessageTableViewCell.xib in Resources */,
 				BFB6E4A4211BF9B900404C2E /* LaunchScreen.storyboard in Resources */,
 				BF1DFB0C218B01FA00B93FAE /* LiveCellCollectionViewCell.xib in Resources */,
