@@ -97,6 +97,7 @@ class LFLiveViewController: UIViewController {
                 self.refreshControl.isHidden = true
                 self.connectLabel.isHidden = true
                 self.stopOrStartLiveButton.isHidden = false
+                self.liveButtonBigAnimated()
             }
             else {
                 print("createBroadcast error")
@@ -107,6 +108,14 @@ class LFLiveViewController: UIViewController {
                 self.startCreateBroadcast()
             }
         }
+    }
+
+    func liveButtonBigAnimated() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction, .autoreverse, .repeat], animations: {
+            #warning("TODO: 修改[立即直播]按鈕動畫")
+            self.stopOrStartLiveButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+//            width: 140, height: 50
+        }, completion: nil)
     }
 
     @IBAction func changeCameraPositionButtonPressed(_ sender: Any) {
