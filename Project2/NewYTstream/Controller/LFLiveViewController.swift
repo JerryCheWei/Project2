@@ -9,14 +9,18 @@
 import UIKit
 import YTLiveStreaming
 import Firebase
+import GoogleSignIn
 
 class LFLiveViewController: UIViewController {
 
+    @IBOutlet weak var waitView: UIView!
     @IBOutlet weak var currentStatusLabel: UILabel!
     @IBOutlet weak var stopOrStartLiveButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var lfView: Preview!
+    var refreshControl: UIActivityIndicatorView!
+    var isUp = true
 
     var scheduledStartTime: NSDate?
     let input = YTLiveStreaming()
@@ -36,12 +40,72 @@ class LFLiveViewController: UIViewController {
         // add top view to show stopOrStartLiveButton
         let top = UITapGestureRecognizer(target: self, action: #selector(showButton))
         view.addGestureRecognizer(top)
+
+        self.preaper()
+        stopOrStartLiveButton.isHidden = true
+        waitView.isHidden = false
+        waitView.alpha = 0.7
+    }
+
+    func preaper() {
+        refreshControl = UIActivityIndicatorView()
+        refreshControl.color = .red
+        refreshControl.center.x = view.center.x
+        refreshControl.center.y = view.center.y-100
+        self.view.addSubview(refreshControl)
+
+        connectLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width-20, height: 50)
+        connectLabel.center.x = view.center.x
+        connectLabel.center.y = view.center.y-40
+        connectLabel.alpha = 0
+        connectLabel.textAlignment = .center
+        self.view.addSubview(connectLabel)
+    }
+
+    let connectLabel: UILabel = {
+        let label = UILabel()
+        label.text = "創建直播中..."
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+
+    func loadingView() {
+        self.refreshControl.startAnimating()
+        UIView.animate(withDuration: 0.8, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.connectLabel.alpha = 1
+        }, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.lfView.prepareForUsing()
+        }
+        self.startCreateBroadcast()
+        self.loadingView()
+    }
+
+    func startCreateBroadcast() {
+        let startDate = Helpers.dateAfter(Date(), after: (hour: 0, minute: 0, second: 10))
+
+        input.createBroadcast("正在 SYOS 進行直播快來看～", description: "", startTime: startDate) { (creatBreadcase) in
+            if let breadcast = creatBreadcase {
+                self.into(liveBroadcast: breadcast)
+                self.refreshControl.stopAnimating()
+                self.connectLabel.layer.removeAllAnimations()
+                self.refreshControl.isHidden = true
+                self.connectLabel.isHidden = true
+                self.stopOrStartLiveButton.isHidden = false
+            }
+            else {
+                print("createBroadcast error")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+                GIDSignIn.sharedInstance()?.signInSilently()
+                self.startCreateBroadcast()
+            }
         }
     }
 
@@ -64,17 +128,20 @@ class LFLiveViewController: UIViewController {
             self.closeButton.isHidden = true
             stopOrStartLiveButton.isSelected = true
             stopOrStartLiveButton.setTitle("結束", for: .normal)
-            stopOrStartLiveButton.backgroundColor = .gray
+            stopOrStartLiveButton.backgroundColor = .darkGray
             self.liveButtonAnimated()
-            startPublishing { (streamURL, streamName) in
-                if let streamURL = streamURL,
-                    let streamName = streamName {
+            self.showCurrentStatus(currStatus: "準備中...")
 
-                    let streamUrl = "\(streamURL)/\(streamName)"
-                    self.lfView.startPublishing(withStreamURL: streamUrl)
+            DispatchQueue.main.async {
+                self.startPublishing { (streamURL, streamName) in
+                    if let streamURL = streamURL,
+                        let streamName = streamName {
 
+                        let streamUrl = "\(streamURL)/\(streamName)"
+                        self.lfView.startPublishing(withStreamURL: streamUrl)
+                    }
+                    print("start live now !!")
                 }
-                print("start live now !!")
             }
         }
     }
@@ -84,20 +151,24 @@ class LFLiveViewController: UIViewController {
     }
 
     func liveButtonAnimated() {
-        UIView.animate(withDuration: 0.7, delay: 1.5, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.7, delay: 0.2, options: [.curveEaseInOut, .allowUserInteraction], animations: {
             self.stopOrStartLiveButton.frame = CGRect(x: self.view.frame.width/2-60, y: self.view.frame.height, width: 120, height: 40)
         }, completion: nil)
+        isUp = false
     }
 
     @objc func showButton() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
-            self.stopOrStartLiveButton.center.x = self.view.center.x
-            self.stopOrStartLiveButton.center.y = self.view.frame.height-20-40
-        }) { _ in
+        if isUp {
             self.liveButtonAnimated()
         }
+        else {
+            UIView.animate(withDuration: 0.3, delay: 0.2, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+                self.stopOrStartLiveButton.center.x = self.view.center.x
+                self.stopOrStartLiveButton.center.y = self.view.frame.height-20-40
+            }, completion: nil)
+            isUp = true
+        }
     }
-
 }
 
 extension LFLiveViewController: YTLiveStreamingDelegate {
@@ -133,6 +204,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         self.currentStatusLabel.layer.removeAllAnimations()
         self.currentStatusLabel.alpha = 1
         self.pushStreamUrlToFirebase(isCanSeeLive: false)
+         waitView.isHidden = false
     }
 
     func cancelPublishing() {
@@ -163,6 +235,7 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
             self.currentStatusLabel.alpha = 0
         }, completion: nil)
         self.pushStreamUrlToFirebase(isCanSeeLive: true)
+        waitView.isHidden = true
     }
 
     func didTransitionToStatus(broadcastStatus: String?, streamStatus: String?, healthStatus: String?) {
