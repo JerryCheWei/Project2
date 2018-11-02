@@ -8,6 +8,8 @@ DerivedData/
 
 ## FireBase
 Project2/GoogleService-Info.plist
+Project2/GoogleService-Info-dont-change.plist
+Project2/.swiftlint.yml
 
 ## Various settings
 *.pbxuser

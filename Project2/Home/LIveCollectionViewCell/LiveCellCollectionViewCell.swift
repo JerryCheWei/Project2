@@ -10,5 +10,6 @@ import UIKit
 
 class LiveCellCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var liveUserImageView: UIImageView!
 }

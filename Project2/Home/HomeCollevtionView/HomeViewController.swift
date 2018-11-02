@@ -12,7 +12,7 @@ import MessageUI
 import YTLiveStreaming
 import GoogleSignIn
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var liveCollectionView: UICollectionView!
     @IBOutlet weak var homeCollectionView: UICollectionView!
@@ -28,6 +28,46 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var postImages = [PostImage]()
     var dismissValue = [String]()
     var liveStream = [LiveStream]()
+
+    var refreshControl: UIRefreshControl!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        fetchImage()
+        fetchLiveStream()
+
+        // set all collcetion cell xib
+        self.setXib()
+
+        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
+        GoogleOAuth2.sharedInstance.accessToken = accessToken
+        print("accessToken: \(accessToken ?? "no get token")")
+
+        refreshControl = UIRefreshControl()
+        homeCollectionView.addSubview(refreshControl)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.liveCollectionView.reloadData()
+    }
+
+    func setXib() {
+        // homeCell
+        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
+        homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        // liveCell
+        let liveNib = UINib.init(nibName: "LiveCellCollectionViewCell", bundle: nil)
+        liveCollectionView.register(liveNib, forCellWithReuseIdentifier: "liveCell")
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            fetchImage()
+            fetchLiveStream()
+        }
+    }
 
     func fetchImage() {
 
@@ -133,6 +173,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
 
             livecell.liveUserImageView.backgroundColor = .gray
+            livecell.liveUserImageView.layer.cornerRadius = 20
+
+            livecell.circleView.layer.cornerRadius = 25
+            livecell.circleView.layer.borderWidth = 3
+            livecell.circleView.layer.borderColor = UIColor.red.cgColor
+            livecell.circleView.alpha = 1
+
+            UIView.animate(withDuration: 0.7, delay: 0, options: [.repeat, .autoreverse, .allowUserInteraction], animations: {
+                livecell.circleView.alpha = 0.2
+            }, completion: nil)
 
             if let userId = self.liveStream[indexPath.row].userID {
                 Database.database().reference().child("users").child(userId).observe(.value) { (snapshot) in
@@ -161,6 +211,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == liveCollectionView {
+            print(indexPath.row)
             if let liveBroadcastID = liveStream[indexPath.row].liveBroadcastID {
                 YouTubePlayer.playYoutubeID(liveBroadcastID, viewController: self)
             }
@@ -238,39 +289,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return cell
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        fetchImage()
-        fetchLiveStream()
-
-        // set collcetion cell xib
-        let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
-        homeCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        #warning("TODO: cell 自動調整踏小顯示問題")
-//        if let flowLayout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-//        }
-
-        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
-        GoogleOAuth2.sharedInstance.accessToken = accessToken
-        print("accessToken: \(accessToken ?? "no get token")")
-
-        refreshControl = UIRefreshControl()
-        homeCollectionView.addSubview(refreshControl)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        homeCollectionView.reloadData()
-         self.liveCollectionView.reloadData()
-    }
-
-    var refreshControl: UIRefreshControl!
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if refreshControl.isRefreshing {
-            fetchImage()
-            fetchLiveStream()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == homeCollectionView {
+            return CGSize(width: self.homeCollectionView.frame.width-20, height: 522)
+        }
+        else {
+            return CGSize(width: 50, height: 50)
         }
     }
 }

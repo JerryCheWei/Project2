@@ -48,7 +48,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>SYOS 需要存取相機功能，讓你盡情拍下美麗景色分享給所有人，請問是否允許開啟相機使用權限？</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>SYOS 需要存取麥克風功能，讓你能使用更好的直播體驗，請問是否允許開啟麥克風使用權限？</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>SYOS 需要存取相簿功能，讓你存下編輯後的美麗景色，請問是否允許開啟相簿使用權限？</string>
 	<key>NSPhotoLibraryUsageDescription</key>

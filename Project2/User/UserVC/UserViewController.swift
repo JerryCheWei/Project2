@@ -13,7 +13,7 @@ protocol SelectedCollectionItemDelegate: class {
     func selectedCollectionItem(index: Int)
 }
 
-class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewUserViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     weak var delegate: SelectedCollectionItemDelegate?
 
@@ -204,9 +204,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     func oneCellXib() {
         let nib = UINib.init(nibName: "NewHomeCollectionViewCell", bundle: nil)
         oneCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        if let flowLayout = oneCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
-        }
     }
     func moreCellXib() {
         let nib = UINib(nibName: "MoreUserCollectionViewCell", bundle: nil)
@@ -307,6 +304,15 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         if collectionView == self.moreCollectionView {
             let index = indexPath.row
             self.delegate?.selectedCollectionItem(index: index)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == oneCollectionView {
+            return CGSize(width: self.oneCollectionView.frame.width-20, height: 522)
+        }
+        else {
+            return CGSize(width: (self.moreCollectionView.frame.width/3)-5, height: (self.moreCollectionView.frame.width/3)-5)
         }
     }
 }

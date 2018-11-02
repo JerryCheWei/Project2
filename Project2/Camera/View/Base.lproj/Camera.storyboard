@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -179,19 +180,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ahz-UM-QeC">
-                                <rect key="frame" x="60" y="297.66666666666669" width="294" height="140.66666666666669"/>
+                                <rect key="frame" x="60" y="328" width="294" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nj7-h4-p6l">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="60.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*標題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0j-nX-a64">
-                                                <rect key="frame" x="0.0" y="0.0" width="294" height="20.333333333333332"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*標題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0j-nX-a64">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raF-xk-1Mg">
-                                                <rect key="frame" x="0.0" y="30.333333333333314" width="294" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="正在 SYOS 進行直播快來看～" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raF-xk-1Mg">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -202,16 +203,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-6X-xMU">
-                                        <rect key="frame" x="0.0" y="80.333333333333314" width="294" height="60.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="50" width="294" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="說明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vH-bm-Rek">
-                                                <rect key="frame" x="0.0" y="0.0" width="294" height="20.333333333333332"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="說明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vH-bm-Rek">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhO-VA-DPk">
-                                                <rect key="frame" x="0.0" y="30.333333333333314" width="294" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -232,7 +233,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1e-wT-IL8">
-                                <rect key="frame" x="60" y="468.33333333333331" width="294" height="49.999999999999943"/>
+                                <rect key="frame" x="60" y="438" width="294" height="50"/>
                                 <color key="backgroundColor" red="0.90072595710000003" green="0.30756032589999999" blue="0.32960036729999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bys-qf-1Uz"/>
@@ -291,7 +292,7 @@
         <!--Live View Controller-->
         <scene sceneID="4IC-mZ-yAe">
             <objects>
-                <viewController storyboardIdentifier="LFLiveVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dnx-n9-OXS" customClass="LFLiveViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YTStreaming" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dnx-n9-OXS" customClass="LFLiveViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zcA-ES-DbC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,21 +300,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Su9-qT-Lbn" customClass="Preview" customModule="Project2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n99-W2-9Ft">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-4M-6Pa">
-                                        <rect key="frame" x="142.66666666666666" y="686" width="128.99999999999997" height="30"/>
+                                        <rect key="frame" x="147" y="656" width="120" height="40"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="MVA-fG-lq5"/>
+                                            <constraint firstAttribute="width" constant="120" id="K32-Ut-K84"/>
+                                            <constraint firstAttribute="height" constant="40" id="SOs-Sl-MfS"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="15"/>
-                                        <state key="normal" title="Start live broadcast">
-                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="20"/>
+                                        <state key="normal" title="立即直播">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="topStopLiveButton:" destination="Dnx-n9-OXS" eventType="touchUpInside" id="bJD-dl-yIR"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentStatusLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oA-Zg-4ea">
-                                        <rect key="frame" x="134" y="660" width="146" height="21"/>
+                                        <rect key="frame" x="134" y="20" width="146" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.90072595710000003" green="0.30756032589999999" blue="0.32960036729999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -341,16 +353,22 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZmI-4M-6Pa" secondAttribute="bottom" id="5xb-te-XBQ"/>
-                                    <constraint firstItem="ZmI-4M-6Pa" firstAttribute="centerX" secondItem="Su9-qT-Lbn" secondAttribute="centerX" id="9Xi-Wz-J2m"/>
+                                    <constraint firstItem="n99-W2-9Ft" firstAttribute="top" secondItem="Su9-qT-Lbn" secondAttribute="top" id="1rC-hh-dMR"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ZmI-4M-6Pa" secondAttribute="trailing" constant="177" id="BA7-fJ-MW8"/>
+                                    <constraint firstItem="n99-W2-9Ft" firstAttribute="leading" secondItem="Su9-qT-Lbn" secondAttribute="leading" id="GuN-af-T1a"/>
+                                    <constraint firstAttribute="bottom" secondItem="n99-W2-9Ft" secondAttribute="bottom" id="IHb-0A-PvK"/>
                                     <constraint firstItem="U0U-kj-Ef8" firstAttribute="leading" secondItem="Su9-qT-Lbn" secondAttribute="leading" constant="8" id="Jrq-gL-Qag"/>
-                                    <constraint firstItem="ZmI-4M-6Pa" firstAttribute="top" secondItem="9oA-Zg-4ea" secondAttribute="bottom" constant="5" id="QS5-XK-cL7"/>
+                                    <constraint firstItem="ZmI-4M-6Pa" firstAttribute="centerX" secondItem="Su9-qT-Lbn" secondAttribute="centerX" id="MJX-hU-EdY"/>
+                                    <constraint firstItem="9oA-Zg-4ea" firstAttribute="centerX" secondItem="Su9-qT-Lbn" secondAttribute="centerX" id="P66-sT-IwE"/>
                                     <constraint firstItem="dWh-iL-gyt" firstAttribute="top" secondItem="U0U-kj-Ef8" secondAttribute="bottom" constant="8" id="QWw-ak-Cd2"/>
+                                    <constraint firstItem="ZmI-4M-6Pa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Su9-qT-Lbn" secondAttribute="leading" constant="177" id="cDc-pj-xiA"/>
+                                    <constraint firstItem="9oA-Zg-4ea" firstAttribute="top" secondItem="Su9-qT-Lbn" secondAttribute="top" constant="20" id="d1p-z8-Xd3"/>
                                     <constraint firstItem="U0U-kj-Ef8" firstAttribute="top" secondItem="Su9-qT-Lbn" secondAttribute="top" constant="10" id="pnm-6h-y1F"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZmI-4M-6Pa" secondAttribute="bottom" constant="20" id="vKq-no-Cgq"/>
                                     <constraint firstItem="dWh-iL-gyt" firstAttribute="leading" secondItem="Su9-qT-Lbn" secondAttribute="leading" constant="8" id="xAY-3e-PKJ"/>
-                                    <constraint firstItem="9oA-Zg-4ea" firstAttribute="centerX" secondItem="Su9-qT-Lbn" secondAttribute="centerX" id="yLQ-lC-x8f"/>
+                                    <constraint firstAttribute="trailing" secondItem="n99-W2-9Ft" secondAttribute="trailing" id="xsQ-cw-K46"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -370,11 +388,12 @@
                         <outlet property="currentStatusLabel" destination="9oA-Zg-4ea" id="zqR-Uj-5dG"/>
                         <outlet property="lfView" destination="Su9-qT-Lbn" id="6Ph-De-eaB"/>
                         <outlet property="stopOrStartLiveButton" destination="ZmI-4M-6Pa" id="PlA-ac-ysR"/>
+                        <outlet property="waitView" destination="n99-W2-9Ft" id="Gru-hk-Ctb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiK-lr-j27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="2393"/>
+            <point key="canvasLocation" x="21.739130434782609" y="2392.663043478261"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7hS-I7-eOv">
@@ -441,7 +460,7 @@
                                             <inset key="sectionInset" minX="10" minY="5" maxX="0.0" maxY="5"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="liveCell" id="f8M-ho-Tk7" customClass="LiveCellCollectionViewCell" customModule="Project2" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="liveCell" id="f8M-ho-Tk7">
                                                 <rect key="frame" x="10" y="5" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -449,24 +468,21 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K5Y-sM-OWY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <integer key="value" value="25"/>
+                                                                    <integer key="value" value="20"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="K5Y-sM-OWY" secondAttribute="bottom" id="C0o-UO-qYi"/>
-                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="leading" secondItem="f8M-ho-Tk7" secondAttribute="leading" id="YIL-yA-cmL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="K5Y-sM-OWY" secondAttribute="trailing" id="k0C-qC-A08"/>
-                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="top" secondItem="f8M-ho-Tk7" secondAttribute="top" id="rSV-Jn-Aza"/>
+                                                    <constraint firstAttribute="bottom" secondItem="K5Y-sM-OWY" secondAttribute="bottom" constant="5" id="C0o-UO-qYi"/>
+                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="leading" secondItem="f8M-ho-Tk7" secondAttribute="leading" constant="5" id="YIL-yA-cmL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="K5Y-sM-OWY" secondAttribute="trailing" constant="5" id="k0C-qC-A08"/>
+                                                    <constraint firstItem="K5Y-sM-OWY" firstAttribute="top" secondItem="f8M-ho-Tk7" secondAttribute="top" constant="5" id="rSV-Jn-Aza"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="liveUserImageView" destination="K5Y-sM-OWY" id="DLQ-UB-joP"/>
-                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
@@ -1778,7 +1794,7 @@
         <!--Navigation Controller-->
         <scene sceneID="o2j-Gq-Tl3">
             <objects>
-                <navigationController storyboardIdentifier="YTStreaming" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nAG-nf-lVc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nAG-nf-lVc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ei4-UM-WJn">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>

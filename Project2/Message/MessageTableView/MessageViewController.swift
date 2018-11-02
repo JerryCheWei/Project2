@@ -241,6 +241,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     // 刪除、回報功能
+    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if Auth.auth().currentUser?.uid == userID {
             if Auth.auth().currentUser?.uid == MessageModel.allMessage[indexPath.row].userID {
@@ -261,18 +262,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 return comfiguration
             }
             else {
-//                let deleteAction = UIContextualAction(style: .destructive, title: "刪除留言") { (_ action, _ view, completionHandler) in
-//                    print("delete")
-//                    // delete firebase message database
-//                    let ref = Database.database().reference().child("messages").child(self.imageID)
-//                    let messageItem = ref.child(MessageModel.allMessage[indexPath.row].key!)
-//                    messageItem.removeValue()
-//                    // remove tableView cell
-//                    MessageModel.allMessage.remove(at: indexPath.row)
-//
-//                    completionHandler(true)
-//                }
-//                deleteAction.backgroundColor = .red
                 let returns = UIContextualAction(style: .normal, title: "回報") { (_ action, _ view, completionHandler) in
                     print("留言回報")
                     completionHandler(true)
