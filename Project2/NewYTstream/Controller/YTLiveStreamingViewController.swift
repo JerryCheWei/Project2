@@ -8,6 +8,7 @@
 
 import UIKit
 import YTLiveStreaming
+import GoogleSignIn
 
 class YTLiveStreamingViewController: UIViewController {
 
@@ -62,7 +63,12 @@ class YTLiveStreamingViewController: UIViewController {
                 }
                 else {
                     print("createBroadcast error")
-                    Alert.sharedInstance.showRetakeToken(title: "重新登入", message: "Youtube 權限已逾時", viewController: self, self.refreshControl, button: self.liveNowButton)
+//                    Alert.sharedInstance.showRetakeToken(title: "重新登入", message: "Youtube 權限已逾時", viewController: self, self.refreshControl, button: self.liveNowButton)
+                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+                    GIDSignIn.sharedInstance()?.signInSilently()
+                    self.startCreateBroadcast()
                 }
             }
         }
