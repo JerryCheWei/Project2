@@ -31,7 +31,6 @@ class LFLiveViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         cameraButton.isExclusiveTouch = true
         closeButton.isExclusiveTouch = true
-        stopOrStartLiveButton.setTitle("Start live", for: .normal)
         currentStatusLabel.text = " "
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -52,14 +51,15 @@ class LFLiveViewController: UIViewController {
     @IBAction func topStopLiveButton(_ sender: Any) {
         if stopOrStartLiveButton.isSelected {
             stopOrStartLiveButton.isSelected = false
-            stopOrStartLiveButton.setTitle("Stop live", for: .normal)
+            stopOrStartLiveButton.setTitle("已結束直播", for: .normal)
             stopOrStartLiveButton.isEnabled = false
             lfView.stopPublishing()
             self.finishPublishing()
         } else {
             self.closeButton.isHidden = true
             stopOrStartLiveButton.isSelected = true
-            stopOrStartLiveButton.setTitle("Finish live", for: .normal)
+            stopOrStartLiveButton.setTitle("結束", for: .normal)
+            stopOrStartLiveButton.backgroundColor = .gray
             startPublishing { (streamURL, streamName) in
                 if let streamURL = streamURL,
                     let streamName = streamName {

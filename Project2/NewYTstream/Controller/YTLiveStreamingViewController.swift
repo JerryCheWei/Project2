@@ -25,9 +25,28 @@ class YTLiveStreamingViewController: UIViewController {
         refreshControl = UIActivityIndicatorView()
         refreshControl.color = .red
         refreshControl.center.x = view.center.x
-        refreshControl.center.y = titleTextField.center.y+40
+        refreshControl.center.y = view.center.y-100
         view.addSubview(refreshControl)
+
+        connectLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width-20, height: 50)
+        connectLabel.center.x = view.center.x
+        connectLabel.center.y = view.center.y-40
+        connectLabel.alpha = 0
+        connectLabel.textAlignment = .center
+        view.addSubview(connectLabel)
+
+        // 隱藏TextField
+        titleTextField.isHidden = true
+        descriptionTextField.isHidden = true
     }
+
+    let connectLabel: UILabel = {
+        let label = UILabel()
+        label.text = "創建直播中..."
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
 
     @IBAction func closeStreamVC(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -35,43 +54,71 @@ class YTLiveStreamingViewController: UIViewController {
 
     @IBAction func liveNowButton(_ sender: UIButton) {
 
-        if let title = titleTextField.text,
-            title.count <= 0 {
-            print("請輸入標題")
-            Alert.sharedInstance.showEnterTitle(title: "Error", message: "請輸入標題", closeView: self)
-        }
-        else {
-            self.startCreateBroadcast()
-            sender.isEnabled = false
-            self.refreshControl.startAnimating()
-        }
+        self.refreshControl.startAnimating()
+        self.startCreateBroadcast()
+        sender.isEnabled = false
+        sender.backgroundColor = .gray
+
+        UIView.animate(withDuration: 0.8, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.connectLabel.alpha = 1
+        }, completion: nil)
+
+//        if let title = titleTextField.text,
+//            title.count <= 0 {
+//            print("請輸入標題")
+//            Alert.sharedInstance.showEnterTitle(title: "Error", message: "請輸入標題", closeView: self)
+//        }
+//        else {
+//            self.startCreateBroadcast()
+//            sender.isEnabled = false
+//            self.refreshControl.startAnimating()
+//        }
     }
 
     func startCreateBroadcast() {
         let startDate = Helpers.dateAfter(Date(), after: (hour: 0, minute: 1, second: 0))
 
-        if let title = titleTextField.text,
-            let description = descriptionTextField.text {
-            input.createBroadcast(title, description: description, startTime: startDate) { (creatBreadcase) in
-                print(self.titleTextField.text ?? "nil title", self.descriptionTextField.text ?? "nil descriptionTextField")
-                if let breadcast = creatBreadcase {
-                    if let LFLiveVC = self.storyboard?.instantiateViewController(withIdentifier: "LFLiveVC") as? LFLiveViewController {
-                        LFLiveVC.into(liveBroadcast: breadcast)
-                        self.navigationController?.pushViewController(LFLiveVC, animated: true)
-                    }
-                    self.refreshControl.stopAnimating()
+        input.createBroadcast("正在 SYOS 進行直播快來看～", description: "", startTime: startDate) { (creatBreadcase) in
+            print(self.titleTextField.text ?? "nil title", self.descriptionTextField.text ?? "nil descriptionTextField")
+            if let breadcast = creatBreadcase {
+                if let LFLiveVC = self.storyboard?.instantiateViewController(withIdentifier: "LFLiveVC") as? LFLiveViewController {
+                    LFLiveVC.into(liveBroadcast: breadcast)
+                    self.navigationController?.pushViewController(LFLiveVC, animated: true)
                 }
-                else {
-                    print("createBroadcast error")
-//                    Alert.sharedInstance.showRetakeToken(title: "重新登入", message: "Youtube 權限已逾時", viewController: self, self.refreshControl, button: self.liveNowButton)
-                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
-                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
-                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
-                    GIDSignIn.sharedInstance()?.signInSilently()
-                    self.startCreateBroadcast()
-                }
+                self.refreshControl.stopAnimating()
+                self.connectLabel.layer.removeAllAnimations()
+            }
+            else {
+                print("createBroadcast error")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+                GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+                GIDSignIn.sharedInstance()?.signInSilently()
+                self.startCreateBroadcast()
             }
         }
+
+//        if let title = titleTextField.text,
+//            let description = descriptionTextField.text {
+//            input.createBroadcast(title, description: description, startTime: startDate) { (creatBreadcase) in
+//                print(self.titleTextField.text ?? "nil title", self.descriptionTextField.text ?? "nil descriptionTextField")
+//                if let breadcast = creatBreadcase {
+//                    if let LFLiveVC = self.storyboard?.instantiateViewController(withIdentifier: "LFLiveVC") as? LFLiveViewController {
+//                        LFLiveVC.into(liveBroadcast: breadcast)
+//                        self.navigationController?.pushViewController(LFLiveVC, animated: true)
+//                    }
+//                    self.refreshControl.stopAnimating()
+//                }
+//                else {
+//                    print("createBroadcast error")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.readonly")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube")
+//                    GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/youtube.force-ssl")
+//                    GIDSignIn.sharedInstance()?.signInSilently()
+//                    self.startCreateBroadcast()
+//                }
+//            }
+//        }
     }
 
 }
