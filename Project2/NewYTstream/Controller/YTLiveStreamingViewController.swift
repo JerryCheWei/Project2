@@ -63,16 +63,6 @@ class YTLiveStreamingViewController: UIViewController {
             self.connectLabel.alpha = 1
         }, completion: nil)
 
-//        if let title = titleTextField.text,
-//            title.count <= 0 {
-//            print("請輸入標題")
-//            Alert.sharedInstance.showEnterTitle(title: "Error", message: "請輸入標題", closeView: self)
-//        }
-//        else {
-//            self.startCreateBroadcast()
-//            sender.isEnabled = false
-//            self.refreshControl.startAnimating()
-//        }
     }
 
     func startCreateBroadcast() {

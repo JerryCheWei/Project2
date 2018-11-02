@@ -32,7 +32,12 @@ class LFLiveViewController: UIViewController {
         cameraButton.isExclusiveTouch = true
         closeButton.isExclusiveTouch = true
         currentStatusLabel.text = " "
+
+        // add top view to show stopOrStartLiveButton
+        let top = UITapGestureRecognizer(target: self, action: #selector(showButton))
+        view.addGestureRecognizer(top)
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
@@ -60,6 +65,7 @@ class LFLiveViewController: UIViewController {
             stopOrStartLiveButton.isSelected = true
             stopOrStartLiveButton.setTitle("結束", for: .normal)
             stopOrStartLiveButton.backgroundColor = .gray
+            self.liveButtonAnimated()
             startPublishing { (streamURL, streamName) in
                 if let streamURL = streamURL,
                     let streamName = streamName {
@@ -75,6 +81,21 @@ class LFLiveViewController: UIViewController {
 
     func showCurrentStatus(currStatus: String) {
         currentStatusLabel.text = currStatus
+    }
+
+    func liveButtonAnimated() {
+        UIView.animate(withDuration: 0.7, delay: 1.5, options: [.curveEaseInOut], animations: {
+            self.stopOrStartLiveButton.frame = CGRect(x: self.view.frame.width/2-60, y: self.view.frame.height, width: 120, height: 40)
+        }, completion: nil)
+    }
+
+    @objc func showButton() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
+            self.stopOrStartLiveButton.center.x = self.view.center.x
+            self.stopOrStartLiveButton.center.y = self.view.frame.height-20-40
+        }) { _ in
+            self.liveButtonAnimated()
+        }
     }
 
 }
@@ -148,7 +169,8 @@ extension LFLiveViewController: YTLiveStreamingDelegate {
         if let broadcastStatus = broadcastStatus, let streamStatus = streamStatus, let healthStatus = healthStatus {
             let text = "串流狀態: \(broadcastStatus) [\(streamStatus),\(healthStatus)]"
             print(text)
-            self.showCurrentStatus(currStatus: text)
+            let message = "檢查網路狀態..."
+            self.showCurrentStatus(currStatus: message)
 
 //            switch broadcastStatus {
 //            case "ready":
